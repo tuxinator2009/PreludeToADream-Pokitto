@@ -3977,6 +3977,159 @@
 		},
 		"/AUTHORS.txt": {
 			"sdcard": false
+		},
+		"/LICENSE": {
+			"sdcard": false
+		},
+		"/resources/POP/banner.ase": {
+			"sdcard": false
+		},
+		"/resources/POP/banner.png": {
+			"sdcard": false
+		},
+		"/resources/POP/icon_24x24.ase": {
+			"sdcard": false
+		},
+		"/resources/POP/icon_24x24.png": {
+			"sdcard": false
+		},
+		"/resources/POP/icon_36x36.ase": {
+			"sdcard": false
+		},
+		"/resources/POP/icon_36x36.png": {
+			"sdcard": false
+		},
+		"/resources/POP/screenshot1.png": {
+			"sdcard": false
+		},
+		"/resources/POP/screenshot2.png": {
+			"sdcard": false
+		},
+		"/resources/POP/screenshot3.png": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_postRaid.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_postRaid.tmx": {
+			"sdcard": false
+		},
+		"/resources/sfx/select.raw": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern2.tsx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/hall": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/home.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/house1.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/house1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/home.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/house2.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/house2.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/house3.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/house3.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/inn": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/shop.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/shop.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern/floor1.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern/floor1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern/floor2.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern/floor2.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern/floor3_lower.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern/floor3_lower.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern/floor3_upper.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern/floor3_upper.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern/floor4.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/cavern/floor4.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/hall/floor1.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/hall/floor1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/hall/floor2.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/hall/floor2.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/inn/floor1.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/inn/floor1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/inn/floor2.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/inn/floor2.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/inn/floor3.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/inn/floor3.tmx": {
+			"sdcard": false
 		}
 	},
 	"ideVersion": 10000,
