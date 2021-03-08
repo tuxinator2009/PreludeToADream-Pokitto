@@ -35,20 +35,22 @@ namespace PTAD
     {
       MainMenu,
       StatsMenu,
+      EquipMenu,
       ItemsMenu,
       SkillsMenu,
       SpellsMenu,
       DialogMenu,
       BattleMenu,
       VolumeMenu,
+      BeastsMenu,
+      SaveMenu,
       ShopMenu,
       ShopMenu_BuyWhat,
       ShopMenu_BuyItems,
       ShopMenu_BuyEquipment,
       ShopMenu_BuyQty,
       ShopMenu_SellWhat,
-      ShopMenu_SellQty,
-      ExternalMenu
+      ShopMenu_SellQty
     };
     static void setup();
     static void update();
@@ -75,12 +77,15 @@ namespace PTAD
     static void drawShopMenu_SellQty();
     static void updateMainMenu();
     static void updateStatsMenu();
+    static void updateEquipMenu();
     static void updateItemsMenu();
     static void updateSkillsMenu();
     static void updateSpellsMenu();
     static void updateDialogMenu();
     static void updateBattleMenu();
     static void updateVolumeMenu();
+    static void updateBeastsMenu();
+    static void updateSaveMenu();
     static void updateShopMenu();
     static void updateShopMenu_BuyWhat();
     static void updateShopMenu_BuyItems();
@@ -88,7 +93,6 @@ namespace PTAD
     static void updateShopMenu_BuyQty();
     static void updateShopMenu_SellWhat();
     static void updateShopMenu_SellQty();
-    static void updateExternalMenu();
     static DataPack::PackedFile mapFile;
     static State state;
     static MenuState menuState;

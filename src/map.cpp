@@ -310,6 +310,9 @@ void PTAD::Map::update()
       case MenuState::StatsMenu:
         updateStatsMenu();
         break;
+      case MenuState::EquipMenu:
+        updateEquipMenu();
+        break;
       case MenuState::ItemsMenu:
         updateItemsMenu();
         break;
@@ -327,6 +330,12 @@ void PTAD::Map::update()
         break;
       case MenuState::VolumeMenu:
         updateVolumeMenu();
+        break;
+      case MenuState::BeastsMenu:
+        updateBeastsMenu();
+        break;
+      case MenuState::SaveMenu:
+        updateSaveMenu();
         break;
       case MenuState::ShopMenu:
         updateShopMenu();
@@ -349,9 +358,6 @@ void PTAD::Map::update()
       case MenuState::ShopMenu_SellQty:
         updateShopMenu_SellQty();
 				break;
-      case MenuState::ExternalMenu:
-        updateExternalMenu();
-        break;
     }
   }
   if (shakeScreen > 0 && PC::frameCount % shakeRate == 0)
@@ -879,7 +885,7 @@ void PTAD::Map::updateMainMenu()
       PTAD::Ui::clear();
       PTAD::Menu::setup(PTAD::Menu::State::EquipMenu);
       PTAD::Game::state = PTAD::Game::State::MenuInit;
-      menuState = MenuState::ExternalMenu;
+      menuState = MenuState::EquipMenu;
       lastPress = PTAD::globalCounter;
     }
     else if (PTAD::globalCounter == 2) //Items Menu
@@ -935,7 +941,7 @@ void PTAD::Map::updateMainMenu()
       PTAD::Ui::clear();
       PTAD::Menu::setup(PTAD::Menu::State::BeastsMenu);
       PTAD::Game::state = PTAD::Game::State::MenuInit;
-      menuState = MenuState::ExternalMenu;
+      menuState = MenuState::BeastsMenu;
       lastPress = PTAD::globalCounter;
       chunkID[0] = -1;
       chunkID[1] = -1;
@@ -946,7 +952,7 @@ void PTAD::Map::updateMainMenu()
     {
       PTAD::Menu::setup(PTAD::Menu::State::SaveMenu);
       PTAD::Game::state = PTAD::Game::State::MenuInit;
-      menuState = MenuState::ExternalMenu;
+      menuState = MenuState::SaveMenu;
       lastPress = PTAD::globalCounter;
     }
     return;
@@ -991,6 +997,18 @@ void PTAD::Map::updateStatsMenu()
     PTAD::Ui::clear();
     drawMainMenu();
   }
+}
+
+void PTAD::Map::updateEquipMenu()
+{
+  menuState = MenuState::MainMenu;
+  PTAD::Ui::clear();
+  drawMainMenu();
+  PTAD::globalCounter = 1;
+  PD::lineFillers[0] = &PTAD::tileFillerBG;
+  PD::lineFillers[1] = &TAS::SpriteFiller;
+  PD::lineFillers[2] = &PTAD::tileFillerFG;
+  PD::lineFillers[3] = &PTAD::Ui::lineFiller;
 }
 
 void PTAD::Map::updateItemsMenu()
@@ -1377,6 +1395,31 @@ void PTAD::Map::updateVolumeMenu()
     PTAD::Ui::clear();
     drawMainMenu();
   }
+}
+
+void PTAD::Map::updateBeastsMenu()
+{
+  menuState = MenuState::MainMenu;
+  PTAD::Ui::clear();
+  updateChunks();
+  drawMainMenu();
+  PTAD::globalCounter = 8;
+  PD::lineFillers[0] = &PTAD::tileFillerBG;
+  PD::lineFillers[1] = &TAS::SpriteFiller;
+  PD::lineFillers[2] = &PTAD::tileFillerFG;
+  PD::lineFillers[3] = &PTAD::Ui::lineFiller;
+}
+
+void PTAD::Map::updateSaveMenu()
+{
+  menuState = MenuState::MainMenu;
+  PTAD::Ui::clear();
+  drawMainMenu();
+  PTAD::globalCounter = 9;
+  PD::lineFillers[0] = &PTAD::tileFillerBG;
+  PD::lineFillers[1] = &TAS::SpriteFiller;
+  PD::lineFillers[2] = &PTAD::tileFillerFG;
+  PD::lineFillers[3] = &PTAD::Ui::lineFiller;
 }
 
 void PTAD::Map::updateShopMenu()
@@ -1841,17 +1884,4 @@ void PTAD::Map::updateShopMenu_SellQty()
     PTAD::globalCounter = itemID;
     drawShopMenu_SellWhat();
   }
-}
-
-void PTAD::Map::updateExternalMenu()
-{
-  menuState = MenuState::MainMenu;
-  PTAD::Ui::clear();
-  updateChunks();
-  drawMainMenu();
-  PTAD::globalCounter = lastPress;
-  PD::lineFillers[0] = &PTAD::tileFillerBG;
-  PD::lineFillers[1] = &TAS::SpriteFiller;
-  PD::lineFillers[2] = &PTAD::tileFillerFG;
-  PD::lineFillers[3] = &PTAD::Ui::lineFiller;
 }
