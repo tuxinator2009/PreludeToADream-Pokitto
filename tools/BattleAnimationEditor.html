@@ -1,0 +1,259 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="common.css"></link>
+    <link rel="stylesheet" type="text/css" href="BattleAnimationEditor.css"></link>
+  </head>
+  <body style="overflow: hidden;" onload="setup()">
+    <div id="container">
+      <table>
+        <tr>
+          <td>
+            <form>
+              <label for="backdrop">Backdrop</label>
+              <select id="backdrop" name="backdrop" onchange="changeBackdrop(this.value)">
+                <option value="field.png">Field</option>
+                <option value="forest.png">Forest</option>
+                <option value="shipdeck.png">Ship Deck</option>
+                <option value="swamp.png">Swamp</option>
+                <option value="cavern.png">Cavern</option>
+              </select>
+              <label for="monster">Monster</label>
+              <input type="number" id="monster" name="monster" min="0" max="255" step="1" value="0" onchange="render()"/>
+              <button type="button" onclick="load()">Re-Load</button>
+              <button type="button" onclick="save()">Save</button>
+            </form>
+          </td>
+          <td rowspan="4" style="text-align: center;">
+            <form>
+              <label for="frame">Frame<br/></label>
+              <input type="number" id="frame" name="frame" min="1" max="51" step="1" value="1" onchange="setFrame(this.value);render();"/>
+              <button type="button" onclick="playAnimation()">Play</button><br/>
+              <label for="effect1">Effect 1<br/></label>
+              <select id="effect1" name="effect1" style="width: 100%;" onchange="setEffect(0, this.value);render();">
+                <option value="0">(NONE)</option>
+                <option value="1">Sprite</option>
+                <option value="2">Play SFX</option>
+                <option value="3">Shake Screen</option>
+                <option value="4">Flash UI</option>
+                <option value="5">Flash Enemy</option>
+                <option value="6">Flash Player</option>
+              </select>
+              <br/>
+              <input type="number" id="effect1_value1" min="0" max="255" value="0" disabled="true" onchange="setValue(0, 1, this.value);render();"/>
+              <input type="number" id="effect1_value2" min="0" max="255" value="0" disabled="true" onchange="setValue(0, 2, this.value);render();"/>
+              <br/>
+              <input type="number" id="effect1_value3" min="0" max="255" value="0" disabled="true" onchange="setValue(0, 3, this.value);render();"/>
+              <input type="number" id="effect1_value4" min="0" max="255" value="0" disabled="true" onchange="setValue(0, 4, this.value);render();"/>
+              <br/>
+              <label for="effect2">Effect 2<br/></label>
+              <select id="effect2" name="effect2" style="width: 100%;" onchange="setEffect(1, this.value);render();">
+                <option value="0">(NONE)</option>
+                <option value="1">Sprite</option>
+                <option value="2">Play SFX</option>
+                <option value="3">Shake Screen</option>
+                <option value="4">Flash UI</option>
+                <option value="5">Flash Enemy</option>
+                <option value="6">Flash Player</option>
+              </select>
+              <br/>
+              <input type="number" id="effect2_value1" min="0" max="255" value="0" disabled="true" onchange="setValue(1, 1, this.value);render();"/>
+              <input type="number" id="effect2_value2" min="0" max="255" value="0" disabled="true" onchange="setValue(1, 2, this.value);render();"/>
+              <br/>
+              <input type="number" id="effect2_value3" min="0" max="255" value="0" disabled="true" onchange="setValue(1, 3, this.value);render();"/>
+              <input type="number" id="effect2_value4" min="0" max="255" value="0" disabled="true" onchange="setValue(1, 4, this.value);render();"/>
+              <br/>
+              <label for="effect3">Effect 3<br/></label>
+              <select id="effect3" name="effect3" style="width: 100%;" onchange="setEffect(2, this.value);render();">
+                <option value="0">(NONE)</option>
+                <option value="1">Sprite</option>
+                <option value="2">Play SFX</option>
+                <option value="3">Shake Screen</option>
+                <option value="4">Flash UI</option>
+                <option value="5">Flash Enemy</option>
+                <option value="6">Flash Player</option>
+              </select>
+              <br/>
+              <input type="number" id="effect3_value1" min="0" max="255" value="0" disabled="true" onchange="setValue(2, 1, this.value);render();"/>
+              <input type="number" id="effect3_value2" min="0" max="255" value="0" disabled="true" onchange="setValue(2, 2, this.value);render();"/>
+              <br/>
+              <input type="number" id="effect3_value3" min="0" max="255" value="0" disabled="true" onchange="setValue(2, 3, this.value);render();"/>
+              <input type="number" id="effect3_value4" min="0" max="255" value="0" disabled="true" onchange="setValue(2, 4, this.value);render();"/>
+              <br/>
+              <label for="effect4">Effect 4<br/></label>
+              <select id="effect4" name="effect4" style="width: 100%;" onchange="setEffect(3, this.value);render();">
+                <option value="0">(NONE)</option>
+                <option value="1">Sprite</option>
+                <option value="2">Play SFX</option>
+                <option value="3">Shake Screen</option>
+                <option value="4">Flash UI</option>
+                <option value="5">Flash Enemy</option>
+                <option value="6">Flash Player</option>
+              </select>
+              <br/>
+              <input type="number" id="effect4_value1" min="0" max="255" value="0" disabled="true" onchange="setValue(3, 1, this.value);render();"/>
+              <input type="number" id="effect4_value2" min="0" max="255" value="0" disabled="true" onchange="setValue(3, 2, this.value);render();"/>
+              <br/>
+              <input type="number" id="effect4_value3" min="0" max="255" value="0" disabled="true" onchange="setValue(3, 3, this.value);render();"/>
+              <input type="number" id="effect4_value4" min="0" max="255" value="0" disabled="true" onchange="setValue(3, 4, this.value);render();"/>
+              <br/>
+              <label for="effect5">Effect 5<br/></label>
+              <select id="effect5" name="effect5" style="width: 100%;" onchange="setEffect(4, this.value);render();">
+                <option value="0">(NONE)</option>
+                <option value="1">Sprite</option>
+                <option value="2">Play SFX</option>
+                <option value="3">Shake Screen</option>
+                <option value="4">Flash UI</option>
+                <option value="5">Flash Enemy</option>
+                <option value="6">Flash Player</option>
+              </select>
+              <br/>
+              <input type="number" id="effect5_value1" min="0" max="255" value="0" disabled="true" onchange="setValue(4, 1, this.value);render();"/>
+              <input type="number" id="effect5_value2" min="0" max="255" value="0" disabled="true" onchange="setValue(4, 2, this.value);render();"/>
+              <br/>
+              <input type="number" id="effect5_value3" min="0" max="255" value="0" disabled="true" onchange="setValue(4, 3, this.value);render();"/>
+              <input type="number" id="effect5_value4" min="0" max="255" value="0" disabled="true" onchange="setValue(4, 4, this.value);render();"/>
+              <br/>
+              <label for="effect6">Effect 6<br/></label>
+              <select id="effect6" name="effect6" style="width: 100%;" onchange="setEffect(5, this.value);render();">
+                <option value="0">(NONE)</option>
+                <option value="1">Sprite</option>
+                <option value="2">Play SFX</option>
+                <option value="3">Shake Screen</option>
+                <option value="4">Flash UI</option>
+                <option value="5">Flash Enemy</option>
+                <option value="6">Flash Player</option>
+              </select>
+              <br/>
+              <input type="number" id="effect6_value1" min="0" max="255" value="0" disabled="true" onchange="setValue(5, 1, this.value);render();"/>
+              <input type="number" id="effect6_value2" min="0" max="255" value="0" disabled="true" onchange="setValue(5, 2, this.value);render();"/>
+              <br/>
+              <input type="number" id="effect6_value3" min="0" max="255" value="0" disabled="true" onchange="setValue(5, 3, this.value);render();"/>
+              <input type="number" id="effect6_value4" min="0" max="255" value="0" disabled="true" onchange="setValue(5, 4, this.value);render();"/>
+              <br/>
+              <label for="effect7">Effect 7<br/></label>
+              <select id="effect7" name="effect7" style="width: 100%;" onchange="setEffect(6, this.value);render();">
+                <option value="0">(NONE)</option>
+                <option value="1">Sprite</option>
+                <option value="2">Play SFX</option>
+                <option value="3">Shake Screen</option>
+                <option value="4">Flash UI</option>
+                <option value="5">Flash Enemy</option>
+                <option value="6">Flash Player</option>
+              </select>
+              <br/>
+              <input type="number" id="effect7_value1" min="0" max="255" value="0" disabled="true" onchange="setValue(6, 1, this.value);render();"/>
+              <input type="number" id="effect7_value2" min="0" max="255" value="0" disabled="true" onchange="setValue(6, 2, this.value);render();"/>
+              <br/>
+              <input type="number" id="effect7_value3" min="0" max="255" value="0" disabled="true" onchange="setValue(6, 3, this.value);render();"/>
+              <input type="number" id="effect7_value4" min="0" max="255" value="0" disabled="true" onchange="setValue(6, 4, this.value);render();"/>
+              <br/>
+              <label for="effect8">Effect 8<br/></label>
+              <select id="effect8" name="effect8" style="width: 100%;" onchange="setEffect(7, this.value);render();">
+                <option value="0">(NONE)</option>
+                <option value="1">Sprite</option>
+                <option value="2">Play SFX</option>
+                <option value="3">Shake Screen</option>
+                <option value="4">Flash UI</option>
+                <option value="5">Flash Enemy</option>
+                <option value="6">Flash Player</option>
+              </select>
+              <br/>
+              <input type="number" id="effect8_value1" min="0" max="255" value="0" disabled="true" onchange="setValue(7, 1, this.value);render();"/>
+              <input type="number" id="effect8_value2" min="0" max="255" value="0" disabled="true" onchange="setValue(7, 2, this.value);render();"/>
+              <br/>
+              <input type="number" id="effect8_value3" min="0" max="255" value="0" disabled="true" onchange="setValue(7, 3, this.value);render();"/>
+              <input type="number" id="effect8_value4" min="0" max="255" value="0" disabled="true" onchange="setValue(7, 4, this.value);render();"/>
+              <br/>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">
+            <form class="sprites">
+              <table>
+                <tr>
+                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(0, this.value)"/></td>
+                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(1, this.value)"/></td>
+                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(2, this.value)"/></td>
+                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(3, this.value)"/></td>
+                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(4, this.value)"/></td>
+                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(5, this.value)"/></td>
+                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(6, this.value)"/></td>
+                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(7, this.value)"/></td>
+                </tr>
+                <tr>
+                  <td class="sprite" id="sprite1" style="background-position: 0px 0px;"></td>
+                  <td class="sprite" id="sprite2" style="background-position: 0px 0px;"></td>
+                  <td class="sprite" id="sprite3" style="background-position: 0px 0px;"></td>
+                  <td class="sprite" id="sprite4" style="background-position: 0px 0px;"></td>
+                  <td class="sprite" id="sprite5" style="background-position: 0px 0px;"></td>
+                  <td class="sprite" id="sprite6" style="background-position: 0px 0px;"></td>
+                  <td class="sprite" id="sprite7" style="background-position: 0px 0px;"></td>
+                  <td class="sprite" id="sprite8" style="background-position: 0px 0px;"></td>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">
+            <canvas width="568" height="480" id="animation" style="border: 1px solid black;"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table class="legend">
+              <tr>
+                <td colspan="2">Sprite</td>
+                <td colspan="2">Play SFX</td>
+                <td colspan="2">Shake Screen</td>
+                <td colspan="2">Flash UI</td>
+                <td colspan="2">Flash Enemy</td>
+                <td colspan="2">Flash Player</td>
+              </tr>
+              <tr>
+                <td>spriteID</td>
+                <td>flip/mirror</td>
+
+                <td>sfxID</td>
+                <td>N/A</td>
+                
+                <td>duration</td>
+                <td>rate</td>
+                
+                <td>duration</td>
+                <td>color</td>
+                
+                <td>duration</td>
+                <td>color1</td>
+                
+                <td>duration</td>
+                <td>color1</td>
+              </tr>
+              <tr>
+                <td>x</td>
+                <td>y</td>
+                
+                <td>N/A</td>
+                <td>N/A</td>
+                
+                <td>N/A</td>
+                <td>N/A</td>
+                
+                <td>N/A</td>
+                <td>N/A</td>
+                
+                <td>color2</td>
+                <td>color3</td>
+                
+                <td>color2</td>
+                <td>color3</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <script src="BattleAnimationEditor.js"></script>
+</html>

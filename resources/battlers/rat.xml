@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="2" gold="2" hp="2" mp="0" attack="2" defense="4" agility="8" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>
+    <bufferMessage message="You encountered a rat!"/>
+    <showMessage/>
+  </intro>
+  <outro>
+    <bufferMessage message="You defeated the rat!"/>
+    <showMessage/>
+  </outro>
+  <turn>
+    <bufferMessage message="The rat claws your face."/>
+    <showMessage/>
+    <playBattleAnimation animation="animations/test.anim"/>
+    <basicAttack/>
+  </turn>
+  <!--event system to determine action taken-->
+</preludetoadream-enemy>

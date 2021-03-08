@@ -1,0 +1,29 @@
+form.sprites > input
+{
+  border: 1px solid #C0C0C0;
+}
+
+td.sprite
+{
+  border: 1px solid #C0C0C0;
+  width: 64px;
+  height: 64px;
+  background-image: url('../resources/animations/animations.png');
+  background-size: 1024px 1024px;
+  image-rendering: pixelated;
+}
+
+table.legend tr
+{
+  padding: 0px;
+  margin: 0px;
+}
+
+table.legend td
+{
+  border: 1px solid #C0C0C0;
+  padding: 2px;
+  margin: 0px;
+  text-align: center;
+  font-size: 10pt;
+}

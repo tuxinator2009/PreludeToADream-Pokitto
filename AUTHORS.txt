@@ -1,0 +1,5 @@
+Programming: tuxinator2009
+Artwork: tuxinator2009
+Music: JRPG Collection by Yubatake (CC-BY-3.0) <https://yubatake.bandcamp.com/album/jrpg-collection>
+Font: Cursive 2 from the New original Grafx2 font collection by devurandom (CC0) <https://opengameart.org/content/new-original-grafx2-font-collection>
+Palette: miloslav palette2 by drummyfish (CC0) <https://gitlab.com/drummyfish/palette2>

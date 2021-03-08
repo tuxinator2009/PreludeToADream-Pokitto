@@ -1,0 +1,3986 @@
+{
+	"lastBuffer": "main.cpp",
+	"PNGFlags": {
+		"ALL": [
+			"palette=${appPath}/PokittoLib/Pokitto/POKITTO_CORE/PALETTES/miloslav.h",
+			"bpp=8"
+		]
+	},
+	"libs": {
+		"Pokitto": [
+			{
+				"recurse": "${appPath}/PokittoLib/Pokitto",
+				"ignore": "POKITTO_SIM|POKITTO_XTERNALS|Documentation|examples?|Physics|(?:.*_SIM.*)|main.cpp"
+			}
+		],
+		"linux": "Desktop",
+		"windows": "Desktop",
+		"darwin": "Desktop",
+		"Desktop": [
+			{
+				"recurse": "${appPath}/PokittoLib/Pokitto",
+				"ignore": "BmpImage.cpp|ChaN|old_32bitSDL|libpff|SDFileSystem|File/ChaN|USBDevice|tinydir/tests|tinydir/samples|JoyHat|mbed-pokitto|POKITTO_HW|POKITTO_XTERNALS|PokittoDisk.cpp|PokittoBattery.cpp|Documentation|examples?|Physics|main.cpp|Pokitto_simsound.cpp"
+			}
+		]
+	},
+	"SFlags": {
+		"Pokitto": [
+			"-I${projectPath}",
+			"-mcpu=cortex-m0plus",
+			"-mthumb"
+		]
+	},
+	"CPPFlags": {
+		"DEBUG": [
+			"-Og",
+			"-g3",
+			"-ggdb"
+		],
+		"RELEASE": [
+			"-O3"
+		],
+		"Pokitto": [
+			"-D_OSCT=2",
+			"-I${projectPath}",
+			"-DPOKITTO",
+			"-fno-rtti",
+			"-Wno-pointer-arith",
+			"-c",
+			"-fno-exceptions",
+			"-fno-builtin",
+			"-ffunction-sections",
+			"-fdata-sections",
+			"-funsigned-char",
+			"-MMD",
+			"-fno-delete-null-pointer-checks",
+			"-fomit-frame-pointer",
+			"-mcpu=cortex-m0plus",
+			"-mthumb",
+			"-Wno-psabi",
+			"-Wno-conversion-null",
+			"-Wno-narrowing",
+			"-Wno-write-strings",
+			"-DTARGET_LPC11U68",
+			"-D__MBED__=1",
+			"-DDEVICE_I2CSLAVE=1",
+			"-DTARGET_LIKE_MBED",
+			"-DTARGET_NXP",
+			"-D__MBED_CMSIS_RTOS_CM",
+			"-DDEVICE_RTC=1",
+			"-DTOOLCHAIN_object",
+			"-D__CMSIS_RTOS",
+			"-DTOOLCHAIN_GCC",
+			"-DTARGET_CORTEX_M",
+			"-DTARGET_M0P",
+			"-DTARGET_UVISOR_UNSUPPORTED",
+			"-DDEVICE_SERIAL=1",
+			"-DDEVICE_INTERRUPTIN=1",
+			"-DTARGET_LPCTarget",
+			"-DTARGET_CORTEX",
+			"-DDEVICE_I2C=1",
+			"-D__CORTEX_M0PLUS",
+			"-DTARGET_FF_ARDUINO",
+			"-DTARGET_RELEASE",
+			"-DMBED_BUILD_TIMESTAMP=1526394586.66",
+			"-DARM_MATH_CM0PLUS",
+			"-DTARGET_LPC11U6X",
+			"-DDEVICE_SLEEP=1",
+			"-DTOOLCHAIN_GCC_ARM",
+			"-DDEVICE_SPI=1",
+			"-DDEVICE_ANALOGIN=1",
+			"-DDEVICE_PWMOUT=1",
+			"-DTARGET_LIKE_CORTEX_M0",
+			"-DPATH_PREFIX=\"\""
+		],
+		"Desktop": [
+			"-I${projectPath}",
+			"-DPOK_SIM",
+			"-Wall",
+			"-std=gnu++17",
+			"-fsigned-char",
+			"-DPOK_SIM",
+			"-fno-rtti",
+			"-Wno-pointer-arith",
+			"-c",
+			"-fno-builtin",
+			"-ffunction-sections",
+			"-fdata-sections",
+			"-funsigned-char",
+			"-MMD",
+			"-fno-delete-null-pointer-checks",
+			"-DPATH_PREFIX=\"${projectPath}\""
+		],
+		"ALL": [
+			"-std=c++17",
+			"-I${projectPath}/../../libs"
+		],
+		"linux": {
+			"extend": "Desktop",
+			"flags": [
+				"-DPROJ_LINUX=1",
+				"-D_REENTRANT"
+			]
+		},
+		"windows": "Desktop"
+	},
+	"CFlags": {
+		"DEBUG": [
+			"-Og",
+			"-g3",
+			"-ggdb"
+		],
+		"RELEASE": [
+			"-O3"
+		],
+		"Pokitto": [
+			"-D_OSCT=2",
+			"-I${projectPath}",
+			"-DPOKITTO",
+			"-Wno-pointer-arith",
+			"-c",
+			"-fno-exceptions",
+			"-fno-builtin",
+			"-ffunction-sections",
+			"-fdata-sections",
+			"-funsigned-char",
+			"-MMD",
+			"-fno-delete-null-pointer-checks",
+			"-fomit-frame-pointer",
+			"-mcpu=cortex-m0plus",
+			"-mthumb",
+			"-Wno-psabi",
+			"-Wwrite-strings",
+			"-DTARGET_LPC11U68",
+			"-D__MBED__=1",
+			"-DDEVICE_I2CSLAVE=1",
+			"-DTARGET_LIKE_MBED",
+			"-DTARGET_NXP",
+			"-D__MBED_CMSIS_RTOS_CM",
+			"-DDEVICE_RTC=1",
+			"-DTOOLCHAIN_object",
+			"-D__CMSIS_RTOS",
+			"-DTOOLCHAIN_GCC",
+			"-DTARGET_CORTEX_M",
+			"-DTARGET_M0P",
+			"-DTARGET_UVISOR_UNSUPPORTED",
+			"-DDEVICE_SERIAL=1",
+			"-DDEVICE_INTERRUPTIN=1",
+			"-DTARGET_LPCTarget",
+			"-DTARGET_CORTEX",
+			"-DDEVICE_I2C=1",
+			"-D__CORTEX_M0PLUS",
+			"-DTARGET_FF_ARDUINO",
+			"-DTARGET_RELEASE",
+			"-DMBED_BUILD_TIMESTAMP=1526394586.66",
+			"-DARM_MATH_CM0PLUS",
+			"-DTARGET_LPC11U6X",
+			"-DDEVICE_SLEEP=1",
+			"-DTOOLCHAIN_GCC_ARM",
+			"-DDEVICE_SPI=1",
+			"-DDEVICE_ANALOGIN=1",
+			"-DDEVICE_PWMOUT=1",
+			"-DTARGET_LIKE_CORTEX_M0"
+		],
+		"Desktop": [
+			"-I${projectPath}",
+			"-DPOK_SIM",
+			"-Wall",
+			"-fsigned-char",
+			"-DPOK_SIM",
+			"-Wno-pointer-arith",
+			"-c",
+			"-fno-builtin",
+			"-ffunction-sections",
+			"-fdata-sections",
+			"-funsigned-char",
+			"-MMD",
+			"-fno-delete-null-pointer-checks"
+		],
+		"ALL": [
+			"-I${projectPath}/../../libs"
+		],
+		"linux": "Desktop",
+		"windows": "Desktop",
+		"darwin": "Desktop"
+	},
+	"GDBFlags": {
+		"Pokitto": [
+			"${projectPath}/${projectName}.elf"
+		]
+	},
+	"emuFlags": {
+		"Pokitto": [
+			"${projectPath}/${projectName}.bin"
+		]
+	},
+	"ELF2BINFlags": {
+		"Pokitto": [
+			"-O",
+			"binary",
+			"${projectPath}/${projectName}.elf",
+			"${projectPath}/${projectName}.bin"
+		]
+	},
+	"LDFlags": {
+		"RELEASE": [
+			"-O3"
+		],
+		"DEBUG": [
+			"-Og",
+			"-g3",
+			"-ggdb"
+		],
+		"Pokitto": [
+			"-Wl,--gc-sections",
+			"-Wl,-n",
+			"--specs=nano.specs",
+			"-mcpu=cortex-m0plus",
+			"-mthumb",
+			"-Wl,--undefined=g_pfnVectors",
+			"-Wl,--undefined=boot",
+			"-T",
+			"${appPath}/PokittoLib/Pokitto/mbed-pokitto/targets/cmsis/TARGET_NXP/TARGET_LPC11U6X/TOOLCHAIN_GCC_ARM/TARGET_LPC11U68/LPC11U68.ld",
+			"--output",
+			"${projectPath}/${projectName}.elf",
+			"$objectFiles",
+			"-Wl,--start-group",
+			"-lstdc++",
+			"-lsupc++",
+			"-lm",
+			"-lc",
+			"-lgcc",
+			"-lnosys",
+			"-Wl,--end-group"
+		],
+		"linux": [
+			"$objectFiles",
+			"-lpthread",
+			"-lSDL2",
+			"--output",
+			"${projectPath}/${projectName}"
+		],
+		"windows": [
+			"-static",
+			"-lmingw32",
+			"-L${appPath}/PokittoLib/Pokitto/POKITTO_SIM/SDL2/lib",
+			"-lSDL2main",
+			"-lSDL2",
+			"-lm",
+			"-ldinput8",
+			"-ldxguid",
+			"-ldxerr8",
+			"-luser32",
+			"-lgdi32",
+			"-lwinmm",
+			"-limm32",
+			"-lole32",
+			"-loleaut32",
+			"-lshell32",
+			"-lversion",
+			"-luuid",
+			"-lsetupapi",
+			"-static-libgcc",
+			"-mwindows",
+			"--output",
+			"${projectPath}/${projectName}.exe",
+			"$objectFiles"
+		]
+	},
+	"target": "Pokitto",
+	"pipelines": {
+		"Pokitto": [
+			"compile-cpp",
+			"compile-ld",
+			"compile-bin",
+			"make-img"
+		],
+		"Desktop": [
+			"compile-cpp",
+			"compile-ld"
+		],
+		"linux": "Desktop",
+		"windows": "Desktop"
+	},
+	"meta": {
+		"EEP.ROM": {},
+		"My_settings.h": {},
+		"PreludeToADream": {},
+		"PreludeToADream.bin": {},
+		"PreludeToADream.bin.1.gif": {},
+		"PreludeToADream.bin.1.png": {},
+		"PreludeToADream.bin.2.png": {},
+		"PreludeToADream.bin.3.png": {},
+		"PreludeToADream.bin.4.png": {},
+		"PreludeToADream.bin.5.png": {},
+		"PreludeToADream.bin.6.png": {},
+		"PreludeToADream.bin.7.png": {},
+		"PreludeToADream.eeprom": {},
+		"PreludeToADream.elf": {},
+		"data": {
+			"sdcard": true
+		},
+		"project.json": {},
+		"resources": {},
+		"scripts": {},
+		"tools": {},
+		"src": {},
+		"data/preludetoadream.pak": {},
+		"resources/BattleDefeat.mp4": {},
+		"resources/BattleIntro.mp4": {},
+		"resources/BattleIntro.gif": {},
+		"resources/CavernWalkaround.mp4": {},
+		"resources/ClothedPlayer.mp4": {},
+		"resources/TeleportEvent.mp4": {},
+		"resources/Tiled": {},
+		"resources/TorDoor.mp4": {},
+		"resources/TownWalkAround.mp4": {},
+		"resources/animations": {},
+		"resources/backdrops": {},
+		"resources/battle.png": {},
+		"resources/battle_chooseItemSpell.png": {},
+		"resources/battlers": {},
+		"resources/battlers.xml": {},
+		"resources/collage.png": {},
+		"resources/cursor.png": {},
+		"resources/font.gfx": {},
+		"resources/font.png": {},
+		"resources/font1bpp.png": {},
+		"resources/inspirations": {},
+		"resources/maps": {},
+		"resources/messages.dat": {},
+		"resources/messages.tmp": {},
+		"resources/messages.txt": {},
+		"resources/music": {},
+		"resources/overworld.png": {},
+		"resources/overworld_regions.png": {},
+		"resources/sfx": {},
+		"resources/sprites": {},
+		"resources/stats.ods": {},
+		"resources/statusIcons.ase": {},
+		"resources/statusIcons.gfx": {},
+		"resources/statusIcons.png": {},
+		"resources/storyProgression.txt": {},
+		"resources/tiles.ase": {},
+		"resources/tilesets": {},
+		"scripts/CustomEditor.js": {},
+		"tools/BattleAnimationEditor.css": {},
+		"tools/BattleAnimationEditor.html": {},
+		"tools/BattleAnimationEditor.js": {},
+		"tools/battle.png": {},
+		"tools/editorLayout.png": {},
+		"tools/frameNumber.png": {},
+		"src/battle.cpp": {},
+		"src/battle.h": {},
+		"src/battleanimation.cpp": {},
+		"src/battleanimation.h": {},
+		"src/battleevent.cpp": {},
+		"src/battleevent.h": {},
+		"src/dialog.cpp": {},
+		"src/dialog.h": {},
+		"src/font.cpp": {},
+		"src/font.h": {},
+		"src/game.cpp": {},
+		"src/game.h": {},
+		"src/globals.cpp": {},
+		"src/globals.h": {},
+		"src/headers.h": {},
+		"src/main.cpp": {},
+		"src/map.cpp": {},
+		"src/map.h": {},
+		"src/mapevent.cpp": {},
+		"src/mapevent.h": {},
+		"src/music.cpp": {},
+		"src/music.h": {},
+		"src/ui.cpp": {},
+		"src/ui.h": {},
+		"": {},
+		"resources/Tiled/Interior.tsx": {},
+		"resources/Tiled/cavern.tsx": {},
+		"resources/Tiled/cavern2.tsx": {},
+		"resources/Tiled/cavern_entrance.png": {},
+		"resources/Tiled/cavern_entrance.tmx": {},
+		"resources/Tiled/grid.png": {},
+		"resources/Tiled/grid.tsx": {},
+		"resources/Tiled/interior_test.png": {},
+		"resources/Tiled/interior_test.tmx": {},
+		"resources/Tiled/main": {},
+		"resources/Tiled/overworld.tsx": {},
+		"resources/Tiled/ptad.tiled-project": {},
+		"resources/Tiled/ptad.tiled-session": {},
+		"resources/Tiled/tilesets": {},
+		"resources/Tiled/town.tsx": {},
+		"resources/Tiled/town1.tmx": {},
+		"resources/Tiled/town1.png": {},
+		"resources/Tiled/town1_cavern_entrance.png": {},
+		"resources/Tiled/town1_cavern_entrance.tmx": {},
+		"resources/Tiled/town1_hall_floor1.png": {},
+		"resources/Tiled/town1_hall_floor1.tmx": {},
+		"resources/Tiled/town1_hall_floor2.png": {},
+		"resources/Tiled/town1_hall_floor2.tmx": {},
+		"resources/Tiled/town1_home.png": {},
+		"resources/Tiled/town1_home.tmx": {},
+		"resources/Tiled/town1_inn_floor1.png": {},
+		"resources/Tiled/town1_inn_floor1.tmx": {},
+		"resources/Tiled/town1_inn_floor2.png": {},
+		"resources/Tiled/town1_inn_floor2.tmx": {},
+		"resources/Tiled/town1_inn_floor3.png": {},
+		"resources/Tiled/town1_inn_floor3.tmx": {},
+		"resources/Tiled/world.tmx": {},
+		"resources/animations/animations.ase": {},
+		"resources/animations/animations.png": {},
+		"resources/animations/test.anim": {},
+		"resources/backdrops/cavern.ase": {},
+		"resources/backdrops/cavern.gfx": {},
+		"resources/backdrops/cavern.png": {},
+		"resources/backdrops/empty.txt": {},
+		"resources/backdrops/field.ase": {},
+		"resources/backdrops/field.gfx": {},
+		"resources/backdrops/field.png": {},
+		"resources/backdrops/forest.ase": {},
+		"resources/backdrops/forest.gfx": {},
+		"resources/backdrops/forest.png": {},
+		"resources/backdrops/shipdeck.ase": {},
+		"resources/backdrops/shipdeck.gfx": {},
+		"resources/backdrops/shipdeck.png": {},
+		"resources/backdrops/swamp.ase": {},
+		"resources/backdrops/swamp.gfx": {},
+		"resources/backdrops/swamp.png": {},
+		"resources/battlers/battlers.ase": {},
+		"resources/battlers/battlers.gfx": {},
+		"resources/battlers/battlers.png": {},
+		"resources/battlers/brigand.ase": {},
+		"resources/battlers/brigand.png": {},
+		"resources/battlers/cobra.ase": {},
+		"resources/battlers/core": {},
+		"resources/battlers/example.txt": {},
+		"resources/battlers/giantPokitto.ase": {},
+		"resources/battlers/giantPokitto.png": {},
+		"resources/battlers/rat.ase": {},
+		"resources/battlers/rat.dat": {},
+		"resources/battlers/rat.png": {},
+		"resources/battlers/rat.xml": {},
+		"resources/battlers/snake.ase": {},
+		"resources/battlers/snake.dat": {},
+		"resources/battlers/snake.gfx": {},
+		"resources/battlers/snake.png": {},
+		"resources/battlers/snake.txt": {},
+		"resources/battlers/snake.xml": {},
+		"resources/battlers/spider.ase": {},
+		"resources/battlers/spider.dat": {},
+		"resources/battlers/spider.png": {},
+		"resources/battlers/spider.xml": {},
+		"resources/battlers/tree.ase": {},
+		"resources/battlers/wolf.ase": {},
+		"resources/battlers/wolf.png": {},
+		"resources/inspirations/ChronoTriggerCaves.png": {},
+		"resources/maps/cavern_entrance": {},
+		"resources/maps/core": {},
+		"resources/maps/overworld": {},
+		"resources/maps/town1": {},
+		"resources/maps/town1_cavern_entrance": {},
+		"resources/maps/town1_hall_floor1": {},
+		"resources/maps/town1_hall_floor2": {},
+		"resources/maps/town1_home": {},
+		"resources/maps/town1_inn_floor1": {},
+		"resources/maps/town1_inn_floor2": {},
+		"resources/maps/town1_inn_floor3": {},
+		"resources/music/JRPG_battleBoss_loop.ogg": {},
+		"resources/music/JRPG_battleBoss_loop.raw": {},
+		"resources/music/JRPG_battleFinal.ogg": {},
+		"resources/music/JRPG_battleFinal.raw": {},
+		"resources/music/JRPG_battle_loop.ogg": {},
+		"resources/music/JRPG_battle_loop.raw": {},
+		"resources/music/JRPG_characterRevived.ogg": {},
+		"resources/music/JRPG_characterRevived.raw": {},
+		"resources/music/JRPG_discovery.ogg": {},
+		"resources/music/JRPG_discovery.raw": {},
+		"resources/music/JRPG_docks_loop.ogg": {},
+		"resources/music/JRPG_docks_loop.raw": {},
+		"resources/music/JRPG_dungeon_loop.ogg": {},
+		"resources/music/JRPG_dungeon_loop.raw": {},
+		"resources/music/JRPG_fields_loop.ogg": {},
+		"resources/music/JRPG_fields_loop.raw": {},
+		"resources/music/JRPG_gameOver.ogg": {},
+		"resources/music/JRPG_gameOver.raw": {},
+		"resources/music/JRPG_goodMorning.ogg": {},
+		"resources/music/JRPG_goodMorning.raw": {},
+		"resources/music/JRPG_goodNight.ogg": {},
+		"resources/music/JRPG_goodNight.raw": {},
+		"resources/music/JRPG_inn_loop.ogg": {},
+		"resources/music/JRPG_inn_loop.raw": {},
+		"resources/music/JRPG_joinParty.ogg": {},
+		"resources/music/JRPG_joinParty.raw": {},
+		"resources/music/JRPG_labyrinth_loop.ogg": {},
+		"resources/music/JRPG_labyrinth_loop.raw": {},
+		"resources/music/JRPG_levelUp.ogg": {},
+		"resources/music/JRPG_levelUp.raw": {},
+		"resources/music/JRPG_machineRoom_loop.ogg": {},
+		"resources/music/JRPG_machineRoom_loop.raw": {},
+		"resources/music/JRPG_mainTheme.ogg": {},
+		"resources/music/JRPG_mainTheme.raw": {},
+		"resources/music/JRPG_mysticIsle.ogg": {},
+		"resources/music/JRPG_mysticIsle.raw": {},
+		"resources/music/JRPG_princess.ogg": {},
+		"resources/music/JRPG_princess.raw": {},
+		"resources/music/JRPG_royalCourt_loop.ogg": {},
+		"resources/music/JRPG_royalCourt_loop.raw": {},
+		"resources/music/JRPG_shop_loop.ogg": {},
+		"resources/music/JRPG_shop_loop.raw": {},
+		"resources/music/JRPG_tavern.ogg": {},
+		"resources/music/JRPG_tavern.raw": {},
+		"resources/music/JRPG_temple.ogg": {},
+		"resources/music/JRPG_temple.raw": {},
+		"resources/music/JRPG_town_loop.ogg": {},
+		"resources/music/JRPG_town_loop.raw": {},
+		"resources/music/JRPG_winBattle.ogg": {},
+		"resources/music/JRPG_winBattle.raw": {},
+		"resources/music/JRPG_winBattleBig.ogg": {},
+		"resources/music/JRPG_winBattleBig.raw": {},
+		"resources/music/JRPG_winBattleBoss.ogg": {},
+		"resources/music/JRPG_winBattleBoss.raw": {},
+		"resources/music/JRPG_winBattleFinal.ogg": {},
+		"resources/music/JRPG_winBattleFinal.raw": {},
+		"resources/music/music.aup": {},
+		"resources/music/music_data": {},
+		"resources/sfx/hit.raw": {},
+		"resources/sfx/hit.wav": {},
+		"resources/sfx/miss.raw": {},
+		"resources/sfx/miss.wav": {},
+		"resources/sfx/poison.raw": {},
+		"resources/sfx/poison.wav": {},
+		"resources/sfx/slow.raw": {},
+		"resources/sfx/slow.wav": {},
+		"resources/sprites/TEMPLATE (fat).png": {},
+		"resources/sprites/TEMPLATE.png": {},
+		"resources/sprites/player.ase": {},
+		"resources/sprites/player.gfx": {},
+		"resources/sprites/player.png": {},
+		"resources/sprites/sprites.ase": {},
+		"resources/sprites/sprites.gfx": {},
+		"resources/sprites/sprites.png": {},
+		"resources/sprites/spritesBeforeAndAfter.ase": {},
+		"resources/sprites/spritesBeforeAndAfter.gif": {},
+		"resources/sprites/template.ase": {},
+		"resources/sprites/template.png": {},
+		"resources/tilesets/cavern.ase": {},
+		"resources/tilesets/cavern.dat": {},
+		"resources/tilesets/cavern.gfx": {},
+		"resources/tilesets/cavern.png": {},
+		"resources/tilesets/cavern.txt": {},
+		"resources/tilesets/cavern2.ase": {},
+		"resources/tilesets/cavern2.dat": {},
+		"resources/tilesets/cavern2.gfx": {},
+		"resources/tilesets/cavern2.png": {},
+		"resources/tilesets/cavern2.txt": {},
+		"resources/tilesets/chest.gif": {},
+		"resources/tilesets/dreamworld.png": {},
+		"resources/tilesets/interior.ase": {},
+		"resources/tilesets/interior.dat": {},
+		"resources/tilesets/interior.gfx": {},
+		"resources/tilesets/interior.png": {},
+		"resources/tilesets/interior.txt": {},
+		"resources/tilesets/overworld.dat": {},
+		"resources/tilesets/overworld.gfx": {},
+		"resources/tilesets/overworld.png": {},
+		"resources/tilesets/overworld.txt": {},
+		"resources/tilesets/spiritworld.png": {},
+		"resources/tilesets/town": {},
+		"resources/tilesets/town.ase": {},
+		"resources/tilesets/town.dat": {},
+		"resources/tilesets/town.gfx": {},
+		"resources/tilesets/town.png": {},
+		"resources/tilesets/town.txt": {},
+		"resources/maps/cavern_entrance/chunks_BG.dat": {},
+		"resources/maps/cavern_entrance/chunks_FG.dat": {},
+		"resources/maps/cavern_entrance/data.dat": {},
+		"resources/maps/cavern_entrance/data.xml": {},
+		"resources/maps/cavern_entrance/events.dat": {},
+		"resources/maps/cavern_entrance/passability.dat": {},
+		"resources/maps/cavern_entrance/passability.png": {},
+		"resources/maps/cavern_entrance/tilemap_BG.csv": {},
+		"resources/maps/cavern_entrance/tilemap_FG.csv": {},
+		"resources/maps/cavern_entrance/tilemap_Grid.csv": {},
+		"resources/maps/overworld/chunks_BG.dat": {},
+		"resources/maps/overworld/chunks_FG.dat": {},
+		"resources/maps/overworld/data.dat": {},
+		"resources/maps/overworld/data.xml": {},
+		"resources/maps/overworld/events.dat": {},
+		"resources/maps/overworld/passability.dat": {},
+		"resources/maps/overworld/passability.png": {},
+		"resources/maps/overworld/tilemap_BG.csv": {},
+		"resources/maps/overworld/tilemap_FG.csv": {},
+		"resources/maps/town1/chunks_BG.dat": {},
+		"resources/maps/town1/chunks_FG.dat": {},
+		"resources/maps/town1/data.dat": {},
+		"resources/maps/town1/data.xml": {},
+		"resources/maps/town1/events.dat": {},
+		"resources/maps/town1/passability.dat": {},
+		"resources/maps/town1/passability.png": {},
+		"resources/maps/town1/tilemap_BG.csv": {},
+		"resources/maps/town1/tilemap_FG.csv": {},
+		"resources/maps/town1_cavern_entrance/chunks_BG.dat": {},
+		"resources/maps/town1_cavern_entrance/chunks_FG.dat": {},
+		"resources/maps/town1_cavern_entrance/data.dat": {},
+		"resources/maps/town1_cavern_entrance/data.xml": {},
+		"resources/maps/town1_cavern_entrance/events.dat": {},
+		"resources/maps/town1_cavern_entrance/passability.dat": {},
+		"resources/maps/town1_cavern_entrance/passability.png": {},
+		"resources/maps/town1_cavern_entrance/tilemap_BG.csv": {},
+		"resources/maps/town1_cavern_entrance/tilemap_FG.csv": {},
+		"resources/maps/town1_cavern_entrance/tilemap_Grid.csv": {},
+		"resources/maps/town1_hall_floor1/chunks_BG.dat": {},
+		"resources/maps/town1_hall_floor1/chunks_FG.dat": {},
+		"resources/maps/town1_hall_floor1/data.dat": {},
+		"resources/maps/town1_hall_floor1/data.xml": {},
+		"resources/maps/town1_hall_floor1/events.dat": {},
+		"resources/maps/town1_hall_floor1/passability.dat": {},
+		"resources/maps/town1_hall_floor1/passability.png": {},
+		"resources/maps/town1_hall_floor1/tilemap_BG.csv": {},
+		"resources/maps/town1_hall_floor1/tilemap_FG.csv": {},
+		"resources/maps/town1_hall_floor2/chunks_BG.dat": {},
+		"resources/maps/town1_hall_floor2/chunks_FG.dat": {},
+		"resources/maps/town1_hall_floor2/data.dat": {},
+		"resources/maps/town1_hall_floor2/data.xml": {},
+		"resources/maps/town1_hall_floor2/events.dat": {},
+		"resources/maps/town1_hall_floor2/passability.dat": {},
+		"resources/maps/town1_hall_floor2/passability.png": {},
+		"resources/maps/town1_hall_floor2/tilemap_BG.csv": {},
+		"resources/maps/town1_hall_floor2/tilemap_FG.csv": {},
+		"resources/maps/town1_home/chunks_BG.dat": {},
+		"resources/maps/town1_home/chunks_FG.dat": {},
+		"resources/maps/town1_home/data.dat": {},
+		"resources/maps/town1_home/data.xml": {},
+		"resources/maps/town1_home/events.dat": {},
+		"resources/maps/town1_home/passability.dat": {},
+		"resources/maps/town1_home/passability.png": {},
+		"resources/maps/town1_home/tilemap_BG.csv": {},
+		"resources/maps/town1_home/tilemap_FG.csv": {},
+		"resources/maps/town1_inn_floor1/chunks_BG.dat": {},
+		"resources/maps/town1_inn_floor1/chunks_FG.dat": {},
+		"resources/maps/town1_inn_floor1/data.dat": {},
+		"resources/maps/town1_inn_floor1/data.xml": {},
+		"resources/maps/town1_inn_floor1/events.dat": {},
+		"resources/maps/town1_inn_floor1/passability.dat": {},
+		"resources/maps/town1_inn_floor1/passability.png": {},
+		"resources/maps/town1_inn_floor1/tilemap_BG.csv": {},
+		"resources/maps/town1_inn_floor1/tilemap_FG.csv": {},
+		"resources/maps/town1_inn_floor2/chunks_BG.dat": {},
+		"resources/maps/town1_inn_floor2/chunks_FG.dat": {},
+		"resources/maps/town1_inn_floor2/data.dat": {},
+		"resources/maps/town1_inn_floor2/data.xml": {},
+		"resources/maps/town1_inn_floor2/events.dat": {},
+		"resources/maps/town1_inn_floor2/passability.dat": {},
+		"resources/maps/town1_inn_floor2/passability.png": {},
+		"resources/maps/town1_inn_floor2/tilemap_BG.csv": {},
+		"resources/maps/town1_inn_floor2/tilemap_FG.csv": {},
+		"resources/maps/town1_inn_floor3/chunks_BG.dat": {},
+		"resources/maps/town1_inn_floor3/chunks_FG.dat": {},
+		"resources/maps/town1_inn_floor3/data.dat": {},
+		"resources/maps/town1_inn_floor3/data.xml": {},
+		"resources/maps/town1_inn_floor3/events.dat": {},
+		"resources/maps/town1_inn_floor3/passability.dat": {},
+		"resources/maps/town1_inn_floor3/passability.png": {},
+		"resources/maps/town1_inn_floor3/tilemap_BG.csv": {},
+		"resources/maps/town1_inn_floor3/tilemap_FG.csv": {},
+		"resources/music/music_data/e00": {},
+		"resources/tilesets/town/path.ase": {},
+		"resources/tilesets/town/soil.ase": {},
+		"resources/tilesets/town/townTest.ase": {},
+		"resources/tilesets/town/wall.ase": {},
+		"resources/music/music_data/e00/d01": {},
+		"resources/music/music_data/e00/d02": {},
+		"resources/music/music_data/e00/d03": {},
+		"resources/music/music_data/e00/d04": {},
+		"resources/music/music_data/e00/d02/e0002073.au": {},
+		"resources/music/music_data/e00/d02/e000207d.au": {},
+		"resources/music/music_data/e00/d02/e00020a2.au": {},
+		"resources/music/music_data/e00/d02/e00020bf.au": {},
+		"resources/music/music_data/e00/d02/e00020f6.au": {},
+		"resources/music/music_data/e00/d02/e000211a.au": {},
+		"resources/music/music_data/e00/d02/e0002136.au": {},
+		"resources/music/music_data/e00/d02/e000216a.au": {},
+		"resources/music/music_data/e00/d02/e0002198.au": {},
+		"resources/music/music_data/e00/d02/e00021a9.au": {},
+		"resources/music/music_data/e00/d02/e00021dc.au": {},
+		"resources/music/music_data/e00/d02/e00021e2.au": {},
+		"resources/music/music_data/e00/d02/e00021f7.au": {},
+		"resources/music/music_data/e00/d02/e0002213.au": {},
+		"resources/music/music_data/e00/d02/e0002238.au": {},
+		"resources/music/music_data/e00/d02/e0002257.au": {},
+		"resources/music/music_data/e00/d02/e0002265.au": {},
+		"resources/music/music_data/e00/d02/e0002269.au": {},
+		"resources/music/music_data/e00/d02/e000228e.au": {},
+		"resources/music/music_data/e00/d02/e00022b4.au": {},
+		"resources/music/music_data/e00/d02/e00022cc.au": {},
+		"resources/music/music_data/e00/d02/e00022d0.au": {},
+		"resources/music/music_data/e00/d02/e00022e5.au": {},
+		"resources/music/music_data/e00/d02/e0002317.au": {},
+		"resources/music/music_data/e00/d02/e0002355.au": {},
+		"resources/music/music_data/e00/d02/e0002357.au": {},
+		"resources/music/music_data/e00/d02/e0002377.au": {},
+		"resources/music/music_data/e00/d02/e00023c0.au": {},
+		"resources/music/music_data/e00/d02/e00023f4.au": {},
+		"resources/music/music_data/e00/d02/e000241b.au": {},
+		"resources/music/music_data/e00/d02/e0002436.au": {},
+		"resources/music/music_data/e00/d02/e00024a8.au": {},
+		"resources/music/music_data/e00/d02/e00024f3.au": {},
+		"resources/music/music_data/e00/d02/e00024f8.au": {},
+		"resources/music/music_data/e00/d02/e0002501.au": {},
+		"resources/music/music_data/e00/d02/e0002509.au": {},
+		"resources/music/music_data/e00/d02/e0002532.au": {},
+		"resources/music/music_data/e00/d02/e0002575.au": {},
+		"resources/music/music_data/e00/d02/e000260b.au": {},
+		"resources/music/music_data/e00/d02/e000260e.au": {},
+		"resources/music/music_data/e00/d02/e0002620.au": {},
+		"resources/music/music_data/e00/d02/e000262a.au": {},
+		"resources/music/music_data/e00/d02/e0002658.au": {},
+		"resources/music/music_data/e00/d02/e000265c.au": {},
+		"resources/music/music_data/e00/d02/e0002666.au": {},
+		"resources/music/music_data/e00/d02/e0002672.au": {},
+		"resources/music/music_data/e00/d02/e00026b8.au": {},
+		"resources/music/music_data/e00/d02/e00026d2.au": {},
+		"resources/music/music_data/e00/d02/e00026e5.au": {},
+		"resources/music/music_data/e00/d02/e00026ee.au": {},
+		"resources/music/music_data/e00/d02/e00026ff.au": {},
+		"resources/music/music_data/e00/d02/e0002707.au": {},
+		"resources/music/music_data/e00/d02/e0002769.au": {},
+		"resources/music/music_data/e00/d02/e000276c.au": {},
+		"resources/music/music_data/e00/d02/e0002785.au": {},
+		"resources/music/music_data/e00/d02/e000280a.au": {},
+		"resources/music/music_data/e00/d02/e0002826.au": {},
+		"resources/music/music_data/e00/d02/e0002842.au": {},
+		"resources/music/music_data/e00/d02/e0002870.au": {},
+		"resources/music/music_data/e00/d02/e000287a.au": {},
+		"resources/music/music_data/e00/d02/e0002884.au": {},
+		"resources/music/music_data/e00/d02/e00028a0.au": {},
+		"resources/music/music_data/e00/d02/e00028d0.au": {},
+		"resources/music/music_data/e00/d02/e0002917.au": {},
+		"resources/music/music_data/e00/d02/e0002923.au": {},
+		"resources/music/music_data/e00/d02/e000292d.au": {},
+		"resources/music/music_data/e00/d02/e0002937.au": {},
+		"resources/music/music_data/e00/d02/e0002942.au": {},
+		"resources/music/music_data/e00/d02/e0002944.au": {},
+		"resources/music/music_data/e00/d02/e000298e.au": {},
+		"resources/music/music_data/e00/d02/e0002991.au": {},
+		"resources/music/music_data/e00/d02/e00029be.au": {},
+		"resources/music/music_data/e00/d02/e00029c0.au": {},
+		"resources/music/music_data/e00/d02/e0002a16.au": {},
+		"resources/music/music_data/e00/d02/e0002a45.au": {},
+		"resources/music/music_data/e00/d02/e0002a4e.au": {},
+		"resources/music/music_data/e00/d02/e0002a56.au": {},
+		"resources/music/music_data/e00/d02/e0002a63.au": {},
+		"resources/music/music_data/e00/d02/e0002a6b.au": {},
+		"resources/music/music_data/e00/d02/e0002a76.au": {},
+		"resources/music/music_data/e00/d02/e0002a93.au": {},
+		"resources/music/music_data/e00/d02/e0002aed.au": {},
+		"resources/music/music_data/e00/d02/e0002af8.au": {},
+		"resources/music/music_data/e00/d02/e0002b09.au": {},
+		"resources/music/music_data/e00/d02/e0002b0f.au": {},
+		"resources/music/music_data/e00/d02/e0002b22.au": {},
+		"resources/music/music_data/e00/d02/e0002b23.au": {},
+		"resources/music/music_data/e00/d02/e0002b34.au": {},
+		"resources/music/music_data/e00/d02/e0002b3c.au": {},
+		"resources/music/music_data/e00/d02/e0002b3e.au": {},
+		"resources/music/music_data/e00/d02/e0002b62.au": {},
+		"resources/music/music_data/e00/d02/e0002ba0.au": {},
+		"resources/music/music_data/e00/d02/e0002bf7.au": {},
+		"resources/music/music_data/e00/d02/e0002c06.au": {},
+		"resources/music/music_data/e00/d02/e0002c7d.au": {},
+		"resources/music/music_data/e00/d02/e0002c7f.au": {},
+		"resources/music/music_data/e00/d02/e0002c8c.au": {},
+		"resources/music/music_data/e00/d02/e0002c9e.au": {},
+		"resources/music/music_data/e00/d02/e0002cf2.au": {},
+		"resources/music/music_data/e00/d02/e0002cf4.au": {},
+		"resources/music/music_data/e00/d02/e0002d21.au": {},
+		"resources/music/music_data/e00/d02/e0002d38.au": {},
+		"resources/music/music_data/e00/d02/e0002d64.au": {},
+		"resources/music/music_data/e00/d02/e0002d9e.au": {},
+		"resources/music/music_data/e00/d02/e0002dc4.au": {},
+		"resources/music/music_data/e00/d02/e0002dda.au": {},
+		"resources/music/music_data/e00/d02/e0002e06.au": {},
+		"resources/music/music_data/e00/d02/e0002e15.au": {},
+		"resources/music/music_data/e00/d02/e0002e36.au": {},
+		"resources/music/music_data/e00/d02/e0002e4e.au": {},
+		"resources/music/music_data/e00/d02/e0002e90.au": {},
+		"resources/music/music_data/e00/d02/e0002ec8.au": {},
+		"resources/music/music_data/e00/d02/e0002ece.au": {},
+		"resources/music/music_data/e00/d02/e0002f4c.au": {},
+		"resources/music/music_data/e00/d02/e0002f83.au": {},
+		"resources/music/music_data/e00/d02/e0002f8b.au": {},
+		"resources/music/music_data/e00/d02/e0002fae.au": {},
+		"resources/music/music_data/e00/d02/e0002fb2.au": {},
+		"resources/music/music_data/e00/d02/e0002fc8.au": {},
+		"resources/music/music_data/e00/d02/e0002ffe.au": {},
+		"resources/music/music_data/e00/d03/e0003006.au": {},
+		"resources/music/music_data/e00/d03/e000300e.au": {},
+		"resources/music/music_data/e00/d03/e0003041.au": {},
+		"resources/music/music_data/e00/d03/e000308c.au": {},
+		"resources/music/music_data/e00/d03/e0003099.au": {},
+		"resources/music/music_data/e00/d03/e000309a.au": {},
+		"resources/music/music_data/e00/d03/e000309f.au": {},
+		"resources/music/music_data/e00/d03/e00030a8.au": {},
+		"resources/music/music_data/e00/d03/e00030ad.au": {},
+		"resources/music/music_data/e00/d03/e00030c6.au": {},
+		"resources/music/music_data/e00/d03/e00030db.au": {},
+		"resources/music/music_data/e00/d03/e000310b.au": {},
+		"resources/music/music_data/e00/d03/e000310c.au": {},
+		"resources/music/music_data/e00/d03/e0003123.au": {},
+		"resources/music/music_data/e00/d03/e0003129.au": {},
+		"resources/music/music_data/e00/d03/e0003131.au": {},
+		"resources/music/music_data/e00/d03/e0003148.au": {},
+		"resources/music/music_data/e00/d03/e0003152.au": {},
+		"resources/music/music_data/e00/d03/e000316e.au": {},
+		"resources/music/music_data/e00/d03/e0003177.au": {},
+		"resources/music/music_data/e00/d03/e0003191.au": {},
+		"resources/music/music_data/e00/d03/e000319e.au": {},
+		"resources/music/music_data/e00/d03/e00031a5.au": {},
+		"resources/music/music_data/e00/d03/e00031a9.au": {},
+		"resources/music/music_data/e00/d03/e00031c5.au": {},
+		"resources/music/music_data/e00/d03/e00031f4.au": {},
+		"resources/music/music_data/e00/d03/e0003207.au": {},
+		"resources/music/music_data/e00/d03/e0003209.au": {},
+		"resources/music/music_data/e00/d03/e0003215.au": {},
+		"resources/music/music_data/e00/d03/e000322d.au": {},
+		"resources/music/music_data/e00/d03/e0003237.au": {},
+		"resources/music/music_data/e00/d03/e0003241.au": {},
+		"resources/music/music_data/e00/d03/e0003255.au": {},
+		"resources/music/music_data/e00/d03/e0003279.au": {},
+		"resources/music/music_data/e00/d03/e0003286.au": {},
+		"resources/music/music_data/e00/d03/e0003293.au": {},
+		"resources/music/music_data/e00/d03/e0003296.au": {},
+		"resources/music/music_data/e00/d03/e00032a5.au": {},
+		"resources/music/music_data/e00/d03/e00032a8.au": {},
+		"resources/music/music_data/e00/d03/e00032d0.au": {},
+		"resources/music/music_data/e00/d03/e00032d4.au": {},
+		"resources/music/music_data/e00/d03/e00032d6.au": {},
+		"resources/music/music_data/e00/d03/e00032e0.au": {},
+		"resources/music/music_data/e00/d03/e00032e6.au": {},
+		"resources/music/music_data/e00/d03/e00032f6.au": {},
+		"resources/music/music_data/e00/d03/e0003308.au": {},
+		"resources/music/music_data/e00/d03/e0003310.au": {},
+		"resources/music/music_data/e00/d03/e0003311.au": {},
+		"resources/music/music_data/e00/d03/e0003331.au": {},
+		"resources/music/music_data/e00/d03/e0003347.au": {},
+		"resources/music/music_data/e00/d03/e0003377.au": {},
+		"resources/music/music_data/e00/d03/e0003388.au": {},
+		"resources/music/music_data/e00/d03/e00033ab.au": {},
+		"resources/music/music_data/e00/d03/e00033b3.au": {},
+		"resources/music/music_data/e00/d03/e00033c1.au": {},
+		"resources/music/music_data/e00/d03/e00033c3.au": {},
+		"resources/music/music_data/e00/d03/e00033c8.au": {},
+		"resources/music/music_data/e00/d03/e00033e2.au": {},
+		"resources/music/music_data/e00/d03/e00033f5.au": {},
+		"resources/music/music_data/e00/d03/e0003418.au": {},
+		"resources/music/music_data/e00/d03/e0003422.au": {},
+		"resources/music/music_data/e00/d03/e0003437.au": {},
+		"resources/music/music_data/e00/d03/e000343a.au": {},
+		"resources/music/music_data/e00/d03/e000343b.au": {},
+		"resources/music/music_data/e00/d03/e000344f.au": {},
+		"resources/music/music_data/e00/d03/e0003450.au": {},
+		"resources/music/music_data/e00/d03/e000346d.au": {},
+		"resources/music/music_data/e00/d03/e0003474.au": {},
+		"resources/music/music_data/e00/d03/e0003475.au": {},
+		"resources/music/music_data/e00/d03/e0003479.au": {},
+		"resources/music/music_data/e00/d03/e0003482.au": {},
+		"resources/music/music_data/e00/d03/e0003490.au": {},
+		"resources/music/music_data/e00/d03/e0003499.au": {},
+		"resources/music/music_data/e00/d03/e000349d.au": {},
+		"resources/music/music_data/e00/d03/e00034a6.au": {},
+		"resources/music/music_data/e00/d03/e00034ae.au": {},
+		"resources/music/music_data/e00/d03/e00034bb.au": {},
+		"resources/music/music_data/e00/d03/e00034c0.au": {},
+		"resources/music/music_data/e00/d03/e00034e5.au": {},
+		"resources/music/music_data/e00/d03/e00034f3.au": {},
+		"resources/music/music_data/e00/d03/e0003508.au": {},
+		"resources/music/music_data/e00/d03/e0003522.au": {},
+		"resources/music/music_data/e00/d03/e0003529.au": {},
+		"resources/music/music_data/e00/d03/e000352c.au": {},
+		"resources/music/music_data/e00/d03/e000353f.au": {},
+		"resources/music/music_data/e00/d03/e0003547.au": {},
+		"resources/music/music_data/e00/d03/e000354b.au": {},
+		"resources/music/music_data/e00/d03/e000354e.au": {},
+		"resources/music/music_data/e00/d03/e000355f.au": {},
+		"resources/music/music_data/e00/d03/e0003568.au": {},
+		"resources/music/music_data/e00/d03/e0003574.au": {},
+		"resources/music/music_data/e00/d03/e00035a3.au": {},
+		"resources/music/music_data/e00/d03/e00035a9.au": {},
+		"resources/music/music_data/e00/d03/e00035c4.au": {},
+		"resources/music/music_data/e00/d03/e00035d7.au": {},
+		"resources/music/music_data/e00/d03/e00035e0.au": {},
+		"resources/music/music_data/e00/d03/e00035ed.au": {},
+		"resources/music/music_data/e00/d03/e00035f0.au": {},
+		"resources/music/music_data/e00/d03/e000360c.au": {},
+		"resources/music/music_data/e00/d03/e0003622.au": {},
+		"resources/music/music_data/e00/d03/e0003626.au": {},
+		"resources/music/music_data/e00/d03/e000362b.au": {},
+		"resources/music/music_data/e00/d03/e0003643.au": {},
+		"resources/music/music_data/e00/d03/e0003645.au": {},
+		"resources/music/music_data/e00/d03/e0003687.au": {},
+		"resources/music/music_data/e00/d03/e00036ab.au": {},
+		"resources/music/music_data/e00/d03/e00036b0.au": {},
+		"resources/music/music_data/e00/d03/e00036d4.au": {},
+		"resources/music/music_data/e00/d03/e00036f4.au": {},
+		"resources/music/music_data/e00/d03/e0003708.au": {},
+		"resources/music/music_data/e00/d03/e000370f.au": {},
+		"resources/music/music_data/e00/d03/e000371a.au": {},
+		"resources/music/music_data/e00/d03/e000372b.au": {},
+		"resources/music/music_data/e00/d03/e000372f.au": {},
+		"resources/music/music_data/e00/d03/e0003730.au": {},
+		"resources/music/music_data/e00/d03/e000374c.au": {},
+		"resources/music/music_data/e00/d03/e000375a.au": {},
+		"resources/music/music_data/e00/d03/e0003772.au": {},
+		"resources/music/music_data/e00/d03/e000377c.au": {},
+		"resources/music/music_data/e00/d03/e00037b1.au": {},
+		"resources/music/music_data/e00/d03/e00037c1.au": {},
+		"resources/music/music_data/e00/d03/e00037cb.au": {},
+		"resources/music/music_data/e00/d03/e00037d1.au": {},
+		"resources/music/music_data/e00/d03/e00037de.au": {},
+		"resources/music/music_data/e00/d03/e00037fc.au": {},
+		"resources/music/music_data/e00/d03/e0003813.au": {},
+		"resources/music/music_data/e00/d03/e0003838.au": {},
+		"resources/music/music_data/e00/d03/e0003857.au": {},
+		"resources/music/music_data/e00/d03/e000386b.au": {},
+		"resources/music/music_data/e00/d03/e000387a.au": {},
+		"resources/music/music_data/e00/d03/e000387b.au": {},
+		"resources/music/music_data/e00/d03/e0003895.au": {},
+		"resources/music/music_data/e00/d03/e00038a3.au": {},
+		"resources/music/music_data/e00/d03/e00038a5.au": {},
+		"resources/music/music_data/e00/d03/e00038b2.au": {},
+		"resources/music/music_data/e00/d03/e00038b5.au": {},
+		"resources/music/music_data/e00/d03/e00038b6.au": {},
+		"resources/music/music_data/e00/d03/e00038b8.au": {},
+		"resources/music/music_data/e00/d03/e00038d8.au": {},
+		"resources/music/music_data/e00/d03/e00038de.au": {},
+		"resources/music/music_data/e00/d03/e00038e3.au": {},
+		"resources/music/music_data/e00/d03/e00038ef.au": {},
+		"resources/music/music_data/e00/d03/e00038f3.au": {},
+		"resources/music/music_data/e00/d03/e0003915.au": {},
+		"resources/music/music_data/e00/d03/e0003928.au": {},
+		"resources/music/music_data/e00/d03/e0003939.au": {},
+		"resources/music/music_data/e00/d03/e000393a.au": {},
+		"resources/music/music_data/e00/d03/e000393d.au": {},
+		"resources/music/music_data/e00/d03/e0003942.au": {},
+		"resources/music/music_data/e00/d03/e0003945.au": {},
+		"resources/music/music_data/e00/d03/e0003953.au": {},
+		"resources/music/music_data/e00/d03/e000395f.au": {},
+		"resources/music/music_data/e00/d03/e0003962.au": {},
+		"resources/music/music_data/e00/d03/e0003979.au": {},
+		"resources/music/music_data/e00/d03/e000397c.au": {},
+		"resources/music/music_data/e00/d03/e0003997.au": {},
+		"resources/music/music_data/e00/d03/e00039a2.au": {},
+		"resources/music/music_data/e00/d03/e00039a5.au": {},
+		"resources/music/music_data/e00/d03/e00039bd.au": {},
+		"resources/music/music_data/e00/d03/e00039d5.au": {},
+		"resources/music/music_data/e00/d03/e00039eb.au": {},
+		"resources/music/music_data/e00/d03/e0003a1b.au": {},
+		"resources/music/music_data/e00/d03/e0003a3e.au": {},
+		"resources/music/music_data/e00/d03/e0003a4a.au": {},
+		"resources/music/music_data/e00/d03/e0003a56.au": {},
+		"resources/music/music_data/e00/d03/e0003a5b.au": {},
+		"resources/music/music_data/e00/d03/e0003a61.au": {},
+		"resources/music/music_data/e00/d03/e0003a69.au": {},
+		"resources/music/music_data/e00/d03/e0003a6c.au": {},
+		"resources/music/music_data/e00/d03/e0003a76.au": {},
+		"resources/music/music_data/e00/d03/e0003a7d.au": {},
+		"resources/music/music_data/e00/d03/e0003a89.au": {},
+		"resources/music/music_data/e00/d03/e0003a90.au": {},
+		"resources/music/music_data/e00/d03/e0003a92.au": {},
+		"resources/music/music_data/e00/d03/e0003a93.au": {},
+		"resources/music/music_data/e00/d03/e0003aa6.au": {},
+		"resources/music/music_data/e00/d03/e0003ad7.au": {},
+		"resources/music/music_data/e00/d03/e0003adb.au": {},
+		"resources/music/music_data/e00/d03/e0003aed.au": {},
+		"resources/music/music_data/e00/d03/e0003af3.au": {},
+		"resources/music/music_data/e00/d03/e0003af6.au": {},
+		"resources/music/music_data/e00/d03/e0003af8.au": {},
+		"resources/music/music_data/e00/d03/e0003b15.au": {},
+		"resources/music/music_data/e00/d03/e0003b6b.au": {},
+		"resources/music/music_data/e00/d03/e0003b84.au": {},
+		"resources/music/music_data/e00/d03/e0003b85.au": {},
+		"resources/music/music_data/e00/d03/e0003b95.au": {},
+		"resources/music/music_data/e00/d03/e0003b9c.au": {},
+		"resources/music/music_data/e00/d03/e0003ba5.au": {},
+		"resources/music/music_data/e00/d03/e0003bab.au": {},
+		"resources/music/music_data/e00/d03/e0003bae.au": {},
+		"resources/music/music_data/e00/d03/e0003baf.au": {},
+		"resources/music/music_data/e00/d03/e0003bbe.au": {},
+		"resources/music/music_data/e00/d03/e0003bc0.au": {},
+		"resources/music/music_data/e00/d03/e0003bd0.au": {},
+		"resources/music/music_data/e00/d03/e0003bf3.au": {},
+		"resources/music/music_data/e00/d03/e0003bf7.au": {},
+		"resources/music/music_data/e00/d03/e0003c01.au": {},
+		"resources/music/music_data/e00/d03/e0003c07.au": {},
+		"resources/music/music_data/e00/d03/e0003c16.au": {},
+		"resources/music/music_data/e00/d03/e0003c35.au": {},
+		"resources/music/music_data/e00/d03/e0003c3c.au": {},
+		"resources/music/music_data/e00/d03/e0003c3d.au": {},
+		"resources/music/music_data/e00/d03/e0003c57.au": {},
+		"resources/music/music_data/e00/d03/e0003c62.au": {},
+		"resources/music/music_data/e00/d03/e0003c63.au": {},
+		"resources/music/music_data/e00/d03/e0003c65.au": {},
+		"resources/music/music_data/e00/d03/e0003c68.au": {},
+		"resources/music/music_data/e00/d03/e0003c70.au": {},
+		"resources/music/music_data/e00/d03/e0003c78.au": {},
+		"resources/music/music_data/e00/d03/e0003c83.au": {},
+		"resources/music/music_data/e00/d03/e0003cb2.au": {},
+		"resources/music/music_data/e00/d03/e0003cce.au": {},
+		"resources/music/music_data/e00/d03/e0003ccf.au": {},
+		"resources/music/music_data/e00/d03/e0003cde.au": {},
+		"resources/music/music_data/e00/d03/e0003cff.au": {},
+		"resources/music/music_data/e00/d03/e0003d06.au": {},
+		"resources/music/music_data/e00/d03/e0003d46.au": {},
+		"resources/music/music_data/e00/d03/e0003d63.au": {},
+		"resources/music/music_data/e00/d03/e0003d81.au": {},
+		"resources/music/music_data/e00/d03/e0003d82.au": {},
+		"resources/music/music_data/e00/d03/e0003d89.au": {},
+		"resources/music/music_data/e00/d03/e0003d94.au": {},
+		"resources/music/music_data/e00/d03/e0003d95.au": {},
+		"resources/music/music_data/e00/d03/e0003d9c.au": {},
+		"resources/music/music_data/e00/d03/e0003db2.au": {},
+		"resources/music/music_data/e00/d03/e0003dcb.au": {},
+		"resources/music/music_data/e00/d03/e0003df0.au": {},
+		"resources/music/music_data/e00/d03/e0003e04.au": {},
+		"resources/music/music_data/e00/d03/e0003e08.au": {},
+		"resources/music/music_data/e00/d03/e0003e1c.au": {},
+		"resources/music/music_data/e00/d03/e0003e24.au": {},
+		"resources/music/music_data/e00/d03/e0003e5b.au": {},
+		"resources/music/music_data/e00/d03/e0003e6f.au": {},
+		"resources/music/music_data/e00/d03/e0003e77.au": {},
+		"resources/music/music_data/e00/d03/e0003e80.au": {},
+		"resources/music/music_data/e00/d03/e0003e8a.au": {},
+		"resources/music/music_data/e00/d03/e0003e8d.au": {},
+		"resources/music/music_data/e00/d03/e0003e96.au": {},
+		"resources/music/music_data/e00/d03/e0003ec3.au": {},
+		"resources/music/music_data/e00/d03/e0003ed2.au": {},
+		"resources/music/music_data/e00/d03/e0003ed8.au": {},
+		"resources/music/music_data/e00/d03/e0003edc.au": {},
+		"resources/music/music_data/e00/d03/e0003edd.au": {},
+		"resources/music/music_data/e00/d03/e0003ede.au": {},
+		"resources/music/music_data/e00/d03/e0003ee4.au": {},
+		"resources/music/music_data/e00/d03/e0003eec.au": {},
+		"resources/music/music_data/e00/d03/e0003f0c.au": {},
+		"resources/music/music_data/e00/d03/e0003f13.au": {},
+		"resources/music/music_data/e00/d03/e0003f1d.au": {},
+		"resources/music/music_data/e00/d03/e0003f24.au": {},
+		"resources/music/music_data/e00/d03/e0003f79.au": {},
+		"resources/music/music_data/e00/d03/e0003f88.au": {},
+		"resources/music/music_data/e00/d03/e0003fa6.au": {},
+		"resources/music/music_data/e00/d03/e0003fb4.au": {},
+		"resources/music/music_data/e00/d03/e0003fca.au": {},
+		"resources/music/music_data/e00/d04/e000408e.au": {},
+		"resources/music/music_data/e00/d04/e000417e.au": {},
+		"resources/music/music_data/e00/d04/e0004225.au": {},
+		"resources/music/music_data/e00/d04/e000429a.au": {},
+		"resources/music/music_data/e00/d04/e00042f5.au": {},
+		"resources/music/music_data/e00/d04/e000429e.au": {},
+		"resources/music/music_data/e00/d04/e000440f.au": {},
+		"resources/music/music_data/e00/d04/e00047dd.au": {},
+		"resources/music/music_data/e00/d04/e0004818.au": {},
+		"resources/music/music_data/e00/d04/e000488f.au": {},
+		"resources/music/music_data/e00/d04/e0004ab2.au": {},
+		"resources/music/music_data/e00/d04/e0004b66.au": {},
+		"resources/music/music_data/e00/d04/e0004d29.au": {},
+		"resources/music/music_data/e00/d04/e0004d60.au": {},
+		"resources/music/music_data/e00/d04/e0004e7b.au": {},
+		"resources/music/music_data/e00/d04/e0004f9d.au": {},
+		"/EEP.ROM": {
+			"sdcard": false
+		},
+		"/My_settings.h": {
+			"sdcard": false
+		},
+		"/PreludeToADream": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.1.gif": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.1.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.2.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.3.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.4.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.5.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.6.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.7.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.eeprom": {
+			"sdcard": false
+		},
+		"/PreludeToADream.elf": {
+			"sdcard": false
+		},
+		"/data": {
+			"sdcard": true
+		},
+		"/project.json": {
+			"sdcard": false
+		},
+		"/resources": {
+			"sdcard": false
+		},
+		"/scripts": {
+			"sdcard": false
+		},
+		"/src": {
+			"sdcard": false
+		},
+		"/tools": {
+			"sdcard": false
+		},
+		"/data/preludetoadream.pak": {
+			"sdcard": false
+		},
+		"/resources/BattleIntro.gif": {
+			"sdcard": false
+		},
+		"/resources/BattleDefeat.mp4": {
+			"sdcard": false
+		},
+		"/resources/BattleIntro.mp4": {
+			"sdcard": false
+		},
+		"/resources/CavernWalkaround.mp4": {
+			"sdcard": false
+		},
+		"/resources/ClothedPlayer.mp4": {
+			"sdcard": false
+		},
+		"/resources/TeleportEvent.mp4": {
+			"sdcard": false
+		},
+		"/resources/Tiled": {
+			"sdcard": false
+		},
+		"/resources/TorDoor.mp4": {
+			"sdcard": false
+		},
+		"/resources/TownWalkAround.mp4": {
+			"sdcard": false
+		},
+		"/resources/animations": {
+			"sdcard": false
+		},
+		"/resources/backdrops": {
+			"sdcard": false
+		},
+		"/resources/battle_chooseItemSpell.png": {
+			"sdcard": false
+		},
+		"/resources/battle.png": {
+			"sdcard": false
+		},
+		"/resources/battlers": {
+			"sdcard": false
+		},
+		"/resources/battlers.xml": {
+			"sdcard": false
+		},
+		"/resources/collage.png": {
+			"sdcard": false
+		},
+		"/resources/cursor.png": {
+			"sdcard": false
+		},
+		"/resources/font.gfx": {
+			"sdcard": false
+		},
+		"/resources/font.png": {
+			"sdcard": false
+		},
+		"/resources/inspirations": {
+			"sdcard": false
+		},
+		"/resources/font1bpp.png": {
+			"sdcard": false
+		},
+		"/resources/maps": {
+			"sdcard": false
+		},
+		"/resources/messages.dat": {
+			"sdcard": false
+		},
+		"/resources/messages.tmp": {
+			"sdcard": false
+		},
+		"/resources/messages.txt": {
+			"sdcard": false
+		},
+		"/resources/music": {
+			"sdcard": false
+		},
+		"/resources/overworld.png": {
+			"sdcard": false
+		},
+		"/resources/overworld_regions.png": {
+			"sdcard": false
+		},
+		"/resources/sfx": {
+			"sdcard": false
+		},
+		"/resources/sprites": {
+			"sdcard": false
+		},
+		"/resources/stats.ods": {
+			"sdcard": false
+		},
+		"/resources/statusIcons.ase": {
+			"sdcard": false
+		},
+		"/resources/statusIcons.gfx": {
+			"sdcard": false
+		},
+		"/resources/statusIcons.png": {
+			"sdcard": false
+		},
+		"/resources/storyProgression.txt": {
+			"sdcard": false
+		},
+		"/resources/tiles.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets": {
+			"sdcard": false
+		},
+		"/scripts/CustomEditor.js": {
+			"sdcard": false
+		},
+		"/src/battle.cpp": {
+			"sdcard": false
+		},
+		"/src/battle.h": {
+			"sdcard": false
+		},
+		"/src/battleanimation.cpp": {
+			"sdcard": false
+		},
+		"/src/battleanimation.h": {
+			"sdcard": false
+		},
+		"/src/battleevent.cpp": {
+			"sdcard": false
+		},
+		"/src/battleevent.h": {
+			"sdcard": false
+		},
+		"/src/dialog.cpp": {
+			"sdcard": false
+		},
+		"/src/dialog.h": {
+			"sdcard": false
+		},
+		"/src/font.cpp": {
+			"sdcard": false
+		},
+		"/src/font.h": {
+			"sdcard": false
+		},
+		"/src/game.cpp": {
+			"sdcard": false
+		},
+		"/src/game.h": {
+			"sdcard": false
+		},
+		"/src/globals.cpp": {
+			"sdcard": false
+		},
+		"/src/globals.h": {
+			"sdcard": false
+		},
+		"/src/headers.h": {
+			"sdcard": false
+		},
+		"/src/main.cpp": {
+			"sdcard": false
+		},
+		"/src/map.cpp": {
+			"sdcard": false
+		},
+		"/src/map.h": {
+			"sdcard": false
+		},
+		"/src/mapevent.cpp": {
+			"sdcard": false
+		},
+		"/src/mapevent.h": {
+			"sdcard": false
+		},
+		"/src/music.cpp": {
+			"sdcard": false
+		},
+		"/src/music.h": {
+			"sdcard": false
+		},
+		"/src/ui.cpp": {
+			"sdcard": false
+		},
+		"/src/ui.h": {
+			"sdcard": false
+		},
+		"/tools/BattleAnimationEditor.css": {
+			"sdcard": false
+		},
+		"/tools/BattleAnimationEditor.html": {
+			"sdcard": false
+		},
+		"/tools/BattleAnimationEditor.js": {
+			"sdcard": false
+		},
+		"/tools/battle.png": {
+			"sdcard": false
+		},
+		"/tools/editorLayout.png": {
+			"sdcard": false
+		},
+		"/tools/frameNumber.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/Interior.tsx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/cavern.tsx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/cavern2.tsx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/cavern_entrance.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/cavern_entrance.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/grid.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/grid.tsx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/interior_test.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/interior_test.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/main": {
+			"sdcard": false
+		},
+		"/resources/Tiled/overworld.tsx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/ptad.tiled-project": {
+			"sdcard": false
+		},
+		"/resources/Tiled/ptad.tiled-session": {
+			"sdcard": false
+		},
+		"/resources/Tiled/tilesets": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town.tsx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_cavern_entrance.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_cavern_entrance.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_hall_floor1.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_hall_floor1.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_hall_floor2.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_hall_floor2.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_home.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_home.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_inn_floor1.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_inn_floor1.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_inn_floor2.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_inn_floor2.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_inn_floor3.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_inn_floor3.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/world.tmx": {
+			"sdcard": false
+		},
+		"/resources/animations/animations.ase": {
+			"sdcard": false
+		},
+		"/resources/animations/animations.png": {
+			"sdcard": false
+		},
+		"/resources/animations/test.anim": {
+			"sdcard": false
+		},
+		"/resources/backdrops/cavern.ase": {
+			"sdcard": false
+		},
+		"/resources/backdrops/cavern.gfx": {
+			"sdcard": false
+		},
+		"/resources/backdrops/cavern.png": {
+			"sdcard": false
+		},
+		"/resources/backdrops/empty.txt": {
+			"sdcard": false
+		},
+		"/resources/backdrops/field.ase": {
+			"sdcard": false
+		},
+		"/resources/backdrops/field.gfx": {
+			"sdcard": false
+		},
+		"/resources/backdrops/field.png": {
+			"sdcard": false
+		},
+		"/resources/backdrops/forest.ase": {
+			"sdcard": false
+		},
+		"/resources/backdrops/forest.gfx": {
+			"sdcard": false
+		},
+		"/resources/backdrops/forest.png": {
+			"sdcard": false
+		},
+		"/resources/backdrops/shipdeck.ase": {
+			"sdcard": false
+		},
+		"/resources/backdrops/shipdeck.gfx": {
+			"sdcard": false
+		},
+		"/resources/backdrops/shipdeck.png": {
+			"sdcard": false
+		},
+		"/resources/backdrops/swamp.ase": {
+			"sdcard": false
+		},
+		"/resources/backdrops/swamp.gfx": {
+			"sdcard": false
+		},
+		"/resources/backdrops/swamp.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/battlers.ase": {
+			"sdcard": false
+		},
+		"/resources/battlers/battlers.gfx": {
+			"sdcard": false
+		},
+		"/resources/battlers/battlers.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/brigand.ase": {
+			"sdcard": false
+		},
+		"/resources/battlers/brigand.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/cobra.ase": {
+			"sdcard": false
+		},
+		"/resources/battlers/core": {
+			"sdcard": false
+		},
+		"/resources/battlers/example.txt": {
+			"sdcard": false
+		},
+		"/resources/battlers/giantPokitto.ase": {
+			"sdcard": false
+		},
+		"/resources/battlers/giantPokitto.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/rat.ase": {
+			"sdcard": false
+		},
+		"/resources/battlers/rat.dat": {
+			"sdcard": false
+		},
+		"/resources/battlers/rat.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/rat.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/snake.ase": {
+			"sdcard": false
+		},
+		"/resources/battlers/snake.dat": {
+			"sdcard": false
+		},
+		"/resources/battlers/snake.gfx": {
+			"sdcard": false
+		},
+		"/resources/battlers/snake.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/snake.txt": {
+			"sdcard": false
+		},
+		"/resources/battlers/snake.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/spider.ase": {
+			"sdcard": false
+		},
+		"/resources/battlers/spider.dat": {
+			"sdcard": false
+		},
+		"/resources/battlers/spider.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/spider.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/tree.ase": {
+			"sdcard": false
+		},
+		"/resources/battlers/wolf.ase": {
+			"sdcard": false
+		},
+		"/resources/battlers/wolf.png": {
+			"sdcard": false
+		},
+		"/resources/inspirations/ChronoTriggerCaves.png": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance": {
+			"sdcard": false
+		},
+		"/resources/maps/core": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld": {
+			"sdcard": false
+		},
+		"/resources/maps/town1": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor1": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor2": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_home": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_battleBoss_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_battleBoss_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_battleFinal.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_battleFinal.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_battle_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_battle_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_characterRevived.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_characterRevived.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_discovery.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_discovery.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_docks_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_docks_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_dungeon_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_dungeon_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_fields_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_fields_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_gameOver.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_gameOver.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_goodMorning.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_goodMorning.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_goodNight.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_goodNight.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_inn_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_inn_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_joinParty.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_joinParty.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_labyrinth_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_labyrinth_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_levelUp.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_levelUp.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_machineRoom_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_machineRoom_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_mainTheme.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_mainTheme.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_mysticIsle.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_mysticIsle.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_princess.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_princess.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_royalCourt_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_royalCourt_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_shop_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_shop_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_tavern.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_tavern.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_temple.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_temple.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_town_loop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_town_loop.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_winBattle.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_winBattle.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_winBattleBig.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_winBattleBig.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_winBattleBoss.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_winBattleBoss.raw": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_winBattleFinal.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_winBattleFinal.raw": {
+			"sdcard": false
+		},
+		"/resources/music/music.aup": {
+			"sdcard": false
+		},
+		"/resources/music/music_data": {
+			"sdcard": false
+		},
+		"/resources/sfx/hit.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/hit.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/miss.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/miss.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/poison.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/poison.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/slow.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/slow.wav": {
+			"sdcard": false
+		},
+		"/resources/sprites/TEMPLATE (fat).png": {
+			"sdcard": false
+		},
+		"/resources/sprites/TEMPLATE.png": {
+			"sdcard": false
+		},
+		"/resources/sprites/player.ase": {
+			"sdcard": false
+		},
+		"/resources/sprites/player.gfx": {
+			"sdcard": false
+		},
+		"/resources/sprites/player.png": {
+			"sdcard": false
+		},
+		"/resources/sprites/sprites.ase": {
+			"sdcard": false
+		},
+		"/resources/sprites/sprites.gfx": {
+			"sdcard": false
+		},
+		"/resources/sprites/sprites.png": {
+			"sdcard": false
+		},
+		"/resources/sprites/spritesBeforeAndAfter.ase": {
+			"sdcard": false
+		},
+		"/resources/sprites/spritesBeforeAndAfter.gif": {
+			"sdcard": false
+		},
+		"/resources/sprites/template.ase": {
+			"sdcard": false
+		},
+		"/resources/sprites/template.png": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern.gfx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern.png": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern.txt": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern2.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern2.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern2.gfx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern2.png": {
+			"sdcard": false
+		},
+		"/resources/tilesets/cavern2.txt": {
+			"sdcard": false
+		},
+		"/resources/tilesets/chest.gif": {
+			"sdcard": false
+		},
+		"/resources/tilesets/dreamworld.png": {
+			"sdcard": false
+		},
+		"/resources/tilesets/interior.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets/interior.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/interior.gfx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/interior.png": {
+			"sdcard": false
+		},
+		"/resources/tilesets/interior.txt": {
+			"sdcard": false
+		},
+		"/resources/tilesets/overworld.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/overworld.gfx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/overworld.png": {
+			"sdcard": false
+		},
+		"/resources/tilesets/overworld.txt": {
+			"sdcard": false
+		},
+		"/resources/tilesets/spiritworld.png": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town.gfx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town.png": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town.txt": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance/data.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance/data.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/cavern_entrance/tilemap_Grid.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld/data.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld/data.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/overworld/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/data.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/data.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/data.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/data.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/tilemap_Grid.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor1/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor1/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor1/data.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor1/data.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor1/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor1/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor1/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor1/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor1/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor2/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor2/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor2/data.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor2/data.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor2/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor2/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor2/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor2/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_hall_floor2/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_home/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_home/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_home/data.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_home/data.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_home/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_home/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_home/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_home/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_home/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/data.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/data.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/data.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/data.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/data.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/data.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town/path.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town/soil.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town/townTest.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town/wall.ase": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d01": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002073.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000207d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00020a2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00020bf.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00020f6.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000211a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002136.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000216a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002198.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00021a9.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00021dc.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00021e2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00021f7.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002213.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002238.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002257.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002265.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002269.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000228e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00022b4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00022cc.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00022d0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00022e5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002317.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002355.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002357.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002377.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00023c0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00023f4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000241b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002436.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00024a8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00024f3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00024f8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002501.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002509.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002532.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002575.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000260b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000260e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002620.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000262a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002658.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000265c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002666.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002672.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00026b8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00026d2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00026e5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00026ee.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00026ff.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002707.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002769.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000276c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002785.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000280a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002826.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002842.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002870.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000287a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002884.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00028a0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00028d0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002917.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002923.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000292d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002937.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002942.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002944.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e000298e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002991.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00029be.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e00029c0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002a16.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002a45.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002a4e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002a56.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002a63.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002a6b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002a76.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002a93.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002aed.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002af8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002b09.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002b0f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002b22.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002b23.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002b34.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002b3c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002b3e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002b62.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002ba0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002bf7.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002c06.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002c7d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002c7f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002c8c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002c9e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002cf2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002cf4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002d21.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002d38.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002d64.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002d9e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002dc4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002dda.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002e06.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002e15.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002e36.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002e4e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002e90.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002ec8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002ece.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002f4c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002f83.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002f8b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002fae.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002fb2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002fc8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d02/e0002ffe.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003006.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000300e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003041.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000308c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003099.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000309a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000309f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00030a8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00030ad.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00030c6.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00030db.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000310b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000310c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003123.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003129.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003131.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003148.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003152.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000316e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003177.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003191.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000319e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00031a5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00031a9.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00031c5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00031f4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003207.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003209.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003215.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000322d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003237.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003241.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003255.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003279.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003286.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003293.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003296.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00032a5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00032a8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00032d0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00032d4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00032d6.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00032e0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00032e6.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00032f6.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003308.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003310.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003311.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003331.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003347.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003377.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003388.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00033ab.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00033b3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00033c1.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00033c3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00033c8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00033e2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00033f5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003418.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003422.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003437.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000343a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000343b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000344f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003450.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000346d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003474.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003475.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003479.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003482.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003490.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003499.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000349d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00034a6.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00034ae.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00034bb.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00034c0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00034e5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00034f3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003508.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003522.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003529.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000352c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000353f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003547.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000354b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000354e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000355f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003568.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003574.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00035a3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00035a9.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00035c4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00035d7.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00035e0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00035ed.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00035f0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000360c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003622.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003626.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000362b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003643.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003645.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003687.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00036ab.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00036b0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00036d4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00036f4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003708.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000370f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000371a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000372b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000372f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003730.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000374c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000375a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003772.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000377c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00037b1.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00037c1.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00037cb.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00037d1.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00037de.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00037fc.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003813.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003838.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003857.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000386b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000387a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000387b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003895.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038a3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038a5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038b2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038b5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038b6.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038b8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038d8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038de.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038e3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038ef.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00038f3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003915.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003928.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003939.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000393a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000393d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003942.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003945.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003953.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000395f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003962.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003979.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e000397c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003997.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00039a2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00039a5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00039bd.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00039d5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e00039eb.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a1b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a3e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a4a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a56.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a5b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a61.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a69.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a6c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a76.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a7d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a89.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a90.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a92.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003a93.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003aa6.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003ad7.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003adb.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003aed.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003af3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003af6.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003af8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003b15.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003b6b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003b84.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003b85.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003b95.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003b9c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003ba5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003bab.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003bae.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003baf.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003bbe.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003bc0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003bd0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003bf3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003bf7.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c01.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c07.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c16.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c35.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c3c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c3d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c57.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c62.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c63.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c65.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c68.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c70.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c78.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003c83.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003cb2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003cce.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003ccf.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003cde.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003cff.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003d06.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003d46.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003d63.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003d81.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003d82.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003d89.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003d94.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003d95.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003d9c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003db2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003dcb.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003df0.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e04.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e08.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e1c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e24.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e5b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e6f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e77.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e80.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e8a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e8d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003e96.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003ec3.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003ed2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003ed8.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003edc.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003edd.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003ede.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003ee4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003eec.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003f0c.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003f13.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003f1d.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003f24.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003f79.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003f88.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003fa6.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003fb4.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d03/e0003fca.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e000408e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e000417e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e0004225.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e000429a.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e000429e.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e00042f5.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e000440f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e00047dd.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e0004818.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e000488f.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e0004ab2.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e0004b66.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e0004d29.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e0004d60.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e0004e7b.au": {
+			"sdcard": false
+		},
+		"/resources/music/music_data/e00/d04/e0004f9d.au": {
+			"sdcard": false
+		},
+		"/resources/animations/animations.gfx": {
+			"sdcard": false
+		},
+		"/resources/animations/enemy_claw.anim": {
+			"sdcard": false
+		},
+		"/resources/Tiled/ptad.tiled-session.lock": {
+			"sdcard": false
+		},
+		"/scripts/BattleAnimationEditor.js": {
+			"sdcard": false
+		},
+		"/tools/MapEditor.html": {
+			"sdcard": false
+		},
+		"/tools/common.css": {
+			"sdcard": false
+		},
+		"/tools/MapEditor.css": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_cavern_floor2.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/New Folder": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/tilemap_Sprites.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/tilemap_FG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/tilemap_Grid.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/data.xml": {
+			"sdcard": false
+		},
+		"/resources/switches.txt": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/events.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/chunks_BG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/chunks_FG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_entrance/tilemap_Sprites.csv": {
+			"sdcard": false
+		},
+		"/src/menu.h": {
+			"sdcard": false
+		},
+		"/src/menu.cpp": {
+			"sdcard": false
+		},
+		"/resources/screen.png": {
+			"sdcard": false
+		},
+		"/resources/menu_items.png": {
+			"sdcard": false
+		},
+		"/resources/screen_dialog.png": {
+			"sdcard": false
+		},
+		"/resources/screen_stats.png": {
+			"sdcard": false
+		},
+		"/scripts/MapEditor.js": {
+			"sdcard": false
+		},
+		"/resources/Tiled/sprites.tsx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_cavern_floor2.png": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_cavern_floor2/data.dat": {
+			"sdcard": false
+		},
+		"/resources/screen.png.xwaWFz": {
+			"sdcard": false
+		},
+		"/resources/screen_equipment.png": {
+			"sdcard": false
+		},
+		"/resources/sfx/getItem.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/cancel.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/cancel.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/getItem.raw": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.8.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.9.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.10.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.11.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.12.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.13.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.14.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.15.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.16.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.17.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.18.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.19.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.20.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.21.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.22.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.23.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.24.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.25.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.26.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.27.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.28.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.29.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.30.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.gif": {
+			"sdcard": false
+		},
+		"/resources/stats.ods.osl-tmp": {
+			"sdcard": false
+		},
+		"/resources/screen (copy 1).png": {
+			"sdcard": false
+		},
+		"/resources/screen_items.png": {
+			"sdcard": false
+		},
+		"/resources/spellResistance.png": {
+			"sdcard": false
+		},
+		"/resources/sfx/invalid.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/invalid.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/select.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/useitem.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/useitem.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/cursor.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/cursor.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/cure.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/heal.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/heal.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/run.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/quake.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/quake.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/run.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/dialog.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/dialog.wav": {
+			"sdcard": false
+		},
+		"/resources/screen_options.png": {
+			"sdcard": false
+		},
+		"/resources/screen_volume.png": {
+			"sdcard": false
+		},
+		"/resources/screen_bestiary.png": {
+			"sdcard": false
+		},
+		"/resources/battle (copy 1).png": {
+			"sdcard": false
+		},
+		"/resources/battle_stats.png": {
+			"sdcard": false
+		},
+		"/resources/screen_nameEntry.png": {
+			"sdcard": false
+		},
+		"/resources/newGameEvent.txt": {
+			"sdcard": false
+		},
+		"/resources/newGameEvent.dat": {
+			"sdcard": false
+		},
+		"/resources/screen_title.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.30.gif": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.31.png": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.32.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_inn_floor1 (copy 1).tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_inn_floor2 (copy 1).tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_inn_floor3 (copy 1).tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/passability.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/passability.tsx": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/tilemap_Grid.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/tilemap_Passability.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/tilemap_Passability.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/tilemap_Grid.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor2/tilemap_Sprites.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/tilemap_Grid.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/tilemap_Grid.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/tilemap_Sprites.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1/tilemap_Passability.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/tilemap_Sprites.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor1/tilemap_Passability.csv": {
+			"sdcard": false
+		},
+		"/resources/maps/town1_inn_floor3/tilemap_Passability.csv": {
+			"sdcard": false
+		},
+		"/resources/Tiled/objecttypes.xml": {
+			"sdcard": false
+		},
+		"/resources/Tiled/battlers.tsx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/region.tx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/overworld.tsx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/Interior.tsx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/town.tsx": {
+			"sdcard": false
+		},
+		"/resources/sprites/sprites.tsx": {
+			"sdcard": false
+		},
+		"/resources/maps_old": {
+			"sdcard": false
+		},
+		"/resources/maps_old/town1/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps_old/town1/tilemap_Sprites.csv": {
+			"sdcard": false
+		},
+		"/resources/maps_old/town1_cavern_entrance/tilemap_Grid.csv": {
+			"sdcard": false
+		},
+		"/resources/maps_old/town1_cavern_floor2/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/maps_old/town1_cavern_floor2/tilemap_Grid.csv": {
+			"sdcard": false
+		},
+		"/resources/maps_old/town1_inn_floor2/passability.png": {
+			"sdcard": false
+		},
+		"/resources/maps_old/town1_inn_floor2/tilemap_Grid.csv": {
+			"sdcard": false
+		},
+		"/resources/maps_old/town1_inn_floor2/tilemap_Passability.csv": {
+			"sdcard": false
+		},
+		"/resources/maps_old/town1_inn_floor2/tilemap_Sprites.csv": {
+			"sdcard": false
+		},
+		"/resources/maps_old/town1_inn_floor3/tilemap_BG.csv": {
+			"sdcard": false
+		},
+		"/resources/tilesets/interior.tsx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/floor2.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/floor1.png": {
+			"sdcard": false
+		},
+		"/resources/screen_title.ase": {
+			"sdcard": false
+		},
+		"/resources/title.ase": {
+			"sdcard": false
+		},
+		"/resources/title.png": {
+			"sdcard": false
+		},
+		"/resources/title.gfx": {
+			"sdcard": false
+		},
+		"/src/title.h": {
+			"sdcard": false
+		},
+		"/src/title.cpp": {
+			"sdcard": false
+		},
+		"/resources/screen_save.png": {
+			"sdcard": false
+		},
+		"/resources/DialogCursor-(2).mp4": {
+			"sdcard": false
+		},
+		"/resources/TitleScreen.mp4": {
+			"sdcard": false
+		},
+		"/resources/TitleScreen.gif.crdownload": {
+			"sdcard": false
+		},
+		"/resources/TitleScreen.gif": {
+			"sdcard": false
+		},
+		"/data/preludetoadream.sav": {
+			"sdcard": false
+		},
+		"/src/gameover.h": {
+			"sdcard": false
+		},
+		"/src/gameover.cpp": {
+			"sdcard": false
+		},
+		"/resources/screens": {
+			"sdcard": false
+		},
+		"/resources/screens/gameover1.ase": {
+			"sdcard": false
+		},
+		"/resources/screens/title.ase": {
+			"sdcard": false
+		},
+		"/resources/screens/title.gfx": {
+			"sdcard": false
+		},
+		"/resources/screens/title.png": {
+			"sdcard": false
+		},
+		"/resources/screens/gameover1.png": {
+			"sdcard": false
+		},
+		"/resources/screens/gameover1.gfx": {
+			"sdcard": false
+		},
+		"/resources/screen_shop.png": {
+			"sdcard": false
+		},
+		"/resources/sfx/coin.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/coin.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/berserk.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/berserk.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/JRPG_mainTheme.ogg": {
+			"sdcard": false
+		},
+		"/resources/sfx/JRPG_gameOver.ogg": {
+			"sdcard": false
+		},
+		"/resources/Tiled/floor3_upper.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/goliath.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/goliath.dat": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_battleFinal0.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/currentFreq.txt": {
+			"sdcard": false
+		},
+		"/resources/POP": {
+			"sdcard": false
+		},
+		"/resources/Tiled/home.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/floor4.png": {
+			"sdcard": false
+		},
+		"/resources/screens/tobecontinued.ase": {
+			"sdcard": false
+		},
+		"/resources/screens/tobecontinued.png": {
+			"sdcard": false
+		},
+		"/resources/screens/tobecontinued.gfx": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_gameOver0.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_mainTheme0.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_characterRevived0.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_fields_loop0.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_mysticIsle0.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/JRPG_princess0.ogg": {
+			"sdcard": false
+		},
+		"/resources/ptad.tiled-project": {
+			"sdcard": false
+		},
+		"/resources/ptad.tiled-session.lock": {
+			"sdcard": false
+		},
+		"/resources/ptad.tiled-session": {
+			"sdcard": false
+		},
+		"/resources/battlers/battlers.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/template.xml": {
+			"sdcard": false
+		},
+		"/src/DataPack.h": {
+			"sdcard": false
+		},
+		"/src/DataPack": {
+			"sdcard": false
+		},
+		"/src/DataPack/DataPack.h": {
+			"sdcard": false
+		},
+		"/LICENSE.txt": {
+			"sdcard": false
+		},
+		"/AUTHORS.txt": {
+			"sdcard": false
+		}
+	},
+	"ideVersion": 10000,
+	"BUILDFlags": {
+		"Pokitto": {}
+	}
+}

@@ -1,0 +1,6 @@
+0 - Beginning
+1 - Talked to wife and left home
+2 - Talked to inn keeper at least once prior to clearing cellar
+3 - Cleared cellar
+4 - Talked to mayor after clearing cellar
+5 - Left first town

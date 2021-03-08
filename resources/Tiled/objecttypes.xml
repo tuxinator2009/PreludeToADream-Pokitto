@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="Event" color="#ff00ff">
+  <property name="Flags: Button" type="bool" default="false"/>
+  <property name="Flags: Door" type="bool" default="false"/>
+  <property name="Script" type="string"/>
+ </objecttype>
+ <objecttype name="Region" color="#ffffff"/>
+</objecttypes>

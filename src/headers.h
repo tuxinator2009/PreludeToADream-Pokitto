@@ -1,0 +1,23 @@
+#pragma once
+
+#include <Pokitto.h>
+#include <miloslav.h>
+#include <File>
+#include <LibAudio>
+#include <algorithm>
+#include <cstdint>
+#include "DataPack/DataPack.h"
+#include "game.h"
+#include "battleanimation.h"
+#include "battleevent.h"
+#include "battle.h"
+#include "dialog.h"
+#include "font.h"
+#include "mapevent.h"
+#include "map.h"
+#include "menu.h"
+#include "music.h"
+#include "globals.h"
+#include "ui.h"
+#include "gameover.h"
+#include "title.h"

@@ -1,0 +1,43 @@
+________________________
+What action do you seek?
+IT'S A SURPRISE ATTACK!_
+CRITICAL HIT! __________
+ gold earned.___________
+ experience gained._____
+YOU LEVELED UP!_________
+Learned skill __________
+You took _______________
+ damage.________________
+Gehenna awaits you......
+You strike your opponent
+You narrowly escaped.___
+You failed to run away._
+There's nowhere to run._
+You dealt ______________
+MISS!___________________
+Poison deals ___________
+This is the dialog speed
+YOU'RE BLINDED BY RAGE!_
+You used a _____________
+You used _______________
+You cast _______________
+The enemy is poisoned___
+The poison didn't hold__
+The enemy moves slower__
+The slowness didn't work
+You recovered __________
+You feel very refreshed!
+You become focused______
+You become more focused_
+You become super focused
+You become furious______
+You become more furious_
+You become super furious
+You feel less furious___
+You're movement is fast!
+You recover from poison.
+You can move normally.__
+You become stronger_____
+You become tougher______
+You become swifter______
+You become more powerful
