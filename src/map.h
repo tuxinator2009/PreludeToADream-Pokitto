@@ -114,7 +114,11 @@ namespace PTAD
     static uint8_t itemID;
     static uint8_t steps;
     static MapData *data;
+    #ifndef POK_SIM
     static uint8_t *passability;
+    #else
+    static uint8_t passability[];
+    #endif
     static uint8_t *chunksBG;
     static uint8_t *chunksFG;
     static uint8_t *sprites;

@@ -286,7 +286,7 @@
 			"$objectFiles"
 		]
 	},
-	"target": "Pokitto",
+	"target": "linux",
 	"pipelines": {
 		"Pokitto": [
 			"compile-cpp",
@@ -4129,6 +4129,15 @@
 			"sdcard": false
 		},
 		"/resources/maps/town1/inn/floor3.tmx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain.png": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain.tsx": {
 			"sdcard": false
 		}
 	},

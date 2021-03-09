@@ -25,7 +25,11 @@ uint16_t PTAD::Map::shopEquipment[6];
 uint8_t PTAD::Map::itemID = 0;
 uint8_t PTAD::Map::steps = 0;
 PTAD::Map::MapData *PTAD::Map::data = (PTAD::Map::MapData*)(PTAD::memory + PTAD::MEMORY_MAP_DATA_OFFSET);
-uint8_t *PTAD::Map::passability = PTAD::memory + PTAD::MEMORY_MAP_PASSABILITY_OFFSET;
+#ifndef POK_SIM
+uint8_t *PTAD::Map::passability = (uint8_t*)PTAD::MAP_PASSABILITY_MEMORY_ADDRESS;
+#else
+uint8_t PTAD::Map::passability[PTAD::MAP_PASSABILITY_SIZE];
+#endif
 uint8_t *PTAD::Map::chunksBG = PTAD::memory + PTAD::MEMORY_MAP_CHUNKSBG_OFFSET;
 uint8_t *PTAD::Map::chunksFG = PTAD::memory + PTAD::MEMORY_MAP_CHUNKSFG_OFFSET;
 uint8_t *PTAD::Map::sprites = PTAD::memory + PTAD::MEMORY_MAP_SPRITES_OFFSET;
@@ -192,7 +196,7 @@ void PTAD::Map::setup()
   DataPack::PackedFile file;
   PTAD::dataFile->getPackedFile(PTAD::Game::player.mapHash, &mapFile);
   PTAD::dataFile->readBytes(&mapFile, (void*)data, sizeof(MapData));
-  PTAD::dataFile->readBytes(&mapFile, passability, PTAD::MEMORY_MAP_PASSABILITY_SIZE);
+  PTAD::dataFile->readBytes(&mapFile, passability, PTAD::MAP_PASSABILITY_SIZE);
   PTAD::dataFile->getPackedFile(tiledataFiles[data->tilesetID], &file);
   PTAD::dataFile->readBytes(&file, tiledata, PTAD::MEMORY_MAP_TILEDATA_SIZE);
   PTAD::loadTileset(data->tilesetID);
@@ -205,7 +209,7 @@ void PTAD::Map::setup()
   updateChunks();
   PTAD::Music::playMusic(data->bgmID);
   state = State::Idle;
-  PTAD::MapEvent::runOnLoadEvent(PTAD::Game::player.mapHash, sizeof(MapData) + PTAD::MEMORY_MAP_PASSABILITY_SIZE + data->width * data->height * (PTAD::MEMORY_MAP_CHUNKS_SIZE / 4) * 2);
+  PTAD::MapEvent::runOnLoadEvent(PTAD::Game::player.mapHash, sizeof(MapData) + data->width * data->height * 32 + data->width * data->height * (PTAD::MEMORY_MAP_CHUNKS_SIZE / 4) * 2);
   steps = 0;
 }
 
@@ -478,7 +482,7 @@ void PTAD::Map::updateChunks()
       if (chunkID[i] != chunkY[i] * data->width + chunkX[i])
       {
         chunkID[i] = chunkY[i] * data->width + chunkX[i];
-        mapFile.seek(sizeof(MapData) + PTAD::MEMORY_MAP_PASSABILITY_SIZE + chunkID[i] * 2048);
+        mapFile.seek(sizeof(MapData) + data->width * data->height * 32 + chunkID[i] * 2048);
         PTAD::dataFile->readBytes(&mapFile, chunksBG + i * 1024, 1024);
         PTAD::dataFile->readBytes(&mapFile, chunksFG + i * 1024, 1024);
       }
