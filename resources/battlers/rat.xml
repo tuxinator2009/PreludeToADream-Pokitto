@@ -11,8 +11,7 @@
   <turn>
     <bufferMessage message="The rat claws your face."/>
     <showMessage/>
-    <playBattleAnimation animation="animations/test.anim"/>
+    <!--<playBattleAnimation animation="animations/test.anim"/>-->
     <basicAttack/>
   </turn>
-  <!--event system to determine action taken-->
 </preludetoadream-enemy>

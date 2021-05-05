@@ -20,7 +20,8 @@ namespace PTAD
       MapEvent::Event events[29];
       uint8_t minSteps;
       uint8_t maxSteps;
-      uint16_t unused;
+      uint8_t flags;
+      uint8_t unused;
     };
     enum class State
     {
@@ -54,13 +55,15 @@ namespace PTAD
     };
     static void setup();
     static void update();
+    static bool isDark() {return (data->flags & FLAG_DARK) != 0;}
   private:
     static void loadSprites();
     static void drawChunk(const uint8_t *chunk, int x, int y, bool bg);
     static void updateChunks();
     static bool canMove(int x, int y);
-    static uint8_t eventAtLocation(uint8_t x, uint8_t y);
+    static uint8_t eventAtLocation(int x, int y);
     static void randomBattle();
+    static void clipScreen();
     static void drawMainMenu();
     static void drawStatsMenu();
     static void drawItemsMenu();
@@ -105,7 +108,7 @@ namespace PTAD
     static int8_t shakeOffsetX;
     static int8_t shakeOffsetY;
     static uint8_t shakeScreen;
-    static uint8_t shakeRate;
+    static uint8_t shakeMagnitude;
     static uint8_t playerFrame;
     static uint8_t eventID;
     static uint8_t shopMessage[24];
@@ -113,6 +116,7 @@ namespace PTAD
     static uint16_t shopEquipment[6];
     static uint8_t itemID;
     static uint8_t steps;
+    static uint8_t exitEventID;
     static MapData *data;
     #ifndef POK_SIM
     static uint8_t *passability;
@@ -124,7 +128,7 @@ namespace PTAD
     static uint8_t *sprites;
     static uint8_t *tiledata;
     static const uint8_t playerFrames[];
-    static const uint8_t movement[12];
+    static const uint8_t movement[];
     static const uint32_t tiledataFiles[];
     static const uint8_t txtOptions[];
     static const uint8_t statsMenu[];
@@ -139,5 +143,10 @@ namespace PTAD
     static const uint8_t shopNotEnoughRoom[];
     static const uint8_t shopSoldOutMessage[];
     static const uint8_t shopSellQtyMessage[];
+    static constexpr uint8_t FLAG_CLIP_UP = 1;
+    static constexpr uint8_t FLAG_CLIP_DOWN = 2;
+    static constexpr uint8_t FLAG_CLIP_LEFT = 4;
+    static constexpr uint8_t FLAG_CLIP_RIGHT = 8;
+    static constexpr uint8_t FLAG_DARK = 16;
   };
 }

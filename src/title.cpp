@@ -33,7 +33,7 @@ void PTAD::Title::setup()
   PTAD::Ui::drawFrame(9, 17, 18, 20);
   PTAD::Ui::drawText(txtContinue, 8, 10, 18);
   PTAD::Ui::drawText(txtNewGame, 8, 10, 19);
-  PTAD::Music::playMusic(PTAD::Music::MUSIC_MAIN_THEME);
+  PTAD::Music::playMusic(PTAD::Music::MUSIC_MAIN_THEME, 0);
 }
 
 void PTAD::Title::update()

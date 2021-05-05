@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<preludetoadream-enemy experience="" gold="" hp="" mp="" attack="" defense="" agility="" magic="" spellResistance="" statusResistance="">
+<preludetoadream-enemy experience="" gold="" hp="" mp="" attack="" defense="" agility="" magic="" spellResistance="" poisonResistance="" slowResistance="">
   <intro>
   </intro>
   <outro>

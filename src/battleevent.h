@@ -29,12 +29,14 @@ namespace PTAD
       static bool event_jump();
       static bool event_jumpIf();
       static bool event_jumpIfStatus();
+      static bool event_jumpIfStat();
       static bool event_changeBattlerSprite();
       static bool event_changeBackgroundImage();
       static bool event_playBattleAnimation();
       static bool event_waitFrames();
       static bool event_waitButtons();
       static bool event_inflictStatus();
+      static bool event_consumeMP();
       static bool event_random();
       static bool event_endEventProcessing();
       static bool (*const execEvent[]) ();

@@ -10,17 +10,24 @@ const uint32_t PTAD::Battle::backgrounds[] =
 	DataPack::hash("backdrops/forest.gfx"),   //0x01 ( 1)
 	DataPack::hash("backdrops/shipdeck.gfx"), //0x02 ( 2)
 	DataPack::hash("backdrops/swamp.gfx"),    //0x03 ( 3)
-	DataPack::hash("backdrops/cavern.gfx")    //0x04 ( 4)
+	DataPack::hash("backdrops/cavern.gfx"),   //0x04 ( 4)
+	DataPack::hash("backdrops/mountain.gfx"), //0x05 ( 5)
+	DataPack::hash("backdrops/mountain2.gfx"),//0x06 ( 6)
 };
 
 const uint32_t PTAD::Battle::enemies[] =
 {
-  DataPack::hash("battlers/wolf.dat"),   //0x00 ( 0)
-	DataPack::hash("battlers/snake.dat"),  //0x01 ( 1)
-	DataPack::hash("battlers/rat.dat"),    //0x02 ( 2)
-	DataPack::hash("battlers/spider.dat"), //0x03 ( 3)
-	DataPack::hash("battlers/brigand.dat"),//0x04 ( 4)
-	DataPack::hash("battlers/goliath.dat") //0x05 ( 5)
+  DataPack::hash("battlers/wolf.dat"),     //0x00 ( 0)
+	DataPack::hash("battlers/snake.dat"),    //0x01 ( 1)
+	DataPack::hash("battlers/rat.dat"),      //0x02 ( 2)
+	DataPack::hash("battlers/spider.dat"),   //0x03 ( 3)
+	DataPack::hash("battlers/brigand.dat"),  //0x04 ( 4)
+	DataPack::hash("battlers/goliath.dat"),  //0x05 ( 5)
+	DataPack::hash("battlers/bat.dat"),      //0x06 ( 6)
+	DataPack::hash("battlers/benjamin.dat"), //0x07 ( 7)
+	DataPack::hash("battlers/cougar.dat"),   //0x08 ( 8)
+	DataPack::hash("battlers/grizzly.dat"),  //0x09 ( 9)
+	DataPack::hash("battlers/gorilla.dat"),  //0x0A (10)
 };
 
 const uint8_t PTAD::Battle::enemyNames[]
@@ -37,6 +44,16 @@ const uint8_t PTAD::Battle::enemyNames[]
   0x1B,0x45,0x3C,0x3A,0x34,0x41,0x37,0x0A,
   //Goliath_
   0x20,0x42,0x3F,0x3C,0x34,0x47,0x3B,0x0A,
+  //Bat_____
+  0x1B,0x34,0x47,0x0A,0x0A,0x0A,0x0A,0x0A,
+  //Benjamin
+  0x1B,0x38,0x41,0x3D,0x34,0x40,0x3C,0x41,
+  //Cougar__
+  0x1C,0x42,0x48,0x3A,0x34,0x45,0x0A,0x0A,
+  //Grizzly_
+  0x20,0x45,0x3C,0x4D,0x4D,0x3F,0x4C,0x0A,
+  //Gorilla_
+  0x20,0x42,0x45,0x3C,0x3F,0x3F,0x34,0x0A,
 };
 
 const uint8_t PTAD::Battle::numEnemies = sizeof(PTAD::Battle::enemies) / sizeof(PTAD::Battle::enemies[0]);
@@ -91,7 +108,7 @@ void PTAD::Battle::setup()
 	PTAD::dataFile->getPackedFile(enemies[PTAD::battleMonsterID], &enemyFile);
 	PTAD::dataFile->readBytes(&enemyFile, (void*)enemy, sizeof(EnemyData));
 	PTAD::globalCounter = 0;
-  PTAD::Music::playMusic(PTAD::battleBGM);
+  PTAD::Music::playMusic(PTAD::battleBGM, 1);
   loadBackgroundImage();
   loadBattlerSprite();
   loadPlayerSprite();
@@ -102,6 +119,13 @@ void PTAD::Battle::setup()
   playerSpellResistance = PTAD::Game::calculateSpellResistance();
   playerStatusResistance[0] = PTAD::Game::getPoisonResistance();
   playerStatusResistance[1] = PTAD::Game::getSlowResistance();
+  if (PTAD::Map::isDark())
+  {
+    if (PTAD::Game::player.equippedItems[1] == 1)
+      PTAD::darkness = 3;
+    else
+      PTAD::darkness = 1;
+  }
 }
 
 void PTAD::Battle::update()
@@ -257,6 +281,16 @@ bool PTAD::Battle::showBackground()
 void PTAD::Battle::showFrames()
 {
   PTAD::Ui::drawFrame(2, 1, 11, 3); //Enemy status icons
+  for (uint8_t i = 0; i < 8; ++i)
+    PTAD::Ui::drawCharacter(enemyNames[PTAD::battleMonsterID * 8 + i], i + 3, 1);
+  for (uint8_t i = 10; i >= 3; --i)
+  {
+    if (PTAD::Ui::getCharacter(i, 1) == PTAD::FONT_SPACE)
+      PTAD::Ui::drawCharacter(PTAD::FONT_FRAME_U, i, 1);
+    else
+      break;
+  }
+  PTAD::Ui::fixFrameHeader(2, 11, 3);
 	PTAD::Ui::drawFrame(2, 5, 11, 13); //Stats frame
   for (uint8_t i = 0; i < 8; ++i)
   {
@@ -550,7 +584,7 @@ void PTAD::Battle::chooseItem()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    if (PTAD::Game::player.items[PTAD::globalCounter] == 0)
+    if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter] == 0)
       PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
     else if (PTAD::globalCounter >= PTAD::ITEM_POTION && PTAD::globalCounter <= PTAD::ITEM_S_POTION && PTAD::Game::player.hp == PTAD::Game::player.maxHP)
     {
@@ -1211,7 +1245,13 @@ void PTAD::Battle::useSkill()
     else if (lastPress == PTAD::SKILL_DBL_HIT)
     {
       attack();
-      PTAD::globalCounter -= 2;
+      if (enemy->hp == 0)
+      {
+        PTAD::globalCounter = -1;
+        state = State::Victory;
+      }
+      else
+        PTAD::globalCounter = 0;
       lastPress = 16;
     }
     else if (lastPress == PTAD::SKILL_PWR_SHOT)
@@ -1458,7 +1498,7 @@ void PTAD::Battle::victory()
 	if (PTAD::globalCounter == 0)
 	{
     PTAD::BattleEvent::begin(enemy->outroOffset);
-		PTAD::Music::playMusic(PTAD::battleBGM + 25, false);
+		PTAD::Music::playMusic(PTAD::battleBGM + 25, 1, false);
 	}
 	else if (globalCounter == 1)
 	{
@@ -1484,7 +1524,7 @@ void PTAD::Battle::victory()
 		if (PTAD::Game::player.experience >= PTAD::Game::player.nextLevel)
 		{
 			PTAD::Game::levelUp();
-			PTAD::Music::playMusic(14, false);
+      PTAD::Music::playMusic(PTAD::Music::MUSIC_LEVEL_UP, 1, false);
 			PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_LEVEL_UP);
 			PTAD::Dialog::beginMessage();
 		}
@@ -1495,7 +1535,7 @@ void PTAD::Battle::victory()
 	{
 		if (PTAD::Game::skillLearned[PTAD::Game::player.level - 1] != 255)
     {
-			PTAD::Music::playMusic(3, false);
+      PTAD::Music::playMusic(PTAD::Music::MUSIC_REVIVED, 1, false);
 			PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_SKILL_LEARNED);
       PTAD::Dialog::bufferText(PTAD::skills[PTAD::Game::skillLearned[PTAD::Game::player.level - 1]].name, 8);
       PTAD::Dialog::trimBuffer();
@@ -1531,7 +1571,7 @@ void PTAD::Battle::defeat()
     {
 			++PTAD::globalCounter;
       lastPress = 64;
-      PTAD::Music::playMusic(PTAD::Music::MUSIC_GAME_OVER, false);
+      PTAD::Music::playMusic(PTAD::Music::MUSIC_GAME_OVER, 1, false);
     }
 	}
 	else if (PTAD::globalCounter == 2)
@@ -1563,6 +1603,8 @@ void PTAD::Battle::defeat()
     PTAD::Ui::clear();
     if (PTAD::Game::player.variables[0] <= PTAD::Game::GAME_OVER_VALUE1)
       PTAD::GameOver::load(DataPack::hash("screens/gameover1.gfx"));
+    else if (PTAD::Game::player.variables[0] <= PTAD::Game::GAME_OVER_VALUE2)
+      PTAD::GameOver::load(DataPack::hash("screens/gameover1.gfx"));//TODO replace with screen showing Cecilia trapped in a cage
 	}
 }
 

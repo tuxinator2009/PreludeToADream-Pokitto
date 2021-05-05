@@ -695,8 +695,8 @@ void PTAD::Menu::updateSaveLoadMenu()
       PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
       PTAD::Game::saveGame(PTAD::globalCounter);
       drawSaveLoadMenu();
-      state = State::SaveMenuEnd;
     }
+    state = State::SaveMenuEnd;
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.09.09" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="8" tileheight="8" infinite="0" backgroundcolor="#000000" nextlayerid="7" nextobjectid="70">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="8" tileheight="8" infinite="0" backgroundcolor="#000000" nextlayerid="7" nextobjectid="70">
  <properties>
+  <property name="Flags" value=""/>
   <property name="Max Steps" type="int" value="12"/>
   <property name="Min Steps" type="int" value="4"/>
   <property name="On Load Event" value=""/>
@@ -82,7 +83,9 @@
  <objectgroup id="5" name="Events" offsetx="0" offsety="4">
   <object id="17" name="Teleport to floor2" type="Event" gid="386" x="80" y="160" width="16" height="24">
    <properties>
-    <property name="Script" value="teleport(&quot;maps/town1/cavern/floor2.dat&quot;, 21, 22, &quot;up&quot;)"/>
+    <property name="Script">hideScreen(&quot;maskOut&quot;, 1)
+teleport(&quot;maps/town1/cavern/floor2.dat&quot;, 21, 22, &quot;up&quot;)
+showScreen(&quot;instant&quot;, 1)</property>
    </properties>
   </object>
   <object id="18" name="Teleport to lower level" type="Event" gid="386" x="448" y="208" width="16" height="24">

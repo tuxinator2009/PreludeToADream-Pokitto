@@ -286,7 +286,7 @@
 			"$objectFiles"
 		]
 	},
-	"target": "linux",
+	"target": "Pokitto",
 	"pipelines": {
 		"Pokitto": [
 			"compile-cpp",
@@ -4138,6 +4138,729 @@
 			"sdcard": false
 		},
 		"/resources/tilesets/mountain.tsx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/entrance.tmx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain2.png": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/test.tmx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain2.ase": {
+			"sdcard": false
+		},
+		"/resources/Tiled/visibility.tsx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/test.png": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/test2.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/test (copy 1).tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cliffs.tmx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain.txt": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cliffs.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain.gfx": {
+			"sdcard": false
+		},
+		"/resources/maps/town2.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town2.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain2.gfx": {
+			"sdcard": false
+		},
+		"/PreludeToADream.bin.2.gif": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain2.dat": {
+			"sdcard": false
+		},
+		"/resources/names.txt": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town1_postRaid.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/town2.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/benjaminsHouse.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/wolf.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/wolf.dat": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/justsketch.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/outlineHD.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/outlinePixelArt.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/outlineStretched.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/01_justSketchPose.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/02_outlineHD.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/03_outlinePixelArt.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/04_outlineStretched.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/05_outlineAdjustments.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/00_firstTry.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/06_final.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/07_preview.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/bat.dat": {
+			"sdcard": false
+		},
+		"/resources/battlers/benjamin.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/part1.tmx": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.1": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.2": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.3": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.4": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.5": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.6": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.7": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.8": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.9": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.10": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.11": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.12": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.13": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.14": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.15": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.16": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.17": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.18": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.19": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.20": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.21": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.22": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.23": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.24": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.25": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.26": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.27": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.28": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.29": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.30": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.31": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.32": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.33": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.34": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.35": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.36": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.37": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.38": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.39": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.40": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.41": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.42": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.43": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.44": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.45": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.46": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.47": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.48": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.49": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.50": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.51": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.52": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.53": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.54": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.55": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.56": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.57": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.58": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.59": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.60": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.61": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.62": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.63": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.64": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.65": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.66": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.67": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.68": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.69": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.70": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.71": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.72": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.73": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.74": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.75": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.76": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.77": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.78": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.79": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.80": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.81": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.82": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.83": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.84": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.85": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.86": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.87": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.88": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.89": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.90": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.91": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.92": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.93": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.94": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.95": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.96": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.97": {
+			"sdcard": false
+		},
+		"/callgrind.out.452897.98": {
+			"sdcard": false
+		},
+		"/resources/Tiled/part1.png": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin/cabin.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin/floor1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/floor1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin_floor1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin_floor2.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin_floor2.dat": {
+			"sdcard": false
+		},
+		"/resources/screens/mapnotfound.png": {
+			"sdcard": false
+		},
+		"/resources/screens/mapnotfound.gfx": {
+			"sdcard": false
+		},
+		"/resources/battlers/grizzly.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/cougar.dat": {
+			"sdcard": false
+		},
+		"/resources/battlers/grizzly.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/part2.tmx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain3.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain3.png": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain3.txt": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain3.tsx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/part2.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain3.dat": {
+			"sdcard": false
+		},
+		"/resources/backdrops/mountain2.ase": {
+			"sdcard": false
+		},
+		"/resources/backdrops/mountain2.png": {
+			"sdcard": false
+		},
+		"/resources/backdrops/mountain2.gfx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/dreamworld.gfx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain3.gfx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/spiritworld.gfx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cave_part1.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/part2.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/visibility.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/bat.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/benjamin.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/cougar.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner.ase": {
+			"sdcard": false
+		},
+		"/resources/maps/town2": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain2.txt": {
+			"sdcard": false
+		},
+		"/resources/tilesets/mountain2.tsx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin_floor1.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cave_part1.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/part1.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town2/benjaminsHouse.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town2/mine": {
+			"sdcard": false
+		},
+		"/resources/maps/town2/benjaminsHouse.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town2/mine/floor1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/town2/mine/floor1.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town2/mine/floor2.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/town2/mine/floor2.tmx": {
+			"sdcard": false
+		},
+		"/resources/sfx/battle.raw": {
+			"sdcard": false
+		},
+		"/resources/sfx/battle.wav": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveA.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveB.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveC.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveB.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveC.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveD.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveE.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveF.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveG.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/caveB.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/caveD.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/caveF.png": {
+			"sdcard": false
+		},
+		"/resources/backdrops/mountain.png": {
+			"sdcard": false
+		},
+		"/resources/backdrops/mountain.gfx": {
+			"sdcard": false
+		},
+		"/resources/battlers/gorilla.xml": {
+			"sdcard": false
+		},
+		"/resources/battlers/gorilla.dat": {
+			"sdcard": false
+		},
+		"/resources/Tiled/overworld.png": {
+			"sdcard": false
+		},
+		"/resources/screens/viewpoint.ase": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/part3.tmx": {
+			"sdcard": false
+		},
+		"/resources/Tiled/caveA.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/caveC.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/caveE.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/caveG.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/cliffs.png": {
+			"sdcard": false
+		},
+		"/resources/Tiled/part3.png": {
+			"sdcard": false
+		},
+		"/resources/backdrops/mountain.ase": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin2_floor1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin2_floor2.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveA.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveD.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveE.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveF.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveG.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/shrine1.tmx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/shrine.tsx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/part3.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin2_floor2.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/shrine.txt": {
+			"sdcard": false
+		},
+		"/resources/maps/shrine1.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/shrine.dat": {
+			"sdcard": false
+		},
+		"/resources/tilesets/shrine.gfx": {
+			"sdcard": false
+		},
+		"/resources/tilesets/shrine.ase": {
+			"sdcard": false
+		},
+		"/resources/tilesets/shrine.png": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/cabin2_floor1.dat": {
+			"sdcard": false
+		},
+		"/resources/sfx/rune.wav": {
+			"sdcard": false
+		},
+		"/resources/sfx/rune.raw": {
+			"sdcard": false
+		},
+		"/resources/Tiled/shrine1.png": {
+			"sdcard": false
+		},
+		"/resources/sfx/dream.wav": {
+			"sdcard": false
+		},
+		"/resources/Shrine.mp4": {
+			"sdcard": false
+		},
+		"/resources/Shrine-(2).mp4": {
+			"sdcard": false
+		},
+		"/resources/screens/viewpoint.png": {
+			"sdcard": false
+		},
+		"/resources/screens/viewpoint.gfx": {
 			"sdcard": false
 		}
 	},

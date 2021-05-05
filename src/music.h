@@ -7,12 +7,14 @@ namespace PTAD
 	class Music
 	{
 		public:
-			static void playMusic(uint8_t bgm, bool loop=true);
+			static void playMusic(uint8_t bgm, uint8_t channel, bool loop=true);
 			static void pauseMusic();
 			static void resumeMusic();
 			static void stopMusic();
-      static void playSFX(uint8_t sfxID);
+      static void playSFX(uint8_t sfxID, bool priority=true);
       static void stopSFX();
+      static bool isMusicPlaying();
+      static bool isSFXPlaying();
       static constexpr uint8_t MUSIC_BOSS_BATTLE = 0;
       static constexpr uint8_t MUSIC_FINAL_BATTLE = 1;
       static constexpr uint8_t MUSIC_BATTLE = 2;
@@ -57,12 +59,15 @@ namespace PTAD
       static constexpr uint8_t SFX_DIALOG = 13;
       static constexpr uint8_t SFX_COIN = 14;
       static constexpr uint8_t SFX_BERSERK = 15;
+      static constexpr uint8_t SFX_RUNE = 16;
+      static constexpr uint8_t SFX_DREAM = 17;
 		private:
-			static Audio::RAWFileSource *backgroundMusic;
+			static Audio::RAWFileSource *backgroundMusic[2];
       static Audio::RAWFileSource *sfxSource;
-			static Audio::Sink<2, PROJ_AUD_FREQ> audio;
+			static Audio::Sink<3, PROJ_AUD_FREQ> audio;
 			static const uint32_t music[];
       static const uint32_t sfx[];
       static uint8_t currentBGM;
+      static uint8_t currentChannel;
 	};
 }

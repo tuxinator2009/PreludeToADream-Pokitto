@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.09.09" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" backgroundcolor="#000000" nextlayerid="7" nextobjectid="26">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" backgroundcolor="#000000" nextlayerid="7" nextobjectid="26">
  <properties>
+  <property name="Flags" value=""/>
   <property name="Max Steps" type="int" value="8"/>
   <property name="Min Steps" type="int" value="2"/>
   <property name="On Load Event">ifHasItem(&quot;armor&quot;, &quot;Jerkin&quot;)
@@ -119,7 +120,9 @@ hideDialog()</property>
   </object>
   <object id="5" name="Teleport to floor3" type="Event" gid="385" x="128" y="240" width="16" height="24">
    <properties>
-    <property name="Script" value="teleport(&quot;maps/town1/cavern/floor3_lower.dat&quot;, 10, 3, &quot;down&quot;)"/>
+    <property name="Script">hideScreen(&quot;maskOut&quot;, 1)
+teleport(&quot;maps/town1/cavern/floor3_lower.dat&quot;, 10, 3, &quot;down&quot;)
+showScreen(&quot;instant&quot;, 1)</property>
    </properties>
   </object>
  </objectgroup>
@@ -217,7 +220,7 @@ hideDialog()</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,642,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="6" name="Grid" width="32" height="32" visible="0">
+ <layer id="6" name="Grid" width="32" height="32">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,

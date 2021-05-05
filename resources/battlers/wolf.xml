@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="6" gold="8" hp="14" mp="0" attack="20" defense="18" agility="15" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>
+    <bufferMessage message="A wolf corners you!"/>
+    <showMessage/>
+  </intro>
+  <outro>
+    <bufferMessage message="You defeated the wolf."/>
+    <showMessage/>
+  </outro>
+  <turn>
+    <random counter="3" max="100"/>
+    <jumpIf counter="3" condition="&lt;=" value="15" onTrue="tryFocus" onFalse="doBasicAttack"/>
+    <label name="tryFocus"/>
+    <jumpIfStatus onTrue="doFocus" onFalse="doBasicAttack" status="focus" level="1" self="true" condition="!="/>
+    <label name="doFocus"/>
+    <bufferMessage message="The wolf stalks its prey"/>
+    <showMessage/>
+    <inflictStatus status="focus" level="1" self="true" chance="255" successMessage="The wolf becomes focused" failMessage=""/>
+    <endEventProcessing/>
+    <label name="doBasicAttack"/>
+    <bufferMessage message="The wolf lunges for you!"/>
+    <showMessage/>
+    <basicAttack/>
+  </turn>
+</preludetoadream-enemy>

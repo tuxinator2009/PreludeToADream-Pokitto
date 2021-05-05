@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" nextlayerid="7" nextobjectid="30">
+ <properties>
+  <property name="Flags" value=""/>
+  <property name="Max Steps" type="int" value="0"/>
+  <property name="Min Steps" type="int" value="0"/>
+  <property name="On Load Event">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  changeSprite(&quot;Benjamin&quot;, 33)
+endIf</property>
+  <property name="music" value="labyrinth"/>
+ </properties>
+ <tileset firstgid="1" source="../../../Tiled/grid.tsx"/>
+ <tileset firstgid="2" source="../../../tilesets/cavern2.tsx"/>
+ <tileset firstgid="130" source="../../../Tiled/sprites.tsx"/>
+ <tileset firstgid="386" source="../../../Tiled/passability.tsx"/>
+ <layer id="1" name="BG" width="32" height="32">
+  <data encoding="csv">
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,12,10,11,10,11,10,11,10,11,10,11,10,11,10,11,13,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,24,84,85,84,85,84,85,84,85,84,85,84,85,84,85,9,2,2,2,2,2,2,2,
+2,2,2,2,2,12,11,10,11,69,100,101,122,123,122,123,122,123,122,123,122,123,100,101,68,11,13,2,2,2,2,2,
+2,2,2,2,2,24,84,85,84,85,4,5,116,117,116,117,116,117,116,117,116,117,6,7,84,85,9,2,2,2,2,2,
+2,2,2,12,11,69,100,101,122,123,70,71,30,31,30,31,30,31,30,31,30,31,66,67,100,101,68,11,13,2,2,2,
+2,2,2,24,84,85,4,5,116,117,118,119,14,15,82,83,14,15,82,83,14,15,114,115,6,7,84,85,9,2,2,2,
+2,12,10,69,100,101,70,71,30,31,30,31,30,31,98,99,30,31,98,99,30,31,30,31,66,67,100,101,25,2,2,2,
+2,24,84,85,4,5,118,119,14,15,82,83,14,15,86,87,14,15,14,15,82,83,14,15,114,115,6,7,9,2,2,2,
+2,8,100,101,70,71,30,31,30,31,98,99,30,31,102,103,30,31,30,31,98,99,30,31,30,31,66,67,68,11,13,2,
+2,24,4,5,118,119,14,15,82,83,14,15,14,15,14,15,82,83,14,15,14,15,14,15,82,83,114,115,6,7,9,2,
+2,8,70,71,30,31,30,31,98,99,30,31,30,31,30,31,98,99,30,31,30,31,30,31,98,99,30,31,66,67,25,2,
+2,24,54,55,14,15,86,87,14,15,14,15,82,83,14,15,14,15,14,15,14,15,14,15,82,83,86,87,50,51,9,2,
+2,8,70,71,30,31,102,103,30,31,30,31,98,99,30,31,30,31,30,31,30,31,30,31,98,99,102,103,66,67,25,2,
+2,24,54,55,14,15,82,83,14,15,82,83,14,15,14,15,14,15,82,83,14,15,14,15,14,15,82,83,50,51,9,2,
+2,8,70,71,30,31,98,99,30,31,98,99,30,31,30,31,30,31,98,99,30,31,30,31,30,31,98,99,66,67,25,2,
+2,24,54,55,82,83,14,15,14,15,14,15,14,15,82,83,14,15,14,15,14,15,82,83,14,15,14,15,50,51,9,2,
+2,8,70,71,98,99,30,31,30,31,30,31,30,31,98,99,30,31,30,31,30,31,98,99,30,31,30,31,66,67,25,2,
+2,24,54,55,14,15,14,15,82,83,14,15,14,15,14,15,14,15,86,87,14,15,14,15,14,15,82,83,50,51,9,2,
+2,8,70,71,30,31,30,31,98,99,30,31,30,31,30,31,30,31,102,103,30,31,30,31,30,31,98,99,66,67,25,2,
+2,24,20,21,38,39,86,87,14,15,14,15,86,87,14,15,14,15,14,15,14,15,82,83,14,15,34,35,22,23,9,2,
+2,28,26,53,70,71,102,103,30,31,30,31,102,103,30,31,30,31,30,31,30,31,98,99,30,31,66,67,52,27,29,2,
+2,2,2,8,20,21,38,39,14,15,14,15,14,15,14,15,14,15,82,83,14,15,14,15,34,35,22,23,25,2,2,2,
+2,2,2,28,26,53,70,71,30,31,30,31,30,31,30,31,30,31,98,99,30,31,30,31,66,67,52,27,29,2,2,2,
+2,2,2,2,2,8,20,21,36,37,38,39,82,83,14,15,14,15,14,15,14,15,34,35,22,23,25,2,2,2,2,2,
+2,2,2,2,2,28,26,27,26,53,70,71,98,99,30,31,30,31,30,31,30,31,66,67,52,27,29,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,24,20,21,38,39,14,15,14,15,14,15,34,35,22,23,25,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,28,26,53,70,71,30,31,30,31,30,31,66,67,52,27,29,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,8,20,21,38,39,14,15,34,35,22,23,25,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,28,26,53,70,71,30,31,66,67,52,27,29,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,28,26,29,2,3,28,27,29,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,18,19,18,19,18,19,3,2,2,2,2,2,2,2,2,2,2,2
+</data>
+ </layer>
+ <objectgroup id="2" name="Events" offsetx="0" offsety="4">
+  <object id="1" name="Benjamin" type="Event" gid="161" x="128" y="96" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  showDialog(&quot;__PLAYER__&quot;)
+  showMessage(&quot;REST IN PEACE YOU FOOL!&quot;)
+else
+  showDialog(&quot;Benjamin&quot;)
+              #123456789012345678901234
+  showMessage(&quot;YOU THINK YOU CAN COME__&quot;,
+              &quot;HERE AND TAKE WHAT'S____&quot;,
+              &quot;RIGHTFULLY MINE!________&quot;)
+  showDialog(&quot;__PLAYER__&quot;)
+  showMessage(&quot;Calm down Benjamin I'm__&quot;,
+              &quot;not taking anything from&quot;,
+              &quot;you. The others said you&quot;,
+              &quot;were trapped down here._&quot;)
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;HAHA! THAT WAS MY DOING.&quot;,
+              &quot;CAN YOU SMELL ALL THOSE_&quot;,
+              &quot;CRYSTALS? THEY'RE ALL___&quot;,
+              &quot;MINE SO GET OUT NOW!____&quot;)
+  showDialog(&quot;__PLAYER__&quot;)
+  showMessage(&quot;I do smell something..._&quot;)
+  showDialog(&quot;__PLAYER__&quot;)
+  showMessage(&quot;Oh no!__________________&quot;)
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;LEAVE MY CRYSTALS ALONE_&quot;,
+              &quot;AND GET OUT OF HERE!!!__&quot;)
+  showDialog(&quot;__PLAYER__&quot;)
+  showMessage(&quot;YOU CAN'T HAVE THEM.____&quot;,
+              &quot;EVEN IF I HAVE TO PRY___&quot;,
+              &quot;THEM FROM YOUR COLD DEAD&quot;,
+              &quot;FINGERS!!!______________&quot;)
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;YOU WANT A PIECE OF ME?_&quot;)
+  battle(&quot;Benjamin&quot;, &quot;cavern&quot;, &quot;battleFinal&quot;)
+  changeSprite(this, 33)
+  changeEventLocation(this, 8, 6, false)
+  playSoundEffect(&quot;getItem&quot;, false)
+  givePlayerItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  showOneLiner(&quot;You got a Miner's helmet&quot;)
+  waitButtons()
+  playSoundEffect(&quot;quake&quot;, false)
+  shakeScreen(255, 4)
+  showOneLiner(&quot;The walls are caving in.&quot;)
+  waitButtons()
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="2" name="To floor1" type="Event" gid="385" x="128" y="240" width="16" height="24">
+   <properties>
+    <property name="Script">hideScreen(&quot;maskOut&quot;, 1)
+teleport(&quot;maps/town2/mine/floor1.dat&quot;, 13, 62, &quot;up&quot;)
+showScreen(&quot;instant&quot;, 1)</property>
+   </properties>
+  </object>
+  <object id="3" name="39" type="Event" gid="385" x="96" y="16" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(39, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 1)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(39)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="4" name="40" type="Event" gid="385" x="112" y="16" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(40, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 1)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(40)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="5" name="41" type="Event" gid="385" x="128" y="16" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(41, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 1)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(41)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="6" name="42" type="Event" gid="385" x="144" y="16" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(42, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 1)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(42)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="7" name="43" type="Event" gid="385" x="160" y="16" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(43, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 1)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(43)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="8" name="44" type="Event" gid="385" x="64" y="32" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(44, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 1)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(44)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="9" name="45" type="Event" gid="385" x="112" y="48" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(45, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(45)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="10" name="46" type="Event" gid="385" x="144" y="48" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(46, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(46)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="11" name="48" type="Event" gid="385" x="160" y="64" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(48, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(48)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="12" name="47" type="Event" gid="385" x="80" y="64" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(47, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(47)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="13" name="49" type="Event" gid="385" x="64" y="80" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(49, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(49)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="14" name="38" type="Event" gid="385" x="96" y="96" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(38, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(38)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="15" name="51" type="Event" gid="385" x="192" y="80" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(51, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(51)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="16" name="37" type="Event" gid="385" x="192" y="96" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(37, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(37)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="17" name="55" type="Event" gid="385" x="208" y="112" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(55, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(55)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="18" name="54" type="Event" gid="385" x="144" y="112" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(54, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(54)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="19" name="53" type="Event" gid="385" x="80" y="112" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(53, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(53)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="20" name="52" type="Event" gid="385" x="48" y="112" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(52, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(52)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="21" name="56" type="Event" gid="385" x="32" y="128" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(56, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(56)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="22" name="59" type="Event" gid="385" x="64" y="144" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(59, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(59)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="23" name="57" type="Event" gid="385" x="112" y="128" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(57, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(57)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="24" name="58" type="Event" gid="385" x="176" y="128" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(58, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(58)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="25" name="60" type="Event" gid="385" x="208" y="144" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(60, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(60)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="26" name="61" type="Event" gid="385" x="176" y="160" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(61, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(61)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="27" name="62" type="Event" gid="385" x="144" y="176" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(62, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(62)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="28" name="63" type="Event" gid="385" x="96" y="192" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(63, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(63)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+  <object id="29" name="50" type="Event" gid="385" x="128" y="80" width="16" height="24">
+   <properties>
+    <property name="Flags: Button" type="bool" value="true"/>
+    <property name="Script">ifHasItem(&quot;helmet&quot;, &quot;Miner's&quot;)
+  ifSwitch(50, OFF)
+    playSoundEffect(&quot;getItem&quot;, false)
+    showOneLiner(&quot;You found some crystals.&quot;)
+    givePlayerItem(&quot;treasure&quot;, &quot;Crystal&quot;, 2)
+  else
+    showOneLiner(&quot;There's nothing here.&quot;)
+  endIf
+  waitButtons()
+  turnSwitchOn(50)
+else
+  showDialog(&quot;Benjamin&quot;)
+  showMessage(&quot;DON'T TOUCH MY CRYSTALS!&quot;)
+endIf
+hideDialog()</property>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="3" name="FG" width="32" height="32">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="4" name="Regions" visible="0"/>
+ <layer id="5" name="Passability" width="32" height="32" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,386,0,386,0,386,0,386,0,386,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,386,0,386,0,386,0,0,0,386,0,0,0,386,0,386,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,386,0,386,0,0,0,386,0,0,0,386,0,386,0,0,0,386,0,386,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,386,0,386,0,0,0,386,0,386,0,386,0,0,0,386,0,386,0,386,0,0,0,386,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,386,0,0,0,386,0,386,0,0,0,386,0,0,0,386,0,386,0,386,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,386,0,0,0,386,0,0,0,386,0,386,0,386,0,0,0,386,0,386,0,386,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,386,0,386,0,386,0,386,0,0,0,386,0,386,0,386,0,0,0,386,0,386,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,386,0,386,0,0,0,386,0,386,0,386,0,386,0,0,0,386,0,386,0,386,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,386,0,386,0,0,0,386,0,386,0,386,0,386,0,0,0,386,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,386,0,386,0,386,0,386,0,386,0,0,0,386,0,386,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,386,0,386,0,386,0,386,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,386,0,386,0,386,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,386,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,386,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="6" name="Grid" width="32" height="32" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0
+</data>
+ </layer>
+</map>

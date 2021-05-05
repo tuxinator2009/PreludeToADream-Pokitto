@@ -20,14 +20,16 @@ bool (*const PTAD::BattleEvent::execEvent[]) () =
   PTAD::BattleEvent::event_jump,                  //0x0B (11)
   PTAD::BattleEvent::event_jumpIf,                //0x0C (12)
   PTAD::BattleEvent::event_jumpIfStatus,          //0x0D (13)
-  PTAD::BattleEvent::event_changeBattlerSprite,   //0x0E (14)
-  PTAD::BattleEvent::event_changeBackgroundImage, //0x0F (15)
-  PTAD::BattleEvent::event_playBattleAnimation,   //0x10 (16)
-  PTAD::BattleEvent::event_waitFrames,            //0x11 (17)
-  PTAD::BattleEvent::event_waitButtons,           //0x12 (18)
-  PTAD::BattleEvent::event_inflictStatus,         //0x13 (19)
-  PTAD::BattleEvent::event_random,                //0x14 (20)
-  PTAD::BattleEvent::event_endEventProcessing     //0x15 (21)
+  PTAD::BattleEvent::event_jumpIfStat,            //0x0E (14)
+  PTAD::BattleEvent::event_changeBattlerSprite,   //0x0F (15)
+  PTAD::BattleEvent::event_changeBackgroundImage, //0x10 (16)
+  PTAD::BattleEvent::event_playBattleAnimation,   //0x11 (17)
+  PTAD::BattleEvent::event_waitFrames,            //0x12 (18)
+  PTAD::BattleEvent::event_waitButtons,           //0x13 (19)
+  PTAD::BattleEvent::event_inflictStatus,         //0x14 (20)
+  PTAD::BattleEvent::event_consumeMP,             //0x15 (21)
+  PTAD::BattleEvent::event_random,                //0x16 (22)
+  PTAD::BattleEvent::event_endEventProcessing     //0x17 (23)
 };
 
 DataPack::PackedFile PTAD::BattleEvent::eventFile;
@@ -225,7 +227,7 @@ bool PTAD::BattleEvent::event_jump()
   int32_t offset;
   readValue((uint8_t*)&offset, sizeof(offset));
   eventPos = offset - (int32_t)currentBufferPos + sizeof(PTAD::Battle::EnemyData);
-  return true;
+  return eventPos > currentEvent;
 }
 
 bool PTAD::BattleEvent::event_jumpIf()
@@ -254,7 +256,7 @@ bool PTAD::BattleEvent::event_jumpIf()
     eventPos = truePos - (int32_t)currentBufferPos + sizeof(PTAD::Battle::EnemyData);
   else
     eventPos = falsePos - (int32_t)currentBufferPos + sizeof(PTAD::Battle::EnemyData);
-  return true;
+  return eventPos > currentEvent;
 }
 
 bool PTAD::BattleEvent::event_jumpIfStatus()
@@ -289,7 +291,41 @@ bool PTAD::BattleEvent::event_jumpIfStatus()
     eventPos = truePos - (int32_t)currentBufferPos + sizeof(PTAD::Battle::EnemyData);
   else
     eventPos = falsePos - (int32_t)currentBufferPos + sizeof(PTAD::Battle::EnemyData);
-  return true;
+  return eventPos > currentEvent;
+}
+
+bool PTAD::BattleEvent::event_jumpIfStat()
+{
+  int32_t truePos, falsePos;
+  uint8_t condition = nextByte();
+  uint16_t value;
+  uint16_t current;
+  bool test, hp = (condition & 128) != 0;
+  condition &= 0x7F;
+  readValue((uint8_t*)&value, sizeof(value));
+  readValue((uint8_t*)&truePos, sizeof(truePos));
+  readValue((uint8_t*)&falsePos, sizeof(falsePos));
+  if (hp)
+    current = PTAD::Battle::enemy->hp;
+  else
+    current = PTAD::Battle::enemy->mp;
+  if (condition == CONDITION_EQUAL_TO)
+    test = current == value;
+  else if (condition == CONDITION_NOT_EQUAL_TO)
+    test = current != value;
+  else if (condition == CONDITION_GREATER_THAN)
+    test = current > value;
+  else if (condition == CONDITION_GREATER_THAN_OR_EQUAL_TO)
+    test = current >= value;
+  else if (condition == CONDITION_LESS_THAN)
+    test = current < value;
+  else if (condition == CONDITION_LESS_THAN_OR_EQUAL_TO)
+    test = current <= value;
+  if (test)
+    eventPos = truePos - (int32_t)currentBufferPos + sizeof(PTAD::Battle::EnemyData);
+  else
+    eventPos = falsePos - (int32_t)currentBufferPos + sizeof(PTAD::Battle::EnemyData);
+  return eventPos > currentEvent;
 }
 
 bool PTAD::BattleEvent::event_changeBattlerSprite()
@@ -345,8 +381,6 @@ bool PTAD::BattleEvent::event_waitButtons()
 bool PTAD::BattleEvent::event_inflictStatus()
 {
   uint8_t value = nextByte();
-  uint8_t successMessage[24];
-  uint8_t failMessage[24];
   uint8_t successMessageLength = nextByte();
   uint8_t failMessageLength = nextByte();
   uint8_t status = (value >> 2) & 7;
@@ -371,6 +405,7 @@ bool PTAD::BattleEvent::event_inflictStatus()
     }
     else if (status == PTAD::Battle::STATUS_BERSERK)
     {
+      PTAD::Music::playSFX(PTAD::Music::SFX_BERSERK);
       if (((PTAD::Battle::enemyStatus >> PTAD::Battle::STATUS_BERSERK) & 3) < level)
         PTAD::Battle::enemyStatus += (1 << PTAD::Battle::STATUS_BERSERK);
     }
@@ -410,7 +445,7 @@ bool PTAD::BattleEvent::event_inflictStatus()
       }
       else if (status == PTAD::Battle::STATUS_FOCUSED)
         PTAD::Battle::playerStatus &= ~(3 << PTAD::Battle::STATUS_FOCUSED);
-      else if (status == PTAD::Battle::STATUS_BERSERK) //TODO
+      else if (status == PTAD::Battle::STATUS_BERSERK)
       {
         if (((PTAD::Battle::playerStatus >> PTAD::Battle::STATUS_BERSERK) & 3) < level)
           PTAD::Battle::playerStatus += (1 << PTAD::Battle::STATUS_BERSERK);
@@ -431,8 +466,19 @@ bool PTAD::BattleEvent::event_inflictStatus()
         PTAD::Dialog::bufferCharacter(nextByte());
     }
   }
-  PTAD::Dialog::beginMessage();
+  if (successMessageLength != 0 || failMessageLength != 0)
+    PTAD::Dialog::beginMessage();
   return false;
+}
+
+bool PTAD::BattleEvent::event_consumeMP()
+{
+  uint8_t amount = nextByte();
+  if (PTAD::Battle::enemy->mp <= amount)
+    PTAD::Battle::enemy->mp = 0;
+  else
+    PTAD::Battle::enemy->mp -= amount;
+  return true;
 }
 
 bool PTAD::BattleEvent::event_random()

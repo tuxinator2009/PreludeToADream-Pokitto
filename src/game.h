@@ -98,8 +98,8 @@ namespace PTAD
       static constexpr uint8_t ITEM_TYPE_BOOTS = 5;
       static constexpr uint8_t ITEM_TYPE_RINGS = 6;
       static constexpr uint8_t ITEM_TYPE_AMULETS = 7;
-      static constexpr uint8_t GAME_OVER_VALUE1 = 2;
-      static constexpr uint8_t GAME_OVER_VALUE2 = 6;//TODO: set to max story progression variable for first game over screen (Cecilia chained up in boat hold)
+      static constexpr uint8_t GAME_OVER_VALUE1 = 4;
+      static constexpr uint8_t GAME_OVER_VALUE2 = 12;//TODO: set to max story progression variable for first game over screen (Cecilia chained up in boat hold)
 			static PlayerData player;
 			static State state;
       static State previousState;

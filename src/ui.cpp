@@ -138,6 +138,7 @@ void PTAD::Ui::lineFiller(uint8_t *line, uint32_t y, bool skip) noexcept
 	uint8_t mask = 1 << ((y + cameraY) % 8);
 	uint32_t tileIndex = (y + cameraY) / 8 * PTAD::tilemapWidth;
 	uint32_t tileX = cameraX;
+  int32_t finalX, finalY;
 	for (uint32_t i = 0; i < PTAD::screenWidth;)
 	{
 		int iter = std::min(8 - tileX, screenWidth - i);
@@ -150,10 +151,14 @@ void PTAD::Ui::lineFiller(uint8_t *line, uint32_t y, bool skip) noexcept
 		i += iter;
 		tileX = 0;
 	}
-	if (y >= cursorY && y < cursorY + 16)
-    pixelCopy(line + cursorX, PTAD::cursor + (y - cursorY) * 16, 16);
-  if (y >= dialogCursorY && y < dialogCursorY + 6 && (dialogCursor & DIALOG_CURSOR_DRAW) != 0)
-    line[dialogCursorX] = fgColor;
-  else if (y >= cursorY + 16)
+	finalX = cursorX - cameraX + 2;
+  finalY = cursorY - cameraY;
+  if (y >= finalY && y < finalY + 16)
+    pixelCopy(line + finalX, PTAD::cursor + (y - finalY) * 16, 16);
+  else if (y >= finalY + 16)
     cursorY = -16;
+  finalX = dialogCursorX - cameraX + 2;
+  finalY = dialogCursorY - cameraY;
+  if (y >= finalY && y < finalY + 6 && (dialogCursor & DIALOG_CURSOR_DRAW) != 0)
+    line[finalX] = fgColor;
 }

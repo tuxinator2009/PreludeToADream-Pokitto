@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.09.09" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" backgroundcolor="#000000" nextlayerid="7" nextobjectid="7">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" backgroundcolor="#000000" nextlayerid="7" nextobjectid="7">
  <properties>
+  <property name="Flags" value="clipUp,clipDown,clipLeft,clipRight"/>
   <property name="Max Steps" type="int" value="0"/>
   <property name="Min Steps" type="int" value="0"/>
   <property name="On Load Event">ifSwitch(1, ON)
@@ -68,7 +69,9 @@ changeSprite(this, +1)</property>
   </object>
   <object id="6" name="Teleport to floor1" type="Event" gid="145" x="224" y="176" width="16" height="24">
    <properties>
-    <property name="Script" value="teleport(&quot;maps/town1/hall/floor1.dat&quot;, 14, 13, &quot;left&quot;)"/>
+    <property name="Script">hideScreen(&quot;maskOut&quot;, 1)
+teleport(&quot;maps/town1/hall/floor1.dat&quot;, 14, 13, &quot;left&quot;)
+showScreen(&quot;instant&quot;, 1)</property>
    </properties>
   </object>
  </objectgroup>

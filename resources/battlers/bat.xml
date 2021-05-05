@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="5" gold="4" hp="10" mp="0" attack="10" defense="12" agility="30" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>
+    <bufferMessage message="A bat swoops down on you"/>
+    <showMessage/>
+  </intro>
+  <outro>
+    <bufferMessage message="You defeated the bat."/>
+    <showMessage/>
+  </outro>
+  <turn>
+    <bufferMessage message="The bat swipes at you."/>
+    <showMessage/>
+    <basicAttack/>
+  </turn>
+</preludetoadream-enemy>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="2020.09.09" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" backgroundcolor="#000000" nextlayerid="7" nextobjectid="12">
  <properties>
+  <property name="Flags" value="clipUp,clipDown,clipLeft,clipRight"/>
   <property name="Max Steps" type="int" value="0"/>
   <property name="Min Steps" type="int" value="0"/>
   <property name="On Load Event" value=""/>
@@ -49,6 +50,7 @@
  <objectgroup id="5" name="Events" offsetx="0" offsety="4">
   <object id="7" name="Teleport to town1" type="Event" gid="386" x="64" y="240" width="16" height="24">
    <properties>
+    <property name="Flags: Exit" type="bool" value="true"/>
     <property name="Script">hideScreen(&quot;maskOut&quot;, 1)
 ifVariable(0, &quot;&lt;&quot;, 3)
   teleport(&quot;maps/town1.dat&quot;, 15, 10, &quot;down&quot;)

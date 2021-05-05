@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="15" gold="25" hp="36" mp="0" attack="28" defense="35" agility="16" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>
+    <bufferMessage message="A grizzly attacks you!"/>
+    <showMessage/>
+  </intro>
+  <outro>
+    <bufferMessage message="You defeated the grizzly"/>
+    <showMessage/>
+  </outro>
+  <turn>
+    <bufferMessage message="The grizzly mauls you!"/>
+    <showMessage/>
+    <basicAttack/>
+  </turn>
+</preludetoadream-enemy>

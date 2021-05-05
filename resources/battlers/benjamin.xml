@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="60" gold="100" hp="150" mp="0" attack="22" defense="16" agility="15" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>
+    <bufferMessage message="The toxic fumes in the"/>
+    <showMessage/>
+    <bufferMessage message="air enrages you guys."/>
+    <showMessage/>
+    <label name="berserkPlayer"/>
+    <inflictStatus status="berserk" level="1" self="false" chance="255" successMessage="" failMessage=""/>
+    <jumpIfStatus onTrue="berserkMonster" onFalse="berserkPlayer" status="berserk" level="1" self="false" condition="=="/>
+    <label name="berserkMonster"/>
+    <inflictStatus status="berserk" level="1" self="true" chance="255" successMessage="" failMessage=""/>
+    <jumpIfStatus onTrue="finishIntro" onFalse="berserkMonster" status="berserk" level="1" self="true" condition="=="/>
+    <label name="finishIntro"/>
+    <bufferMessage message="Benjamin lunges for you!"/>
+    <showMessage/>
+  </intro>
+  <outro>
+    <bufferMessage message="BUT IT WAS ALL MINE!!!"/>
+    <showMessage/>
+    <bufferMessage message="You defeated Benjamin."/>
+    <showMessage/>
+  </outro>
+  <turn>
+    <bufferMessage message="Benjamin swings at you."/>
+    <showMessage/>
+    <basicAttack/>
+  </turn>
+</preludetoadream-enemy>

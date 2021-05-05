@@ -1,5 +1,7 @@
 #include "headers.h"
 
+#define FAST_MOVE
+
 using PC=Pokitto::Core;
 using PD=Pokitto::Display;
 using PB=Pokitto::Buttons;
@@ -16,7 +18,7 @@ uint32_t PTAD::Map::lastPress;
 int8_t PTAD::Map::shakeOffsetX = 0;
 int8_t PTAD::Map::shakeOffsetY = 0;
 uint8_t PTAD::Map::shakeScreen = 0;
-uint8_t PTAD::Map::shakeRate = 8;
+uint8_t PTAD::Map::shakeMagnitude = 8;
 uint8_t PTAD::Map::playerFrame = 1;
 uint8_t PTAD::Map::eventID = 255;
 uint8_t PTAD::Map::shopMessage[24];
@@ -24,6 +26,7 @@ uint16_t PTAD::Map::shopItems;
 uint16_t PTAD::Map::shopEquipment[6];
 uint8_t PTAD::Map::itemID = 0;
 uint8_t PTAD::Map::steps = 0;
+uint8_t PTAD::Map::exitEventID = 255;
 PTAD::Map::MapData *PTAD::Map::data = (PTAD::Map::MapData*)(PTAD::memory + PTAD::MEMORY_MAP_DATA_OFFSET);
 #ifndef POK_SIM
 uint8_t *PTAD::Map::passability = (uint8_t*)PTAD::MAP_PASSABILITY_MEMORY_ADDRESS;
@@ -35,14 +38,18 @@ uint8_t *PTAD::Map::chunksFG = PTAD::memory + PTAD::MEMORY_MAP_CHUNKSFG_OFFSET;
 uint8_t *PTAD::Map::sprites = PTAD::memory + PTAD::MEMORY_MAP_SPRITES_OFFSET;
 uint8_t *PTAD::Map::tiledata = PTAD::memory + PTAD::MEMORY_MAP_TILEDATA_OFFSET;
 const uint8_t PTAD::Map::playerFrames[] = {0, 1, 2, 1};
-const uint8_t PTAD::Map::movement[12] = {1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2};
+const uint8_t PTAD::Map::movement[] = {1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2};
 
 const uint32_t PTAD::Map::tiledataFiles[] =
 {
   DataPack::hash("tilesets/overworld.dat"),
   DataPack::hash("tilesets/town.dat"),
   DataPack::hash("tilesets/interrior.dat"),
-  DataPack::hash("tilesets/cavern2.dat")
+  DataPack::hash("tilesets/cavern2.dat"),
+  DataPack::hash("tilesets/mountain.dat"),
+  DataPack::hash("tilesets/mountain2.dat"),
+  DataPack::hash("tilesets/mountain3.dat"),
+  DataPack::hash("tilesets/shrine.dat")
 };
 
 const uint8_t PTAD::Map::txtOptions[] = 
@@ -194,7 +201,12 @@ extern const uint8_t *tilemap[];
 void PTAD::Map::setup()
 {
   DataPack::PackedFile file;
-  PTAD::dataFile->getPackedFile(PTAD::Game::player.mapHash, &mapFile);
+  if (!PTAD::dataFile->getPackedFile(PTAD::Game::player.mapHash, &mapFile))
+  {
+    PTAD::GameOver::load(DataPack::hash("screens/mapnotfound.gfx"));
+    PTAD::Game::state = PTAD::Game::State::GameOverInit;
+    return;
+  }
   PTAD::dataFile->readBytes(&mapFile, (void*)data, sizeof(MapData));
   PTAD::dataFile->readBytes(&mapFile, passability, PTAD::MAP_PASSABILITY_SIZE);
   PTAD::dataFile->getPackedFile(tiledataFiles[data->tilesetID], &file);
@@ -203,11 +215,21 @@ void PTAD::Map::setup()
   loadSprites();
   screenX = PTAD::Game::player.x - 102;
   screenY = PTAD::Game::player.y - 80;
+  clipScreen();
   PD::shiftTilemap((screenX + 128) % 8, (screenY + 128) % 8);
   for (int i = 0; i < 4; ++i)
     chunkID[i] = -1;
   updateChunks();
-  PTAD::Music::playMusic(data->bgmID);
+  exitEventID = 255;
+  for (uint8_t i = 0; i < 29; ++i)
+  {
+    if ((data->events[i].flags & PTAD::MapEvent::FLAGS_EXIT) != 0 && data->events[i].flags != PTAD::MapEvent::FLAGS_NULL)
+    {
+      exitEventID = i;
+      break;
+    }
+  }
+  PTAD::Music::playMusic(data->bgmID, 0);
   state = State::Idle;
   PTAD::MapEvent::runOnLoadEvent(PTAD::Game::player.mapHash, sizeof(MapData) + data->width * data->height * 32 + data->width * data->height * (PTAD::MEMORY_MAP_CHUNKS_SIZE / 4) * 2);
   steps = 0;
@@ -215,6 +237,7 @@ void PTAD::Map::setup()
 
 void PTAD::Map::update()
 {
+  bool refreshChunks = false;
   if (state == State::Idle)
   {
     if (PTAD::Dialog::updateMessage())
@@ -286,10 +309,13 @@ void PTAD::Map::update()
         eventID = eventAtLocation(x - 1, y);
       else if (PTAD::Game::player.dir == PTAD::DIR_RIGHT)
         eventID = eventAtLocation(x + 1, y);
-      if (eventID != 255 && (data->events[eventID].flags & PTAD::MapEvent::FLAGS_ACTIVATE_BUTTON) == 0)
-        eventID = 255;
-      else
-        PTAD::MapEvent::begin(data->events[eventID].offset);
+      if (eventID != 255)
+      {
+        if ((data->events[eventID].flags & PTAD::MapEvent::FLAGS_ACTIVATE_BUTTON) != 0)
+          PTAD::MapEvent::begin(data->events[eventID].offset);
+        else
+          eventID = 255;
+      }
     }
     else if (PTAD::justPressed(PTAD::BTN_MASK_C))
     {
@@ -364,18 +390,31 @@ void PTAD::Map::update()
 				break;
     }
   }
-  if (shakeScreen > 0 && PC::frameCount % shakeRate == 0)
+  if (shakeScreen > 0 && state != State::Menu)
   {
     if (shakeScreen != 255)
       --shakeScreen;
-    shakeOffsetX = ((int8_t)random(0, 8)) - 4;
-    shakeOffsetY = ((int8_t)random(0, 8)) - 4;
+    shakeOffsetX = ((int8_t)random(0, shakeMagnitude)) - (shakeMagnitude / 2);
+    shakeOffsetY = ((int8_t)random(0, shakeMagnitude)) - (shakeMagnitude / 2);
+    refreshChunks = true;
   }
-  else if (shakeScreen == 0)
+  else if (shakeScreen == 0 || state == State::Menu)
   {
+    if (shakeOffsetX != 0 || shakeOffsetY != 0)
+      refreshChunks = true;
     shakeOffsetX = 0;
     shakeOffsetY = 0;
   }
+#ifdef FAST_MOVE
+  if (state == State::MoveUp)
+    PTAD::Game::player.y -= 4;
+  else if (state == State::MoveDown)
+    PTAD::Game::player.y += 4;
+  else if (state == State::MoveLeft)
+    PTAD::Game::player.x -= 4;
+  else if (state == State::MoveRight)
+    PTAD::Game::player.x += 4;
+#else
   if (state == State::MoveUp)
     PTAD::Game::player.y -= movement[PTAD::globalCounter];
   else if (state == State::MoveDown)
@@ -384,47 +423,84 @@ void PTAD::Map::update()
     PTAD::Game::player.x -= movement[PTAD::globalCounter];
   else if (state == State::MoveRight)
     PTAD::Game::player.x += movement[PTAD::globalCounter];
-  /*if (state == State::MoveUp)
-    --PTAD::Game::player.y;
-  else if (state == State::MoveDown)
-    ++PTAD::Game::player.y;
-  else if (state == State::MoveLeft)
-    --PTAD::Game::player.x;
-  else if (state == State::MoveRight)
-    ++PTAD::Game::player.x;*/
+#endif
   if (PTAD::Game::state != PTAD::Game::State::MapInit)
   {
     screenX = PTAD::Game::player.x - 102 + shakeOffsetX;
     screenY = PTAD::Game::player.y - 80 + shakeOffsetY;
+    clipScreen();
   }
   PD::shiftTilemap((screenX + 128) % 8, (screenY + 128) % 8);
   if (state != State::Idle && state != State::Menu)
   {
     ++PTAD::globalCounter;
-    //if (PTAD::globalCounter % 8 == 1)
+#ifdef FAST_MOVE
+    if (PTAD::globalCounter % 2 == 1)
+      playerFrame = (playerFrame + 1) % 4;
+    refreshChunks = true;
+    if (PTAD::globalCounter == 4)
+    {
+      ++steps;
+      state = State::Idle;
+      PTAD::globalCounter = 0;
+      if (!PTAD::MapEvent::inMapEvent())
+      {
+        if ((eventID = eventAtLocation(PTAD::Game::player.x / 16, PTAD::Game::player.y / 16)) == 255)
+          randomBattle();
+        else if ((data->events[eventID].flags & PTAD::MapEvent::FLAGS_ACTIVATE_BUTTON) != 0)
+          eventID = 255;
+        else
+          PTAD::MapEvent::begin(data->events[eventID].offset);
+      }
+    }
+#else
     if (PTAD::globalCounter % 6 == 1)
       playerFrame = (playerFrame + 1) % 4;
-    updateChunks();
-    //if (PTAD::globalCounter == 16)
+    refreshChunks = true;
     if (PTAD::globalCounter == 12)
     {
       ++steps;
       state = State::Idle;
       PTAD::globalCounter = 0;
-      if ((eventID = eventAtLocation(PTAD::Game::player.x / 16, PTAD::Game::player.y / 16)) == 255)
-        randomBattle();
-      else if ((data->events[eventID].flags & PTAD::MapEvent::FLAGS_ACTIVATE_BUTTON) != 0)
-        eventID = 255;
-      else
-        PTAD::MapEvent::begin(data->events[eventID].offset);
+      if (!PTAD::MapEvent::inMapEvent())
+      {
+        if ((eventID = eventAtLocation(PTAD::Game::player.x / 16, PTAD::Game::player.y / 16)) == 255)
+          randomBattle();
+        else if ((data->events[eventID].flags & PTAD::MapEvent::FLAGS_ACTIVATE_BUTTON) != 0)
+          eventID = 255;
+        else
+          PTAD::MapEvent::begin(data->events[eventID].offset);
+      }
     }
+#endif
   }
+  if (refreshChunks)
+    updateChunks();
   for (int i = 0; i < 29; ++i)
   {
-    if (data->events[i].spriteID < 16)
+    if (data->events[i].spriteID < 16 && data->events[i].y * 16 < PTAD::Game::player.y + 16)
       PD::drawSpriteBitmap(data->events[i].x * 16 - screenX, data->events[i].y * 16 - screenY - (data->events[i].flags & PTAD::MapEvent::FLAGS_OFFSET), 16, 24, sprites + data->events[i].spriteID * 384);
   }
-  PD::drawSpriteBitmap(102, 72, 16, 24, playerSprite + PTAD::Game::player.dir * 1152 + playerFrames[playerFrame] * 384);
+  PD::drawSpriteBitmap(PTAD::Game::player.x - screenX, PTAD::Game::player.y - screenY - 8, 16, 24, playerSprite + PTAD::Game::player.dir * 1152 + playerFrames[playerFrame] * 384);
+  for (int i = 0; i < 29; ++i)
+  {
+    if (data->events[i].spriteID < 16 && data->events[i].y * 16 >= PTAD::Game::player.y + 16)
+      PD::drawSpriteBitmap(data->events[i].x * 16 - screenX, data->events[i].y * 16 - screenY - (data->events[i].flags & PTAD::MapEvent::FLAGS_OFFSET), 16, 24, sprites + data->events[i].spriteID * 384);
+  }
+  if ((data->flags & FLAG_DARK) != 0)
+  {
+    if (PTAD::Game::player.equippedItems[1] == 1)
+    {
+      if (PTAD::Game::state == PTAD::Game::State::Battle)
+        PTAD::darkness = 3;
+      else
+        PTAD::darkness = 2;
+    }
+    else
+      PTAD::darkness = 1;
+  }
+  else
+    PTAD::darkness = 0;
 }
 
 void PTAD::Map::loadSprites()
@@ -495,34 +571,30 @@ void PTAD::Map::updateChunks()
 bool PTAD::Map::canMove(int x, int y)
 {
   if (x < 0)
-    return false;
+    return exitEventID != 255;
   if (x >= data->width * 16)
-    return false;
+    return exitEventID != 255;
   if (y < 0)
-    return false;
+    return exitEventID != 255;
   if (y >= data->height * 16)
-    return false;
+    return exitEventID != 255;
   return (passability[(y / 8) * data->width * 16 + x] >> (y % 8)) & 1;
 }
 
-uint8_t PTAD::Map::eventAtLocation(uint8_t x, uint8_t y)
+uint8_t PTAD::Map::eventAtLocation(int x, int y)
 {
-  if (x < 0)
-    return 255;
-  if (x >= data->width * 16)
-    return 255;
-  if (y < 0)
-    return 255;
-  if (y >= data->height * 16)
-    return 255;
-  for (uint8_t i = 0; data->events[i].flags != PTAD::MapEvent::FLAGS_NULL; ++i)
+  for (uint8_t i = 0; i < 29 && data->events[i].flags != PTAD::MapEvent::FLAGS_NULL; ++i)
   {
-    if (data->events[i].x == x && data->events[i].y == y)
+    if (data->events[i].x == x && data->events[i].y == y && (data->events[i].flags & PTAD::MapEvent::FLAGS_EXIT) == 0)
     {
       PTAD::MapEvent::setup(PTAD::Game::player.mapHash);
-      //PTAD::MapEvent::setup(maps[PTAD::Game::player.mapID].eventsFile);
       return i;
     }
+  }
+  if (x < 0 || x >= data->width * 16 || y < 0 || y >= data->height * 16)
+  {
+    PTAD::MapEvent::setup(PTAD::Game::player.mapHash);
+    return exitEventID;
   }
   return 255;
 }
@@ -531,17 +603,35 @@ void PTAD::Map::randomBattle()
 {
   uint8_t tileIndex = PTAD::tilemapBG[303];
   uint8_t encounterRate = tiledata[tileIndex * 2 + 1];
+  if (encounterRate == 0)
+    return;
+  if (data->maxSteps == 0)
+    return;
   if (steps < data->minSteps)
     return;
   PTAD::battleMonsterID = 255;
   PTAD::battleBG = tiledata[tileIndex * 2];
   PTAD::battleBGM = 2;
-  if (encounterRate != 0 && (random(0, encounterRate) == 0) || (steps >= data->maxSteps && data->maxSteps != 0))
+  if (random(0, encounterRate) == 0 || steps >= data->maxSteps)
   {
-    PTAD::battleMonsterID = data->regions[(PTAD::Game::player.y / 128) * data->width * 2 + (PTAD::Game::player.x / 128)][random(0, 4)];
+    uint8_t monsterID = random(0, 4);
+    PTAD::battleMonsterID = data->regions[(PTAD::Game::player.y / 128) * data->width * 2 + (PTAD::Game::player.x / 128)][monsterID];
     if (PTAD::battleMonsterID != 255)
       PTAD::Game::state = PTAD::Game::State::BattleInit;
+    steps = 0;
   }
+}
+
+void PTAD::Map::clipScreen()
+{
+  if (screenX < 2 && (data->flags & FLAG_CLIP_LEFT) != 0)
+    screenX = 2;
+  else if (screenX + 222 > data->width * 256 && (data->flags & FLAG_CLIP_RIGHT) != 0)
+    screenX = data->width * 256 - 222;
+  if (screenY < 0 && (data->flags & FLAG_CLIP_UP) != 0)
+    screenY = 0;
+  else if (screenY + 176 > data->height * 256 && (data->flags & FLAG_CLIP_DOWN) != 0)
+    screenY = data->height * 256 - 176;
 }
 
 void PTAD::Map::drawMainMenu()

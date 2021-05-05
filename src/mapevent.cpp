@@ -17,37 +17,51 @@ bool (*const PTAD::MapEvent::execEvent[]) () =
   PTAD::MapEvent::showMessage,         //0x08 ( 8)
   PTAD::MapEvent::showOneLiner,        //0x09 ( 9)
   PTAD::MapEvent::showShopMenu,        //0x0A (10)
-  PTAD::MapEvent::waitButtons,         //0x0B (11)
-  PTAD::MapEvent::waitFrames,          //0x0C (12)
-  PTAD::MapEvent::battle,              //0x0D (13)
-  PTAD::MapEvent::shakeScreen,         //0x0E (14)
-  PTAD::MapEvent::cutscene,            //0x0F (15)
-  PTAD::MapEvent::jump,                //0x10 (16)
-  PTAD::MapEvent::jumpIfSwitch,        //0x11 (17)
-  PTAD::MapEvent::jumpIfVariable,      //0x12 (18)
-  PTAD::MapEvent::jumpIfHasItem,       //0x13 (19)
-  PTAD::MapEvent::playSoundEffect,     //0x14 (20)
-  PTAD::MapEvent::turnSwitchOn,        //0x15 (21)
-  PTAD::MapEvent::turnSwitchOff,       //0x16 (22)
-  PTAD::MapEvent::toggleSwitch,        //0x17 (23)
-  PTAD::MapEvent::turnSwitchRangeOn,   //0x18 (24)
-  PTAD::MapEvent::turnSwitchRangeOff,  //0x19 (25)
-  PTAD::MapEvent::toggleSwitchRange,   //0x1A (26)
-  PTAD::MapEvent::changeVariable,      //0x1B (27)
-  PTAD::MapEvent::changeSprite,        //0x1C (28)
-  PTAD::MapEvent::changeEventLocation, //0x1D (29)
-  PTAD::MapEvent::changePassability,   //0x1E (30)
-  PTAD::MapEvent::givePlayerItem,      //0x1F (31)
-  PTAD::MapEvent::givePlayerGold,      //0x20 (32)
-  PTAD::MapEvent::heal,                //0x21 (33)
-  PTAD::MapEvent::showImage,           //0x22 (34)
-  PTAD::MapEvent::hideImage,           //0x23 (35)
-  PTAD::MapEvent::endEventProcessing   //0x24 (36)
+  PTAD::MapEvent::showGold,            //0x0B (11)
+  PTAD::MapEvent::hideGold,            //0x0C (12)
+  PTAD::MapEvent::waitButtons,         //0x0D (13)
+  PTAD::MapEvent::waitFrames,          //0x0E (14)
+  PTAD::MapEvent::battle,              //0x0F (15)
+  PTAD::MapEvent::shakeScreen,         //0x10 (16)
+  PTAD::MapEvent::cutscene,            //0x11 (17)
+  PTAD::MapEvent::jump,                //0x12 (18)
+  PTAD::MapEvent::jumpIfSwitch,        //0x13 (19)
+  PTAD::MapEvent::jumpIfVariable,      //0x14 (20)
+  PTAD::MapEvent::jumpIfHasItem,       //0x15 (21)
+  PTAD::MapEvent::jumpIfExited,        //0x16 (22)
+  PTAD::MapEvent::jumpIfYesNo,         //0x17 (23)
+  PTAD::MapEvent::jumpIfValue,         //0x18 (24)
+  PTAD::MapEvent::playSoundEffect,     //0x19 (25)
+  PTAD::MapEvent::playMusic,           //0x1A (26)
+  PTAD::MapEvent::pauseMusic,          //0x1B (27)
+  PTAD::MapEvent::resumeMusic,         //0x1C (28)
+  PTAD::MapEvent::waitMusic,           //0x1D (29)
+  PTAD::MapEvent::waitSoundEffect,     //0x1E (30)
+  PTAD::MapEvent::turnSwitchOn,        //0x1F (31)
+  PTAD::MapEvent::turnSwitchOff,       //0x20 (32)
+  PTAD::MapEvent::toggleSwitch,        //0x21 (33)
+  PTAD::MapEvent::turnSwitchRangeOn,   //0x22 (34)
+  PTAD::MapEvent::turnSwitchRangeOff,  //0x23 (35)
+  PTAD::MapEvent::toggleSwitchRange,   //0x24 (36)
+  PTAD::MapEvent::changeVariable,      //0x25 (37)
+  PTAD::MapEvent::changeSprite,        //0x26 (38)
+  PTAD::MapEvent::changeEventLocation, //0x27 (39)
+  PTAD::MapEvent::changeEventFlags,    //0x28 (40)
+  PTAD::MapEvent::changePassability,   //0x29 (41)
+  PTAD::MapEvent::givePlayerItem,      //0x2A (42)
+  PTAD::MapEvent::givePlayerGold,      //0x2B (43)
+  PTAD::MapEvent::heal,                //0x2C (44)
+  PTAD::MapEvent::showImage,           //0x2D (45)
+  PTAD::MapEvent::hideImage,           //0x2E (46)
+  PTAD::MapEvent::movePlayer,          //0x2F (47)
+  PTAD::MapEvent::endEventProcessing   //0x30 (48)
 };
 
 const uint32_t PTAD::MapEvent::wipeDownMasks[21] = {0xFFFFF, 0xFFFFE, 0xFFFFC, 0xFFFF8, 0xFFFF0, 0xFFFE0, 0xFFFC0, 0xFFF80, 0xFFF00, 0xFFE00, 0xFFC00, 0xFF800, 0xFF000, 0xFE000, 0xFC000, 0xF8000, 0xF0000, 0xE0000, 0xC0000, 0x80000, 0x0};
 const uint32_t PTAD::MapEvent::wipeUpMasks[21] = {0xFFFFF, 0x7FFFF, 0x3FFFF, 0x1FFFF, 0xFFFF, 0x7FFF, 0x3FFF, 0x1FFF, 0xFFF, 0x7FF, 0x3FF, 0x1FF, 0xFF, 0x7F, 0x3F, 0x1F, 0xF, 0x7, 0x3, 0x1, 0x0};
 const uint32_t PTAD::MapEvent::wipeInMasks[11] = {0xFFFFF, 0x7FFFE, 0x3FFFC, 0x1FFF8, 0xFFF0, 0x7FE0, 0x3FC0, 0x1F80, 0xF00, 0x600, 0x0};
+const uint8_t PTAD::MapEvent::yesNoUI[2][8] = {0x06,0x07,0x07,0x07,0x07,0x07,0x07,0x08,0x09,0x32,0x38,0x46,0x0A,0x27,0x42,0x0B};
+const uint8_t PTAD::MapEvent::goldUI[2][7] = {0x60,0x20,0x42,0x3F,0x37,0x62,0x08,0x09,0x0A,0x0A,0x0A,0x0A,0x0A,0x0B};
 DataPack::PackedFile PTAD::MapEvent::eventFile;
 uint32_t PTAD::MapEvent::eventFileHash = 0;
 uint32_t PTAD::MapEvent::currentBufferPos = 0;
@@ -269,6 +283,33 @@ bool PTAD::MapEvent::hideScreen()
   }
   else if (transitionID == HIDE_MASK_OUT)
     PD::setTASRowMask(0);
+  else if (transitionID == HIDE_WHITE_OUT)
+  {
+    counters[0] += counters[2];
+    if (counters[0] < 64)
+    {
+      PD::loadRGBPalette(miloslav);
+      for (int i = 0; i < 256; ++i)
+      {
+        uint8_t r = (PD::palette[i] >> 11) & 31;
+        uint8_t g = (PD::palette[i] >> 5) & 63;
+        uint8_t b = PD::palette[i] & 31;
+        r = (r * (64 - counters[0]) + 31 * counters[0]) / 64;
+        g = (g * (64 - counters[0]) + 63 * counters[0]) / 64;
+        b = (b * (64 - counters[0]) + 31 * counters[0]) / 64;
+        PD::palette[i] = (r << 11) + (g << 5) + b;
+      }
+      eventPos = currentEvent;
+      return false;
+    }
+    else
+    {
+      PD::setTASRowMask(0);
+      Pokitto::lcdFillSurface(0xFFFF);
+      for (uint32_t i = 0; i < 256; ++i)
+        PD::palette[i] = 0xFFFF;
+    }
+  }
   resetCounters();
   return true;
 }
@@ -359,6 +400,29 @@ bool PTAD::MapEvent::showScreen()
     else
       PD::setTASRowMask(0xFFFFFFFF);
   }
+  else if (transitionID == SHOW_WHITE_IN)
+  {
+    PD::setTASRowMask(0xFFFFFFFF);
+    counters[0] += counters[2];
+    if (counters[0] < 64)
+    {
+      PD::loadRGBPalette(miloslav);
+      for (int i = 0; i < 256; ++i)
+      {
+        uint8_t r = (PD::palette[i] >> 11) & 31;
+        uint8_t g = (PD::palette[i] >> 5) & 63;
+        uint8_t b = PD::palette[i] & 31;
+        r = (r * counters[0] + 31 * (64 - counters[0])) / 64;
+        g = (g * counters[0] + 63 * (64 - counters[0])) / 64;
+        b = (b * counters[0] + 31 * (64 - counters[0])) / 64;
+        PD::palette[i] = (r << 11) + (g << 5) + b;
+      }
+      eventPos = currentEvent;
+      return false;
+    }
+    else
+      PD::loadRGBPalette(miloslav);
+  }
   resetCounters();
   return true;
 }
@@ -367,8 +431,8 @@ bool PTAD::MapEvent::teleport()
 {
   uint32_t mapHash;
   readValue((uint8_t*)&mapHash, sizeof(mapHash));
-  PTAD::Game::player.x = (uint32_t)nextByte() * 16;
-  PTAD::Game::player.y = (uint32_t)nextByte() * 16;
+  PTAD::Game::player.x = (int32_t)nextByte() * 16;
+  PTAD::Game::player.y = (int32_t)nextByte() * 16;
   uint8_t dir = nextByte();
   if (dir != 4)
     PTAD::Game::player.dir = dir;
@@ -432,7 +496,7 @@ bool PTAD::MapEvent::bufferValue()
   else if (value == VALUE_PLAYER_EXPERIENCELEFT)
     PTAD::Dialog::bufferNumber(PTAD::Game::player.nextLevel - PTAD::Game::player.experience, 1000);
   else if (value == VALUE_PLAYER_GOLD)
-    PTAD::Dialog::bufferNumber(PTAD::Game::player.gold, 100);
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.gold, 10000);
   else if (value == VALUE_PLAYER_LEVEL)
     PTAD::Dialog::bufferNumber(PTAD::Game::player.level, 10);
   else if (value == VALUE_PLAYER_ATTACK)
@@ -490,11 +554,24 @@ bool PTAD::MapEvent::showShopMenu()
   return false;
 }
 
+bool PTAD::MapEvent::showGold()
+{
+  PTAD::Ui::drawText(goldUI[0], 7, 20, 13);
+  PTAD::Ui::drawText(goldUI[1], 7, 20, 14);
+  PTAD::Ui::drawNumber(PTAD::Game::player.gold, 21, 14, 10000);
+  return true;
+}
+
+bool PTAD::MapEvent::hideGold()
+{
+  PTAD::Ui::fillCharacter(255, 7, 20, 13);
+  PTAD::Ui::fillCharacter(255, 7, 20, 14);
+  return true;
+}
+
 bool PTAD::MapEvent::waitButtons()
 {
-  if (PTAD::justPressed(PTAD::BTN_MASK_A) || PB::bBtn())
-    return true;
-  else
+  if (!PTAD::justPressed(PTAD::BTN_MASK_A) && !PB::bBtn())
     eventPos = currentEvent;
   return false;
 }
@@ -524,7 +601,7 @@ bool PTAD::MapEvent::battle()
 bool PTAD::MapEvent::shakeScreen()
 {
   PTAD::Map::shakeScreen = nextByte();
-  PTAD::Map::shakeRate = nextByte();
+  PTAD::Map::shakeMagnitude = nextByte();
   return true;
 }
 
@@ -607,10 +684,164 @@ bool PTAD::MapEvent::jumpIfHasItem()
   return eventPos > currentEvent;
 }
 
+bool PTAD::MapEvent::jumpIfExited()
+{
+  int32_t truePos, falsePos;
+  uint8_t direction = nextByte();
+  bool test = false;
+  readValue((uint8_t*)&truePos, sizeof(truePos));
+  readValue((uint8_t*)&falsePos, sizeof(falsePos));
+  if (direction == PTAD::DIR_UP)
+    test = PTAD::Game::player.y < 0;
+  else if (direction == PTAD::DIR_RIGHT)
+    test = PTAD::Game::player.x >= PTAD::Map::data->width * 256;
+  else if (direction == PTAD::DIR_DOWN)
+    test = PTAD::Game::player.y >= PTAD::Map::data->height * 256;
+  else if (direction == PTAD::DIR_LEFT)
+    test = PTAD::Game::player.x < 0;
+  if (test)
+    eventPos = truePos - (int32_t)currentBufferPos;
+  else
+    eventPos = falsePos - (int32_t)currentBufferPos;
+  return eventPos > currentEvent;
+}
+
+bool PTAD::MapEvent::jumpIfYesNo()
+{
+  int32_t yesPos, noPos;
+  PTAD::Ui::drawText(yesNoUI[0], 8, 1, 13);
+  PTAD::Ui::drawText(yesNoUI[1], 8, 1, 14);
+  readValue((uint8_t*)&yesPos, sizeof(yesPos));
+  readValue((uint8_t*)&noPos, sizeof(noPos));
+  if (PTAD::justPressed(PTAD::BTN_MASK_LEFT) || PTAD::justPressed(PTAD::BTN_MASK_RIGHT))
+  {
+    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    counters[0] ^= 32;
+  }
+  else if (PB::bBtn())
+  {
+    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    eventPos = noPos - (int32_t)currentBufferPos;
+    PTAD::Ui::fillCharacter(255, 8, 1, 13);
+    PTAD::Ui::fillCharacter(255, 8, 1, 14);
+    resetCounters();
+    return eventPos > currentEvent;
+  }
+  else if (PTAD::justPressed(PTAD::BTN_MASK_A))
+  {
+    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    if (counters[0] == 0)
+      eventPos = yesPos - (int32_t)currentBufferPos;
+    else
+      eventPos = noPos - (int32_t)currentBufferPos;
+    PTAD::Ui::fillCharacter(255, 8, 1, 13);
+    PTAD::Ui::fillCharacter(255, 8, 1, 14);
+    resetCounters();
+    return eventPos > currentEvent;
+  }
+  PTAD::Ui::cursorX = (int32_t)counters[0] - 2;
+  PTAD::Ui::cursorY = 112;
+  eventPos = currentEvent;
+  return false;
+}
+
+bool PTAD::MapEvent::jumpIfValue()
+{
+  int32_t truePos, falsePos, current, desired;
+  uint8_t value, condition;
+  bool test;
+  readValue((uint8_t*)&truePos, sizeof(truePos));
+  readValue((uint8_t*)&falsePos, sizeof(falsePos));
+  value = nextByte();
+  condition = nextByte();
+  readValue((uint8_t*)&desired, sizeof(desired));
+  if (value == VALUE_PLAYER_HP)
+    current = PTAD::Game::player.hp;
+  else if (value == VALUE_PLAYER_MAXHP)
+    current = PTAD::Game::player.maxHP;
+  else if (value == VALUE_PLAYER_MP)
+    current = PTAD::Game::player.mp;
+  else if (value == VALUE_PLAYER_MAXMP)
+    current = PTAD::Game::player.maxMP;
+  else if (value == VALUE_PLAYER_EXPERIENCE)
+    current = PTAD::Game::player.experience;
+  else if (value == VALUE_PLAYER_NEXTLEVEL)
+    current = PTAD::Game::player.nextLevel;
+  else if (value == VALUE_PLAYER_EXPERIENCELEFT)
+    current = PTAD::Game::player.nextLevel - PTAD::Game::player.experience;
+  else if (value == VALUE_PLAYER_GOLD)
+    current = PTAD::Game::player.gold;
+  else if (value == VALUE_PLAYER_LEVEL)
+    current = PTAD::Game::player.level;
+  else if (value == VALUE_PLAYER_ATTACK)
+    current = PTAD::Game::player.stats.attack;
+  else if (value == VALUE_PLAYER_DEFENSE)
+    current = PTAD::Game::player.stats.defense;
+  else if (value == VALUE_PLAYER_AGILITY)
+    current = PTAD::Game::player.stats.agility;
+  else if (value == VALUE_PLAYER_MAGIC)
+    current = PTAD::Game::player.stats.magic;
+  if (condition == CONDITION_EQUAL_TO)
+    test = current == desired;
+  else if (condition == CONDITION_NOT_EQUAL_TO)
+    test = current != desired;
+  else if (condition == CONDITION_GREATER_THAN)
+    test = current > desired;
+  else if (condition == CONDITION_GREATER_THAN_OR_EQUAL_TO)
+    test = current >= desired;
+  else if (condition == CONDITION_LESS_THAN)
+    test = current < desired;
+  else if (condition == CONDITION_LESS_THAN_OR_EQUAL_TO)
+    test = current <= desired;
+  if (test)
+    eventPos = truePos - (int32_t)currentBufferPos;
+  else
+    eventPos = falsePos - (int32_t)currentBufferPos;
+  return eventPos > currentEvent;
+}
+
 bool PTAD::MapEvent::playSoundEffect()
 {
   PTAD::Music::playSFX(nextByte());
   return true;
+}
+
+bool PTAD::MapEvent::playMusic()
+{
+  uint8_t bgmID = nextByte();
+  bool loop = (bgmID & 128) != 0;
+  bgmID &= 0x7F;
+  if (loop)
+    PTAD::Music::playMusic(bgmID, 0);
+  else
+    PTAD::Music::playMusic(bgmID, 1, false);
+  return true;
+}
+
+bool PTAD::MapEvent::pauseMusic()
+{
+  PTAD::Music::pauseMusic();
+  return true;
+}
+
+bool PTAD::MapEvent::resumeMusic()
+{
+  PTAD::Music::resumeMusic();
+  return true;
+}
+
+bool PTAD::MapEvent::waitMusic()
+{
+  if (PTAD::Music::isMusicPlaying())
+    eventPos = currentEvent;
+  return false;
+}
+
+bool PTAD::MapEvent::waitSoundEffect()
+{
+  if (PTAD::Music::isSFXPlaying())
+    eventPos = currentEvent;
+  return false;
 }
 
 bool PTAD::MapEvent::turnSwitchOn()
@@ -696,7 +927,22 @@ bool PTAD::MapEvent::changeEventLocation()
   uint8_t eventID = nextByte();
   PTAD::Map::data->events[eventID & 0x7F].x = nextByte();
   PTAD::Map::data->events[eventID & 0x7F].y = nextByte();
-  PTAD::Map::data->events[eventID & 0x7F].flags = (PTAD::Map::data->events[eventID & 0x7F].flags & 3) | ((eventID & 128) >> 4);
+  PTAD::Map::data->events[eventID & 0x7F].flags = (PTAD::Map::data->events[eventID & 0x7F].flags & 0xF7) | ((eventID & 128) >> 4);
+  return true;
+}
+
+bool PTAD::MapEvent::changeEventFlags()
+{
+  uint8_t eventID = nextByte();
+  uint8_t operation = (eventID >> 6) & 3;
+  uint8_t flags = nextByte();
+  eventID &= 0x3F;
+  if (operation == FLAG_SET)
+    PTAD::Map::data->events[eventID].flags |= flags;
+  else if (operation == FLAG_CLEAR)
+    PTAD::Map::data->events[eventID].flags &= ~(flags);
+  else if (operation == FLAG_TOGGLE)
+    PTAD::Map::data->events[eventID].flags ^= flags;
   return true;
 }
 
@@ -734,10 +980,12 @@ bool PTAD::MapEvent::givePlayerItem()
 
 bool PTAD::MapEvent::givePlayerGold()
 {
-  uint16_t amount;
+  int16_t amount;
   readValue((uint8_t*)&amount, sizeof(amount));
-  if (0xFFFF - PTAD::Game::player.gold < amount)
+  if (amount > 0 && 0xFFFF - PTAD::Game::player.gold < amount)
     PTAD::Game::player.gold = 0xFFFF;
+  else if (amount < 0 && PTAD::Game::player.gold < -amount)
+    PTAD::Game::player.gold = 0;
   else
     PTAD::Game::player.gold += amount;
   return true;
@@ -772,6 +1020,47 @@ bool PTAD::MapEvent::hideImage()
 {
   PD::setTASRowMask(0xFFFFFFFF);
   return true;
+}
+
+bool PTAD::MapEvent::movePlayer()
+{
+  uint8_t movement = nextByte();
+  uint8_t direction = PTAD::Game::player.dir;
+  bool retainFacing = (movement & 128) != 0;
+  movement = movement & 0x7F;
+  if (movement >= MOVE_FORWARD && movement <= MOVE_STRAFE_LEFT)
+    movement = (direction + movement - MOVE_FORWARD) % 4;
+  if (movement == MOVE_UP)
+  {
+    direction = PTAD::DIR_UP;
+    PTAD::Map::state = PTAD::Map::State::MoveUp;
+  }
+  else if (movement == MOVE_RIGHT)
+  {
+    direction = PTAD::DIR_RIGHT;
+    PTAD::Map::state = PTAD::Map::State::MoveRight;
+  }
+  else if (movement == MOVE_DOWN)
+  {
+    direction = PTAD::DIR_DOWN;
+    PTAD::Map::state = PTAD::Map::State::MoveDown;
+  }
+  else if (movement == MOVE_LEFT)
+  {
+    direction = PTAD::DIR_LEFT;
+    PTAD::Map::state = PTAD::Map::State::MoveLeft;
+  }
+  else if (movement >= MOVE_FACE_UP && movement <= MOVE_FACE_LEFT)
+    direction = movement - MOVE_FACE_UP;
+  else if (movement == MOVE_TURN_LEFT)
+    direction = (direction + 3) % 4;
+  else if (movement == MOVE_TURN_RIGHT)
+    direction = (direction + 1) % 4;
+  else if (movement == MOVE_TURN_AROUND)
+    direction = (direction + 2) % 4;
+  if (!retainFacing)
+    PTAD::Game::player.dir = direction;
+  return false;
 }
 
 bool PTAD::MapEvent::endEventProcessing()

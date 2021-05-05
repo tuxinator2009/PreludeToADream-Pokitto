@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="97" gold="146" hp="195" mp="5" attack="43" defense="58" agility="52" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>               <!--123456789012345678901234-->
+    <bufferMessage message="A gorilla blocks the way"/>
+    <showMessage/>
+  </intro>
+  <outro>               <!--123456789012345678901234-->
+    <bufferMessage message="You defeated the gorilla"/>
+    <showMessage/>
+  </outro>
+  <turn>
+    <!--
+    ifStat("HP", "&lt;=", 27)
+      ifStatus("berserk", "self", "!=", 1)
+        inflictStatus("berserk", 1, "self", 255, "The gorilla is enraged, "")
+      endIf
+      ifStat("MP", "&gt;=", 10)
+        bufferMessage("The gorilla pummels you!")
+        showMessage()
+        basicAttack()
+        basicAttack()
+        endEventProcessing()
+      endIf
+    endIf
+    bufferMessage("The gorilla punches you!")
+    showMessage()
+    basicAttack()
+    -->
+    <jumpIfStat stat="HP" condition="&lt;=" value="96" onTrue="enraged" onFalse="singleHit"/>
+    <label name="enraged"/>
+    <jumpIfStatus onTrue="endBerserk" onFalse="goBerserk" status="berserk" level="1" self="true" condition="=="/>
+    <label name="goBerserk"/>
+    <inflictStatus status="berserk" level="1" self="true" chance="255" successMessage="The gorilla is enraged!" failMessage=""/>
+    <label name="endBerserk"/>
+    <jumpIfStat stat="MP" condition="&gt;=" value="5" onTrue="doubleHit" onFalse="singleHit"/>
+    <label name="doubleHit"/>
+    <bufferMessage message="The gorilla pummels you!"/>
+    <showMessage/>
+    <basicAttack/>
+    <basicAttack/>
+    <consumeMP amount="5"/>
+    <jump label="__END__"/>
+    <label name="singleHit"/>
+    <bufferMessage message="The gorilla punches you!"/>
+    <showMessage/>
+    <basicAttack/>
+  </turn>
+</preludetoadream-enemy>

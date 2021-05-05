@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="2020.09.09" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" backgroundcolor="#000000" nextlayerid="7" nextobjectid="12">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" backgroundcolor="#000000" nextlayerid="7" nextobjectid="14">
  <properties>
+  <property name="Flags" value="clipUp,clipDown,clipLeft,clipRight"/>
   <property name="Max Steps" type="int" value="0"/>
   <property name="Min Steps" type="int" value="0"/>
   <property name="On Load Event">ifVariable(0, &quot;&gt;=&quot;, 3)
@@ -86,6 +87,7 @@ changeSprite(this, +1)</property>
   </object>
   <object id="8" name="Teleport to town" type="Event" gid="386" x="112" y="240" width="16" height="24">
    <properties>
+    <property name="Flags: Exit" type="bool" value="true"/>
     <property name="Script">ifVariable(0, &quot;==&quot;, 0)
   showDialog(&quot;Cecilia&quot;)
   showMessage(&quot;Don't forget you need to&quot;,
@@ -107,22 +109,37 @@ showScreen(&quot;unwipeOut&quot;, 1)</property>
   <object id="10" name="Bed" type="Event" gid="386" x="208" y="128" width="16" height="24">
    <properties>
     <property name="Flags: Button" type="bool" value="true"/>
-    <property name="Script">hideScreen(&quot;fadeOut&quot;, 4)
+    <property name="Script">playMusic(&quot;goodNight&quot;, false)
+hideScreen(&quot;fadeOut&quot;, 1)
+waitMusic()
 playSoundEffect(&quot;heal&quot;, false)
 heal()
-waitFrames(22)
-showScreen(&quot;fadeIn&quot;, 4)</property>
+waitSoundEffect()
+playMusic(&quot;goodMorning&quot;, false)
+showScreen(&quot;fadeIn&quot;, 1)
+waitMusic()
+playMusic(&quot;tavern&quot;, true)
+showOneLiner(&quot;You feel well rested!&quot;)
+waitButtons()
+hideDialog()</property>
    </properties>
   </object>
   <object id="11" name="Bed" type="Event" gid="386" x="176" y="128" width="16" height="24">
    <properties>
     <property name="Flags: Button" type="bool" value="true"/>
-    <property name="Script">hideScreen(&quot;fadeOut&quot;, 4)
+    <property name="Script">playMusic(&quot;goodNight&quot;, false)
+hideScreen(&quot;fadeOut&quot;, 1)
+waitMusic()
 playSoundEffect(&quot;heal&quot;, false)
 heal()
-waitFrames(22)
-showScreen(&quot;fadeIn&quot;, 4)
-changeVariable(0, &quot;set&quot;, 3)</property>
+waitSoundEffect()
+playMusic(&quot;goodMorning&quot;, false)
+showScreen(&quot;fadeIn&quot;, 1)
+waitMusic()
+playMusic(&quot;tavern&quot;, true)
+showOneLiner(&quot;You feel well rested!&quot;)
+waitButtons()
+hideDialog()</property>
    </properties>
   </object>
  </objectgroup>
@@ -204,7 +221,7 @@ changeVariable(0, &quot;set&quot;, 3)</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="3" name="Grid" width="32" height="32" visible="0">
+ <layer id="3" name="Grid" width="32" height="32">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,129,0,

@@ -5,12 +5,14 @@ using PC=Pokitto::Core;
 using PD=Pokitto::Display;
 using PB=Pokitto::Buttons;
 
+//#define SHOW_FPS
+
 #define START_LEVEL 1
 
 const uint8_t PTAD::Game::skillLearned[99] =
 {
-	255,0,  255,  1,255,255,255,255,255,
-	255,255,255,255,255,255,255,255,255,
+  255,SKILL_EXAMINE,255,SKILL_FOCUS_1,255,255,SKILL_MEDITATE,255,255,
+  255,255,SKILL_DBL_HIT,255,255,255,255,255,255,
 	255,255,255,255,255,255,255,255,255,
 	255,255,255,255,255,255,255,255,255,
 	255,255,255,255,255,255,255,255,255,
@@ -70,7 +72,7 @@ const PTAD::Game::PlayerData PTAD::Game::newGame =
   //mapID
   DataPack::hash("maps/town1/home.dat"),
   //messageSpeed
-  0x33,
+  0x11,
   //dir
   PTAD::DIR_DOWN,
   //equpped items
@@ -121,23 +123,25 @@ void PTAD::Game::setup()
   memset(PTAD::tilemapFG, 255, PTAD::TILEMAP_MEMORY_SIZE);
   state = State::TitleInit;
   volume = std::min((uint8_t)6, Pokitto::discrete_vol);
-  PTAD::Music::playMusic(PTAD::Music::MUSIC_MAIN_THEME);
+  PTAD::Music::playMusic(PTAD::Music::MUSIC_MAIN_THEME, 0);
   previousFrame = PC::getTime();
 }
 
 void PTAD::Game::update()
 {
-  /*uint32_t currentTime = PC::getTime();
+  uint32_t currentTime = PC::getTime();
+#ifdef SHOW_FPS
   ++PTAD::frameCount;
   if (currentTime - PTAD::fpsStart >= 1000)
   {
     PTAD::fps = PTAD::frameCount * 1000 / (currentTime - PTAD::fpsStart);
     PTAD::frameCount = 0;
     PTAD::fpsStart = currentTime;
-  }*/
+  }
+#endif
   if ((PTAD::Ui::dialogCursor & PTAD::Ui::DIALOG_CURSOR_BLINK) != 0)
-    PTAD::Ui::dialogCursor = PTAD::Ui::DIALOG_CURSOR_BLINK | ((PC::getTime() / 250) % 2);
-  PTAD::Game::player.playTime += PC::getTime() - previousFrame;
+    PTAD::Ui::dialogCursor = PTAD::Ui::DIALOG_CURSOR_BLINK | ((currentTime / 250) % 2);
+  PTAD::Game::player.playTime += currentTime - previousFrame;
 	switch (state)
 	{
     case State::TitleInit:
@@ -153,28 +157,28 @@ void PTAD::Game::update()
 		case State::Title:
       PTAD::Title::update();
 			break;
-		case State::MapInit:
+    case State::MapInit:
+      state = State::Map;
       PTAD::Dialog::setMessageSpeed(player.messageSpeed & 0xF);
 			PTAD::Map::setup();
-      state = State::Map;
-      previousState = state;
       PD::lineFillers[0] = &PTAD::tileFillerBG;
       PD::lineFillers[1] = &TAS::SpriteFiller;
       PD::lineFillers[2] = &PTAD::tileFillerFG;
       PD::lineFillers[3] = &PTAD::Ui::lineFiller;
+      previousState = state;
 			[[fallthrough]];
 		case State::Map:
 			PTAD::Map::update();
 			break;
-		case State::BattleInit:
+    case State::BattleInit:
+      state = State::Battle;
       PTAD::Dialog::setMessageSpeed((player.messageSpeed >> 4) & 0xF);
 			PTAD::Battle::setup();
-      state = State::Battle;
-      previousState = state;
       PD::lineFillers[0] = &PTAD::tileFillerBG;
       PD::lineFillers[1] = &PTAD::tileFillerFG;
       PD::lineFillers[2] = &PTAD::Ui::lineFiller;
       PD::lineFillers[3] = &TAS::SpriteFiller;
+      previousState = state;
 			[[fallthrough]];
     case State::Battle:
 			PTAD::Battle::update();
@@ -201,14 +205,11 @@ void PTAD::Game::update()
 		case State::GameOver:
       PTAD::GameOver::update();
 			break;
-	}
-	previousFrame = PC::getTime();
-	/*PTAD::Ui::drawCharacter(PTAD::FONT_F, 1, 1);
-  PTAD::Ui::drawCharacter(PTAD::FONT_P, 2, 1);
-  PTAD::Ui::drawCharacter(PTAD::FONT_S, 3, 1);
-  PTAD::Ui::drawCharacter(PTAD::FONT_COLON, 4, 1);
-  PTAD::Ui::drawCharacter(PTAD::FONT_SPACE, 5, 1);
-	PTAD::Ui::drawNumber(PTAD::fps, 6, 1, 100);*/
+  }
+  previousFrame = PC::getTime();
+#ifdef SHOW_FPS
+	PTAD::Ui::drawNumber(PTAD::fps, 1, 1, 100);
+#endif
 }
 
 constexpr uint32_t PTAD::Game::getStatForLevel(uint8_t level, const PTAD::Game::StatGrowth &growth)
@@ -237,7 +238,7 @@ uint16_t PTAD::Game::calculateSpellResistance()
   uint16_t total = 0;
   for (int i = 0; i < 8; ++i)
   {
-    int8_t resistance = -12;
+    uint8_t resistance = 0;
     for (int j = 0; j < 6; ++j)
     {
       //if player has equipment type 'j' equipped then add that equipment's resistance to spell 'i'
@@ -247,11 +248,13 @@ uint16_t PTAD::Game::calculateSpellResistance()
         resistance += 2;
     }
     //Cap resistance between -2 and 1
-    if (resistance < -2)
-      resistance = -2;
-    else if (resistance > 1)
-      resistance = 1;
-    total |= (resistance + 2) << (i * 2);
+    if (resistance < 10)
+      resistance = 0;
+    else if (resistance > 13)
+      resistance = 3;
+    else
+      resistance -= 10;
+    total |= resistance << (i * 2);
   }
   return total;
 }

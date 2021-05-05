@@ -3,6 +3,7 @@
  <objecttype name="Event" color="#ff00ff">
   <property name="Flags: Button" type="bool" default="false"/>
   <property name="Flags: Door" type="bool" default="false"/>
+  <property name="Flags: Exit" type="bool" default="false"/>
   <property name="Script" type="string"/>
  </objecttype>
  <objecttype name="Region" color="#ffffff"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<preludetoadream-enemy experience="2" gold="2" hp="2" mp="0" attack="2" defense="8" agility="5" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+<preludetoadream-enemy experience="5" gold="6" hp="12" mp="0" attack="16" defense="15" agility="20" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
   <intro>
     <bufferMessage message="You stumbled on a snake!"/>
     <showMessage/>
@@ -9,6 +9,16 @@
     <showMessage/>
   </outro>
   <turn>
+    <random counter="3" max="100"/>
+    <jumpIf counter="3" condition="&lt;=" value="50" onTrue="tryVenom" onFalse="doBasicAttack"/>
+    <label name="tryVenom"/>
+    <jumpIfStatus onTrue="doVenom" onFalse="doBasicAttack" status="poison" level="1" self="false" condition="!="/>
+    <label name="doVenom"/>
+    <bufferMessage message="The snake uses venom!"/>
+    <showMessage/>
+    <inflictStatus status="poison" level="1" self="false" chance="192" successMessage="It's venom poisons you!" failMessage="It's venom did nothing."/>
+    <endEventProcessing/>
+    <label name="doBasicAttack"/>
     <bufferMessage message="The snake strikes at you"/>
     <showMessage/>
     <basicAttack/>

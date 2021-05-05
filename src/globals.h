@@ -37,6 +37,7 @@ namespace PTAD
 	extern uint8_t battleMonsterID;
 	extern uint8_t battleBG;
 	extern uint8_t battleBGM;
+  extern uint8_t darkness;
 	extern uint8_t __attribute__((section (".bss"))) __attribute__ ((aligned)) memory[];
 	extern uint8_t *tiles;
 	#ifndef POK_SIM

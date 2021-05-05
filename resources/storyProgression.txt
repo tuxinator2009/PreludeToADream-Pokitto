@@ -4,3 +4,6 @@
 3 - Cleared cellar
 4 - Talked to mayor after clearing cellar
 5 - Left first town
+6 - Cleared mine
+7 - Talked to Benjamin's wife
+8 - Defeated gorilla boss
