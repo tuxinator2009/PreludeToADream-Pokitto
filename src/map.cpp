@@ -1,6 +1,6 @@
 #include "headers.h"
 
-#define FAST_MOVE
+//#define FAST_MOVE
 
 using PC=Pokitto::Core;
 using PD=Pokitto::Display;

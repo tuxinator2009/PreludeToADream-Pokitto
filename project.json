@@ -286,7 +286,7 @@
 			"$objectFiles"
 		]
 	},
-	"target": "Pokitto",
+	"target": "linux",
 	"pipelines": {
 		"Pokitto": [
 			"compile-cpp",
@@ -4861,6 +4861,12 @@
 			"sdcard": false
 		},
 		"/resources/screens/viewpoint.gfx": {
+			"sdcard": false
+		},
+		"/resources/POP/viewpoint.png": {
+			"sdcard": false
+		},
+		"/resources/POP/screenshot4.png": {
 			"sdcard": false
 		}
 	},

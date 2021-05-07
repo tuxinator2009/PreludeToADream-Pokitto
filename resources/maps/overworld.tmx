@@ -148,7 +148,7 @@
   <object id="67" name="Town1" type="Event" gid="160" x="448" y="256" width="16" height="24">
    <properties>
     <property name="Script">hideScreen(&quot;fadeOut&quot;, 4)
-teleport(&quot;maps/town1.dat&quot;, 0, 12, &quot;right&quot;)
+teleport(&quot;maps/town1_postRaid.dat&quot;, 0, 12, &quot;right&quot;)
 showScreen(&quot;fadeIn&quot;, 4)</property>
    </properties>
   </object>
