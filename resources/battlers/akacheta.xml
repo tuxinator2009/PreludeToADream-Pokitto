@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="" gold="" hp="" mp="" attack="" defense="" agility="" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>
+  </intro>
+  <outro>
+  </outro>
+  <turn>
+  </turn>
+</preludetoadream-enemy>

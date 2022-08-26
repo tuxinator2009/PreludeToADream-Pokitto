@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChooseMapEvent</class>
+ <widget class="QDialog" name="ChooseMapEvent">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>550</width>
+    <height>446</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Map Event</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="0">
+    <widget class="QPushButton" name="btnHideDialog">
+     <property name="text">
+      <string>Hide Dialog</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QPushButton" name="btnShakeScreen">
+     <property name="text">
+      <string>Shake Screen</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <widget class="QPushButton" name="btnChangeEventLocation">
+     <property name="text">
+      <string>Change Event Location</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QPushButton" name="btnIfFacing">
+     <property name="text">
+      <string>If Facing</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="3">
+    <widget class="QPushButton" name="btnHideImage">
+     <property name="text">
+      <string>Hide Image</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="0">
+    <widget class="QPushButton" name="btnTurnSwitchRangeOff">
+     <property name="text">
+      <string>Turn Switch Range Off</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QPushButton" name="btnCutscene">
+     <property name="text">
+      <string>Cutscene</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="3">
+    <widget class="QPushButton" name="btnPlayMusic">
+     <property name="text">
+      <string>Play Music</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="1">
+    <widget class="QPushButton" name="btnEndEventProcessing">
+     <property name="text">
+      <string>End Event Processing</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="3">
+    <widget class="QPushButton" name="btnTurnSwitchRangeOn">
+     <property name="text">
+      <string>Turn Switch Range On</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2">
+    <widget class="QPushButton" name="btnPlaySoundEffect">
+     <property name="text">
+      <string>Play Sound Effect</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="3">
+    <widget class="QPushButton" name="btnGivePlayerItem">
+     <property name="text">
+      <string>Give Player Item</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="2">
+    <widget class="QPushButton" name="btnChangePassability">
+     <property name="text">
+      <string>Change Passability</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QPushButton" name="btnIfHasItem">
+     <property name="text">
+      <string>If Has Item</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QPushButton" name="btnIfExited">
+     <property name="text">
+      <string>If Exited</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QPushButton" name="btnShowDialog">
+     <property name="text">
+      <string>Show Dialog</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="3">
+    <widget class="QPushButton" name="btnChangeSprite">
+     <property name="text">
+      <string>Change Sprite</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QPushButton" name="btnIfValue">
+     <property name="text">
+      <string>If Value</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="btnShowScreen">
+     <property name="text">
+      <string>Show Screen</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="3">
+    <widget class="QPushButton" name="btnIfYesNo">
+     <property name="text">
+      <string>If Yes/No</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="2">
+    <widget class="QPushButton" name="btnToggleSwitch">
+     <property name="text">
+      <string>Toggle Switch</string>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="1">
+    <widget class="QPushButton" name="btnChangeEventFlags">
+     <property name="text">
+      <string>Change Event Flags</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="btnShowMessage">
+     <property name="text">
+      <string>Show Message</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="3">
+    <widget class="QPushButton" name="btnIfSwitch">
+     <property name="text">
+      <string>If Switch</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="0">
+    <widget class="QPushButton" name="btnMovePlayer">
+     <property name="text">
+      <string>Move Player</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="2">
+    <widget class="QPushButton" name="btnLabel">
+     <property name="text">
+      <string>Label</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QPushButton" name="btnHideGold">
+     <property name="text">
+      <string>Hide Gold</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QPushButton" name="btnWaitButtons">
+     <property name="text">
+      <string>Wait Buttons</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QPushButton" name="btnTeleport">
+     <property name="text">
+      <string>Teleport</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="0">
+    <widget class="QPushButton" name="btnGivePlayerGold">
+     <property name="text">
+      <string>Give Player Gold</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QPushButton" name="btnJump">
+     <property name="text">
+      <string>Jump</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="2">
+    <widget class="QPushButton" name="btnChangeVariable">
+     <property name="text">
+      <string>Change Variable</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QPushButton" name="btnShowOneLiner">
+     <property name="text">
+      <string>Show One Liner</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="1">
+    <widget class="QPushButton" name="btnToggleSwitchRange">
+     <property name="text">
+      <string>Toggle Switch Range</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="3">
+    <widget class="QPushButton" name="btnBattle">
+     <property name="text">
+      <string>Battle</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="1">
+    <widget class="QPushButton" name="btnHeal">
+     <property name="text">
+      <string>Heal</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QPushButton" name="btnIfVariable">
+     <property name="text">
+      <string>If Variable</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="3">
+    <widget class="QPushButton" name="btnComment">
+     <property name="text">
+      <string>Comment</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QPushButton" name="btnPauseMusic">
+     <property name="text">
+      <string>Pause Music</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="btnBufferValue">
+     <property name="text">
+      <string>Buffer Value</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QPushButton" name="btnHideScreen">
+     <property name="text">
+      <string>Hide Screen</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <widget class="QPushButton" name="btnWaitFrames">
+     <property name="text">
+      <string>Wait Frames</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="1">
+    <widget class="QPushButton" name="btnTurnSwitchOff">
+     <property name="text">
+      <string>Turn Switch Off</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="3">
+    <widget class="QPushButton" name="btnWaitSoundEffect">
+     <property name="text">
+      <string>Wait Sound Effect</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="0">
+    <widget class="QPushButton" name="btnElse">
+     <property name="text">
+      <string>Else</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0">
+    <widget class="QPushButton" name="btnTurnSwitchOn">
+     <property name="text">
+      <string>Turn Switch On</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="btnBufferMessage">
+     <property name="text">
+      <string>Buffer Message</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QPushButton" name="btnShowShopMenu">
+     <property name="text">
+      <string>Show Shop Menu</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="1">
+    <widget class="QPushButton" name="btnResumeMusic">
+     <property name="text">
+      <string>Resume Music</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="3">
+    <widget class="QPushButton" name="btnShowGold">
+     <property name="text">
+      <string>Show Gold</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QPushButton" name="btnBufferCharacter">
+     <property name="text">
+      <string>Buffer Character</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="2">
+    <widget class="QPushButton" name="btnWaitMusic">
+     <property name="text">
+      <string>Wait Music</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="2">
+    <widget class="QPushButton" name="btnShowImage">
+     <property name="text">
+      <string>Show Image</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="3">
+    <widget class="QPushButton" name="btnCancel">
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

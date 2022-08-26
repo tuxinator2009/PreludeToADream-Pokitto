@@ -1,0 +1,725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ptad-map tileset="3" bgm="labyrinth" width="1" height="1" minSteps="0" maxSteps="0" flags="0" sprites="31,33,255,255,255,255,255,255,255,255,255,255,255,255,255,255">
+	<onLoadEvent>
+		<ifHasItem type="3" item="1">
+			<changeSprite event="Benjamin" spriteID="1"/>
+		</ifHasItem>
+	</onLoadEvent>
+	<bg>
+		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,10,8,9,8,9,8,9,8,9,8,9,8,9,8,9,11,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,22,82,83,82,83,82,83,82,83,82,83,82,83,82,83,7,0,0,0,0,0,0,0,
+0,0,0,0,0,10,9,8,9,67,98,99,120,121,120,121,120,121,120,121,120,121,98,99,66,9,11,0,0,0,0,0,
+0,0,0,0,0,22,82,83,82,83,2,3,114,115,114,115,114,115,114,115,114,115,4,5,82,83,7,0,0,0,0,0,
+0,0,0,10,9,67,98,99,120,121,68,69,28,29,28,29,28,29,28,29,28,29,64,65,98,99,66,9,11,0,0,0,
+0,0,0,22,82,83,2,3,114,115,116,117,12,13,80,81,12,13,80,81,12,13,112,113,4,5,82,83,7,0,0,0,
+0,10,8,67,98,99,68,69,28,29,28,29,28,29,96,97,28,29,96,97,28,29,28,29,64,65,98,99,23,0,0,0,
+0,22,82,83,2,3,116,117,12,13,80,81,12,13,84,85,12,13,12,13,80,81,12,13,112,113,4,5,7,0,0,0,
+0,6,98,99,68,69,28,29,28,29,96,97,28,29,100,101,28,29,28,29,96,97,28,29,28,29,64,65,66,9,11,0,
+0,22,2,3,116,117,12,13,80,81,12,13,12,13,12,13,80,81,12,13,12,13,12,13,80,81,112,113,4,5,7,0,
+0,6,68,69,28,29,28,29,96,97,28,29,28,29,28,29,96,97,28,29,28,29,28,29,96,97,28,29,64,65,23,0,
+0,22,52,53,12,13,84,85,12,13,12,13,80,81,12,13,12,13,12,13,12,13,12,13,80,81,84,85,48,49,7,0,
+0,6,68,69,28,29,100,101,28,29,28,29,96,97,28,29,28,29,28,29,28,29,28,29,96,97,100,101,64,65,23,0,
+0,22,52,53,12,13,80,81,12,13,80,81,12,13,12,13,12,13,80,81,12,13,12,13,12,13,80,81,48,49,7,0,
+0,6,68,69,28,29,96,97,28,29,96,97,28,29,28,29,28,29,96,97,28,29,28,29,28,29,96,97,64,65,23,0,
+0,22,52,53,80,81,12,13,12,13,12,13,12,13,80,81,12,13,12,13,12,13,80,81,12,13,12,13,48,49,7,0,
+0,6,68,69,96,97,28,29,28,29,28,29,28,29,96,97,28,29,28,29,28,29,96,97,28,29,28,29,64,65,23,0,
+0,22,52,53,12,13,12,13,80,81,12,13,12,13,12,13,12,13,84,85,12,13,12,13,12,13,80,81,48,49,7,0,
+0,6,68,69,28,29,28,29,96,97,28,29,28,29,28,29,28,29,100,101,28,29,28,29,28,29,96,97,64,65,23,0,
+0,22,18,19,36,37,84,85,12,13,12,13,84,85,12,13,12,13,12,13,12,13,80,81,12,13,32,33,20,21,7,0,
+0,26,24,51,68,69,100,101,28,29,28,29,100,101,28,29,28,29,28,29,28,29,96,97,28,29,64,65,50,25,27,0,
+0,0,0,6,18,19,36,37,12,13,12,13,12,13,12,13,12,13,80,81,12,13,12,13,32,33,20,21,23,0,0,0,
+0,0,0,26,24,51,68,69,28,29,28,29,28,29,28,29,28,29,96,97,28,29,28,29,64,65,50,25,27,0,0,0,
+0,0,0,0,0,6,18,19,34,35,36,37,80,81,12,13,12,13,12,13,12,13,32,33,20,21,23,0,0,0,0,0,
+0,0,0,0,0,26,24,25,24,51,68,69,96,97,28,29,28,29,28,29,28,29,64,65,50,25,27,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,22,18,19,36,37,12,13,12,13,12,13,32,33,20,21,23,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,26,24,51,68,69,28,29,28,29,28,29,64,65,50,25,27,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,6,18,19,36,37,12,13,32,33,20,21,23,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,26,24,51,68,69,28,29,64,65,50,25,27,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,26,24,27,0,1,26,25,27,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,17,16,17,16,17,1,0,0,0,0,0,0,0,0,0,0,0
+	</bg>
+	<fg>
+		255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255
+	</fg>
+	<passability>
+		0,0,224,48,216,104,188,228,156,116,236,248,144,32,0,0,
+0,0,2,3,13,15,11,62,255,53,31,10,7,1,0,0
+	</passability>
+	<regions>
+		255,255,255,255,255,255,255,255,
+255,255,255,255,255,255,255,255
+	</regions>
+	<events>
+		<event name="Benjamin" x="8" y="6" flags="9" sprite="0">
+			<ifHasItem type="3" item="1">
+				<showDialog name="__PLAYER__"/>
+				<showMessage>
+					<line message="REST IN PEACE YOU FOOL!"/>
+				</showMessage>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<comment value="123456789012345678901234"/>
+				<showMessage>
+					<line message="YOU THINK YOU CAN COME__"/>
+					<line message="HERE AND TAKE WHAT&apos;S____"/>
+					<line message="RIGHTFULLY MINE!________"/>
+				</showMessage>
+				<showDialog name="__PLAYER__"/>
+				<showMessage>
+					<line message="Calm down Benjamin I&apos;m__"/>
+					<line message="not taking anything from"/>
+					<line message="you. The others said you"/>
+					<line message="were trapped down here._"/>
+				</showMessage>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="HAHA! THAT WAS MY DOING."/>
+					<line message="CAN YOU SMELL ALL THOSE_"/>
+					<line message="CRYSTALS? THEY&apos;RE ALL___"/>
+					<line message="MINE SO GET OUT NOW!____"/>
+				</showMessage>
+				<showDialog name="__PLAYER__"/>
+				<showMessage>
+					<line message="I do smell something..._"/>
+				</showMessage>
+				<showDialog name="__PLAYER__"/>
+				<showMessage>
+					<line message="Oh no!__________________"/>
+				</showMessage>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="LEAVE MY CRYSTALS ALONE_"/>
+					<line message="AND GET OUT OF HERE!!!__"/>
+				</showMessage>
+				<showDialog name="__PLAYER__"/>
+				<showMessage>
+					<line message="YOU CAN&apos;T HAVE THEM.____"/>
+					<line message="EVEN IF I HAVE TO PRY___"/>
+					<line message="THEM FROM YOUR COLD DEAD"/>
+					<line message="FINGERS!!!______________"/>
+				</showMessage>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="YOU WANT A PIECE OF ME?_"/>
+				</showMessage>
+				<battle monster="7" background="cavern" music="battleFinal"/>
+				<changeSprite event="this" spriteID="1"/>
+				<changeEventLocation event="this" x="8" y="6" offset="false"/>
+				<playSoundEffect sound="getItem" loop="false"/>
+				<givePlayerItem type="3" item="1"/>
+				<showOneLiner message="You got a Miner&apos;s helmet"/>
+				<waitButtons/>
+				<playSoundEffect sound="quake" loop="false"/>
+				<shakeScreen duration="255" magnitude="4"/>
+				<showOneLiner message="The walls are caving in."/>
+				<waitButtons/>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="To floor1" x="8" y="15" flags="8" sprite="255">
+			<hideScreen transition="5" speed="1"/>
+			<teleport mapID="21" x="13" y="62" facing="0"/>
+			<showScreen transition="0" speed="1"/>
+		</event>
+		<event name="39" x="6" y="1" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="39" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="1"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="39"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="40" x="7" y="1" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="40" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="1"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="40"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="41" x="8" y="1" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="41" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="1"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="41"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="42" x="9" y="1" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="42" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="1"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="42"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="43" x="10" y="1" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="43" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="1"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="43"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="44" x="4" y="2" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="44" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="1"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="44"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="45" x="7" y="3" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="45" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="45"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="46" x="9" y="3" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="46" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="46"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="48" x="10" y="4" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="48" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="48"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="47" x="5" y="4" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="47" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="47"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="49" x="4" y="5" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="49" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="49"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="38" x="6" y="6" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="38" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="38"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="51" x="12" y="5" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="51" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="51"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="37" x="12" y="6" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="37" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="37"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="55" x="13" y="7" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="55" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="55"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="54" x="9" y="7" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="54" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="54"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="53" x="5" y="7" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="53" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="53"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="52" x="3" y="7" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="52" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="52"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="56" x="2" y="8" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="56" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="56"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="59" x="4" y="9" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="59" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="59"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="57" x="7" y="8" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="57" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="57"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="58" x="11" y="8" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="58" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="58"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="60" x="13" y="9" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="60" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="60"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="61" x="11" y="10" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="61" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="61"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="62" x="9" y="11" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="62" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="62"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="63" x="6" y="12" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="63" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="63"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+		<event name="50" x="8" y="5" flags="9" sprite="255">
+			<ifHasItem type="3" item="1">
+				<ifSwitch switchID="50" is="OFF">
+					<playSoundEffect sound="getItem" loop="false"/>
+					<showOneLiner message="You found some crystals."/>
+					<givePlayerItem type="1" item="0" amount="2"/>
+				</ifSwitch>
+				<else>
+					<showOneLiner message="There&apos;s nothing here."/>
+				</else>
+				<waitButtons/>
+				<turnSwitchOn switchID="50"/>
+			</ifHasItem>
+			<else>
+				<showDialog name="Benjamin"/>
+				<showMessage>
+					<line message="DON&apos;T TOUCH MY CRYSTALS!"/>
+				</showMessage>
+			</else>
+			<hideDialog/>
+		</event>
+	</events>
+</ptad-map>

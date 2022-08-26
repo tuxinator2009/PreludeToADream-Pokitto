@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="30" gold="40" hp="72" mp="9" attack="56" defense="65" agility="72" magic="52" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>
+    <bufferMessage message="A sandworm springs out!"/>
+    <showMessage/>
+  </intro>
+  <outro>
+    <bufferMessage message="You stopped the sandworm"/>
+    <showMessage/>
+  </outro>
+  <turn>
+    <random counter="3" max="100"/>
+    <jumpIf counter="3" condition="&lt;=" value="50" onTrue="tryQuake" onFalse="doBasicAttack"/>
+      <label name="tryQuake"/>
+        <jumpIfStat onTrue="doQuake" onFalse="doBasicAttack" stat="MP" condition="&gt;=" value="3"/>
+          <label name="doQuake"/>
+            <playBattleAnimation animation="animations/enemy_quake.anim"/>
+            <bufferMessage message="The sandworm casts quake"/>
+            <showMessage/>
+            <castSpell type="earth" level="1" mp="3"/>
+            <endEventProcessing/>
+      <label name="doBasicAttack"/>
+        <bufferMessage message="The sandworm bites you."/>
+        <showMessage/>
+        <basicAttack animation="animations/enemy_bite2.anim"/>
+  </turn>
+</preludetoadream-enemy>

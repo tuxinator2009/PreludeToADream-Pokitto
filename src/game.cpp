@@ -53,8 +53,8 @@ const PTAD::Game::PlayerData PTAD::Game::newGame =
   //Spells
   0x0000,
   //name
-  {0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A},
-  //{PTAD::FONT_A, PTAD::FONT_d, PTAD::FONT_r, PTAD::FONT_i, PTAD::FONT_a, PTAD::FONT_n, PTAD::FONT_SPACE, PTAD::FONT_SPACE},
+  //{0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A},
+  {PTAD::FONT_A, PTAD::FONT_d, PTAD::FONT_r, PTAD::FONT_i, PTAD::FONT_a, PTAD::FONT_n, PTAD::FONT_SPACE, PTAD::FONT_SPACE},
   //x, y
   192, 128,
   //hp, maxHP

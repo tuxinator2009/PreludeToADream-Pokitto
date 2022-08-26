@@ -857,6 +857,13 @@ void PTAD::Menu::drawNameEntryMenu()
   PTAD::Ui::dialogCursorX = 15;
   PTAD::Ui::dialogCursorY = 17;
   PTAD::Ui::dialogCursor = PTAD::Ui::DIALOG_CURSOR_BLINK;
+  for (tempValue = 0; tempValue < 8; ++tempValue)
+  {
+    if (PTAD::Game::player.name[tempValue] == PTAD::FONT_SPACE)
+      break;
+    PTAD::Ui::drawCharacter(PTAD::Game::player.name[tempValue], tempValue + 2, 2);
+    PTAD::Ui::dialogCursorX += 8;
+  }
 }
 
 void PTAD::Menu::drawSaveLoadMenu()

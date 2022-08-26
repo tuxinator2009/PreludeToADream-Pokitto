@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ptad-settings>
+  <maps>
+    <map name="Overworld" file="map0000.xml">
+      <map name="Town 1" file="map0001.xml">
+        <map name="Post-Raid" file="map0002.xml"/>
+        <map name="Home" file="map0003.xml"/>
+        <map name="House 1" file="map0004.xml"/>
+        <map name="House 2" file="map0005.xml"/>
+        <map name="House 3" file="map0006.xml"/>
+        <map name="Shop" file="map0007.xml"/>
+        <map name="Town Hall" file="map0008.xml">
+          <map name="Floor 2" file="map0009.xml"/>
+        </map>
+        <map name="Inn" file="map0010.xml">
+          <map name="Floor 2" file="map0011.xml"/>
+          <map name="Floor 3" file="map0012.xml"/>
+          <map name="Cavern" file="map0013.xml">
+            <map name="Floor 2" file="map0014.xml"/>
+            <map name="Floor 3 (Lower)" file="map0015.xml"/>
+            <map name="Floor 3 (Upper)" file="map0016.xml"/>
+            <map name="Floor 4" file="map0017.xml"/>
+          </map>
+        </map>
+      </map>
+    </map>
+  </maps>
+</ptad-settings>

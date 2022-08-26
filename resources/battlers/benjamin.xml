@@ -24,6 +24,6 @@
   <turn>
     <bufferMessage message="Benjamin swings at you."/>
     <showMessage/>
-    <basicAttack/>
+    <basicAttack animation="animations/enemy_pickaxe.anim"/>
   </turn>
 </preludetoadream-enemy>

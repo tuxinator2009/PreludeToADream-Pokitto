@@ -13,6 +13,8 @@ const uint32_t PTAD::Battle::backgrounds[] =
 	DataPack::hash("backdrops/cavern.gfx"),   //0x04 ( 4)
 	DataPack::hash("backdrops/mountain.gfx"), //0x05 ( 5)
 	DataPack::hash("backdrops/mountain2.gfx"),//0x06 ( 6)
+	DataPack::hash("backdrops/desert.gfx"),   //0x07 ( 7)
+	DataPack::hash("backdrops/tribalPit.gfx"),//0x08 ( 8)
 };
 
 const uint32_t PTAD::Battle::enemies[] =
@@ -28,6 +30,33 @@ const uint32_t PTAD::Battle::enemies[] =
 	DataPack::hash("battlers/cougar.dat"),   //0x08 ( 8)
 	DataPack::hash("battlers/grizzly.dat"),  //0x09 ( 9)
 	DataPack::hash("battlers/gorilla.dat"),  //0x0A (10)
+	DataPack::hash("battlers/scorpion.dat"), //0x0B (11)
+	DataPack::hash("battlers/eagle.dat"),    //0x0C (12)
+	DataPack::hash("battlers/hornet.dat"),   //0x0D (13)
+	DataPack::hash("battlers/warthog.dat"),  //0x0E (14)
+	DataPack::hash("battlers/sandworm.dat"), //0x0F (15)
+	DataPack::hash("battlers/akacheta.dat"), //0x10 (16)
+};
+
+const uint32_t PTAD::Battle::playerBattleAnimations[] =
+{
+  DataPack::hash("animations/player_sword.anim"), //Rusty Sword
+  DataPack::hash("animations/player_sword.anim"),     //Dagger
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 3
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 4
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 5
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 6
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 7
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 8
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 9
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 10
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 11
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 12
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 13
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 14
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 15
+  DataPack::hash("animations/player_sword.anim"),    //Weapon 16
+  DataPack::hash("animations/player_unarmed.anim")     //No weapon
 };
 
 const uint8_t PTAD::Battle::enemyNames[]
@@ -54,6 +83,18 @@ const uint8_t PTAD::Battle::enemyNames[]
   0x20,0x45,0x3C,0x4D,0x4D,0x3F,0x4C,0x0A,
   //Gorilla_
   0x20,0x42,0x45,0x3C,0x3F,0x3F,0x34,0x0A,
+  //Scorpion
+  0x2C,0x36,0x42,0x45,0x43,0x3C,0x42,0x41,
+  //Eagle___
+  0x1E,0x34,0x3A,0x3F,0x38,0x0A,0x0A,0x0A,
+  //Hornet__
+  0x21,0x42,0x45,0x41,0x38,0x47,0x0A,0x0A,
+  //Warthog_
+  0x30,0x34,0x45,0x47,0x3B,0x42,0x3A,0x0A,
+  //Sandworm
+  0x2C,0x34,0x41,0x37,0x4A,0x42,0x45,0x40,
+  //Akacheta
+  0x1A,0x3E,0x34,0x36,0x3B,0x38,0x47,0x34,
 };
 
 const uint8_t PTAD::Battle::numEnemies = sizeof(PTAD::Battle::enemies) / sizeof(PTAD::Battle::enemies[0]);
@@ -380,7 +421,7 @@ int PTAD::Battle::attackDamageDealt(int attack, int agility1, int defense, int a
 
 int PTAD::Battle::magicDamageDealt(int attack, int magic1, int spellLevel, int defense, int magic2, int resistance)
 {
-  int damage = (attack * magic1 * spellLevel) / 4 - (defense * magic2) / 8;
+  int damage = ((attack + magic1) * spellLevel) / 2 - (defense + magic2) / 4;
   if (resistance == 0)
     damage = 1;
   else if (resistance == 1)
@@ -914,39 +955,47 @@ void PTAD::Battle::attack(uint8_t multiplier)
   }
   if (PTAD::globalCounter == 1)
   {
-    int damageDealt = attackDamageDealt(getPlayerAttack() * multiplier, getPlayerAgility(), getEnemyDefense(), getEnemyAgility(), (enemy->spellResistance >> 14) & 3);
-    if (damageDealt == 0)
+    lastPress = attackDamageDealt(getPlayerAttack() * multiplier, getPlayerAgility(), getEnemyDefense(), getEnemyAgility(), (enemy->spellResistance >> 14) & 3);
+    if (lastPress == 0)
     {
       PTAD::Music::playSFX(PTAD::Music::SFX_MISS);
       PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_MISS);
     }
     else if (random(0, 100) < 5)
     {
-      flashBattlerSprite(16, 8, 88, 168);
-      PTAD::Music::playSFX(PTAD::Music::SFX_HIT);
-      damageDealt *= 2;
+      if (PTAD::Game::player.equippedItems[0] == 255)
+        PTAD::BattleAnimation::beginAnimation(playerBattleAnimations[16]);
+      else
+        PTAD::BattleAnimation::beginAnimation(playerBattleAnimations[PTAD::Game::player.equippedItems[0]]);
+      //flashBattlerSprite(16, 8, 88, 168);
+      //PTAD::Music::playSFX(PTAD::Music::SFX_HIT);
+      lastPress *= 2;
       enemyStatus &= ~(3 << STATUS_FOCUSED);
       PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_CRITICAL_HIT);
-      PTAD::Dialog::bufferNumber(damageDealt, 100);
+      PTAD::Dialog::bufferNumber(lastPress, 100);
       PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
     }
     else
     {
+      if (PTAD::Game::player.equippedItems[0] == 255)
+        PTAD::BattleAnimation::beginAnimation(playerBattleAnimations[16]);
+      else
+        PTAD::BattleAnimation::beginAnimation(playerBattleAnimations[PTAD::Game::player.equippedItems[0]]);
       flashBattlerSprite(16, 8, 88, 168);
       PTAD::Music::playSFX(PTAD::Music::SFX_HIT);
       PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_DEALT);
-      PTAD::Dialog::bufferNumber(damageDealt, 100);
+      PTAD::Dialog::bufferNumber(lastPress, 100);
       PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
     }
-    if (damageDealt > enemy->hp)
-      enemy->hp = 0;
-    else
-      enemy->hp -= damageDealt;
     PTAD::Dialog::beginMessage();
   }
   else if (PTAD::globalCounter == 2)
   {
     PTAD::globalCounter = -1;
+    if (lastPress > enemy->hp)
+      enemy->hp = 0;
+    else
+      enemy->hp -= lastPress;
     if (enemy->hp == 0)
       state = State::Victory;
     else

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ptad-animation sprites="2,3,4,5,255,255,255,255">
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="184" y="86"/>
+		<playSFX sfx="hit"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="184" y="82"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="184" y="74"/>
+	</frame>
+	<frame>
+		<sprite spriteID="1" flipped="false" mirrored="false" x="180" y="70"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="true" mirrored="false" x="176" y="74"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="true" mirrored="false" x="174" y="82"/>
+	</frame>
+	<frame>
+		<sprite spriteID="2" flipped="false" mirrored="false" x="174" y="98"/>
+	</frame>
+	<frame>
+		<sprite spriteID="2" flipped="false" mirrored="false" x="174" y="112"/>
+	</frame>
+	<frame>
+		<sprite spriteID="3" flipped="false" mirrored="false" x="174" y="112"/>
+	</frame>
+	<frame>
+		<sprite spriteID="3" flipped="false" mirrored="false" x="174" y="112"/>
+	</frame>
+</ptad-animation>

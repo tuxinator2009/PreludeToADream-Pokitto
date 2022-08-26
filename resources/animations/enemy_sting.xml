@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ptad-animation sprites="10,255,255,255,255,255,255,255">
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="174" y="104"/>
+		<playSFX sfx="sword"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="174" y="108"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="174" y="114"/>
+		<shakeScreen duration="1" rate="8"/>
+		<flashUI duration="8" color="175"/>
+		<flashPlayer duration="16" color1="8" color2="88" color3="168"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="174" y="114"/>
+	</frame>
+</ptad-animation>

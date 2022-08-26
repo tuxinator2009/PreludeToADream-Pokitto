@@ -58,6 +58,11 @@ const uint32_t PTAD::Music::sfx[]
   DataPack::hash("sfx/berserk.raw"), //0x0F (15)
   DataPack::hash("sfx/rune.raw"),    //0x10 (16)
   DataPack::hash("sfx/dream.raw"),   //0x11 (17)
+  DataPack::hash("sfx/gate.raw"),    //0x12 (18)
+  DataPack::hash("sfx/claw.raw"),    //0x13 (19)
+  DataPack::hash("sfx/droplet.raw"), //0x14 (20)
+  DataPack::hash("sfx/punch.raw"),   //0x15 (21)
+  DataPack::hash("sfx/sword.raw"),   //0x16 (22)
 };
 uint8_t PTAD::Music::currentBGM = 255;
 uint8_t PTAD::Music::currentChannel = 0;

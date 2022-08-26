@@ -1,0 +1,7 @@
+     123456789012345678901234
+ 0 - Leave your home_________
+ 1 - Talk to inn keeper______
+ 2 - Clear cellar of rats____
+ 3 - Speak with town mayor___
+ 4 - Leave town______________
+ 5 - 

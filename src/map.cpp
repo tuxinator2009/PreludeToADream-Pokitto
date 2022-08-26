@@ -1,6 +1,6 @@
 #include "headers.h"
 
-//#define FAST_MOVE
+#define FAST_MOVE
 
 using PC=Pokitto::Core;
 using PD=Pokitto::Display;
@@ -49,7 +49,9 @@ const uint32_t PTAD::Map::tiledataFiles[] =
   DataPack::hash("tilesets/mountain.dat"),
   DataPack::hash("tilesets/mountain2.dat"),
   DataPack::hash("tilesets/mountain3.dat"),
-  DataPack::hash("tilesets/shrine.dat")
+  DataPack::hash("tilesets/shrine.dat"),
+  DataPack::hash("tilesets/castleExterior.dat"),
+  DataPack::hash("tilesets/forestTown.dat")
 };
 
 const uint8_t PTAD::Map::txtOptions[] = 
@@ -476,13 +478,13 @@ void PTAD::Map::update()
   }
   if (refreshChunks)
     updateChunks();
-  for (int i = 0; i < 29; ++i)
+  for (int i = 0; i < 29 && data->events[i].flags != PTAD::MapEvent::FLAGS_NULL; ++i)
   {
     if (data->events[i].spriteID < 16 && data->events[i].y * 16 < PTAD::Game::player.y + 16)
       PD::drawSpriteBitmap(data->events[i].x * 16 - screenX, data->events[i].y * 16 - screenY - (data->events[i].flags & PTAD::MapEvent::FLAGS_OFFSET), 16, 24, sprites + data->events[i].spriteID * 384);
   }
   PD::drawSpriteBitmap(PTAD::Game::player.x - screenX, PTAD::Game::player.y - screenY - 8, 16, 24, playerSprite + PTAD::Game::player.dir * 1152 + playerFrames[playerFrame] * 384);
-  for (int i = 0; i < 29; ++i)
+  for (int i = 0; i < 29 && data->events[i].flags != PTAD::MapEvent::FLAGS_NULL; ++i)
   {
     if (data->events[i].spriteID < 16 && data->events[i].y * 16 >= PTAD::Game::player.y + 16)
       PD::drawSpriteBitmap(data->events[i].x * 16 - screenX, data->events[i].y * 16 - screenY - (data->events[i].flags & PTAD::MapEvent::FLAGS_OFFSET), 16, 24, sprites + data->events[i].spriteID * 384);

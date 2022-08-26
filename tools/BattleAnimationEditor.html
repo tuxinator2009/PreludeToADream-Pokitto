@@ -16,11 +16,16 @@
                 <option value="shipdeck.png">Ship Deck</option>
                 <option value="swamp.png">Swamp</option>
                 <option value="cavern.png">Cavern</option>
+                <option value="mountain.png">Mountain</option>
+                <option value="mountain2.png">Mountain 2</option>
+                <option value="desert.png">Desert</option>
+                <option value="tribalPit.png">Tribal Pit</option>
               </select>
               <label for="monster">Monster</label>
               <input type="number" id="monster" name="monster" min="0" max="255" step="1" value="0" onchange="render()"/>
               <button type="button" onclick="load()">Re-Load</button>
               <button type="button" onclick="save()">Save</button>
+              <button type="button" onclick="reloadImages()">Refresh Images</button>
             </form>
           </td>
           <td rowspan="4" style="text-align: center;">
@@ -172,14 +177,14 @@
             <form class="sprites">
               <table>
                 <tr>
-                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(0, this.value)"/></td>
-                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(1, this.value)"/></td>
-                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(2, this.value)"/></td>
-                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(3, this.value)"/></td>
-                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(4, this.value)"/></td>
-                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(5, this.value)"/></td>
-                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(6, this.value)"/></td>
-                  <td><input type="number" min="0" max="255" step="1" value="0" onchange="setSprite(7, this.value)"/></td>
+                  <td><input type="number" id="sprite1_value" min="0" max="255" step="1" value="0" onchange="setSprite(0, this.value)"/></td>
+                  <td><input type="number" id="sprite2_value" min="0" max="255" step="1" value="0" onchange="setSprite(1, this.value)"/></td>
+                  <td><input type="number" id="sprite3_value" min="0" max="255" step="1" value="0" onchange="setSprite(2, this.value)"/></td>
+                  <td><input type="number" id="sprite4_value" min="0" max="255" step="1" value="0" onchange="setSprite(3, this.value)"/></td>
+                  <td><input type="number" id="sprite5_value" min="0" max="255" step="1" value="0" onchange="setSprite(4, this.value)"/></td>
+                  <td><input type="number" id="sprite6_value" min="0" max="255" step="1" value="0" onchange="setSprite(5, this.value)"/></td>
+                  <td><input type="number" id="sprite7_value" min="0" max="255" step="1" value="0" onchange="setSprite(6, this.value)"/></td>
+                  <td><input type="number" id="sprite8_value" min="0" max="255" step="1" value="0" onchange="setSprite(7, this.value)"/></td>
                 </tr>
                 <tr>
                   <td class="sprite" id="sprite1" style="background-position: 0px 0px;"></td>

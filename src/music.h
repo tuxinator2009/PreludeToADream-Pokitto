@@ -61,6 +61,11 @@ namespace PTAD
       static constexpr uint8_t SFX_BERSERK = 15;
       static constexpr uint8_t SFX_RUNE = 16;
       static constexpr uint8_t SFX_DREAM = 17;
+      static constexpr uint8_t SFX_GATE = 18;
+      static constexpr uint8_t SFX_CLAW = 19;
+      static constexpr uint8_t SFX_DROPLET = 20;
+      static constexpr uint8_t SFX_PUNCH = 21;
+      static constexpr uint8_t SFX_SWORD = 22;
 		private:
 			static Audio::RAWFileSource *backgroundMusic[2];
       static Audio::RAWFileSource *sfxSource;

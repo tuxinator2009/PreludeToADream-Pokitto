@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ptad-animation sprites="11,12,13,14,15,255,255,255">
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="true" x="213" y="99"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="true" x="205" y="99"/>
+		<sprite spriteID="1" flipped="false" mirrored="true" x="205" y="99"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="true" x="189" y="99"/>
+		<sprite spriteID="1" flipped="false" mirrored="true" x="189" y="99"/>
+		<sprite spriteID="2" flipped="false" mirrored="false" x="180" y="101"/>
+		<playSFX sfx="punch"/>
+		<flashBattler duration="16" color1="8" color2="88" color3="168"/>
+	</frame>
+	<frame>
+		<sprite spriteID="3" flipped="false" mirrored="false" x="180" y="101"/>
+	</frame>
+	<frame>
+		<sprite spriteID="4" flipped="false" mirrored="false" x="180" y="101"/>
+	</frame>
+</ptad-animation>

@@ -11,6 +11,6 @@
   <turn>
     <bufferMessage message="The bat swipes at you."/>
     <showMessage/>
-    <basicAttack/>
+    <basicAttack animation="animations/enemy_claw.anim"/>
   </turn>
 </preludetoadream-enemy>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ptad-animation sprites="0,255,255,255,255,255,255,255">
+	<frame>
+		<shakeScreen duration="12" rate="1"/>
+		<playSFX sfx="quake"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="0" y="0"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="0" y="0"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="0" y="0"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="0" y="0"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="0" y="0"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="0" y="0"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="0" y="0"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="0" y="0"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="0" y="0"/>
+	</frame>
+</ptad-animation>

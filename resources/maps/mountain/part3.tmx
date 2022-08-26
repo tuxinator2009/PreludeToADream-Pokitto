@@ -119,13 +119,9 @@ showScreen(&quot;unwipeOut&quot;, 1)</property>
     <property name="Script">ifExited(up)
   #TODO: teleport to volcano
 else
-  #TODO: teleport to overworld
   hideScreen(&quot;fadeOut&quot;, 4)
-  showImage(&quot;screens/tobecontinued.gfx&quot;)
-  waitButtons()
-  hideImage()
+  teleport(&quot;maps/overworld.dat&quot;, 53, 30, &quot;down&quot;)
   showScreen(&quot;fadeIn&quot;, 4)
-  movePlayer(&quot;backward&quot;, true)
 endIf</property>
    </properties>
   </object>
@@ -352,7 +348,7 @@ showScreen(&quot;unwipeOut&quot;, 1)</property>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="Regions" visible="0">
+ <objectgroup id="5" name="Regions">
   <object id="44" template="../../Tiled/region.tx" x="0" y="0"/>
   <object id="45" template="../../Tiled/region.tx" x="128" y="0"/>
   <object id="46" template="../../Tiled/region.tx" x="256" y="0"/>
@@ -434,7 +430,7 @@ showScreen(&quot;unwipeOut&quot;, 1)</property>
   <object id="123" gid="395" x="392" y="440" width="48" height="48"/>
   <object id="124" gid="395" x="456" y="440" width="48" height="48"/>
  </objectgroup>
- <layer id="4" name="Passability" width="64" height="64">
+ <layer id="4" name="Passability" width="64" height="64" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,386,0,386,0,386,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

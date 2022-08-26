@@ -21,6 +21,6 @@
     <label name="doBasicAttack"/>
     <bufferMessage message="The wolf lunges for you!"/>
     <showMessage/>
-    <basicAttack/>
+    <basicAttack animation="animations/enemy_bite2.anim"/>
   </turn>
 </preludetoadream-enemy>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ConfigureEvent_MovePlayer</class>
+ <widget class="QDialog" name="ConfigureEvent_MovePlayer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>202</width>
+    <height>78</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Move Player</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">.QFrame
+{
+	border: 1px solid palette(text);
+}
+
+.QFrame&gt;QLabel
+{
+	background-color: palette(text);
+	color: palette(window);
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>3</number>
+   </property>
+   <property name="leftMargin">
+    <number>3</number>
+   </property>
+   <property name="topMargin">
+    <number>3</number>
+   </property>
+   <property name="rightMargin">
+    <number>3</number>
+   </property>
+   <property name="bottomMargin">
+    <number>3</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="frame_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Movement</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget_2" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>6</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QComboBox" name="optMovement">
+           <item>
+            <property name="text">
+             <string>Up</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Right</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Down</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Left</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Forward</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Strafe Right</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Backward</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Strafe Left</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Face Up</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Face Right</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Face Down</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Face Left</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Turn Left</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Turn Right</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Turn Around</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="chkRetainFacing">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Retain Facing</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>ConfigureEvent_MovePlayer</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ConfigureEvent_MovePlayer</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

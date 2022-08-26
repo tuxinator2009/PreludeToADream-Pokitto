@@ -38,7 +38,7 @@ void PTAD::BattleAnimation::renderFrame()
     bool flipped = (frame->value2[i] & SPRITE_FLIPPED) != 0;
     bool mirrored = (frame->value2[i] & SPRITE_MIRRORED) != 0;
     if (frame->effect[i] == EFFECT_SPRITE)
-      PD::drawSpriteBitmap((int)frame->value3[i] - 32, (int)frame->value4[i] - 32, 32, 32, sprites + (uint16_t)animation->sprites[frame->value1[i]] * 1024, flipped, mirrored);
+      PD::drawSpriteBitmap((int)frame->value3[i] - 32, (int)frame->value4[i] - 32, 32, 32, sprites + (uint16_t)frame->value1[i] * 1024, flipped, mirrored);
     else if (nextFrame == 0 && frame->effect[i] != EFFECT_NONE)
     {
       if (frame->effect[i] == EFFECT_PLAY_SFX)
@@ -60,7 +60,7 @@ void PTAD::BattleAnimation::renderFrame()
     }
   }
   ++nextFrame;
-  if (nextFrame == 3)
+  if (nextFrame == 3 || PB::cBtn())
   {
     nextFrame = 0;
     ++currentFrame;
@@ -71,14 +71,14 @@ void PTAD::BattleAnimation::renderFrame()
 
 bool PTAD::BattleAnimation::isAnimationPlaying()
 {
-  if (currentFrame < 85)
+  if (currentFrame < 51)
     return true;
   return false;
 }
 
 bool PTAD::BattleAnimation::isNullFrame()
 {
-  if (currentFrame >= 85)
+  if (currentFrame >= 51)
     return true;
   for (int i = 0; i < 8; ++i)
   {

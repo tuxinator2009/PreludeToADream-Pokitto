@@ -218,14 +218,15 @@ void PTAD::fillRegion(uint32_t count, uint16_t color)
 
 const uint32_t PTAD::tilesets[]
 {
-  DataPack::hash("tilesets/overworld.gfx"), // 0
-  DataPack::hash("tilesets/town.gfx"),      // 1
-  DataPack::hash("tilesets/interior.gfx"),  // 2
-  DataPack::hash("tilesets/cavern2.gfx"),   // 3
-  DataPack::hash("tilesets/mountain.gfx"),  // 4
-  DataPack::hash("tilesets/mountain2.gfx"), // 5
-  DataPack::hash("tilesets/mountain3.gfx"), // 6
-  DataPack::hash("tilesets/shrine.gfx"),    // 7
+  DataPack::hash("tilesets/overworld.gfx"),      // 0
+  DataPack::hash("tilesets/town.gfx"),           // 1
+  DataPack::hash("tilesets/interior.gfx"),       // 2
+  DataPack::hash("tilesets/cavern2.gfx"),        // 3
+  DataPack::hash("tilesets/mountain.gfx"),       // 4
+  DataPack::hash("tilesets/mountain2.gfx"),      // 5
+  DataPack::hash("tilesets/mountain3.gfx"),      // 6
+  DataPack::hash("tilesets/shrine.gfx"),         // 7
+  DataPack::hash("tilesets/castleExterior.gfx"), // 8
 };
 
 const uint8_t PTAD::playerSprite[] =

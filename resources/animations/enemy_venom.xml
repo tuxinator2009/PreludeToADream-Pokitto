@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ptad-animation sprites="6,7,255,255,255,255,255,255">
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="174" y="100"/>
+		<playSFX sfx="droplet"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="174" y="102"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="174" y="106"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="174" y="114"/>
+		<flashPlayer duration="16" color1="32" color2="112" color3="192"/>
+	</frame>
+	<frame>
+		<sprite spriteID="1" flipped="false" mirrored="false" x="172" y="116"/>
+		<sprite spriteID="1" flipped="false" mirrored="true" x="176" y="116"/>
+	</frame>
+	<frame>
+		<sprite spriteID="1" flipped="false" mirrored="false" x="170" y="115"/>
+		<sprite spriteID="1" flipped="false" mirrored="true" x="178" y="115"/>
+	</frame>
+	<frame>
+		<sprite spriteID="1" flipped="false" mirrored="false" x="166" y="113"/>
+		<sprite spriteID="1" flipped="false" mirrored="true" x="184" y="113"/>
+	</frame>
+	<frame>
+		<sprite spriteID="1" flipped="true" mirrored="false" x="162" y="110"/>
+		<sprite spriteID="1" flipped="true" mirrored="true" x="188" y="110"/>
+	</frame>
+	<frame>
+		<sprite spriteID="1" flipped="true" mirrored="false" x="158" y="118"/>
+		<sprite spriteID="1" flipped="true" mirrored="true" x="192" y="118"/>
+	</frame>
+</ptad-animation>

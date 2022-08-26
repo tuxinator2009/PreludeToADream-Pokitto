@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="30" gold="40" hp="70" mp="0" attack="102" defense="63" agility="30" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>
+    <bufferMessage message="A warthog charges at you"/>
+    <showMessage/>
+  </intro>
+  <outro>
+    <bufferMessage message="You defeated the warthog"/>
+    <showMessage/>
+  </outro>
+  <turn>
+    <bufferMessage message="The warthog strikes you!"/>
+    <showMessage/>
+    <basicAttack animation="animations/enemy_tusk.anim"/>
+  </turn>
+  <!--event system to determine action taken-->
+</preludetoadream-enemy>

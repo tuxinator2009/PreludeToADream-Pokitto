@@ -137,16 +137,19 @@ bool PTAD::BattleEvent::event_flashUi()
 
 bool PTAD::BattleEvent::event_basicAttack()
 {
+  uint32_t animation;
+  readValue((uint8_t*)&animation, sizeof(animation));
   damageDealt = PTAD::Battle::attackDamageDealt(PTAD::Battle::getEnemyAttack(), PTAD::Battle::getEnemyAgility(), PTAD::Battle::getPlayerDefense(), PTAD::Battle::getPlayerAgility(), (PTAD::Battle::playerSpellResistance >> 14) & 3);
   if (damageDealt > 0)
   {
-    PTAD::Battle::shakeScreen = 1;
-    PTAD::Battle::shakeRate = 8;
-    PTAD::Battle::flashUi = 8;
-    PTAD::Ui::fgColor = 175;
-    PTAD::Music::playSFX(PTAD::Music::SFX_HIT);
-    PD::shiftTilemap(random(0, 8), random(0, 8));
-    PTAD::Battle::flashPlayerSprite(16, 8, 88, 168);
+    //PTAD::Battle::shakeScreen = 1;
+    //PTAD::Battle::shakeRate = 8;
+    //PTAD::Battle::flashUi = 8;
+    //PTAD::Ui::fgColor = 175;
+    PTAD::BattleAnimation::beginAnimation(animation);
+    //PTAD::Music::playSFX(PTAD::Music::SFX_HIT);
+    //PD::shiftTilemap(random(0, 8), random(0, 8));
+    //PTAD::Battle::flashPlayerSprite(16, 8, 88, 168);
     if (random(0, 100) < 5)
     {
       counters[3] = 2;
@@ -186,9 +189,31 @@ bool PTAD::BattleEvent::event_useSkill() //TODO
   return true;
 }
 
-bool PTAD::BattleEvent::event_castSpell() //TODO
+bool PTAD::BattleEvent::event_castSpell()
 {
-  return true;
+  uint8_t type = nextByte() * 2;
+  uint8_t level = nextByte();
+  uint8_t mp = nextByte();
+  damageDealt = PTAD::Battle::magicDamageDealt(PTAD::Battle::getEnemyAttack(), PTAD::Battle::getEnemyMagic(), level, PTAD::Battle::getPlayerDefense(), PTAD::Battle::getPlayerMagic(), (PTAD::Battle::playerSpellResistance >> type) & 3);
+  PTAD::Battle::shakeScreen = 1;
+  PTAD::Battle::shakeRate = 8;
+  PTAD::Battle::flashUi = 8;
+  PTAD::Ui::fgColor = 175;
+  PTAD::Music::playSFX(PTAD::Music::SFX_HIT);
+  PD::shiftTilemap(random(0, 8), random(0, 8));
+  PTAD::Battle::flashPlayerSprite(16, 8, 88, 168);
+  PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_BEGIN);
+  PTAD::Dialog::bufferNumber(damageDealt, 100);
+  PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
+  PTAD::Dialog::beginMessage();
+  if (damageDealt >= PTAD::Game::player.hp)
+  {
+    atEnd = true;
+    PTAD::Game::player.hp = 0;
+  }
+  else
+    PTAD::Game::player.hp -= damageDealt;
+  return false;
 }
 
 bool PTAD::BattleEvent::event_playSoundEffect()
@@ -347,7 +372,7 @@ bool PTAD::BattleEvent::event_playBattleAnimation()
   uint32_t animation;
   readValue((uint8_t*)&animation, sizeof(animation));
   PTAD::BattleAnimation::beginAnimation(animation);
-  return false;
+  return true;
 }
 
 bool PTAD::BattleEvent::event_waitFrames()

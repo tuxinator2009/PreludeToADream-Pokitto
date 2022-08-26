@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="16" gold="24" hp="43" mp="0" attack="65" defense="72" agility="52" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>
+    <bufferMessage message="A scorpion appears!"/>
+    <showMessage/>
+  </intro>
+  <outro>
+    <bufferMessage message="You beat the scorpion!"/>
+    <showMessage/>
+  </outro>
+  <turn>
+    <bufferMessage message="The scorpion stings you!"/>
+    <showMessage/>
+    <basicAttack animation="animations/enemy_sting.anim"/>
+    <jumpIfStatus onTrue="__END__" onFalse="tryPoison" status="poison" level="1" self="false" condition="&gt;="/>
+    <label name="tryPoison"/>
+      <jumpIf counter="3" condition="==" value="0" onTrue="__END__" onFalse="doPoison"/>
+      <label name="doPoison"/>
+        <jumpIf counter="3" condition="==" value="1" onTrue="lowChancePoison" onFalse="highChancePoison"/>
+        <label name="lowChancePoison"/>
+          <inflictStatus status="poison" level="1" self="false" chance="192" successMessage="It's venom poisons you!" failMessage="It's venom did nothing."/>
+          <endEventProcessing/>
+        <label name="highChancePoison"/>
+          <inflictStatus status="poison" level="1" self="false" chance="255" successMessage="It's venom poisons you!" failMessage="It's venom did nothing."/>
+          <endEventProcessing/>
+  </turn>
+</preludetoadream-enemy>

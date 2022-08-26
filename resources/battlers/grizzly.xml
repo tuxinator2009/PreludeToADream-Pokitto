@@ -11,6 +11,6 @@
   <turn>
     <bufferMessage message="The grizzly mauls you!"/>
     <showMessage/>
-    <basicAttack/>
+    <basicAttack animation="animations/enemy_claw.anim"/>
   </turn>
 </preludetoadream-enemy>

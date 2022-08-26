@@ -36,13 +36,13 @@
     <label name="doubleHit"/>
     <bufferMessage message="The gorilla pummels you!"/>
     <showMessage/>
-    <basicAttack/>
-    <basicAttack/>
+    <basicAttack animation="animations/enemy_punch.anim"/>
+    <basicAttack animation="animations/enemy_punch2.anim"/>
     <consumeMP amount="5"/>
     <jump label="__END__"/>
     <label name="singleHit"/>
     <bufferMessage message="The gorilla punches you!"/>
     <showMessage/>
-    <basicAttack/>
+    <basicAttack animation="animations/enemy_punch.anim"/>
   </turn>
 </preludetoadream-enemy>

@@ -31,30 +31,31 @@ bool (*const PTAD::MapEvent::execEvent[]) () =
   PTAD::MapEvent::jumpIfExited,        //0x16 (22)
   PTAD::MapEvent::jumpIfYesNo,         //0x17 (23)
   PTAD::MapEvent::jumpIfValue,         //0x18 (24)
-  PTAD::MapEvent::playSoundEffect,     //0x19 (25)
-  PTAD::MapEvent::playMusic,           //0x1A (26)
-  PTAD::MapEvent::pauseMusic,          //0x1B (27)
-  PTAD::MapEvent::resumeMusic,         //0x1C (28)
-  PTAD::MapEvent::waitMusic,           //0x1D (29)
-  PTAD::MapEvent::waitSoundEffect,     //0x1E (30)
-  PTAD::MapEvent::turnSwitchOn,        //0x1F (31)
-  PTAD::MapEvent::turnSwitchOff,       //0x20 (32)
-  PTAD::MapEvent::toggleSwitch,        //0x21 (33)
-  PTAD::MapEvent::turnSwitchRangeOn,   //0x22 (34)
-  PTAD::MapEvent::turnSwitchRangeOff,  //0x23 (35)
-  PTAD::MapEvent::toggleSwitchRange,   //0x24 (36)
-  PTAD::MapEvent::changeVariable,      //0x25 (37)
-  PTAD::MapEvent::changeSprite,        //0x26 (38)
-  PTAD::MapEvent::changeEventLocation, //0x27 (39)
-  PTAD::MapEvent::changeEventFlags,    //0x28 (40)
-  PTAD::MapEvent::changePassability,   //0x29 (41)
-  PTAD::MapEvent::givePlayerItem,      //0x2A (42)
-  PTAD::MapEvent::givePlayerGold,      //0x2B (43)
-  PTAD::MapEvent::heal,                //0x2C (44)
-  PTAD::MapEvent::showImage,           //0x2D (45)
-  PTAD::MapEvent::hideImage,           //0x2E (46)
-  PTAD::MapEvent::movePlayer,          //0x2F (47)
-  PTAD::MapEvent::endEventProcessing   //0x30 (48)
+  PTAD::MapEvent::jumpIfFacing,        //0x19 (25)
+  PTAD::MapEvent::playSoundEffect,     //0x1A (26)
+  PTAD::MapEvent::playMusic,           //0x1B (27)
+  PTAD::MapEvent::pauseMusic,          //0x1C (28)
+  PTAD::MapEvent::resumeMusic,         //0x1D (29)
+  PTAD::MapEvent::waitMusic,           //0x1E (30)
+  PTAD::MapEvent::waitSoundEffect,     //0x1F (31)
+  PTAD::MapEvent::turnSwitchOn,        //0x20 (32)
+  PTAD::MapEvent::turnSwitchOff,       //0x21 (33)
+  PTAD::MapEvent::toggleSwitch,        //0x22 (34)
+  PTAD::MapEvent::turnSwitchRangeOn,   //0x23 (35)
+  PTAD::MapEvent::turnSwitchRangeOff,  //0x24 (36)
+  PTAD::MapEvent::toggleSwitchRange,   //0x25 (37)
+  PTAD::MapEvent::changeVariable,      //0x26 (38)
+  PTAD::MapEvent::changeSprite,        //0x27 (39)
+  PTAD::MapEvent::changeEventLocation, //0x28 (40)
+  PTAD::MapEvent::changeEventFlags,    //0x29 (41)
+  PTAD::MapEvent::changePassability,   //0x2A (42)
+  PTAD::MapEvent::givePlayerItem,      //0x2B (43)
+  PTAD::MapEvent::givePlayerGold,      //0x2C (44)
+  PTAD::MapEvent::heal,                //0x2D (45)
+  PTAD::MapEvent::showImage,           //0x2E (46)
+  PTAD::MapEvent::hideImage,           //0x2F (47)
+  PTAD::MapEvent::movePlayer,          //0x30 (48)
+  PTAD::MapEvent::endEventProcessing   //0x31 (49)
 };
 
 const uint32_t PTAD::MapEvent::wipeDownMasks[21] = {0xFFFFF, 0xFFFFE, 0xFFFFC, 0xFFFF8, 0xFFFF0, 0xFFFE0, 0xFFFC0, 0xFFF80, 0xFFF00, 0xFFE00, 0xFFC00, 0xFF800, 0xFF000, 0xFE000, 0xFC000, 0xF8000, 0xF0000, 0xE0000, 0xC0000, 0x80000, 0x0};
@@ -430,9 +431,14 @@ bool PTAD::MapEvent::showScreen()
 bool PTAD::MapEvent::teleport()
 {
   uint32_t mapHash;
+  uint8_t x, y;
   readValue((uint8_t*)&mapHash, sizeof(mapHash));
-  PTAD::Game::player.x = (int32_t)nextByte() * 16;
-  PTAD::Game::player.y = (int32_t)nextByte() * 16;
+  x = nextByte();
+  y = nextByte();
+  if (x != 255)
+    PTAD::Game::player.x = (int32_t)x * 16;
+  if (y != 255)
+    PTAD::Game::player.y = (int32_t)y * 16;
   uint8_t dir = nextByte();
   if (dir != 4)
     PTAD::Game::player.dir = dir;
@@ -580,7 +586,7 @@ bool PTAD::MapEvent::waitFrames()
 {
   counters[2] = nextByte();
   ++counters[0];
-  if (counters[0] < counters[2])
+  if (counters[0] <= counters[2])
   {
     eventPos = currentEvent;
     return false;
@@ -794,6 +800,19 @@ bool PTAD::MapEvent::jumpIfValue()
   else if (condition == CONDITION_LESS_THAN_OR_EQUAL_TO)
     test = current <= desired;
   if (test)
+    eventPos = truePos - (int32_t)currentBufferPos;
+  else
+    eventPos = falsePos - (int32_t)currentBufferPos;
+  return eventPos > currentEvent;
+}
+
+bool PTAD::MapEvent::jumpIfFacing()
+{
+  int32_t truePos, falsePos;
+  uint8_t direction = nextByte();
+  readValue((uint8_t*)&truePos, sizeof(truePos));
+  readValue((uint8_t*)&falsePos, sizeof(falsePos));
+  if (PTAD::Game::player.dir == direction)
     eventPos = truePos - (int32_t)currentBufferPos;
   else
     eventPos = falsePos - (int32_t)currentBufferPos;

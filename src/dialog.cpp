@@ -83,8 +83,13 @@ void PTAD::Dialog::bufferText(const uint8_t *array, uint8_t numChars)
 		buffer[messageSize++] = *array++;
 }
 
-void PTAD::Dialog::bufferNumber(uint32_t value, uint32_t start)
+void PTAD::Dialog::bufferNumber(int32_t value, uint32_t start)
 {
+  if (value < 0)
+  {
+    buffer[messageSize++] = PTAD::FONT_MINUS;
+    value *= -1;
+  }
 	while (start > 0)
 	{
 		if (value >= start || start == 1)

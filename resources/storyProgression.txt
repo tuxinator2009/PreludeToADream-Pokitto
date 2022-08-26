@@ -1,3 +1,21 @@
+  #####  ######  ####### ### #       ####### ######  
+ #     # #     # #     #  #  #       #       #     # 
+ #       #     # #     #  #  #       #       #     # 
+  #####  ######  #     #  #  #       #####   ######  
+       # #       #     #  #  #       #       #   #   
+ #     # #       #     #  #  #       #       #    #  
+  #####  #       ####### ### ####### ####### #     # 
+                                                     
+ #     #    #    ######  #     # ### #     #  #####  
+ #  #  #   # #   #     # ##    #  #  ##    # #     # 
+ #  #  #  #   #  #     # # #   #  #  # #   # #       
+ #  #  # #     # ######  #  #  #  #  #  #  # #  #### 
+ #  #  # ####### #   #   #   # #  #  #   # # #     # 
+ #  #  # #     # #    #  #    ##  #  #    ## #     # 
+  ## ##  #     # #     # #     # ### #     #  #####  
+
+The following document contains details on the story outline including major plot spoilers.
+
 0 - Beginning
 1 - Talked to wife and left home
 2 - Talked to inn keeper at least once prior to clearing cellar
@@ -7,3 +25,43 @@
 6 - Cleared mine
 7 - Talked to Benjamin's wife
 8 - Defeated gorilla boss
+9 - Talked to guard at border crossing
+
+Chapter 3 Progression:
+  First you must talk to the guards at the border crossing
+  Then you must assist the knights in the three villages (any order)
+    Desert Village:
+    Forest Village:
+      Innkeeper's daughter has been kidnapped and you must find her.
+      She was kidnapped and taken to the nearby tribe in the swamp.
+      You get captured upon entering the tribe and discover she has already been sacrified to their gods.
+      Your outburst towards the chieftan leads him to put you in a ring with his greatest warrior.
+      Defeating the warrior you turn to fight the chieftan himself and leave the tribe.
+      You speak with the innkeeper and offer your condolences
+      You're furious with the soldiers for not rescuing her before it's too late and fight one.
+    Ocean Village:
+      Harbor is closed
+      Recent earthquakes opened an ancient sea cave where a Kraken lives
+      You must traverse the sea cave and defeat the Kraken
+  With the trouble in the empire settled the bridge to the castle is lowered
+  Now traverse the castle and speak with the king about crossing the border
+  The king doesn't trust you and suspects you of being an assassin in association with the lost prince
+  You are thrown in jail and then the rebels break free and tell you to follow them to freedom
+  Scale the desert tower to locate the lost prince's hiding place and make a plan to overthrow the king
+  Fight and defeat the king and the prince will take his place
+  Thankful the prince will now inform the border guards to allow you passage
+  Finally head north through the gates to end chapter 3
+
+Chapter 4 Progression:
+  You can stop and rest/traid at the village
+  Make your way onto the ship
+  Locate the brig and speak with Cecilia
+  Find the ship's captain and defeat him to unlock Cecilia's cell
+  Cutscene
+    Cecilia dies in your arms as you were too late to save her
+    A mysterious voice speaks of a path through the spirit world to rescue her soul and bring her back
+  End of Chapter 4
+
+Chapter 5 Progression:
+  Locate the shrine near the ship and enter the dream world
+  ...

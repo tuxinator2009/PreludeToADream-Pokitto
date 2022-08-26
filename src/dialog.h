@@ -11,7 +11,7 @@ namespace PTAD
       static void showWindow();
       static void shiftTextUp();
       static void bufferText(const uint8_t *array, uint8_t numChars);
-      static void bufferNumber(uint32_t value, uint32_t start);
+      static void bufferNumber(int32_t value, uint32_t start);
       static void bufferCharacter(uint8_t character);
       static void trimBuffer();
       static void addMessage(uint8_t id);

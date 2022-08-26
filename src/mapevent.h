@@ -54,6 +54,7 @@ namespace PTAD
       static bool jumpIfExited();
       static bool jumpIfYesNo();
       static bool jumpIfValue();
+      static bool jumpIfFacing();
 			static bool playSoundEffect();
       static bool playMusic();
       static bool pauseMusic();

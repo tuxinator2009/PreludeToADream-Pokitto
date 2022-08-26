@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ptad-animation sprites="8,9,255,255,255,255,255,255">
+	<frame>
+		<sprite spriteID="1" flipped="false" mirrored="false" x="168" y="106"/>
+		<sprite spriteID="1" flipped="false" mirrored="true" x="180" y="106"/>
+		<playSFX sfx="claw"/>
+	</frame>
+	<frame>
+		<sprite spriteID="1" flipped="false" mirrored="false" x="168" y="110"/>
+		<sprite spriteID="1" flipped="false" mirrored="true" x="180" y="110"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="168" y="114"/>
+		<sprite spriteID="0" flipped="false" mirrored="true" x="180" y="114"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="170" y="116"/>
+		<sprite spriteID="0" flipped="false" mirrored="true" x="178" y="116"/>
+		<shakeScreen duration="1" rate="8"/>
+		<flashUI duration="8" color="175"/>
+		<flashPlayer duration="16" color1="8" color2="88" color3="168"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="170" y="116"/>
+		<sprite spriteID="0" flipped="false" mirrored="true" x="178" y="116"/>
+	</frame>
+	<frame>
+		<sprite spriteID="0" flipped="false" mirrored="false" x="168" y="114"/>
+		<sprite spriteID="0" flipped="false" mirrored="true" x="180" y="114"/>
+	</frame>
+	<frame>
+		<sprite spriteID="1" flipped="false" mirrored="false" x="168" y="110"/>
+		<sprite spriteID="1" flipped="false" mirrored="true" x="180" y="110"/>
+	</frame>
+</ptad-animation>

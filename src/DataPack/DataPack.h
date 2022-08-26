@@ -36,11 +36,10 @@ class DataPack
 			{
 				m_file.read((void*)&header, sizeof(header));
 				if (header.hash == hashValue)
-				{
+        {
 					file->start = header.start;
-					file->pos = file->start;
-					m_file.read((void*)&header, sizeof(header));
-					file->end = header.start;
+          file->end = header.end;
+          file->pos = file->start;
 					return true;
 				}
 			} while (header.hash != 0xFFFFFFFF);
@@ -134,6 +133,7 @@ class DataPack
 		{
 			uint32_t hash;
 			uint32_t start;
+      uint32_t end;
 		};
 		File m_file;
 };

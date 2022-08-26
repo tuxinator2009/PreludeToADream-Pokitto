@@ -15,6 +15,24 @@ namespace PTAD
   void write_command_16(uint16_t data);
   void write_data_16(uint16_t data);
   void fillRegion(uint32_t count, uint16_t color);
+  constexpr bool stringsEqual(const char *string1, const char *string2)
+  {
+    while (*string1 && *string2)
+    {
+      if (*string1++ != *string2++)
+        return false;
+    }
+    return true;
+  }
+  constexpr int stringToID(const char *value, const char **lookupTable, int numValues)
+  {
+    for (int i = 0; i < numValues; ++i)
+    {
+      if (stringsEqual(value, lookupTable[i]))
+        return i;
+    }
+    assert(false, value);
+  }
   struct Item
   {
     uint8_t name[8];

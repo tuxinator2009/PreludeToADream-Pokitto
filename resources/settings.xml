@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<ptad-settings>
+  <maps>
+    <map name="Overworld" file="map0000.xml"/><!--maps/overworld.tmx-->
+    <map name="Town 1" file="map0001.xml"><!--maps/town1.tmx-->
+      <map name="Post-Raid" file="map0002.xml"/><!--maps/town1_postRaid.tmx-->
+      <map name="Home" file="map0003.xml"/><!--maps/town1/home.tmx-->
+      <map name="House 1" file="map0004.xml"/><!--maps/town1/house1.tmx-->
+      <map name="House 2" file="map0005.xml"/><!--maps/town1/house2.tmx-->
+      <map name="House 3" file="map0006.xml"/><!--maps/town1/house3.tmx-->
+      <map name="Shop" file="map0007.xml"/><!--maps/town1/shop.tmx-->
+      <map name="Town Hall" file="map0008.xml"><!--maps/town1/hall/floor1.tmx-->
+        <map name="Floor 2" file="map0009.xml"/><!--maps/town1/hall/floor2.tmx-->
+      </map>
+      <map name="Inn" file="map0010.xml"><!--maps/town1/inn/floor1.tmx-->
+        <map name="Floor 2" file="map0011.xml"/><!--maps/town1/inn/floor2.tmx-->
+        <map name="Floor 3" file="map0012.xml"/><!--maps/town1/inn/floor3.tmx-->
+        <map name="Cavern" file="map0013.xml"><!--maps/town1/cavern/floor1.tmx-->
+          <map name="Floor 2" file="map0014.xml"/><!--maps/town1/cavern/floor2.tmx-->
+          <map name="Floor 3 (Lower)" file="map0015.xml"/><!--maps/town1/cavern/floor3_lower.tmx-->
+          <map name="Floor 3 (Upper)" file="map0016.xml"/><!--maps/town1/cavern/floor3_upper.tmx-->
+          <map name="Floor 4" file="map0017.xml"/><!--maps/town1/cavern/floor4.tmx-->
+        </map>
+      </map>
+    </map>
+    <map name="Shrine NE" file="map0018.xml"/><!--maps/shrine1.tmx-->
+    <map name="Town 2" file="map0019.xml"><!--maps/town2.tmx-->
+      <map name="Benjamin's House" file="map0020.xml"/><!--maps/town2/benjaminsHouse.tmx-->
+      <map name="Mine" file="map0021.xml"><!--maps/town2/mine/floor1.tmx-->
+        <map name="Floor 2" file="map0022.xml"/><!--maps/town2/mine/floor2.tmx-->
+      </map>
+    </map>
+    <map name="Mountain Pass" file="map0023.xml"><!--maps/mountain/part1.tmx-->
+      <map name="Part 2" file="map0024.xml"/><!--maps/mountain/part2.tmx-->
+      <map name="Part 3" file="map0025.xml"/><!--maps/mountain/part3.tmx-->
+      <map name="Cliffs" file="map0026.xml"/><!--maps/mountain/cliffs.tmx-->
+      <map name="Cabin 1" file="map0027.xml"><!--maps/mountain/cabin_floor1.tmx-->
+        <map name="Floor 2" file="map0028.xml"/><!--maps/mountain/cabin_floor2.tmx-->
+      </map>
+      <map name="Cabin 2" file="map0029.xml"><!--maps/mountain/cabin2_floor1.tmx-->
+        <map name="Floor 2" file="map0030.xml"/><!--maps/mountain/cabin2_floor2.tmx-->
+      </map>
+      <map name="Cave" file="map0031.xml"><!--maps/mountain/cave_part1.tmx-->
+        <map name="A" file="map0032.xml"/><!--maps/mountain/caveA.tmx-->
+        <map name="B" file="map0033.xml"/><!--maps/mountain/caveB.tmx-->
+        <map name="C" file="map0034.xml"/><!--maps/mountain/caveC.tmx-->
+        <map name="D" file="map0035.xml"/><!--maps/mountain/caveD.tmx-->
+        <map name="E" file="map0036.xml"/><!--maps/mountain/caveE.tmx-->
+        <map name="F" file="map0037.xml"/><!--maps/mountain/caveF.tmx-->
+        <map name="G" file="map0038.xml"/><!--maps/mountain/caveG.tmx-->
+      </map>
+    </map>
+    <map name="Town 3" file="map0039.xml"><!--maps/town4.tmx-->
+      <map name="Inn" file="map0040.xml"/><!--maps/town4/inn.tmx-->
+      <map name="House 2" file="map0041.xml"/><!--maps/town4/house2.tmx-->
+    </map>
+    <map name="Border (closed)" file="map0042.xml"/><!--maps/borderClosed.tmx-->
+    <map name="Border (open)" file="map0043.xml"/><!--maps/borderOpen.tmx-->
+  </maps>
+  <messages>
+    <battleChooseAction message="What action do you seek?"/>
+    <battleSurpriseAttack message="IT'S A SURPRISE ATTACK!"/>
+    <battleCriticalHit message="CRITICAL HIT "/>
+    <battleGoldEarned message="gold earned."/>
+    <battleExperienceGained message="experience gained."/>
+    <battleLevelUp message="YOU LEVELED UP!"/>
+    <battleSkillLearned message="Learned skill "/>
+    <battleDamageTakenBegin message="You took "/>
+    <battleDamageTakenEnd message="damage."/>
+    <battleDefeat message="Gehenna awaits you......"/>
+    <battleFight message="You strike your opponent"/>
+    <battleRunSuccess message="You narrowly escaped."/>
+    <battleRunFail message="You failed to run away."/>
+    <battleRunImpossible message="There's nowhere to run."/>
+    <battleDamageDealt message="You dealt "/>
+    <battleMiss message="MISS!"/>
+    <battlePoisonBegin message="Poison deals "/>
+    <menuDialogTest message="This is the dialog speed"/>
+    <battleBerserkAttack message="YOU'RE BLINDED BY RAGE!"/>
+    <battleUseItem message="You used a "/>
+    <battleUseSkill message="You used "/>
+    <battleCastSpell message="You cast "/>
+    <battleInflictPoison message="The enemy is poisoned"/>
+    <battleInflictPoisonFail message="The poison didn't hold"/>
+    <battleInflictSlow message="The enemy moves slower"/>
+    <battleInflictSlowFail message="The slowness didn't work"/>
+    <battleRecoveredAmount message="You recovered "/>
+    <battleCleansed message="You feel very refreshed!"/>
+    <battleFocus1 message="You become focused"/>
+    <battleFocus2 message="You become more focused"/>
+    <battleFocus3 message="You become super focused"/>
+    <battleBerserk1 message="You become furious"/>
+    <battleBerserk2 message="You become more furious"/>
+    <battleBerserk3 message="You become super furious"/>
+    <battleRemoveBerserk message="You feel less furious"/>
+    <battleInflictHaste message="You're movement is fast!"/>
+    <battleRemovePoison message="You recover from poison."/>
+    <battleRemoveSlow message="You can move normally."/>
+    <battleAttackUp message="You become stronger"/>
+    <battleDefenseUp message="You become tougher"/>
+    <battleAgilityUp message="You become swifter"/>
+    <battleMagicUp message="You become more powerful"/>
+  </messages>
+</ptad-settings>

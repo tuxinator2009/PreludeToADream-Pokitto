@@ -14,6 +14,7 @@
     <label name="tryWebSling"/>
       <jumpIfStatus onTrue="doWebSling" onFalse="doBasicAttack" status="speed" level="1" self="false" condition="!="/>
       <label name="doWebSling"/>
+        <playBattleAnimation animation="animations/enemy_web.anim"/>
         <bufferMessage message="The spider slings a web!"/>
         <showMessage/>
         <inflictStatus status="speed" level="1" self="false" chance="192" successMessage="You're movement is slow." failMessage="MISS!"/>
@@ -23,6 +24,7 @@
       <label name="tryVenom"/>
         <jumpIfStatus onTrue="doVenom" onFalse="doBasicAttack" status="poison" level="1" self="false" condition="!="/>
         <label name="doVenom"/>
+          <playBattleAnimation animation="animations/enemy_venom.anim"/>
           <bufferMessage message="The spider uses venom!"/>
           <showMessage/>
           <inflictStatus status="poison" level="1" self="false" chance="255" successMessage="It's venom poisons you!" failMessage="It's venom did nothing."/>
@@ -30,6 +32,6 @@
       <label name="doBasicAttack"/>
         <bufferMessage message="The spider bites you."/>
         <showMessage/>
-        <basicAttack/>
+        <basicAttack animation="animations/enemy_bite.anim"/>
   </turn>
 </preludetoadream-enemy>

@@ -2,3 +2,12 @@
 *.elf
 /PreludeToADream
 core
+*.gfx
+*.raw
+/editor/editor
+*.dat
+*.gif
+/editor/Makefile
+/editor/src/Makefile
+qrc_*
+ui_*

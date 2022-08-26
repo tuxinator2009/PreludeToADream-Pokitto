@@ -83,6 +83,11 @@ function load()
   render();
 }
 
+function reloadImages()
+{
+  document.reload();
+}
+
 function save()
 {
   var fileData = new Uint8Array(2048);
@@ -110,6 +115,7 @@ function setSprite(sprite, value)
   var xOffset = (value % 16) * 64;
   var yOffset = (value >> 4) * 64;
   spriteIDs[sprite] = value;
+  document.getElementById("sprite" + (sprite + 1) + "_value").value = value;
   document.getElementById("sprite" + (sprite + 1)).style.backgroundPosition = -xOffset + "px " + -yOffset + "px";
 }
 

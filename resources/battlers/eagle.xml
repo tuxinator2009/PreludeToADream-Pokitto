@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<preludetoadream-enemy experience="25" gold="30" hp="60" mp="0" attack="78" defense="38" agility="150" magic="0" spellResistance="CCCCCCCC" poisonResistance="0" slowResistance="0">
+  <intro>
+    <bufferMessage message="An eagle spots you!"/>
+    <showMessage/>
+  </intro>
+  <outro>
+    <bufferMessage message="You felled the eagle."/>
+    <showMessage/>
+  </outro>
+  <turn>
+    <bufferMessage message="The eagle swoops at you!"/>
+    <showMessage/>
+    <basicAttack animation="animations/enemy_claw.anim"/>
+  </turn>
+</preludetoadream-enemy>
