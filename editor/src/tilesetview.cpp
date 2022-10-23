@@ -52,6 +52,11 @@ void TilesetView::changeTileset(int id)
   tilesItem->setPixmap(QPixmap::fromImage(Globals::tilesets[id]->getImage()->toQImage(QRect(0, 0, 128, 64))));
 }
 
+void TilesetView::hideSelection()
+{
+  selection->setVisible(false);
+}
+
 void TilesetView::mouseMoveEvent(QMouseEvent *event)
 {
   if (event->buttons() & Qt::LeftButton)
@@ -108,6 +113,7 @@ void TilesetView::mousePressEvent(QMouseEvent *event)
     if (start.y() >= 8)
       start.setY(7);
     selection->setRect(start.x() * 8, start.y() * 8, 8, 8);
+    selection->setVisible(true);
   }
 }
 

@@ -33,6 +33,7 @@
 #include "image.h"
 #include "map.h"
 #include "mapflags.h"
+#include "progresstracker.h"
 #include "spritepicker.h"
 #include "xmlParser.h"
 
@@ -47,8 +48,10 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 	protected slots:
     void setup();
     void on_btnEditResources_clicked();
+    void on_btnEditBattleAnimations_clicked();
     void on_btnCompileData_clicked();
     void on_btnNotes_clicked();
+    void on_btnProgressTracker_clicked();
     void audioBufferReady();
     void audioError(QAudioDecoder::Error error);
     void audioFinished();
@@ -56,7 +59,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_btnDeleteMap_clicked();
     void on_treeMaps_itemClicked(QTreeWidgetItem *item);
     void on_tblLayers_itemSelectionChanged();
-    void on_tblLayers_itemChanged(QTableWidgetItem *item);
+    void on_tblLayers_itemChanged();
     void on_leName_textEdited(QString text);
     void on_numMinSteps_valueChanged(int value);
     void on_numMaxSteps_valueChanged(int value);
@@ -71,14 +74,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_tblEnemies_itemSelectionChanged();
     void on_optTileset_currentIndexChanged(int index);
     void on_btnEditTileset_clicked();
-    void on_chkSnapToSubGrid_clicked();
-    void on_boxSnap_currentIndexChanged(int index);
-    void on_tblAutoTiles_cellClicked(int row, int column);
-    void on_tblAutoTiles_cellDoubleClicked(int row, int column);
+    void on_gvTileset_selectionChanged(QRect rect);
     void on_optZoom_currentIndexChanged(int index);
     void on_imgMapView_mousePressed(Qt::MouseButton button, QPoint pos);
     void on_imgMapView_mouseMoved(Qt::MouseButtons buttons, QPoint pos, QPoint delta);
-    void on_imgMapView_mouseReleased(Qt::MouseButton button, QPoint pos);
+    void on_imgMapView_mouseReleased(Qt::MouseButton button);
     void on_imgMapView_mouseDoubleClicked(Qt::MouseButton button, QPoint pos);
     void on_imgMapView_zoomOut(QPoint pos);
     void on_imgMapView_zoomIn(QPoint pos);
@@ -95,10 +95,15 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     MapFlags *flags;
     SpritePicker *spritePicker;
     Image *mapImage;
+    ProgressTracker *progressTracker;
     QPoint zoomPos;
     QAudioFormat audioFormat;
     QAudioDecoder *audioDecoder;
     QByteArray audioData;
+    QList<QPoint> penPoints;
+    QPoint rectStart;
+    QPoint rectEnd;
+    QRect tileSelection;
     int action;
     static const int zoom[5];
     bool ignoreEvents;

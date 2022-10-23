@@ -22,36 +22,29 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#ifndef TILESET_H
-#define TILESET_H
+#ifndef PROGRESSTRACKER_H
+#define PROGRESSTRACKER_H
 
-#include "image.h"
+#include "ui_progresstracker.h"
 #include "xmlParser.h"
 
-class Tileset
+class ProgressTracker : public QWidget, public Ui::ProgressTracker
 {
+  Q_OBJECT
   public:
-    Tileset(QString n, QString imageLocation);
-    Tileset(XMLNode tilesetNode);
-    ~Tileset();
-    XMLNode getXMLNode();
-    QByteArray compile();
-    void refreshBackdrops();
-    QString getName() {return name;}
-    void setName(QString value) {name = value;}
-    QString getLocation() {return location;}
-    Image *getImage() {return image;}
-    uint8_t getBattleBG(int tileID) {return battleBG[tileID];}
-    uint8_t getEncounterRate(int tileID) {return encounterRate[tileID];}
-    void setBattleBG(int tileID, uint8_t value) {battleBG[tileID] = value;}
-    void setEncounterRate(int tileID, uint8_t value) {encounterRate[tileID] = value;}
-    static QStringList backdrops;
+    ProgressTracker(QWidget *parent=nullptr);
+    ~ProgressTracker();
+  protected slots:
+    void itemMoved();
+    void on_treeProgress_itemDoubleClicked(QTreeWidgetItem *item, int column);
+    void on_buttonBox_clicked(QAbstractButton *button);
+    void on_aAddTopLevelItem_triggered();
+    void on_aAddChildItem_triggered();
+    void on_aDeleteItem_triggered();
   private:
-    QString name;
-    QString location;
-    Image *image;
-    uint8_t battleBG[128];
-    uint8_t encounterRate[128];
+    int updateProgressBar(QTreeWidgetItem *item);
+    void buildProgressTree(QTreeWidgetItem *parent, XMLNode node);
+    XMLNode buildProgressNode(QTreeWidgetItem *item);
 };
 
-#endif //TILESET_H
+#endif //PROGRESSTRACKER_H

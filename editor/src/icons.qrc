@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="/">
+    <file>icons/circle.png</file>
+    <file>icons/pencil.png</file>
+    <file>icons/square.png</file>
+    <file>icons/icon.png</file>
     <file>icons/add.png</file>
     <file>icons/delete.png</file>
     <file>icons/flip.png</file>
@@ -13,6 +17,7 @@
     <file>icons/visible_yes.png</file>
     <file>images/battle.png</file>
     <file>images/frameNumber.png</file>
+    <file>images/numbers.png</file>
     <file>images/passability.png</file>
   </qresource>
 </RCC>

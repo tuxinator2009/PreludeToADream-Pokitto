@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<progress value="24">
+	<item name="Prelude to a Dream" progress="15" notes="Game Progress">
+		<item name="Act 1" progress="46" notes="Ends when player finishes with brigands and breaks the seal in the first temple">
+			<item name="Chapter 1" progress="100" notes="Ends when player clears the cellar, learns of the raid and kidnapping, and leaves town"/>
+			<item name="Chapter 2" progress="100" notes="Ends when player scales the mountain pass and reaches the southern area">
+				<item name="Mountain tileset" progress="100" notes=""/>
+				<item name="Mountain pass map" progress="100" notes=""/>
+				<item name="Mountain battle BG" progress="100" notes=""/>
+				<item name="Overworld sprites" progress="100" notes="">
+					<item name="Town 1 sprite" progress="100" notes=""/>
+					<item name="Temple 1 sprite" progress="100" notes=""/>
+				</item>
+				<item name="Temple entrance tileset" progress="100" notes=""/>
+				<item name="Temple entrance map" progress="100" notes=""/>
+				<item name="Temple entrance guards" progress="100" notes=""/>
+			</item>
+			<item name="Chapter 3" progress="34" notes="Ends when player leaves through the western gate">
+				<item name="Battle Backgrounds" progress="24" notes="">
+					<item name="Desert" progress="100" notes=""/>
+					<item name="Tribe arena" progress="20" notes="Main concept in place"/>
+					<item name="Sea Cave" progress="0" notes=""/>
+					<item name="Throne Room" progress="0" notes=""/>
+					<item name="Ruins" progress="0" notes=""/>
+				</item>
+				<item name="Enemies" progress="54" notes="">
+					<item name="Scorpion (overworld)" progress="100" notes=""/>
+					<item name="Sandworm (overworld)" progress="100" notes=""/>
+					<item name="Eagle (overworld)" progress="100" notes=""/>
+					<item name="Wasp (overworld)" progress="100" notes=""/>
+					<item name="Warthog (overworld)" progress="100" notes=""/>
+					<item name="Aligator (tribal swamp)" progress="0" notes=""/>
+					<item name="Akecheta (tribal swamp)" progress="100" notes="Warrior"/>
+					<item name="Oaletaga (tribal swamp)" progress="0" notes="Shaman"/>
+					<item name="Tentacle (sea cave)" progress="0" notes=""/>
+					<item name="Kraken (sea cave)" progress="0" notes=""/>
+					<item name="King Ian (palace)" progress="0" notes=""/>
+				</item>
+				<item name="Tilesets" progress="24" notes="">
+					<item name="Castle Exterior" progress="70" notes="Room for 38 quarter tiles"/>
+					<item name="Forest Town" progress="100" notes=""/>
+					<item name="Desert Town" progress="0" notes=""/>
+					<item name="Swamp Tribe" progress="0" notes=""/>
+					<item name="Palace" progress="0" notes=""/>
+					<item name="Dungeon" progress="0" notes=""/>
+					<item name="Desert Tower" progress="0" notes=""/>
+				</item>
+				<item name="Maps" progress="37" notes="">
+					<item name="Western Gate" progress="100" notes=""/>
+					<item name="Forest Town" progress="90" notes="Needs dialog with knight finished"/>
+					<item name="Harbor Town" progress="0" notes=""/>
+					<item name="Desert Town" progress="0" notes=""/>
+					<item name="Ruined Tower" progress="0" notes=""/>
+					<item name="Palace" progress="0" notes=""/>
+					<item name="Caverns" progress="0" notes=""/>
+					<item name="Eastern Temple" progress="75" notes="Copy of Northeastern temple and change runes and monk&apos;s dialog"/>
+					<item name="Western Temple" progress="75" notes="Copy of Northeastern temple and change runes and monk&apos;s dialog"/>
+				</item>
+			</item>
+			<item name="Chapter 4" progress="0" notes="Ends when the player defeats the brigands"/>
+			<item name="Chapter 5" progress="0" notes="Ends when the player breaks the seal in the first temple"/>
+		</item>
+		<item name="Act 2" progress="0" notes="">
+			<item name="Chapter 6" progress="0" notes=""/>
+			<item name="Chapter 7" progress="0" notes=""/>
+			<item name="Chapter 8" progress="0" notes=""/>
+			<item name="Chapter 9" progress="0" notes=""/>
+			<item name="Chapter 10" progress="0" notes=""/>
+		</item>
+		<item name="Act 3" progress="0" notes="">
+			<item name="Chapter 11" progress="0" notes=""/>
+			<item name="Chapter 12" progress="0" notes=""/>
+			<item name="Chapter 13" progress="0" notes=""/>
+			<item name="Chapter 14" progress="0" notes=""/>
+			<item name="Chapter 15" progress="0" notes=""/>
+		</item>
+	</item>
+	<item name="Editor" progress="33" notes="Editor Progress">
+		<item name="Map Editor" progress="100" notes="">
+			<item name="Map View" progress="100" notes=""/>
+			<item name="Layers" progress="100" notes="">
+				<item name="Passability" progress="100" notes=""/>
+				<item name="Regions" progress="100" notes=""/>
+				<item name="Events" progress="100" notes=""/>
+				<item name="Tiles" progress="100" notes=""/>
+			</item>
+			<item name="Properties" progress="100" notes=""/>
+			<item name="Tileset Editor" progress="100" notes=""/>
+		</item>
+		<item name="Battle Animation Editor" progress="100" notes=""/>
+		<item name="Items Editor" progress="0" notes=""/>
+		<item name="Monster Editor" progress="0" notes=""/>
+		<item name="Messages Editor" progress="90" notes="Embeded in old Resources Editor, needs to be separated out"/>
+		<item name="Skills Editor" progress="0" notes=""/>
+		<item name="Spells Editor" progress="0" notes=""/>
+		<item name="Stats Editor" progress="0" notes=""/>
+		<item name="Notes Editor" progress="0" notes=""/>
+		<item name="Compile Data" progress="43" notes="">
+			<item name="Maps" progress="75" notes="Compile events done, just need to compile map data"/>
+			<item name="Battle Animations" progress="100" notes=""/>
+			<item name="Resources" progress="0" notes="">
+				<item name="Battle Backgrounds" progress="0" notes=""/>
+				<item name="Battle Sprites" progress="0" notes=""/>
+				<item name="Music" progress="0" notes=""/>
+				<item name="Screens" progress="0" notes=""/>
+				<item name="SFX" progress="0" notes=""/>
+				<item name="Skills" progress="0" notes=""/>
+				<item name="Spells" progress="0" notes=""/>
+				<item name="Sprites" progress="0" notes=""/>
+				<item name="Stats" progress="0" notes=""/>
+				<item name="Tilesets" progress="0" notes=""/>
+				<item name="Other" progress="0" notes=""/>
+			</item>
+			<item name="Monsters" progress="0" notes=""/>
+		</item>
+	</item>
+</progress>

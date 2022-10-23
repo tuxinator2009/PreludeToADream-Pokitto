@@ -25,14 +25,17 @@
 #include <QMessageBox>
 #include <QScrollBar>
 #include <QTimer>
+#include "battleanimationseditor.h"
 #include "globals.h"
 #include "image.h"
 #include "mainwindow.h"
 #include "map.h"
 #include "mapevent.h"
 #include "mapeventeditor.h"
+#include "progresstracker.h"
 #include "resources.h"
 #include "tileset.h"
+#include "tileseteditor.h"
 #include "xmlParser.h"
 
 const int MainWindow::zoom[5] = {64, 128, 256, 512, 1024};
@@ -42,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
   ignoreEvents = true;
   setupUi(this);
   mapImage = nullptr;
+  progressTracker = nullptr;
   QTimer::singleShot(10, this, SLOT(setup()));
   ignoreEvents = false;
 }
@@ -77,14 +81,6 @@ void MainWindow::setup()
       label->setStyleSheet("border: 0px solid rgb(114, 159, 207);");
       tblEnemies->setCellWidget(row, col, label);
     }
-  }
-  for (int col = 0; col < 8; ++col)
-  {
-    QLabel *label = new QLabel();
-    label->setMinimumSize(QSize(32, 32));
-    label->setMaximumSize(QSize(32, 32));
-    label->setStyleSheet("border: 0px solid rgb(114, 159, 207);");
-    tblAutoTiles->setCellWidget(0, col, label);
   }
   flags = new MapFlags(this);
   flags->setVisible(false);
@@ -135,6 +131,21 @@ void MainWindow::on_btnEditResources_clicked()
   ignoreEvents = false;
 }
 
+void MainWindow::on_btnEditBattleAnimations_clicked()
+{
+  BattleAnimationsEditor *editor = new BattleAnimationsEditor(this);
+  ignoreEvents = true;
+  if (btnPlayMusic->isChecked())
+  {
+    Globals::audio->stop();
+    btnPlayMusic->setIcon(QIcon(":/icons/play.png"));
+    btnPlayMusic->setChecked(false);
+  }
+  editor->exec();
+  editor->deleteLater();
+  ignoreEvents = false;
+}
+
 void MainWindow::on_btnCompileData_clicked()
 {
   QString fileLocation = QString("%1/music/%2.ogg").arg(Globals::datadir).arg(Globals::bgms[0]);
@@ -156,6 +167,15 @@ void MainWindow::on_btnCompileData_clicked()
 
 void MainWindow::on_btnNotes_clicked()
 {
+}
+
+void MainWindow::on_btnProgressTracker_clicked()
+{
+  if (progressTracker == nullptr)
+    progressTracker = new ProgressTracker(this);
+  progressTracker->show();
+  progressTracker->raise();
+  progressTracker->activateWindow();
 }
 
 void MainWindow::audioBufferReady()
@@ -246,9 +266,8 @@ void MainWindow::on_tblLayers_itemSelectionChanged()
   updateMapView();
 }
 
-void MainWindow::on_tblLayers_itemChanged(QTableWidgetItem *item)
+void MainWindow::on_tblLayers_itemChanged()
 {
-  Q_UNUSED(item);
   updateMapView();
 }
 
@@ -358,6 +377,7 @@ void MainWindow::spritePicker_spriteClicked(uint8_t spriteID)
   label->setPixmap(QPixmap::fromImage(Globals::sprites->toQImage(QRect(spriteID % 16 * 16, spriteID / 16 * 24, 16, 24))).scaled(32, 48));
   Globals::map->setSpriteID(tblSprites->currentRow() * 8 + tblSprites->currentColumn(), spriteID);
   spritePicker->hide();
+  updateMapView();
 }
 
 void MainWindow::on_tblEnemies_itemSelectionChanged()
@@ -388,31 +408,14 @@ void MainWindow::on_optTileset_currentIndexChanged(int index)
 
 void MainWindow::on_btnEditTileset_clicked()
 {
+  TilesetEditor *editor = new TilesetEditor(Globals::tilesets[optTileset->currentIndex()], this);
+  editor->exec();
+  editor->deleteLater();
 }
 
-void MainWindow::on_chkSnapToSubGrid_clicked()
+void MainWindow::on_gvTileset_selectionChanged(QRect rect)
 {
-}
-
-void MainWindow::on_boxSnap_currentIndexChanged(int index)
-{
-}
-
-void MainWindow::on_tblAutoTiles_cellClicked(int row, int column)
-{
-  Q_UNUSED(row);
-  for (int col = 0; col < 8; ++col)
-  {
-    QLabel *label = static_cast<QLabel*>(tblAutoTiles->cellWidget(0, col));
-    if (col == column)
-      label->setStyleSheet("border: 1px solid rgb(114, 159, 207);");
-    else
-      label->setStyleSheet("border: 0px solid rgb(114, 159, 207);");
-  }
-}
-
-void MainWindow::on_tblAutoTiles_cellDoubleClicked(int row, int column)
-{
+  tileSelection = rect;
 }
 
 void MainWindow::on_optZoom_currentIndexChanged(int index)
@@ -456,7 +459,29 @@ void MainWindow::on_imgMapView_mousePressed(Qt::MouseButton button, QPoint pos)
     }
     else if (tblLayers->currentRow() == Map::LAYER_FOREGROUND)
     {
-      //TODO: draw tiles
+      int tileX = pos.x() / (currentZoom / 32);
+      int tileY = pos.y() / (currentZoom / 32);
+      if (chkSnapToSubGrid->isChecked())
+      {
+        tileX = (tileX & ~1) | (tileSelection.x() % 2);
+        tileY = (tileY & ~1) | (tileSelection.y() % 2);
+      }
+      if (btnToolPencil->isChecked())
+      {
+        rectStart = QPoint(tileX, tileY);
+        penPoints += QPoint(tileX, tileY);
+      }
+      else if (btnToolRectangle->isChecked())
+      {
+        rectStart = QPoint(tileX, tileY);
+        rectEnd = QPoint(tileX, tileY);
+      }
+      else if (btnToolCircle->isChecked())
+      {
+        rectStart = QPoint(tileX, tileY);
+        rectEnd = QPoint(tileX, tileY);
+      }
+      action = 1;
     }
     else if (tblLayers->currentRow() == Map::LAYER_EVENTS)
     {
@@ -477,7 +502,29 @@ void MainWindow::on_imgMapView_mousePressed(Qt::MouseButton button, QPoint pos)
     }
     else if (tblLayers->currentRow() == Map::LAYER_BACKGROUND)
     {
-      //TODO: draw tiles
+      int tileX = pos.x() / (currentZoom / 32);
+      int tileY = pos.y() / (currentZoom / 32);
+      if (chkSnapToSubGrid->isChecked())
+      {
+        tileX = (tileX & ~1) | (tileSelection.x() % 2);
+        tileY = (tileY & ~1) | (tileSelection.y() % 2);
+      }
+      if (btnToolPencil->isChecked())
+      {
+        rectStart = QPoint(tileX, tileY);
+        penPoints += QPoint(tileX, tileY);
+      }
+      else if (btnToolRectangle->isChecked())
+      {
+        rectStart = QPoint(tileX, tileY);
+        rectEnd = QPoint(tileX, tileY);
+      }
+      else if (btnToolCircle->isChecked())
+      {
+        rectStart = QPoint(tileX, tileY);
+        rectEnd = QPoint(tileX, tileY);
+      }
+      action = 1;
     }
     updateMapView();
   }
@@ -496,6 +543,12 @@ void MainWindow::on_imgMapView_mousePressed(Qt::MouseButton button, QPoint pos)
         break;
       }
     }
+  }
+  else if (button == Qt::RightButton && action == 1 && (tblLayers->currentRow() == Map::LAYER_FOREGROUND || tblLayers->currentRow() == Map::LAYER_BACKGROUND))
+  {
+    penPoints.clear();
+    action = 0;
+    updateMapView();
   }
 }
 
@@ -534,9 +587,23 @@ void MainWindow::on_imgMapView_mouseMoved(Qt::MouseButtons buttons, QPoint pos, 
       if (num != -1)
         Globals::map->setRegionMonster(regionID, num, tblEnemies->currentRow() * 5 + tblEnemies->currentColumn());
     }
-    else if (tblLayers->currentRow() == Map::LAYER_FOREGROUND)
+    else if (tblLayers->currentRow() == Map::LAYER_FOREGROUND && action == 1)
     {
-      //TODO: draw tiles
+      int tileX = pos.x() / (currentZoom / 32);
+      int tileY = pos.y() / (currentZoom / 32);
+      if (btnToolPencil->isChecked() && !penPoints.contains(QPoint(tileX, tileY)))
+      {
+        if (chkSnapToSubGrid->isChecked())
+        {
+          tileX = (tileX & ~1) | (tileSelection.x() % 2);
+          tileY = (tileY & ~1) | (tileSelection.y() % 2);
+        }
+        penPoints += QPoint(tileX, tileY);
+      }
+      else if (btnToolRectangle->isChecked())
+        rectEnd = QPoint(tileX, tileY);
+      else if (btnToolCircle->isChecked())
+        rectEnd = QPoint(tileX, tileY);
     }
     else if (tblLayers->currentRow() == Map::LAYER_EVENTS)
     {
@@ -548,9 +615,23 @@ void MainWindow::on_imgMapView_mouseMoved(Qt::MouseButtons buttons, QPoint pos, 
         event->setY(pos.y() / (currentZoom / 16));
       }
     }
-    else if (tblLayers->currentRow() == Map::LAYER_BACKGROUND)
+    else if (tblLayers->currentRow() == Map::LAYER_BACKGROUND && action == 1)
     {
-      //TODO: draw tiles
+      int tileX = pos.x() / (currentZoom / 32);
+      int tileY = pos.y() / (currentZoom / 32);
+      if (btnToolPencil->isChecked() && !penPoints.contains(QPoint(tileX, tileY)))
+      {
+        if (chkSnapToSubGrid->isChecked())
+        {
+          tileX = (tileX & ~1) | (tileSelection.x() % 2);
+          tileY = (tileY & ~1) | (tileSelection.y() % 2);
+        }
+        penPoints += QPoint(tileX, tileY);
+      }
+      else if (btnToolRectangle->isChecked())
+        rectEnd = QPoint(tileX, tileY);
+      else if (btnToolCircle->isChecked())
+        rectEnd = QPoint(tileX, tileY);
     }
     updateMapView();
   }
@@ -563,8 +644,174 @@ void MainWindow::on_imgMapView_mouseMoved(Qt::MouseButtons buttons, QPoint pos, 
   }
 }
 
-void MainWindow::on_imgMapView_mouseReleased(Qt::MouseButton button, QPoint pos)
+void MainWindow::on_imgMapView_mouseReleased(Qt::MouseButton button)
 {
+  if (button == Qt::LeftButton && action == 1 && (tblLayers->currentRow() == Map::LAYER_FOREGROUND || tblLayers->currentRow() == Map::LAYER_BACKGROUND))
+  {
+    if (btnToolPencil->isChecked())
+    {
+      for (int i = 0; i < penPoints.count(); ++i)
+      {
+        int tileX = penPoints[i].x() - rectStart.x();
+        int tileY = penPoints[i].y() - rectStart.y();
+        while (tileX < 0)
+          tileX += tileSelection.width();
+        while (tileY < 0)
+          tileY += tileSelection.height();
+        for (int y = 0; y < tileSelection.height(); ++y)
+        {
+          for (int x = 0; x < tileSelection.width(); ++x)
+          {
+            uint8_t tileID = ((tileY + y) % tileSelection.height() + tileSelection.y()) * 16 + (tileX + x) % tileSelection.width() + tileSelection.x();
+            if (tblLayers->currentRow() == Map::LAYER_FOREGROUND)
+              Globals::map->setFGTile(penPoints[i].x() + x, penPoints[i].y() + y, tileID);
+            else if (tblLayers->currentRow() == Map::LAYER_BACKGROUND)
+              Globals::map->setBGTile(penPoints[i].x() + x, penPoints[i].y() + y, tileID);
+          }
+        }
+      }
+    }
+    else if (btnToolRectangle->isChecked())
+    {
+      int startX, startY;
+      int endX, endY;
+      if (rectStart.x() < rectEnd.x())
+      {
+        startX = rectStart.x();
+        endX = rectEnd.x();
+      }
+      else
+      {
+        startX = rectEnd.x();
+        endX = rectStart.x();
+      }
+      if (rectStart.y() < rectEnd.y())
+      {
+        startY = rectStart.y();
+        endY = rectEnd.y();
+      }
+      else
+      {
+        startY = rectEnd.y();
+        endY = rectStart.y();
+      }
+      for (int y = startY; y <= endY; ++y)
+      {
+        for (int x = startX; x <= endX; ++x)
+        {
+          uint8_t tileID = ((y - startY) % tileSelection.height() + tileSelection.y()) * 16 + (x - startX) % tileSelection.width() + tileSelection.x();
+          if (tblLayers->currentRow() == Map::LAYER_FOREGROUND)
+            Globals::map->setFGTile(x, y, tileID);
+          else if (tblLayers->currentRow() == Map::LAYER_BACKGROUND)
+            Globals::map->setBGTile(x, y, tileID);
+        }
+      }
+    }
+    else if (btnToolCircle->isChecked())
+    {
+      int startX, startY;
+      int endX, endY;
+      if (rectStart.x() < rectEnd.x())
+      {
+        startX = rectStart.x();
+        endX = rectEnd.x();
+      }
+      else
+      {
+        startX = rectEnd.x();
+        endX = rectStart.x();
+      }
+      if (rectStart.y() < rectEnd.y())
+      {
+        startY = rectStart.y();
+        endY = rectEnd.y();
+      }
+      else
+      {
+        startY = rectEnd.y();
+        endY = rectStart.y();
+      }
+      float rx = (endX - startX + 1) / 2.0;
+      float ry = (endY - startY + 1) / 2.0;
+      float xc = startX + rx;
+      float yc = startY + ry;
+      float dx, dy, d1, d2, x, y;
+      int tileX, tileY, tileID;
+      x = 0;
+      y = ry;
+      d1 = (ry * ry) - (rx * rx * ry) + (0.25 * rx * rx);
+      dx = 2 * ry * ry * x;
+      dy = 2 * rx * rx * y;
+      while (dx < dy)
+      {
+        for (tileX = qMax((int)(-x + xc), startX); tileX <= qMin((int)(x + xc), endX); ++tileX)
+        {
+          tileY = y + yc;
+          tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+          if (tblLayers->currentRow() == Map::LAYER_FOREGROUND)
+            Globals::map->setFGTile(tileX, tileY, tileID);
+          else if (tblLayers->currentRow() == Map::LAYER_BACKGROUND)
+            Globals::map->setBGTile(tileX, tileY, tileID);
+          tileY = -y + yc;
+          tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+          if (tblLayers->currentRow() == Map::LAYER_FOREGROUND)
+            Globals::map->setFGTile(tileX, tileY, tileID);
+          else if (tblLayers->currentRow() == Map::LAYER_BACKGROUND)
+            Globals::map->setBGTile(tileX, tileY, tileID);
+        }
+        if (d1 < 0)
+        {
+          ++x;
+          dx = dx + (2 * ry * ry);
+          d1 = d1 + dx + (ry * ry);
+        }
+        else
+        {
+          ++x;
+          --y;
+          dx = dx + (2 * ry * ry);
+          dy = dy - (2 * rx * rx);
+          d1 = d1 + dx - dy + (ry * ry);
+        }
+      }
+      d2 = ((ry * ry) * ((x + 0.5) * (x + 0.5))) + ((rx * rx) * ((y - 1) * (y - 1))) - (rx * rx * ry * ry);
+      while (y >= 0)
+      {
+        for (tileX = qMax((int)(-x + xc), startX); tileX <= qMin((int)(x + xc), endX); ++tileX)
+        {
+          tileY = y + yc;
+          tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+          if (tblLayers->currentRow() == Map::LAYER_FOREGROUND)
+            Globals::map->setFGTile(tileX, tileY, tileID);
+          else if (tblLayers->currentRow() == Map::LAYER_BACKGROUND)
+            Globals::map->setBGTile(tileX, tileY, tileID);
+          tileY = -y + yc;
+          tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+          if (tblLayers->currentRow() == Map::LAYER_FOREGROUND)
+            Globals::map->setFGTile(tileX, tileY, tileID);
+          else if (tblLayers->currentRow() == Map::LAYER_BACKGROUND)
+            Globals::map->setBGTile(tileX, tileY, tileID);
+        }
+        if (d2 > 0)
+        {
+          --y;
+          dy = dy - (2 * rx * rx);
+          d2 = d2 + (rx * rx) - dy;
+        }
+        else
+        {
+          --y;
+          ++x;
+          dx = dx + (2 * ry * ry);
+          dy = dy - (2 * rx * rx);
+          d2 = d2 + dx - dy + (rx * rx);
+        }
+      }
+    }
+    penPoints.clear();
+    action = 0;
+    updateMapView();
+  }
 }
 
 void MainWindow::on_imgMapView_mouseDoubleClicked(Qt::MouseButton button, QPoint pos)
@@ -734,12 +981,153 @@ void MainWindow::updateMapView()
       for (int x = 0; x < Globals::map->getWidth() * 32; ++x)
       {
         uint8_t tileID = Globals::map->getBGTile(x, y);
-        if (tileID >= 128 && tileID <= 136)
-        {
-          //TODO: calculate auto-tile
-        }
         if (tileID < 128)
           mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(x * 8, y * 8), false);
+      }
+    }
+    if (tblLayers->currentRow() == Map::LAYER_BACKGROUND && action == 1)
+    {
+      if (btnToolPencil->isChecked())
+      {
+        for (int i = 0; i < penPoints.count(); ++i)
+        {
+          int tileX = penPoints[i].x() - rectStart.x();
+          int tileY = penPoints[i].y() - rectStart.y();
+          while (tileX < 0)
+            tileX += tileSelection.width();
+          while (tileY < 0)
+            tileY += tileSelection.height();
+          for (int y = 0; y < tileSelection.height(); ++y)
+          {
+            for (int x = 0; x < tileSelection.width(); ++x)
+            {
+              uint8_t tileID = ((tileY + y) % tileSelection.height() + tileSelection.y()) * 16 + (tileX + x) % tileSelection.width() + tileSelection.x();
+              mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint((penPoints[i].x() + x) * 8, (penPoints[i].y() + y) * 8), false);
+            }
+          }
+        }
+      }
+      else if (btnToolRectangle->isChecked())
+      {
+        int startX, startY;
+        int endX, endY;
+        if (rectStart.x() < rectEnd.x())
+        {
+          startX = rectStart.x();
+          endX = rectEnd.x();
+        }
+        else
+        {
+          startX = rectEnd.x();
+          endX = rectStart.x();
+        }
+        if (rectStart.y() < rectEnd.y())
+        {
+          startY = rectStart.y();
+          endY = rectEnd.y();
+        }
+        else
+        {
+          startY = rectEnd.y();
+          endY = rectStart.y();
+        }
+        for (int y = startY; y <= endY; ++y)
+        {
+          for (int x = startX; x <= endX; ++x)
+          {
+            uint8_t tileID = ((y - startY) % tileSelection.height() + tileSelection.y()) * 16 + (x - startX) % tileSelection.width() + tileSelection.x();
+            mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(x * 8, y * 8), false);
+          }
+        }
+      }
+      else if (btnToolCircle->isChecked())
+      {
+        int startX, startY;
+        int endX, endY;
+        if (rectStart.x() < rectEnd.x())
+        {
+          startX = rectStart.x();
+          endX = rectEnd.x();
+        }
+        else
+        {
+          startX = rectEnd.x();
+          endX = rectStart.x();
+        }
+        if (rectStart.y() < rectEnd.y())
+        {
+          startY = rectStart.y();
+          endY = rectEnd.y();
+        }
+        else
+        {
+          startY = rectEnd.y();
+          endY = rectStart.y();
+        }
+        float rx = (endX - startX + 1) / 2.0;
+        float ry = (endY - startY + 1) / 2.0;
+        float xc = startX + rx;
+        float yc = startY + ry;
+        float dx, dy, d1, d2, x, y;
+        int tileX, tileY, tileID;
+        x = 0;
+        y = ry;
+        d1 = (ry * ry) - (rx * rx * ry) + (0.25 * rx * rx);
+        dx = 2 * ry * ry * x;
+        dy = 2 * rx * rx * y;
+        while (dx < dy)
+        {
+          for (tileX = qMax((int)(-x + xc), startX); tileX <= qMin((int)(x + xc), endX); ++tileX)
+          {
+            tileY = y + yc;
+            tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+            mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(tileX * 8, tileY * 8), true);
+            tileY = -y + yc;
+            tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+            mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(tileX * 8, tileY * 8), true);
+          }
+          if (d1 < 0)
+          {
+            ++x;
+            dx = dx + (2 * ry * ry);
+            d1 = d1 + dx + (ry * ry);
+          }
+          else
+          {
+            ++x;
+            --y;
+            dx = dx + (2 * ry * ry);
+            dy = dy - (2 * rx * rx);
+            d1 = d1 + dx - dy + (ry * ry);
+          }
+        }
+        d2 = ((ry * ry) * ((x + 0.5) * (x + 0.5))) + ((rx * rx) * ((y - 1) * (y - 1))) - (rx * rx * ry * ry);
+        while (y >= 0)
+        {
+          for (tileX = qMax((int)(-x + xc), startX); tileX <= qMin((int)(x + xc), endX); ++tileX)
+          {
+            tileY = y + yc;
+            tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+            mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(tileX * 8, tileY * 8), true);
+            tileY = -y + yc;
+            tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+            mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(tileX * 8, tileY * 8), true);
+          }
+          if (d2 > 0)
+          {
+            --y;
+            dy = dy - (2 * rx * rx);
+            d2 = d2 + (rx * rx) - dy;
+          }
+          else
+          {
+            --y;
+            ++x;
+            dx = dx + (2 * ry * ry);
+            dy = dy - (2 * rx * rx);
+            d2 = d2 + dx - dy + (rx * rx);
+          }
+        }
       }
     }
   }
@@ -761,12 +1149,153 @@ void MainWindow::updateMapView()
       for (int x = 0; x < Globals::map->getWidth() * 32; ++x)
       {
         uint8_t tileID = Globals::map->getFGTile(x, y);
-        if (tileID >= 128 && tileID <= 136)
-        {
-          //TODO: calculate auto-tile
-        }
         if (tileID < 128)
           mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(x * 8, y * 8), true);
+      }
+    }
+    if (tblLayers->currentRow() == Map::LAYER_FOREGROUND && action == 1)
+    {
+      if (btnToolPencil->isChecked())
+      {
+        for (int i = 0; i < penPoints.count(); ++i)
+        {
+          int tileX = penPoints[i].x() - rectStart.x();
+          int tileY = penPoints[i].y() - rectStart.y();
+          while (tileX < 0)
+            tileX += tileSelection.width();
+          while (tileY < 0)
+            tileY += tileSelection.height();
+          for (int y = 0; y < tileSelection.height(); ++y)
+          {
+            for (int x = 0; x < tileSelection.width(); ++x)
+            {
+              uint8_t tileID = ((tileY + y) % tileSelection.height() + tileSelection.y()) * 16 + (tileX + x) % tileSelection.width() + tileSelection.x();
+              mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint((penPoints[i].x() + x) * 8, (penPoints[i].y() + y) * 8), true);
+            }
+          }
+        }
+      }
+      else if (btnToolRectangle->isChecked())
+      {
+        int startX, startY;
+        int endX, endY;
+        if (rectStart.x() < rectEnd.x())
+        {
+          startX = rectStart.x();
+          endX = rectEnd.x();
+        }
+        else
+        {
+          startX = rectEnd.x();
+          endX = rectStart.x();
+        }
+        if (rectStart.y() < rectEnd.y())
+        {
+          startY = rectStart.y();
+          endY = rectEnd.y();
+        }
+        else
+        {
+          startY = rectEnd.y();
+          endY = rectStart.y();
+        }
+        for (int y = startY; y <= endY; ++y)
+        {
+          for (int x = startX; x <= endX; ++x)
+          {
+            uint8_t tileID = ((y - startY) % tileSelection.height() + tileSelection.y()) * 16 + (x - startX) % tileSelection.width() + tileSelection.x();
+            mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(x * 8, y * 8), true);
+          }
+        }
+      }
+      else if (btnToolCircle->isChecked())
+      {
+        int startX, startY;
+        int endX, endY;
+        if (rectStart.x() < rectEnd.x())
+        {
+          startX = rectStart.x();
+          endX = rectEnd.x();
+        }
+        else
+        {
+          startX = rectEnd.x();
+          endX = rectStart.x();
+        }
+        if (rectStart.y() < rectEnd.y())
+        {
+          startY = rectStart.y();
+          endY = rectEnd.y();
+        }
+        else
+        {
+          startY = rectEnd.y();
+          endY = rectStart.y();
+        }
+        float rx = (endX - startX + 1) / 2.0;
+        float ry = (endY - startY + 1) / 2.0;
+        float xc = startX + rx;
+        float yc = startY + ry;
+        float dx, dy, d1, d2, x, y;
+        int tileX, tileY, tileID;
+        x = 0;
+        y = ry;
+        d1 = (ry * ry) - (rx * rx * ry) + (0.25 * rx * rx);
+        dx = 2 * ry * ry * x;
+        dy = 2 * rx * rx * y;
+        while (dx < dy)
+        {
+          for (tileX = qMax((int)(-x + xc), startX); tileX <= qMin((int)(x + xc), endX); ++tileX)
+          {
+            tileY = y + yc;
+            tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+            mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(tileX * 8, tileY * 8), true);
+            tileY = -y + yc;
+            tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+            mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(tileX * 8, tileY * 8), true);
+          }
+          if (d1 < 0)
+          {
+            ++x;
+            dx = dx + (2 * ry * ry);
+            d1 = d1 + dx + (ry * ry);
+          }
+          else
+          {
+            ++x;
+            --y;
+            dx = dx + (2 * ry * ry);
+            dy = dy - (2 * rx * rx);
+            d1 = d1 + dx - dy + (ry * ry);
+          }
+        }
+        d2 = ((ry * ry) * ((x + 0.5) * (x + 0.5))) + ((rx * rx) * ((y - 1) * (y - 1))) - (rx * rx * ry * ry);
+        while (y >= 0)
+        {
+          for (tileX = qMax((int)(-x + xc), startX); tileX <= qMin((int)(x + xc), endX); ++tileX)
+          {
+            tileY = y + yc;
+            tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+            mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(tileX * 8, tileY * 8), true);
+            tileY = -y + yc;
+            tileID = ((tileY - startY) % tileSelection.height() + tileSelection.y()) * 16 + (tileX - startX) % tileSelection.width() + tileSelection.x();
+            mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(tileX * 8, tileY * 8), true);
+          }
+          if (d2 > 0)
+          {
+            --y;
+            dy = dy - (2 * rx * rx);
+            d2 = d2 + (rx * rx) - dy;
+          }
+          else
+          {
+            --y;
+            ++x;
+            dx = dx + (2 * ry * ry);
+            dy = dy - (2 * rx * rx);
+            d2 = d2 + dx - dy + (rx * rx);
+          }
+        }
       }
     }
   }

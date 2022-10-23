@@ -22,36 +22,27 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#ifndef TILESET_H
-#define TILESET_H
+#ifndef TILESETEDITOR_H
+#define TILESETEDITOR_H
 
-#include "image.h"
-#include "xmlParser.h"
+#include "ui_tileseteditor.h"
+#include "tileset.h"
 
-class Tileset
+class TilesetEditor : public QDialog, public Ui::TilesetEditor
 {
+  Q_OBJECT
   public:
-    Tileset(QString n, QString imageLocation);
-    Tileset(XMLNode tilesetNode);
-    ~Tileset();
-    XMLNode getXMLNode();
-    QByteArray compile();
-    void refreshBackdrops();
-    QString getName() {return name;}
-    void setName(QString value) {name = value;}
-    QString getLocation() {return location;}
-    Image *getImage() {return image;}
-    uint8_t getBattleBG(int tileID) {return battleBG[tileID];}
-    uint8_t getEncounterRate(int tileID) {return encounterRate[tileID];}
-    void setBattleBG(int tileID, uint8_t value) {battleBG[tileID] = value;}
-    void setEncounterRate(int tileID, uint8_t value) {encounterRate[tileID] = value;}
-    static QStringList backdrops;
+    TilesetEditor(Tileset *set, QWidget *parent=nullptr);
+    ~TilesetEditor();
+  protected slots:
+    void on_imgTileset_mousePressed(Qt::MouseButton button, QPoint pos);
+    void on_imgTileset_mouseMoved(Qt::MouseButtons buttons, QPoint pos);
   private:
-    QString name;
-    QString location;
+    void redrawImage();
+    void drawNumber(uint8_t value, int x, int y);
+    Image *numbers;
     Image *image;
-    uint8_t battleBG[128];
-    uint8_t encounterRate[128];
+    Tileset *tileset;
 };
 
-#endif //TILESET_H
+#endif //TILESETEDITOR_H

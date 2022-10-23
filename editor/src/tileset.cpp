@@ -27,6 +27,8 @@
 #include "tileset.h"
 #include "xmlParser.h"
 
+QStringList Tileset::backdrops;
+
 Tileset::Tileset(QString n, QString imageLocation)
 {
   name = n;
@@ -48,6 +50,7 @@ Tileset::Tileset(XMLNode tilesetNode)
   for (int i = 0; i < 128; ++i)
   {
     battleBG[i] = text[i * 2].toUInt();
+    battleBG[i] = Globals::backdrops.indexOf(backdrops[battleBG[i]]);
     encounterRate[i] = text[i * 2 + 1].toUInt();
   }
 }
@@ -69,10 +72,27 @@ XMLNode Tileset::getXMLNode()
     if (i != 127)
     {
       text += ",";
-      if (i % 32 == 31)
+      if (i % 16 == 15)
         text += "\n\t\t";
     }
   }
   tilesetNode.addText(text.toLocal8Bit().data());
   return tilesetNode;
+}
+
+QByteArray Tileset::compile()
+{
+  QByteArray bytes;
+  for (int i = 0; i < 128; ++i)
+  {
+    bytes += battleBG[i];
+    bytes += encounterRate[i];
+  }
+  return bytes;
+}
+
+void Tileset::refreshBackdrops()
+{
+  for (int i = 0; i < 128; ++i)
+    battleBG[i] = Globals::backdrops.indexOf(backdrops[battleBG[i]]);
 }

@@ -8,6 +8,7 @@ QT += widgets multimedia
 # Input
 HEADERS += \
   battleanimation.h \
+  battleanimationseditor.h \
   choosemapevent.h \
   colorpicker.h \
   configureevent_battle.h \
@@ -45,14 +46,17 @@ HEADERS += \
 	mapeventeditor.h \
 	mapflags.h \
 	mapspritepicker.h \
+	progresstracker.h \
 	resources.h \
 	spritepicker.h \
 	tileset.h \
+	tileseteditor.h \
 	tilesetview.h \
 	xmlParser.h
 
 SOURCES += \
   battleanimation.cpp \
+  battleanimationseditor.cpp \
   choosemapevent.cpp \
   colorpicker.cpp \
   configureevent_changeeventlocation.cpp \
@@ -69,13 +73,16 @@ SOURCES += \
 	mapeventeditor.cpp \
 	mapflags.cpp \
 	mapspritepicker.cpp \
+	progresstracker.cpp \
 	resources.cpp \
 	spritepicker.cpp \
 	tileset.cpp \
+	tileseteditor.cpp \
 	tilesetview.cpp \
 	xmlParser.cpp
 
 FORMS += \
+  battleanimationseditor.ui \
   choosemapevent.ui \
   colorpicker.ui \
   configureevent_battle.ui \
@@ -107,7 +114,9 @@ FORMS += \
 	mapeventeditor.ui \
 	mapflags.ui \
 	mapspritepicker.ui \
+	progresstracker.ui \
 	resources.ui \
-	spritepicker.ui
+	spritepicker.ui \
+	tileseteditor.ui
 
 RESOURCES += icons.qrc

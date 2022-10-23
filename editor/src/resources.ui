@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Resources</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/icon.png</normaloff>:/icons/icon.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">.QFrame
 {
@@ -1142,7 +1146,7 @@
                 <item>
                  <widget class="QStackedWidget" name="stkEffect">
                   <property name="currentIndex">
-                   <number>6</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="pgBlank_9"/>
                   <widget class="QWidget" name="pgSprite_9">

@@ -202,6 +202,12 @@ void Globals::refreshBackdrops()
   QDir folder(QString("%1/backdrops").arg(Globals::datadir));
   backdrops = folder.entryList(QStringList() << "*.png", QDir::Files, QDir::Name);
   backdrops.replaceInStrings(".png", "", Qt::CaseInsensitive);
+  for (auto tileset : tilesets)
+    tileset->refreshBackdrops();
+  //printf("backdrops:\n");
+  //for (int i = 0; i < backdrops.count(); ++i)
+  //  printf("  %d: %s\n", i, backdrops[i].toLocal8Bit().data());
+  Tileset::backdrops = backdrops;
 }
 
 void Globals::refreshMusic()
@@ -258,15 +264,21 @@ void Globals::loadTilesets()
   XMLNode tilesetsNode;
   XMLResults results;
   tilesetsNode = XMLNode::parseFile(QString("%1/tilesets/tilesets.xml").arg(Globals::datadir).toLocal8Bit().data(), "ptad-tilesets", &results);
+  Tileset::backdrops = QString(tilesetsNode.getChildNode("backdrops").getText()).split('\n');
+  Tileset::backdrops.replaceInStrings(QRegExp("\\s"), "");
   if (results.error != XMLError::eXMLErrorNone)
     QMessageBox::critical(nullptr, "XML Parser Error", QString("An error occurred when parsing tilesets.xml on line %1 column %2.\nError: %3").arg(results.nLine).arg(results.nColumn).arg(XMLNode::getError(results.error)));
-  for (int i = 0; i < tilesetsNode.nChildNode(); ++i)
+  for (int i = 1; i < tilesetsNode.nChildNode(); ++i)
     tilesets += new Tileset(tilesetsNode.getChildNode(i));
+  //for (int i = 0; i < Tileset::backdrops.count(); ++i)
+  //  printf("%d (%s) -> %d\n", i, Tileset::backdrops[i].toLocal8Bit().data(), backdrops.indexOf(Tileset::backdrops[i]));
+  Tileset::backdrops = backdrops;
 }
 
 void Globals::saveTilesets()
 {
   XMLNode tilesetsNode = XMLNode::createXMLTopNode("ptad-tilesets");
+  tilesetsNode.addChild("backdrops").addText(backdrops.join("\n\t\t").toLocal8Bit().data());
   for (int i = 0; i < tilesets.size(); ++i)
     tilesetsNode.addChild(tilesets[i]->getXMLNode());
   tilesetsNode.writeToFile(QString("%1/tilesets/tilesets.xml").arg(Globals::datadir).toLocal8Bit().data());

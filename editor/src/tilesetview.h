@@ -41,6 +41,7 @@ class TilesetView : public QGraphicsView
     void selectionChanged(QRect rect);
   public slots:
     void changeTileset(int id);
+    void hideSelection();
   private:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
