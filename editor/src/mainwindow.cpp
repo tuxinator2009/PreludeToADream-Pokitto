@@ -28,12 +28,16 @@
 #include "battleanimationseditor.h"
 #include "globals.h"
 #include "image.h"
+#include "itemseditor.h"
 #include "mainwindow.h"
 #include "map.h"
 #include "mapevent.h"
 #include "mapeventeditor.h"
-#include "progresstracker.h"
+#include "messageseditor.h"
+#include "monsterseditor.h"
 #include "resources.h"
+#include "skillsspellseditor.h"
+#include "statseditor.h"
 #include "tileset.h"
 #include "tileseteditor.h"
 #include "xmlParser.h"
@@ -45,7 +49,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
   ignoreEvents = true;
   setupUi(this);
   mapImage = nullptr;
-  progressTracker = nullptr;
   QTimer::singleShot(10, this, SLOT(setup()));
   ignoreEvents = false;
 }
@@ -101,6 +104,52 @@ void MainWindow::setup()
     XMLNode messageNode = childNode.getChildNode(i);
     Globals::messages[QString(messageNode.getName())] = QString(messageNode.getAttribute("message"));
   }
+  childNode = settingsNode.getChildNode("items");
+  for (int i = 0; i < 8; ++i)
+  {
+    XMLNode itemsNode = childNode.getChildNode(i);
+    for (int j = 0; j < 16; ++j)
+    {
+      XMLNode itemNode = itemsNode.getChildNode(j);
+      Globals::items[i][j].name = itemNode.getAttribute("name");
+      Globals::items[i][j].description = itemNode.getAttribute("description");
+      Globals::items[i][j].price = QString(itemNode.getAttribute("price")).toInt();
+      if (i >= 2)
+      {
+        Globals::equipmentStats[i - 2][j].stats[0] = QString(itemNode.getAttribute("attack")).toInt();
+        Globals::equipmentStats[i - 2][j].stats[1] = QString(itemNode.getAttribute("defense")).toInt();
+        Globals::equipmentStats[i - 2][j].stats[2] = QString(itemNode.getAttribute("agility")).toInt();
+        Globals::equipmentStats[i - 2][j].stats[3] = QString(itemNode.getAttribute("magic")).toInt();
+        Globals::equipmentStats[i - 2][j].spellResistance = QString(itemNode.getAttribute("spellResistance")).toUInt();
+        Globals::equipmentStats[i - 2][j].statusResistance[0] = QString(itemNode.getAttribute("poisonResistance")).toInt();
+        Globals::equipmentStats[i - 2][j].statusResistance[1] = QString(itemNode.getAttribute("slowResistance")).toInt();
+      }
+    }
+  }
+  childNode = settingsNode.getChildNode("skills");
+  for (int i = 0; i < 16; ++i)
+  {
+    XMLNode skillNode = childNode.getChildNode(i);
+    Globals::skills[i].name = skillNode.getAttribute("name");
+    Globals::skills[i].description = skillNode.getAttribute("description");
+    Globals::skills[i].price = QString(skillNode.getAttribute("mp")).toInt();
+  }
+  childNode = settingsNode.getChildNode("spells");
+  for (int i = 0; i < 16; ++i)
+  {
+    XMLNode spellNode = childNode.getChildNode(i);
+    Globals::spells[i].name = spellNode.getAttribute("name");
+    Globals::spells[i].description = spellNode.getAttribute("description");
+    Globals::spells[i].price = QString(spellNode.getAttribute("mp")).toInt();
+  }
+  childNode = settingsNode.getChildNode("stats");
+  for (int i = 0; i < 7; ++i)
+  {
+    XMLNode statNode = childNode.getChildNode(i);
+    Globals::statsGrowth[i].start = QString(statNode.getAttribute("start")).toInt();
+    Globals::statsGrowth[i].base = QString(statNode.getAttribute("base")).toDouble();
+    Globals::statsGrowth[i].exponent = QString(statNode.getAttribute("exponent")).toDouble();
+  }
   redrawEnemies();
   refreshTilesets();
   frmMapView->setEnabled(false);
@@ -112,7 +161,7 @@ void MainWindow::setup()
   connect(spritePicker, SIGNAL(spriteClicked(uint8_t)), this, SLOT(spritePicker_spriteClicked(uint8_t)));
 }
 
-void MainWindow::on_btnEditResources_clicked()
+void MainWindow::on_btnBrowseResources_clicked()
 {
   Resources *resourceEditor = new Resources(this);
   ignoreEvents = true;
@@ -146,6 +195,48 @@ void MainWindow::on_btnEditBattleAnimations_clicked()
   ignoreEvents = false;
 }
 
+void MainWindow::on_btnEditItems_clicked()
+{
+  ItemsEditor *editor = new ItemsEditor(this);
+  editor->exec();
+  editor->deleteLater();
+}
+
+void MainWindow::on_btnEditMessages_clicked()
+{
+  MessagesEditor *editor = new MessagesEditor(this);
+  editor->exec();
+  editor->deleteLater();
+}
+
+void MainWindow::on_btnEditMonsters_clicked()
+{
+  MonstersEditor *editor = new MonstersEditor(this);
+  editor->exec();
+  editor->deleteLater();
+}
+
+void MainWindow::on_btnEditSkills_clicked()
+{
+  SkillsSpellsEditor *editor = new SkillsSpellsEditor(true, this);
+  editor->exec();
+  editor->deleteLater();
+}
+
+void MainWindow::on_btnEditSpells_clicked()
+{
+  SkillsSpellsEditor *editor = new SkillsSpellsEditor(false, this);
+  editor->exec();
+  editor->deleteLater();
+}
+
+void MainWindow::on_btnEditStats_clicked()
+{
+  StatsEditor *editor = new StatsEditor(this);
+  editor->exec();
+  editor->deleteLater();
+}
+
 void MainWindow::on_btnCompileData_clicked()
 {
   QString fileLocation = QString("%1/music/%2.ogg").arg(Globals::datadir).arg(Globals::bgms[0]);
@@ -163,19 +254,6 @@ void MainWindow::on_btnCompileData_clicked()
   printf("decoding: \"%s\"\n", fileLocation.toLocal8Bit().data());
   audioDecoder->setSourceFilename(fileLocation);
   audioDecoder->start();
-}
-
-void MainWindow::on_btnNotes_clicked()
-{
-}
-
-void MainWindow::on_btnProgressTracker_clicked()
-{
-  if (progressTracker == nullptr)
-    progressTracker = new ProgressTracker(this);
-  progressTracker->show();
-  progressTracker->raise();
-  progressTracker->activateWindow();
 }
 
 void MainWindow::audioBufferReady()
@@ -214,7 +292,12 @@ void MainWindow::on_treeMaps_itemClicked(QTreeWidgetItem *item)
   QStringList flagsList;
   uint8_t flags;
   if (Globals::map != nullptr)
+  {
+    XMLNode mapNode = Globals::map->toXMLNode();
+    mapNode.writeToFile(currentMapFile.toLocal8Bit().data());
     delete Globals::map;
+  }
+  currentMapFile = QString("%1/maps/%2").arg(Globals::datadir).arg(item->text(1));
   Globals::map = new Map(mapNode);
   frmMapView->setEnabled(true);
   wMapTools->setEnabled(true);
@@ -337,7 +420,7 @@ void MainWindow::flagsChanged(uint8_t flags)
   if (flags & Map::FLAG_SPIRIT)
     flagsList << "Spirit";
   leFlags->setText(flagsList.join(","));
-  //TODO update map flags
+  Globals::map->setFlags(flags);
 }
 
 void MainWindow::on_btnEditOnLoadEvent_clicked()
@@ -961,8 +1044,58 @@ void MainWindow::closeEvent(QCloseEvent *event)
   childNode = settingsNode.addChild("messages");
   for (auto message : Globals::messages.keys())
     childNode.addChild(message.toLocal8Bit().data()).addAttribute("message", Globals::messages[message].toLocal8Bit().data());
-  //printf("%s\n", settingsNode.createXMLString());
-  //settingsNode.writeToFile(QString("%1/settings.xml").arg(Globals::datadir).toLocal8Bit().data());
+  childNode = settingsNode.addChild("items");
+  for (int i = 0; i < 8; ++i)
+  {
+    XMLNode itemsNode = childNode.addChild(Globals::itemTypes[i]);
+    for (int j = 0; j < 16; ++j)
+    {
+      XMLNode itemNode = itemsNode.addChild("item");
+      itemNode.addAttribute("name", Globals::items[i][j].name.toLocal8Bit().data());
+      itemNode.addAttribute("description", Globals::items[i][j].description.toLocal8Bit().data());
+      itemNode.addAttribute("price", QString::number(Globals::items[i][j].price).toLocal8Bit().data());
+      if (i >= 2)
+      {
+        itemNode.addAttribute("attack", QString::number(Globals::equipmentStats[i - 2][j].stats[0]).toLocal8Bit().data());
+        itemNode.addAttribute("defense", QString::number(Globals::equipmentStats[i - 2][j].stats[1]).toLocal8Bit().data());
+        itemNode.addAttribute("agility", QString::number(Globals::equipmentStats[i - 2][j].stats[2]).toLocal8Bit().data());
+        itemNode.addAttribute("magic", QString::number(Globals::equipmentStats[i - 2][j].stats[3]).toLocal8Bit().data());
+        itemNode.addAttribute("spellResistance", QString::number(Globals::equipmentStats[i - 2][j].spellResistance).toLocal8Bit().data());
+        itemNode.addAttribute("poisonResistance", QString::number(Globals::equipmentStats[i - 2][j].statusResistance[0]).toLocal8Bit().data());
+        itemNode.addAttribute("slowResistance", QString::number(Globals::equipmentStats[i - 2][j].statusResistance[1]).toLocal8Bit().data());
+      }
+    }
+  }
+  childNode = settingsNode.addChild("skills");
+  for (int i = 0; i < 16; ++i)
+  {
+    XMLNode skillNode = childNode.addChild("skill");
+    skillNode.addAttribute("name", Globals::skills[i].name.toLocal8Bit().data());
+    skillNode.addAttribute("description", Globals::skills[i].description.toLocal8Bit().data());
+    skillNode.addAttribute("mp", QString::number(Globals::skills[i].price).toLocal8Bit().data());
+  }
+  childNode = settingsNode.addChild("spells");
+  for (int i = 0; i < 16; ++i)
+  {
+    XMLNode spellNode = childNode.addChild("spell");
+    spellNode.addAttribute("name", Globals::spells[i].name.toLocal8Bit().data());
+    spellNode.addAttribute("description", Globals::spells[i].description.toLocal8Bit().data());
+    spellNode.addAttribute("mp", QString::number(Globals::spells[i].price).toLocal8Bit().data());
+  }
+  childNode = settingsNode.addChild("stats");
+  for (int i = 0; i < 7; ++i)
+  {
+    XMLNode statNode = childNode.addChild(Globals::statNames[i]);
+    statNode.addAttribute("start", QString::number(Globals::statsGrowth[i].start).toLocal8Bit().data());
+    statNode.addAttribute("base", QString::number(Globals::statsGrowth[i].base).toLocal8Bit().data());
+    statNode.addAttribute("exponent", QString::number(Globals::statsGrowth[i].exponent).toLocal8Bit().data());
+  }
+  settingsNode.writeToFile(QString("%1/settings.xml").arg(Globals::datadir).toLocal8Bit().data());
+  if (Globals::map != nullptr)
+  {
+    XMLNode mapNode = Globals::map->toXMLNode();
+    mapNode.writeToFile(currentMapFile.toLocal8Bit().data());
+  }
   Globals::saveData();
   Globals::freeData();
   QMainWindow::closeEvent(event);

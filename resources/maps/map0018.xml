@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="7" bgm="princess" width="2" height="2" minSteps="0" maxSteps="0" flags="15" sprites="47,48,56,58,54,55,57,255,255,255,255,255,255,255,255,255">
+<ptad-map tileset="7" bgm="18" width="2" height="2" minSteps="0" maxSteps="0" flags="15" sprites="47,48,56,58,54,55,57,255,255,255,255,255,255,255,255,255">
 	<onLoadEvent/>
 	<bg>
 		46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,32,33,50,51,32,33,50,51,32,33,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,46,47,
@@ -176,22 +176,22 @@
 					<line message="the dream world?________"/>
 				</showMessage>
 				<ifYes>
-					<playSoundEffect sound="rune" loop="false"/>
+					<playSoundEffect sound="16" loop="false"/>
 					<changeSprite event="Rune1 Top" spriteID="4"/>
 					<changeSprite event="Rune1 Bot" spriteID="5"/>
 					<waitSoundEffect/>
-					<playSoundEffect sound="rune" loop="false"/>
+					<playSoundEffect sound="16" loop="false"/>
 					<changeSprite event="Rune2 Top" spriteID="4"/>
 					<changeSprite event="Rune2 Bot" spriteID="5"/>
 					<waitSoundEffect/>
-					<playSoundEffect sound="rune" loop="false"/>
+					<playSoundEffect sound="16" loop="false"/>
 					<changeSprite event="Rune3 Top" spriteID="4"/>
 					<changeSprite event="Rune3 Bot" spriteID="5"/>
 					<waitSoundEffect/>
-					<playSoundEffect sound="rune" loop="false"/>
+					<playSoundEffect sound="16" loop="false"/>
 					<changeSprite event="this" spriteID="6"/>
 					<waitSoundEffect/>
-					<playSoundEffect sound="dream" loop="false"/>
+					<playSoundEffect sound="17" loop="false"/>
 					<hideScreen transition="6" speed="2"/>
 					<waitSoundEffect/>
 					<comment value="TODO: teleport to dream world"/>

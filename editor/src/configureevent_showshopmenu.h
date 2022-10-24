@@ -40,7 +40,7 @@ class ConfigureEvent_ShowShopMenu : public QDialog, public Ui::ConfigureEvent_Sh
         if (i == 1)
           continue;
         for (int j = 0; j < 16; ++j)
-          tblItems->item(j, (i != 0) ? (i - 1):i)->setText(Globals::items[i][j]);
+          tblItems->item(j, (i != 0) ? (i - 1):i)->setText(Globals::items[i][j].name);
       }
     }
     ~ConfigureEvent_ShowShopMenu() {}

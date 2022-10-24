@@ -33,7 +33,6 @@
 #include "image.h"
 #include "map.h"
 #include "mapflags.h"
-#include "progresstracker.h"
 #include "spritepicker.h"
 #include "xmlParser.h"
 
@@ -47,11 +46,15 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     ~MainWindow();
 	protected slots:
     void setup();
-    void on_btnEditResources_clicked();
+    void on_btnBrowseResources_clicked();
     void on_btnEditBattleAnimations_clicked();
+    void on_btnEditItems_clicked();
+    void on_btnEditMessages_clicked();
+    void on_btnEditMonsters_clicked();
+    void on_btnEditSkills_clicked();
+    void on_btnEditSpells_clicked();
+    void on_btnEditStats_clicked();
     void on_btnCompileData_clicked();
-    void on_btnNotes_clicked();
-    void on_btnProgressTracker_clicked();
     void audioBufferReady();
     void audioError(QAudioDecoder::Error error);
     void audioFinished();
@@ -95,7 +98,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     MapFlags *flags;
     SpritePicker *spritePicker;
     Image *mapImage;
-    ProgressTracker *progressTracker;
     QPoint zoomPos;
     QAudioFormat audioFormat;
     QAudioDecoder *audioDecoder;
@@ -104,6 +106,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QPoint rectStart;
     QPoint rectEnd;
     QRect tileSelection;
+    QString currentMapFile;
     int action;
     static const int zoom[5];
     bool ignoreEvents;

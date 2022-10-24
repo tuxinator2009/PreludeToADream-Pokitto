@@ -31,6 +31,7 @@
 #include <QFileSystemWatcher>
 #include <QMediaPlayer>
 #include <QProgressBar>
+#include <cmath>
 
 class Image;
 class Map;
@@ -74,6 +75,24 @@ class Globals
       uint16_t uValue;
       uint8_t bytes[2];
     };
+    struct Item
+    {
+      QString name;
+      QString description;
+      uint16_t price;
+    };
+    struct EquipmentStats
+    {
+      int8_t stats[4];
+      uint16_t spellResistance;
+      int8_t statusResistance[2];
+    };
+    struct StatGrowth
+    {
+      int start;
+      double base;
+      double exponent;
+    };
     static void setupData();
     static void saveData();
     static void freeData();
@@ -84,6 +103,10 @@ class Globals
     static void refreshMusic();
     static void refreshSFX();
     static QByteArray convertAudio(QString fileLocation, QProgressBar *progress=nullptr);
+    static constexpr int getStatForLevel(int level, const StatGrowth &growth)
+    {
+      return growth.start + (int)(growth.base * pow(level, growth.exponent));
+    }
     static QFileSystemWatcher *watchdog;
     static QMediaPlayer *audio;
     static QList<Tileset*> tilesets;
@@ -95,6 +118,11 @@ class Globals
     static Image *font;
     static Image *player;
     static Image *sprites;
+    static Item items[8][16];
+    static Item skills[16];
+    static Item spells[16];
+    static EquipmentStats equipmentStats[6][16];
+    static StatGrowth statsGrowth[7];
     static QString datadir;
     static QMap<int, QString> mapNames;
     static QMap<QString, QString> messages;
@@ -102,9 +130,8 @@ class Globals
     static QStringList bgms;
     static QStringList sfx;
     static const uint8_t codes[];
-    static const char *items[8][16];
-    static const char *skills[16];
-    static const char *spells[16];
+    static const char *itemTypes[8];
+    static const char *statNames[7];
   private:
     static void loadTilesets();
     static void saveTilesets();

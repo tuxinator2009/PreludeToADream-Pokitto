@@ -22,29 +22,25 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#ifndef PROGRESSTRACKER_H
-#define PROGRESSTRACKER_H
+#ifndef SKILLSSPELLSEDITOR_H
+#define SKILLSSPELLSEDITOR_H
 
-#include "ui_progresstracker.h"
-#include "xmlParser.h"
+#include "ui_skillsspellseditor.h"
 
-class ProgressTracker : public QWidget, public Ui::ProgressTracker
+class SkillsSpellsEditor : public QDialog, public Ui::SkillsSpellsEditor
 {
   Q_OBJECT
   public:
-    ProgressTracker(QWidget *parent=nullptr);
-    ~ProgressTracker();
+    SkillsSpellsEditor(bool editSkills, QWidget *parent=nullptr);
+    ~SkillsSpellsEditor();
   protected slots:
-    void itemMoved();
-    void on_treeProgress_itemDoubleClicked(QTreeWidgetItem *item, int column);
-    void on_buttonBox_clicked(QAbstractButton *button);
-    void on_aAddTopLevelItem_triggered();
-    void on_aAddChildItem_triggered();
-    void on_aDeleteItem_triggered();
+    void on_lstSkillsSpells_itemSelectionChanged();
+    void on_leName_textChanged(QString text);
+    void on_numMP_valueChanged(int value);
+    void on_leDescription_textChanged(QString text);
   private:
-    int updateProgressBar(QTreeWidgetItem *item);
-    void buildProgressTree(QTreeWidgetItem *parent, XMLNode node);
-    XMLNode buildProgressNode(QTreeWidgetItem *item);
+    bool editingSkills;
+    bool ignoreEvents;
 };
 
-#endif //PROGRESSTRACKER_H
+#endif //SKILLSSPELLSEDITOR_H

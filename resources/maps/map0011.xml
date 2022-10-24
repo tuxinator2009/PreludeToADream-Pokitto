@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="2" bgm="inn" width="1" height="1" minSteps="0" maxSteps="0" flags="15" sprites="14,6,8,9,10,255,255,255,255,255,255,255,255,255,255,255">
+<ptad-map tileset="2" bgm="11" width="1" height="1" minSteps="0" maxSteps="0" flags="15" sprites="14,6,8,9,10,255,255,255,255,255,255,255,255,255,255,255">
 	<onLoadEvent>
 		<ifSwitch switchID="2" is="ON">
 			<changeSprite event="Potion" spriteID="3"/>
@@ -98,7 +98,7 @@
 				<showOneLiner message="This chest is empty."/>
 			</ifSwitch>
 			<else>
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<givePlayerItem type="0" item="0" amount="1"/>
 				<showOneLiner message="You found a potion."/>
 			</else>

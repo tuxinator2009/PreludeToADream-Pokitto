@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="3" bgm="labyrinth" width="1" height="1" minSteps="2" maxSteps="8" flags="0" sprites="19,24,20,21,255,255,255,255,255,255,255,255,255,255,255,255">
+<ptad-map tileset="3" bgm="13" width="1" height="1" minSteps="2" maxSteps="8" flags="0" sprites="19,24,20,21,255,255,255,255,255,255,255,255,255,255,255,255">
 	<onLoadEvent>
 		<ifHasItem type="4" item="0">
 			<changeSprite event="Jerkin" spriteID="2"/>
@@ -92,7 +92,7 @@
 				<showOneLiner message="This chest is empty."/>
 			</ifHasItem>
 			<else>
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<givePlayerItem type="4" item="0"/>
 				<showOneLiner message="You found a jerkin."/>
 			</else>
@@ -102,7 +102,7 @@
 		</event>
 		<event name="Goliath" x="8" y="4" flags="9" sprite="1">
 			<ifVariable variableID="0" condition="&lt;" value="3">
-				<battle monster="5" background="cavern" music="battleFinal"/>
+				<battle monster="5" background="4" music="1"/>
 				<changeVariable variableID="0" operation="0" value="3"/>
 				<changePassability x="8" y="4" operation="0"/>
 				<changeSprite event="this" spriteID="255"/>
@@ -118,7 +118,7 @@
 		</event>
 		<event name="Crystals (switch=25)" x="10" y="4" flags="9" sprite="255">
 			<ifSwitch switchID="25" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<showOneLiner message="You found some crystals."/>
 				<givePlayerItem type="1" item="0" amount="1"/>
 			</ifSwitch>
@@ -131,7 +131,7 @@
 		</event>
 		<event name="Crystals (switch=26)" x="6" y="6" flags="9" sprite="255">
 			<ifSwitch switchID="26" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<showOneLiner message="You found some crystals."/>
 				<givePlayerItem type="1" item="0" amount="2"/>
 			</ifSwitch>

@@ -47,6 +47,11 @@ Image *Globals::cursor;
 Image *Globals::font;
 Image *Globals::player;
 Image *Globals::sprites;
+Globals::Item Globals::items[8][16];
+Globals::Item Globals::skills[16];
+Globals::Item Globals::spells[16];
+Globals::EquipmentStats Globals::equipmentStats[6][16];
+Globals::StatGrowth Globals::statsGrowth[7];
 QString Globals::datadir;
 QMap<int, QString> Globals::mapNames;
 QMap<QString, QString> Globals::messages;
@@ -63,71 +68,8 @@ const uint8_t Globals::codes[] =
   '<','>',';',':','"','[',']','{','}','|','@','#','$','%','^','&',
   '*','(',')','`','~',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
 };
-const char *Globals::items[8][16] =
-{
-  {//consumables
-    "Potion","H-Potion","S-Potion","Ether","H-Ether","S-Ether" ,"Elixir","Antidote","Stimulnt","Herbs","Remedy","X-Attack","X-Defend","X-Speed","X-Magic" ,"Smoke B"
-  },
-  {//tradeables
-    "Crystal","Obsidian","","","","","","","","","","","","","",""
-  },
-  {//weapons
-    "Rusty S","Dagger","","","","","","","","","","","","","",""
-  },
-  {//helmets
-    "Beret","Miner's","","","","","","","","","","","","","",""
-  },
-  {//armor
-    "Jerkin","","","","","","","","","","","","","","",""
-  },
-  {//boots
-    "Moccasin","Galoshes","","","","","","","","","","","","","",""
-  },
-  {//rings
-    "","","","","","","","","","","","","","","",""
-  },
-  {//amulets
-    "","","","","","","","","","","","","","","",""
-  }
-};
-const char *Globals::skills[16] =
-{
-  "Examine",
-  "Focus 1",
-  "Focus 2",
-  "Focus 3",
-  "Dbl Hit",
-  "Pwr Shot",
-  "Dash",
-  "Enrage 1",
-  "Enrage 2",
-  "Enrage 3",
-  "Meditate",
-  "",
-  "",
-  "",
-  "",
-  ""
-};
-const char *Globals::spells[16] =
-{
-  "Fireball",
-  "Starfire",
-  "Waterjet",
-  "Tsunami",
-  "Quicksnd",
-  "Upheaval",
-  "Flurry",
-  "Tornado",
-  "Illumine",
-  "Starbeam",
-  "Shadow",
-  "Eclipse",
-  "Envenom",
-  "Ensnare",
-  "Recovery",
-  "Cleanser"
-};
+const char *Globals::itemTypes[8] = {"consumables","tradeables","weapons","helmets","armor","boots","rings","amulets"};
+const char *Globals::statNames[7] = {"hp", "mp", "attack", "defense", "agility", "magic", "experience"};
 
 void Globals::setupData()
 {
@@ -204,9 +146,6 @@ void Globals::refreshBackdrops()
   backdrops.replaceInStrings(".png", "", Qt::CaseInsensitive);
   for (auto tileset : tilesets)
     tileset->refreshBackdrops();
-  //printf("backdrops:\n");
-  //for (int i = 0; i < backdrops.count(); ++i)
-  //  printf("  %d: %s\n", i, backdrops[i].toLocal8Bit().data());
   Tileset::backdrops = backdrops;
 }
 
@@ -270,8 +209,6 @@ void Globals::loadTilesets()
     QMessageBox::critical(nullptr, "XML Parser Error", QString("An error occurred when parsing tilesets.xml on line %1 column %2.\nError: %3").arg(results.nLine).arg(results.nColumn).arg(XMLNode::getError(results.error)));
   for (int i = 1; i < tilesetsNode.nChildNode(); ++i)
     tilesets += new Tileset(tilesetsNode.getChildNode(i));
-  //for (int i = 0; i < Tileset::backdrops.count(); ++i)
-  //  printf("%d (%s) -> %d\n", i, Tileset::backdrops[i].toLocal8Bit().data(), backdrops.indexOf(Tileset::backdrops[i]));
   Tileset::backdrops = backdrops;
 }
 

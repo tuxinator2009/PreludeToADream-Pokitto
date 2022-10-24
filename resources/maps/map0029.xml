@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="2" bgm="tavern" width="1" height="1" minSteps="0" maxSteps="0" flags="15" sprites="25,6,255,255,255,255,255,255,255,255,255,255,255,255,255,255">
+<ptad-map tileset="2" bgm="21" width="1" height="1" minSteps="0" maxSteps="0" flags="15" sprites="25,6,255,255,255,255,255,255,255,255,255,255,255,255,255,255">
 	<onLoadEvent/>
 	<bg>
 		0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
@@ -102,19 +102,19 @@
 				<ifValue valueToCheck="8" condition="&gt;=" desiredValue="60">
 					<givePlayerGold amount="-60"/>
 					<showGold/>
-					<playMusic music="goodNight" loop="false"/>
+					<playMusic music="10" loop="false"/>
 					<hideScreen transition="1" speed="1"/>
 					<waitMusic/>
 					<teleport mapID="30" x="5" y="8" facing="2"/>
-					<playSoundEffect sound="heal" loop="false"/>
+					<playSoundEffect sound="10" loop="false"/>
 					<heal/>
 					<waitSoundEffect/>
 					<hideDialog/>
 					<waitFrames frames="1"/>
-					<playMusic music="goodMorning" loop="false"/>
+					<playMusic music="9" loop="false"/>
 					<showScreen transition="1" speed="1"/>
 					<waitMusic/>
-					<playMusic music="tavern" loop="true"/>
+					<playMusic music="21" loop="true"/>
 					<showOneLiner message="You feel well rested!"/>
 					<waitButtons/>
 					<hideDialog/>

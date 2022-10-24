@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="3" bgm="labyrinth" width="1" height="1" minSteps="0" maxSteps="0" flags="0" sprites="31,33,255,255,255,255,255,255,255,255,255,255,255,255,255,255">
+<ptad-map tileset="3" bgm="13" width="1" height="1" minSteps="0" maxSteps="0" flags="0" sprites="31,33,255,255,255,255,255,255,255,255,255,255,255,255,255,255">
 	<onLoadEvent>
 		<ifHasItem type="3" item="1">
 			<changeSprite event="Benjamin" spriteID="1"/>
@@ -135,14 +135,14 @@
 				<showMessage>
 					<line message="YOU WANT A PIECE OF ME?_"/>
 				</showMessage>
-				<battle monster="7" background="cavern" music="battleFinal"/>
+				<battle monster="7" background="4" music="1"/>
 				<changeSprite event="this" spriteID="1"/>
 				<changeEventLocation event="this" x="8" y="6" offset="false"/>
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<givePlayerItem type="3" item="1"/>
 				<showOneLiner message="You got a Miner&apos;s helmet"/>
 				<waitButtons/>
-				<playSoundEffect sound="quake" loop="false"/>
+				<playSoundEffect sound="12" loop="false"/>
 				<shakeScreen duration="255" magnitude="4"/>
 				<showOneLiner message="The walls are caving in."/>
 				<waitButtons/>
@@ -157,7 +157,7 @@
 		<event name="39" x="6" y="1" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="39" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="1"/>
 				</ifSwitch>
@@ -178,7 +178,7 @@
 		<event name="40" x="7" y="1" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="40" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="1"/>
 				</ifSwitch>
@@ -199,7 +199,7 @@
 		<event name="41" x="8" y="1" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="41" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="1"/>
 				</ifSwitch>
@@ -220,7 +220,7 @@
 		<event name="42" x="9" y="1" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="42" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="1"/>
 				</ifSwitch>
@@ -241,7 +241,7 @@
 		<event name="43" x="10" y="1" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="43" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="1"/>
 				</ifSwitch>
@@ -262,7 +262,7 @@
 		<event name="44" x="4" y="2" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="44" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="1"/>
 				</ifSwitch>
@@ -283,7 +283,7 @@
 		<event name="45" x="7" y="3" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="45" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -304,7 +304,7 @@
 		<event name="46" x="9" y="3" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="46" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -325,7 +325,7 @@
 		<event name="48" x="10" y="4" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="48" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -346,7 +346,7 @@
 		<event name="47" x="5" y="4" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="47" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -367,7 +367,7 @@
 		<event name="49" x="4" y="5" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="49" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -388,7 +388,7 @@
 		<event name="38" x="6" y="6" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="38" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -409,7 +409,7 @@
 		<event name="51" x="12" y="5" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="51" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -430,7 +430,7 @@
 		<event name="37" x="12" y="6" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="37" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -451,7 +451,7 @@
 		<event name="55" x="13" y="7" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="55" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -472,7 +472,7 @@
 		<event name="54" x="9" y="7" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="54" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -493,7 +493,7 @@
 		<event name="53" x="5" y="7" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="53" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -514,7 +514,7 @@
 		<event name="52" x="3" y="7" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="52" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -535,7 +535,7 @@
 		<event name="56" x="2" y="8" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="56" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -556,7 +556,7 @@
 		<event name="59" x="4" y="9" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="59" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -577,7 +577,7 @@
 		<event name="57" x="7" y="8" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="57" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -598,7 +598,7 @@
 		<event name="58" x="11" y="8" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="58" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -619,7 +619,7 @@
 		<event name="60" x="13" y="9" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="60" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -640,7 +640,7 @@
 		<event name="61" x="11" y="10" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="61" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -661,7 +661,7 @@
 		<event name="62" x="9" y="11" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="62" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -682,7 +682,7 @@
 		<event name="63" x="6" y="12" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="63" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>
@@ -703,7 +703,7 @@
 		<event name="50" x="8" y="5" flags="9" sprite="255">
 			<ifHasItem type="3" item="1">
 				<ifSwitch switchID="50" is="OFF">
-					<playSoundEffect sound="getItem" loop="false"/>
+					<playSoundEffect sound="4" loop="false"/>
 					<showOneLiner message="You found some crystals."/>
 					<givePlayerItem type="1" item="0" amount="2"/>
 				</ifSwitch>

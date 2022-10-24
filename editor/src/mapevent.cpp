@@ -1395,19 +1395,19 @@ QTreeWidgetItem *MapEvent::ShowShopMenu::getItem()
   for (int i = 0; i < 16; ++i)
   {
     if ((consumables & (1 << i)) != 0)
-      consumablesText += Globals::items[0][i];
+      consumablesText += Globals::items[0][i].name;
     if ((weapons & (1 << i)) != 0)
-      weaponsText += Globals::items[2][i];
+      weaponsText += Globals::items[2][i].name;
     if ((helmets & (1 << i)) != 0)
-      helmetsText += Globals::items[3][i];
+      helmetsText += Globals::items[3][i].name;
     if ((armor & (1 << i)) != 0)
-      armorText += Globals::items[4][i];
+      armorText += Globals::items[4][i].name;
     if ((boots & (1 << i)) != 0)
-      bootsText += Globals::items[5][i];
+      bootsText += Globals::items[5][i].name;
     if ((rings & (1 << i)) != 0)
-      ringsText += Globals::items[6][i];
+      ringsText += Globals::items[6][i].name;
     if ((amulets & (1 << i)) != 0)
-      amuletsText += Globals::items[7][i];
+      amuletsText += Globals::items[7][i].name;
   }
   if (consumablesText.count() == 0)
     text += "  Consumables: NO CONSUMABLES FOR SALE\n";
@@ -2033,7 +2033,7 @@ QTreeWidgetItem *MapEvent::IfHasItem::getItem()
 {
   if (item->childCount() == 0)
     addItems(item);
-  item->setText(0, QString("<> %1: %2").arg(elseIf ? "elseIfHasItem":"ifHasItem").arg(Globals::items[itemType][itemID]));
+  item->setText(0, QString("<> %1: %2").arg(elseIf ? "elseIfHasItem":"ifHasItem").arg(Globals::items[itemType][itemID].name));
   return item;
 }
 //END: IfHasItem
@@ -3343,7 +3343,7 @@ bool MapEvent::GivePlayerItem::configureEvent(QWidget *parentWidget)
 
 QTreeWidgetItem *MapEvent::GivePlayerItem::getItem()
 {
-  item->setText(0, QString("<> givePlayerItem: %1 x%2").arg(Globals::items[itemType][itemID]).arg((itemType < 2) ? amount:1));
+  item->setText(0, QString("<> givePlayerItem: %1 x%2").arg(Globals::items[itemType][itemID].name).arg((itemType < 2) ? amount:1));
   return item;
 }
 //END: GivePlayerItem

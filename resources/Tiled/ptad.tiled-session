@@ -3,16 +3,16 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/shrine1.tmx",
+    "activeFile": "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/overworld.tmx",
     "expandedProjectPaths": [
-        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1/hall",
-        ".",
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps",
-        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town2/mine",
+        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1/cavern",
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1/inn",
-        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/tilesets",
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town2/mines",
-        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1/cavern"
+        ".",
+        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1/hall",
+        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town2/mine",
+        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/tilesets"
     ],
     "exportAsImage.includeBackgroundColor": true,
     "exportAsImage.useCurrentScale": false,
@@ -212,11 +212,11 @@
             }
         },
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/overworld.tmx": {
-            "scale": 8,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 340.8125,
-                "y": 526.4375
+                "x": 613.5,
+                "y": 241.5
             }
         },
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/shrine1.tmx": {
@@ -563,12 +563,12 @@
     "recentFiles": [
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town4/inn.tmx",
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town4/house2.tmx",
-        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/overworld.tmx",
-        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1/shop.tmx",
-        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1.tmx",
-        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1_postRaid.tmx",
-        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/borderOpen.tmx",
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/shrine1.tmx",
+        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/borderOpen.tmx",
+        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1_postRaid.tmx",
+        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1.tmx",
+        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town1/shop.tmx",
+        "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/overworld.tmx",
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/mountain/part1.tmx",
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/mountain/cave_part1.tmx",
         "/home/justin/programming/pokitto/projects/PreludeToADream/resources/maps/town2.tmx",

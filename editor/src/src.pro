@@ -40,15 +40,19 @@ HEADERS += \
   globals.h \
   image.h \
   imageview.h \
+  itemseditor.h \
 	mainwindow.h \
 	map.h \
 	mapevent.h \
 	mapeventeditor.h \
 	mapflags.h \
 	mapspritepicker.h \
-	progresstracker.h \
+	messageseditor.h \
+	monsterseditor.h \
 	resources.h \
+	skillsspellseditor.h \
 	spritepicker.h \
+	statseditor.h \
 	tileset.h \
 	tileseteditor.h \
 	tilesetview.h \
@@ -66,6 +70,7 @@ SOURCES += \
   globals.cpp \
   image.cpp \
   imageview.cpp \
+  itemseditor.cpp \
 	main.cpp \
 	mainwindow.cpp \
 	map.cpp \
@@ -73,9 +78,12 @@ SOURCES += \
 	mapeventeditor.cpp \
 	mapflags.cpp \
 	mapspritepicker.cpp \
-	progresstracker.cpp \
+	messageseditor.cpp \
+	monsterseditor.cpp \
 	resources.cpp \
+	skillsspellseditor.cpp \
 	spritepicker.cpp \
+	statseditor.cpp \
 	tileset.cpp \
 	tileseteditor.cpp \
 	tilesetview.cpp \
@@ -110,13 +118,17 @@ FORMS += \
   configureevent_showshopmenu.ui \
   configureevent_switchrange.ui \
   configureevent_teleport.ui \
+  itemseditor.ui \
 	mainwindow.ui \
 	mapeventeditor.ui \
 	mapflags.ui \
 	mapspritepicker.ui \
-	progresstracker.ui \
+	messageseditor.ui \
+	monsterseditor.ui \
 	resources.ui \
+	skillsspellseditor.ui \
 	spritepicker.ui \
+	statseditor.ui \
 	tileseteditor.ui
 
 RESOURCES += icons.qrc

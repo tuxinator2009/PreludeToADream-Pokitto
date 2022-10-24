@@ -129,7 +129,7 @@ void Image::drawHLine(QPoint pos, int width, uint8_t index)
     return;
   for (int x = 0; x < width; ++x)
   {
-    if (x < + pos.x() >= 0 && x + pos.x() < size.width())
+    if (x + pos.x() >= 0 && x + pos.x() < size.width())
       pixels[pos.y() * size.width() + x + pos.x()] = index;
   }
 }

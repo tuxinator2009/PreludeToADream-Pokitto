@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="5" bgm="dungeon" width="2" height="2" minSteps="4" maxSteps="16" flags="15" sprites="36,37,34,35,38,0,1,255,255,255,255,255,255,255,255,255">
+<ptad-map tileset="5" bgm="6" width="2" height="2" minSteps="4" maxSteps="16" flags="15" sprites="36,37,34,35,38,0,1,255,255,255,255,255,255,255,255,255">
 	<onLoadEvent>
 		<comment value="TODO: replace 200 with VOLCANO_TIME"/>
 		<ifVariable variableID="0" condition="&gt;=" value="200">

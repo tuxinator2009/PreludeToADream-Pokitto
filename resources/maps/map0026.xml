@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="4" bgm="dungeon" width="4" height="4" minSteps="4" maxSteps="16" flags="15" sprites="35,11,8,39,12,9,13,10,255,255,255,255,255,255,255,255">
+<ptad-map tileset="4" bgm="6" width="4" height="4" minSteps="4" maxSteps="16" flags="15" sprites="35,11,8,39,12,9,13,10,255,255,255,255,255,255,255,255">
 	<onLoadEvent>
 		<ifHasItem type="2" item="1">
 			<changeSprite event="Dagger" spriteID="4"/>
@@ -327,7 +327,7 @@
 				<showOneLiner message="This chest is empty."/>
 			</ifHasItem>
 			<else>
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<givePlayerItem type="2" item="1"/>
 				<showOneLiner message="You found a small dagger"/>
 			</else>
@@ -413,7 +413,7 @@
 		<event name="Potion (switch = 22)" x="3" y="35" flags="9" sprite="2">
 			<changeSprite event="this" spriteID="7"/>
 			<ifSwitch switchID="22" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<givePlayerItem type="0" item="0" amount="1"/>
 				<showOneLiner message="You found a potion."/>
 			</ifSwitch>
@@ -428,7 +428,7 @@
 		<event name="Potion (switch = 23)" x="10" y="45" flags="9" sprite="2">
 			<changeSprite event="this" spriteID="7"/>
 			<ifSwitch switchID="23" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<givePlayerItem type="0" item="0" amount="1"/>
 				<showOneLiner message="You found a potion."/>
 			</ifSwitch>
@@ -443,7 +443,7 @@
 		<event name="Potion (switch = 24)" x="40" y="29" flags="9" sprite="2">
 			<changeSprite event="this" spriteID="7"/>
 			<ifSwitch switchID="24" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<givePlayerItem type="0" item="0" amount="1"/>
 				<showOneLiner message="You found a potion."/>
 			</ifSwitch>
@@ -458,7 +458,7 @@
 		<event name="Potion (switch = 25)" x="51" y="37" flags="9" sprite="2">
 			<changeSprite event="this" spriteID="7"/>
 			<ifSwitch switchID="25" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<givePlayerItem type="0" item="0" amount="1"/>
 				<showOneLiner message="You found a potion."/>
 			</ifSwitch>
@@ -473,7 +473,7 @@
 		<event name="Potion (switch = 26)" x="58" y="46" flags="9" sprite="2">
 			<changeSprite event="this" spriteID="7"/>
 			<ifSwitch switchID="26" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<givePlayerItem type="0" item="0" amount="1"/>
 				<showOneLiner message="You found a potion."/>
 			</ifSwitch>
@@ -487,7 +487,7 @@
 		</event>
 		<event name="Gorilla" x="32" y="21" flags="9" sprite="3">
 			<ifVariable variableID="0" condition="&lt;" value="8">
-				<battle monster="10" background="mountain" music="battleFinal"/>
+				<battle monster="10" background="5" music="1"/>
 				<changeVariable variableID="0" operation="0" value="8"/>
 				<changeSprite event="this" spriteID="255"/>
 				<changePassability x="32" y="21" operation="0"/>
@@ -514,7 +514,7 @@
 			<hideDialog/>
 		</event>
 		<event name="View" x="32" y="15" flags="9" sprite="255">
-			<showImage location="viewpoint"/>
+			<showImage location="screens/viewpoint.gfx"/>
 			<waitButtons/>
 			<hideImage/>
 		</event>

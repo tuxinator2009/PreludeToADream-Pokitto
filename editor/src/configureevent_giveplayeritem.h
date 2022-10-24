@@ -38,7 +38,7 @@ class ConfigureEvent_GivePlayerItem : public QDialog, public Ui::ConfigureEvent_
       for (int type = 0; type < 8; ++type)
       {
         for (int item = 0; item < 16; ++item)
-          tblItems->item(item, type)->setText(Globals::items[type][item]);
+          tblItems->item(item, type)->setText(Globals::items[type][item].name);
       }
     }
     ~ConfigureEvent_GivePlayerItem() {}

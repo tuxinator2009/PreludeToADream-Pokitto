@@ -159,6 +159,7 @@ XMLNode Map::toXMLNode()
     for (int x = 0; x < data.width * 32; ++x)
       text += QString::number(bg[y * 256 + x]);
   }
+  mapNode.addChild(onLoadEvent->toXMLNode(true));
   mapNode.addChild("bg").addText(text.join(',').toLocal8Bit().data());
   text.clear();
   for (int y = 0; y < data.height * 32; ++y)
@@ -168,10 +169,10 @@ XMLNode Map::toXMLNode()
   }
   mapNode.addChild("fg").addText(text.join(',').toLocal8Bit().data());
   text.clear();
-  for (int y = 0; y < data.height * 16; y += 8)
+  for (int y = 0; y < data.height * 2; ++y)
   {
     for (int x = 0; x < data.width * 16; ++x)
-      text += QString::number(passability[y * 128 + x]);
+      text += QString::number(passability[y * 64 + x]);
   }
   mapNode.addChild("passability").addText(text.join(',').toLocal8Bit().data());
   text.clear();
@@ -185,7 +186,11 @@ XMLNode Map::toXMLNode()
   }
   mapNode.addChild("regions").addText(text.join(',').toLocal8Bit().data());
   tempNode = mapNode.addChild("events");
-  //TODO: add events
+  for (int i = 0; i < 29; ++i)
+  {
+    if (events[i] != nullptr)
+      tempNode.addChild(events[i]->toXMLNode(false));
+  }
   return mapNode;
 }
 

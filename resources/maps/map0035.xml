@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="3" bgm="labyrinth" width="1" height="1" minSteps="4" maxSteps="16" flags="16" sprites="16,17,18,255,255,255,255,255,255,255,255,255,255,255,255,255">
+<ptad-map tileset="3" bgm="13" width="1" height="1" minSteps="4" maxSteps="16" flags="16" sprites="16,17,18,255,255,255,255,255,255,255,255,255,255,255,255,255">
 	<onLoadEvent>
 		<ifSwitch switchID="30" is="ON">
 			<changeSprite event="Potion (switch = 30)" spriteID="1"/>
@@ -85,7 +85,7 @@
 		<event name="Potion (switch = 30)" x="11" y="2" flags="9" sprite="0">
 			<changeSprite event="this" spriteID="2"/>
 			<ifSwitch switchID="30" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<givePlayerItem type="0" item="0" amount="1"/>
 				<showOneLiner message="You found a potion."/>
 			</ifSwitch>

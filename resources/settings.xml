@@ -1,104 +1,295 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ptad-settings>
-  <maps>
-    <map name="Overworld" file="map0000.xml"/><!--maps/overworld.tmx-->
-    <map name="Town 1" file="map0001.xml"><!--maps/town1.tmx-->
-      <map name="Post-Raid" file="map0002.xml"/><!--maps/town1_postRaid.tmx-->
-      <map name="Home" file="map0003.xml"/><!--maps/town1/home.tmx-->
-      <map name="House 1" file="map0004.xml"/><!--maps/town1/house1.tmx-->
-      <map name="House 2" file="map0005.xml"/><!--maps/town1/house2.tmx-->
-      <map name="House 3" file="map0006.xml"/><!--maps/town1/house3.tmx-->
-      <map name="Shop" file="map0007.xml"/><!--maps/town1/shop.tmx-->
-      <map name="Town Hall" file="map0008.xml"><!--maps/town1/hall/floor1.tmx-->
-        <map name="Floor 2" file="map0009.xml"/><!--maps/town1/hall/floor2.tmx-->
-      </map>
-      <map name="Inn" file="map0010.xml"><!--maps/town1/inn/floor1.tmx-->
-        <map name="Floor 2" file="map0011.xml"/><!--maps/town1/inn/floor2.tmx-->
-        <map name="Floor 3" file="map0012.xml"/><!--maps/town1/inn/floor3.tmx-->
-        <map name="Cavern" file="map0013.xml"><!--maps/town1/cavern/floor1.tmx-->
-          <map name="Floor 2" file="map0014.xml"/><!--maps/town1/cavern/floor2.tmx-->
-          <map name="Floor 3 (Lower)" file="map0015.xml"/><!--maps/town1/cavern/floor3_lower.tmx-->
-          <map name="Floor 3 (Upper)" file="map0016.xml"/><!--maps/town1/cavern/floor3_upper.tmx-->
-          <map name="Floor 4" file="map0017.xml"/><!--maps/town1/cavern/floor4.tmx-->
-        </map>
-      </map>
-    </map>
-    <map name="Shrine NE" file="map0018.xml"/><!--maps/shrine1.tmx-->
-    <map name="Town 2" file="map0019.xml"><!--maps/town2.tmx-->
-      <map name="Benjamin's House" file="map0020.xml"/><!--maps/town2/benjaminsHouse.tmx-->
-      <map name="Mine" file="map0021.xml"><!--maps/town2/mine/floor1.tmx-->
-        <map name="Floor 2" file="map0022.xml"/><!--maps/town2/mine/floor2.tmx-->
-      </map>
-    </map>
-    <map name="Mountain Pass" file="map0023.xml"><!--maps/mountain/part1.tmx-->
-      <map name="Part 2" file="map0024.xml"/><!--maps/mountain/part2.tmx-->
-      <map name="Part 3" file="map0025.xml"/><!--maps/mountain/part3.tmx-->
-      <map name="Cliffs" file="map0026.xml"/><!--maps/mountain/cliffs.tmx-->
-      <map name="Cabin 1" file="map0027.xml"><!--maps/mountain/cabin_floor1.tmx-->
-        <map name="Floor 2" file="map0028.xml"/><!--maps/mountain/cabin_floor2.tmx-->
-      </map>
-      <map name="Cabin 2" file="map0029.xml"><!--maps/mountain/cabin2_floor1.tmx-->
-        <map name="Floor 2" file="map0030.xml"/><!--maps/mountain/cabin2_floor2.tmx-->
-      </map>
-      <map name="Cave" file="map0031.xml"><!--maps/mountain/cave_part1.tmx-->
-        <map name="A" file="map0032.xml"/><!--maps/mountain/caveA.tmx-->
-        <map name="B" file="map0033.xml"/><!--maps/mountain/caveB.tmx-->
-        <map name="C" file="map0034.xml"/><!--maps/mountain/caveC.tmx-->
-        <map name="D" file="map0035.xml"/><!--maps/mountain/caveD.tmx-->
-        <map name="E" file="map0036.xml"/><!--maps/mountain/caveE.tmx-->
-        <map name="F" file="map0037.xml"/><!--maps/mountain/caveF.tmx-->
-        <map name="G" file="map0038.xml"/><!--maps/mountain/caveG.tmx-->
-      </map>
-    </map>
-    <map name="Town 3" file="map0039.xml"><!--maps/town4.tmx-->
-      <map name="Inn" file="map0040.xml"/><!--maps/town4/inn.tmx-->
-      <map name="House 2" file="map0041.xml"/><!--maps/town4/house2.tmx-->
-    </map>
-    <map name="Border (closed)" file="map0042.xml"/><!--maps/borderClosed.tmx-->
-    <map name="Border (open)" file="map0043.xml"/><!--maps/borderOpen.tmx-->
-  </maps>
-  <messages>
-    <battleChooseAction message="What action do you seek?"/>
-    <battleSurpriseAttack message="IT'S A SURPRISE ATTACK!"/>
-    <battleCriticalHit message="CRITICAL HIT "/>
-    <battleGoldEarned message="gold earned."/>
-    <battleExperienceGained message="experience gained."/>
-    <battleLevelUp message="YOU LEVELED UP!"/>
-    <battleSkillLearned message="Learned skill "/>
-    <battleDamageTakenBegin message="You took "/>
-    <battleDamageTakenEnd message="damage."/>
-    <battleDefeat message="Gehenna awaits you......"/>
-    <battleFight message="You strike your opponent"/>
-    <battleRunSuccess message="You narrowly escaped."/>
-    <battleRunFail message="You failed to run away."/>
-    <battleRunImpossible message="There's nowhere to run."/>
-    <battleDamageDealt message="You dealt "/>
-    <battleMiss message="MISS!"/>
-    <battlePoisonBegin message="Poison deals "/>
-    <menuDialogTest message="This is the dialog speed"/>
-    <battleBerserkAttack message="YOU'RE BLINDED BY RAGE!"/>
-    <battleUseItem message="You used a "/>
-    <battleUseSkill message="You used "/>
-    <battleCastSpell message="You cast "/>
-    <battleInflictPoison message="The enemy is poisoned"/>
-    <battleInflictPoisonFail message="The poison didn't hold"/>
-    <battleInflictSlow message="The enemy moves slower"/>
-    <battleInflictSlowFail message="The slowness didn't work"/>
-    <battleRecoveredAmount message="You recovered "/>
-    <battleCleansed message="You feel very refreshed!"/>
-    <battleFocus1 message="You become focused"/>
-    <battleFocus2 message="You become more focused"/>
-    <battleFocus3 message="You become super focused"/>
-    <battleBerserk1 message="You become furious"/>
-    <battleBerserk2 message="You become more furious"/>
-    <battleBerserk3 message="You become super furious"/>
-    <battleRemoveBerserk message="You feel less furious"/>
-    <battleInflictHaste message="You're movement is fast!"/>
-    <battleRemovePoison message="You recover from poison."/>
-    <battleRemoveSlow message="You can move normally."/>
-    <battleAttackUp message="You become stronger"/>
-    <battleDefenseUp message="You become tougher"/>
-    <battleAgilityUp message="You become swifter"/>
-    <battleMagicUp message="You become more powerful"/>
-  </messages>
+	<maps>
+		<map name="Overworld" file="map0000.xml"/>
+		<map name="Town 1" file="map0001.xml">
+			<map name="Post-Raid" file="map0002.xml"/>
+			<map name="Home" file="map0003.xml"/>
+			<map name="House 1" file="map0004.xml"/>
+			<map name="House 2" file="map0005.xml"/>
+			<map name="House 3" file="map0006.xml"/>
+			<map name="Shop" file="map0007.xml"/>
+			<map name="Town Hall" file="map0008.xml">
+				<map name="Floor 2" file="map0009.xml"/>
+			</map>
+			<map name="Inn" file="map0010.xml">
+				<map name="Floor 2" file="map0011.xml"/>
+				<map name="Floor 3" file="map0012.xml"/>
+				<map name="Cavern" file="map0013.xml">
+					<map name="Floor 2" file="map0014.xml"/>
+					<map name="Floor 3 (Lower)" file="map0015.xml"/>
+					<map name="Floor 3 (Upper)" file="map0016.xml"/>
+					<map name="Floor 4" file="map0017.xml"/>
+				</map>
+			</map>
+		</map>
+		<map name="Shrine NE" file="map0018.xml"/>
+		<map name="Town 2" file="map0019.xml">
+			<map name="Benjamin&apos;s House" file="map0020.xml"/>
+			<map name="Mine" file="map0021.xml">
+				<map name="Floor 2" file="map0022.xml"/>
+			</map>
+		</map>
+		<map name="Mountain Pass" file="map0023.xml">
+			<map name="Part 2" file="map0024.xml"/>
+			<map name="Part 3" file="map0025.xml"/>
+			<map name="Cliffs" file="map0026.xml"/>
+			<map name="Cabin 1" file="map0027.xml">
+				<map name="Floor 2" file="map0028.xml"/>
+			</map>
+			<map name="Cabin 2" file="map0029.xml">
+				<map name="Floor 2" file="map0030.xml"/>
+			</map>
+			<map name="Cave" file="map0031.xml">
+				<map name="A" file="map0032.xml"/>
+				<map name="B" file="map0033.xml"/>
+				<map name="C" file="map0034.xml"/>
+				<map name="D" file="map0035.xml"/>
+				<map name="E" file="map0036.xml"/>
+				<map name="F" file="map0037.xml"/>
+				<map name="G" file="map0038.xml"/>
+			</map>
+		</map>
+		<map name="Town 3" file="map0039.xml">
+			<map name="Inn" file="map0040.xml"/>
+			<map name="House 2" file="map0041.xml"/>
+		</map>
+		<map name="Border (closed)" file="map0042.xml"/>
+		<map name="Border (open)" file="map0043.xml"/>
+	</maps>
+	<messages>
+		<battleAgilityUp message="You become swifter"/>
+		<battleAttackUp message="You become stronger"/>
+		<battleBerserk1 message="You become furious"/>
+		<battleBerserk2 message="You become more furious"/>
+		<battleBerserk3 message="You become super furious"/>
+		<battleBerserkAttack message="YOU&apos;RE BLINDED BY RAGE!"/>
+		<battleCastSpell message="You cast "/>
+		<battleChooseAction message="What action do you seek?"/>
+		<battleCleansed message="You feel very refreshed!"/>
+		<battleCriticalHit message="CRITICAL HIT "/>
+		<battleDamageDealt message="You dealt "/>
+		<battleDamageTakenBegin message="You took "/>
+		<battleDamageTakenEnd message="damage."/>
+		<battleDefeat message="Gehenna awaits you......"/>
+		<battleDefenseUp message="You become tougher"/>
+		<battleExperienceGained message="experience gained."/>
+		<battleFight message="You strike your opponent"/>
+		<battleFocus1 message="You become focused"/>
+		<battleFocus2 message="You become more focused"/>
+		<battleFocus3 message="You become super focused"/>
+		<battleGoldEarned message="gold earned."/>
+		<battleInflictHaste message="You&apos;re movement is fast!"/>
+		<battleInflictPoison message="The enemy is poisoned"/>
+		<battleInflictPoisonFail message="The poison didn&apos;t hold"/>
+		<battleInflictSlow message="The enemy moves slower"/>
+		<battleInflictSlowFail message="The slowness didn&apos;t work"/>
+		<battleLevelUp message="YOU LEVELED UP!"/>
+		<battleMagicUp message="You become more powerful"/>
+		<battleMiss message="MISS!"/>
+		<battlePoisonBegin message="Poison deals "/>
+		<battleRecoveredAmount message="You recovered "/>
+		<battleRemoveBerserk message="You feel less furious"/>
+		<battleRemovePoison message="You recover from poison."/>
+		<battleRemoveSlow message="You can move normally."/>
+		<battleRunFail message="You failed to run away."/>
+		<battleRunImpossible message="There&apos;s nowhere to run."/>
+		<battleRunSuccess message="You narrowly escaped."/>
+		<battleSkillLearned message="Learned skill "/>
+		<battleSurpriseAttack message="IT&apos;S A SURPRISE ATTACK!"/>
+		<battleUseItem message="You used a "/>
+		<battleUseSkill message="You used "/>
+		<menuDialogTest message="This is the dialog speed"/>
+	</messages>
+	<items>
+		<consumables>
+			<item name="Potion" description="Heal small amount of HP" price="30"/>
+			<item name="H-Potion" description="Heal large amount of HP" price="100"/>
+			<item name="S-Potion" description="Heal great amount of HP" price="200"/>
+			<item name="Ether" description="Heal small amount of MP" price="15"/>
+			<item name="H-Ether" description="Heal large amount of MP" price="50"/>
+			<item name="S-Ether" description="Heal great amount of MP" price="100"/>
+			<item name="Elixir" description="Recovers both HP and MP" price="200"/>
+			<item name="Antidote" description="Cures poison status" price="20"/>
+			<item name="Stimulnt" description="Cures slowness status" price="30"/>
+			<item name="Herbs" description="Cures berserk status" price="30"/>
+			<item name="Remedy" description="Heals negative statuses" price="80"/>
+			<item name="X-Attack" description="Slightly raises attack" price="40"/>
+			<item name="X-Defend" description="Slightly raises defense" price="40"/>
+			<item name="X-Speed" description="Slightly raises agility" price="40"/>
+			<item name="X-Magic" description="Slightly raises magic" price="40"/>
+			<item name="Smoke B" description="Instant run from battle" price="60"/>
+		</consumables>
+		<tradeables>
+			<item name="Crystal" description="Shiny crystal fragments" price="4"/>
+			<item name="Obsidian" description="Hardened chunks of lava" price="1"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+			<item name="UNKNOWN" description="" price="0"/>
+		</tradeables>
+		<weapons>
+			<item name="Rusty S" description="An old and rusted blade" price="1" attack="3" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="Dagger" description="Simple, but effective." price="1" attack="7" defense="0" agility="1" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+		</weapons>
+		<helmets>
+			<item name="Beret" description="A stylish head piece" price="60" attack="0" defense="1" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="Miner&apos;s" description="Shines light in the dark" price="1" attack="0" defense="2" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+		</helmets>
+		<armor>
+			<item name="Jerkin" description="Simple leather armor" price="1" attack="0" defense="2" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+		</armor>
+		<boots>
+			<item name="Moccasin" description="Simple leather shoes" price="40" attack="0" defense="1" agility="2" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="Galoshes" description="Leather with wood soles" price="200" attack="0" defense="4" agility="6" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+		</boots>
+		<rings>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+		</rings>
+		<amulets>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+			<item name="UNKNOWN" description="" price="1" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0"/>
+		</amulets>
+	</items>
+	<skills>
+		<skill name="Examine" description="Get information on enemy" mp="1"/>
+		<skill name="Focus 1" description="Raises focus to level 1" mp="2"/>
+		<skill name="Focus 2" description="Raises focus to level 2" mp="1"/>
+		<skill name="Focus 3" description="Raises focus to level 3" mp="1"/>
+		<skill name="Dbl Hit" description="Strike enemy twice" mp="5"/>
+		<skill name="Pwr Shot" description="Deal double damage" mp="1"/>
+		<skill name="Dash" description="Hasten one&apos;s movements" mp="1"/>
+		<skill name="Enrage 1" description="Raise berserk to level 1" mp="1"/>
+		<skill name="Enrage 2" description="Raise berserk to level 2" mp="1"/>
+		<skill name="Enrage 3" description="Raise berserk to level 3" mp="1"/>
+		<skill name="Meditate" description="Recover from berserk" mp="3"/>
+		<skill name="UNKNOWN" description="" mp="1"/>
+		<skill name="UNKNOWN" description="" mp="1"/>
+		<skill name="UNKNOWN" description="" mp="1"/>
+		<skill name="UNKNOWN" description="" mp="1"/>
+		<skill name="UNKNOWN" description="" mp="1"/>
+	</skills>
+	<spells>
+		<spell name="Fireball" description="Casts a ball of fire" mp="1"/>
+		<spell name="Starfire" description="Engulfs enemy in flames" mp="1"/>
+		<spell name="Waterjet" description="Casts a stream of water" mp="1"/>
+		<spell name="Tsunami" description="A furrious tidal wave " mp="1"/>
+		<spell name="Quicksnd" description="Basic earth based spell" mp="1"/>
+		<spell name="Upheaval" description="Make the ground give way" mp="1"/>
+		<spell name="Flurry" description="A small burst of wind" mp="1"/>
+		<spell name="Tornado" description="Engulfs enemy in a storm" mp="1"/>
+		<spell name="Illumine" description="Light against dark ones" mp="1"/>
+		<spell name="Starbeam" description="Engulfs enemy in light " mp="1"/>
+		<spell name="Shadow" description="Casts away the light" mp="1"/>
+		<spell name="Eclipse" description="Engulf enemy in darkness" mp="1"/>
+		<spell name="Envenom" description="Poisons the enemy" mp="1"/>
+		<spell name="Ensnare" description="Slows enemy&apos;s movement" mp="1"/>
+		<spell name="Recovery" description="Restores caster&apos;s health" mp="1"/>
+		<spell name="Cleanser" description="Removes negative status" mp="1"/>
+	</spells>
+	<stats>
+		<hp start="13" base="3" exponent="1.75"/>
+		<mp start="1" base="0.25" exponent="1.5"/>
+		<attack start="2" base="2" exponent="1.3"/>
+		<defense start="3" base="0.5" exponent="1.6"/>
+		<agility start="1" base="1.25" exponent="1.4"/>
+		<magic start="0" base="0.75" exponent="1.5"/>
+		<experience start="10" base="6" exponent="1.6"/>
+	</stats>
 </ptad-settings>

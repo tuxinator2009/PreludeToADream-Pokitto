@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="3" bgm="labyrinth" width="1" height="1" minSteps="4" maxSteps="12" flags="0" sprites="15,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255">
+<ptad-map tileset="3" bgm="13" width="1" height="1" minSteps="4" maxSteps="12" flags="0" sprites="15,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255">
 	<onLoadEvent/>
 	<bg>
 		0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
@@ -90,7 +90,7 @@
 		</event>
 		<event name="Crystals (switch=6)" x="10" y="9" flags="9" sprite="255">
 			<ifSwitch switchID="6" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<showOneLiner message="You found some crystals."/>
 				<givePlayerItem type="1" item="0" amount="1"/>
 			</ifSwitch>
@@ -103,7 +103,7 @@
 		</event>
 		<event name="Crystals (switch=7)" x="7" y="5" flags="9" sprite="255">
 			<ifSwitch switchID="7" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<showOneLiner message="You found some crystals."/>
 				<givePlayerItem type="1" item="0" amount="1"/>
 			</ifSwitch>
@@ -116,7 +116,7 @@
 		</event>
 		<event name="Crystals (switch=8)" x="3" y="12" flags="9" sprite="255">
 			<ifSwitch switchID="8" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<showOneLiner message="You found some crystals."/>
 				<givePlayerItem type="1" item="0" amount="2"/>
 			</ifSwitch>
@@ -129,7 +129,7 @@
 		</event>
 		<event name="Crystals (switch=9)" x="7" y="9" flags="9" sprite="255">
 			<ifSwitch switchID="9" is="OFF">
-				<playSoundEffect sound="getItem" loop="false"/>
+				<playSoundEffect sound="4" loop="false"/>
 				<showOneLiner message="You found some crystals."/>
 				<givePlayerItem type="1" item="0" amount="2"/>
 			</ifSwitch>
