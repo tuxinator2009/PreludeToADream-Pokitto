@@ -202,7 +202,6 @@ class MapEvent
         static const char *operations[];
         static const char *movements[];
         static const char *conditions[];
-        static const uint8_t typeID[];
         QTreeWidgetItem *item;
         MapEvent *pMapEvent;
         Event *parent;

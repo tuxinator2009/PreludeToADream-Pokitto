@@ -39,6 +39,7 @@ class Image : public QObject
     Image(QSize s, QObject *parent=nullptr);
     Image(const Image &other, QRect r, QObject *parent=nullptr);
     ~Image();
+    bool isEmpty();
     uint8_t getPixel(QPoint p) const;
     void setPixel(QPoint p, uint8_t pixel);
     void fillRect(QRect r, uint8_t index);

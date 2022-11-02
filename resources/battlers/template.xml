@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<preludetoadream-enemy experience="" gold="" hp="" mp="" attack="" defense="" agility="" magic="" spellResistance="" poisonResistance="" slowResistance="">
+<monster name="NO NAME" experience="0" gold="0" hp="0" mp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="43690" poisonResistance="0" slowResistance="0">
   <intro>
   </intro>
   <outro>
   </outro>
   <turn>
   </turn>
-  <!--event system to determine action taken-->
-</preludetoadream-enemy>
+</monster>
+

@@ -25,8 +25,6 @@
 #include "globals.h"
 #include "itemseditor.h"
 
-const char *ItemsEditor::spellIcons[4] = {":/icons/spellResistance0.png",":/icons/spellResistance05.png",":/icons/spellResistance1.png",":/icons/spellResistance2.png"};
-
 ItemsEditor::ItemsEditor(QWidget *parent) : QDialog(parent)
 {
   setupUi(this);
@@ -168,7 +166,7 @@ void ItemsEditor::on_lstItems_itemSelectionChanged()
     numAgility->setValue(Globals::equipmentStats[itemType - 2][itemID].stats[2]);
     numMagic->setValue(Globals::equipmentStats[itemType - 2][itemID].stats[3]);
     for (int i = 0; i < 7; ++i)
-      lstSpells->item(i)->setIcon(QIcon(spellIcons[(Globals::equipmentStats[itemType - 2][itemID].spellResistance >> (i * 2)) & 3]));
+      lstSpells->item(i)->setIcon(QIcon(Globals::spellIcons[(Globals::equipmentStats[itemType - 2][itemID].spellResistance >> (i * 2)) & 3]));
     numPoison->setValue(Globals::equipmentStats[itemType - 2][itemID].statusResistance[0]);
     numSlow->setValue(Globals::equipmentStats[itemType - 2][itemID].statusResistance[1]);
   }
@@ -231,7 +229,7 @@ void ItemsEditor::on_lstSpells_itemClicked(QListWidgetItem *item)
   uint16_t resistance = (Globals::equipmentStats[itemType - 2][lstItems->currentRow()].spellResistance >> (spellID * 2)) & 3;
   Globals::equipmentStats[itemType - 2][lstItems->currentRow()].spellResistance &= ~(3 << (spellID * 2));
   resistance = (resistance + 1) % 4;
-  item->setIcon(QIcon(spellIcons[resistance]));
+  item->setIcon(QIcon(Globals::spellIcons[resistance]));
   resistance <<= spellID * 2;
   Globals::equipmentStats[itemType - 2][lstItems->currentRow()].spellResistance |= resistance;
 }

@@ -544,7 +544,6 @@ void MapEvent::TopLevelEvent::compileEvent(QByteArray *bytes)
   offset = bytes->count();
   for (auto event : events)
     event->compileEvent(bytes);
-  delete events.takeLast();
 }
 
 MapEvent::Event *MapEvent::TopLevelEvent::previousChildEvent(Event *event)
@@ -1812,7 +1811,6 @@ void MapEvent::IfSwitch::compileEvent(QByteArray *bytes)
   pMapEvent->jumps += offJump;
   for (auto event : events)
     event->compileEvent(bytes);
-  delete events.takeLast();
 }
 
 bool MapEvent::IfSwitch::configureEvent(QWidget *parentWidget)
@@ -1919,7 +1917,6 @@ void MapEvent::IfVariable::compileEvent(QByteArray *bytes)
   pMapEvent->jumps += falseJump;
   for (auto event : events)
     event->compileEvent(bytes);
-  delete events.takeLast();
 }
 
 bool MapEvent::IfVariable::configureEvent(QWidget *parentWidget)
@@ -2006,7 +2003,6 @@ void MapEvent::IfHasItem::compileEvent(QByteArray *bytes)
   pMapEvent->jumps += falseJump;
   for (auto event : events)
     event->compileEvent(bytes);
-  delete events.takeLast();
 }
 
 bool MapEvent::IfHasItem::configureEvent(QWidget *parentWidget)
@@ -2095,7 +2091,6 @@ void MapEvent::IfExited::compileEvent(QByteArray *bytes)
   pMapEvent->jumps += falseJump;
   for (auto event : events)
     event->compileEvent(bytes);
-  delete events.takeLast();
 }
 
 bool MapEvent::IfExited::configureEvent(QWidget *parentWidget)
@@ -2185,7 +2180,6 @@ void MapEvent::IfYesNo::compileEvent(QByteArray *bytes)
   pMapEvent->jumps += noJump;
   for (auto event : events)
     event->compileEvent(bytes);
-  delete events.takeLast();
 }
 
 bool MapEvent::IfYesNo::configureEvent(QWidget *parentWidget)
@@ -2290,7 +2284,6 @@ void MapEvent::IfValue::compileEvent(QByteArray *bytes)
   pMapEvent->jumps += falseJump;
   for (auto event : events)
     event->compileEvent(bytes);
-  delete events.takeLast();
 }
 
 bool MapEvent::IfValue::configureEvent(QWidget *parentWidget)
@@ -2382,7 +2375,6 @@ void MapEvent::IfFacing::compileEvent(QByteArray *bytes)
   pMapEvent->jumps += falseJump;
   for (auto event : events)
     event->compileEvent(bytes);
-  delete events.takeLast();
 }
 
 bool MapEvent::IfFacing::configureEvent(QWidget *parentWidget)
@@ -3668,7 +3660,6 @@ void MapEvent::Else::compileEvent(QByteArray *bytes)
   offset = bytes->count();
   for (auto event : events)
     event->compileEvent(bytes);
-  delete events.takeLast();
 }
 
 MapEvent::Event *MapEvent::Else::previousChildEvent(Event *event)

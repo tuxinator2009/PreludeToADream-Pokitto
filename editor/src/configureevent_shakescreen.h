@@ -31,7 +31,12 @@ class ConfigureEvent_ShakeScreen : public QDialog, public Ui::ConfigureEvent_Sha
 {
   Q_OBJECT
   public:
-    ConfigureEvent_ShakeScreen(QWidget *parent=nullptr) : QDialog(parent) {setupUi(this);}
+    ConfigureEvent_ShakeScreen(bool useMagnitude=true, QWidget *parent=nullptr) : QDialog(parent)
+    {
+      setupUi(this);
+      if (!useMagnitude)
+        lblMagnitude->setText("Rate");
+    }
     ~ConfigureEvent_ShakeScreen() {}
     int getDuration() {return numDuration->value();}
     void setDuration(int value) {numDuration->setValue(value);}

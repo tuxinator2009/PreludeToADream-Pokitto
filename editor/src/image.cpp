@@ -85,6 +85,17 @@ Image::~Image()
   delete[] pixels;
 }
 
+bool Image::isEmpty()
+{
+  uint8_t *pixel = pixels;
+  for (int i = 0; i < size.width() * size.height(); ++i, ++pixel)
+  {
+    if (*pixel != 0)
+      return false;
+  }
+  return true;
+}
+
 uint8_t Image::getPixel(QPoint p) const
 {
   if (p.x() < 0 || p.x() >= size.width())

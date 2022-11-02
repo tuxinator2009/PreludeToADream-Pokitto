@@ -51,7 +51,6 @@ MapEventEditor::MapEventEditor(MapEvent *e, bool onLoadEvent, QWidget *parent) :
     spritePicker = new MapSpritePicker(Globals::map, this);
     connect(spritePicker, SIGNAL(spriteClicked(uint8_t)), this, SLOT(spriteClicked(uint8_t)));
   }
-  //TODO: set sprite graphic
   mapEvent->getTopLevelEvent()->setItem(treeEvents->invisibleRootItem());
   treeEvents->expandAll();
 }

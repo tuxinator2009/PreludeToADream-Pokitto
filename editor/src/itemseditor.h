@@ -54,7 +54,6 @@ class ItemsEditor : public QDialog, public Ui::ItemsEditor
     void on_numPoison_valueChanged(int value);
     void on_numSlow_valueChanged(int value);
   private:
-    static const char *spellIcons[4];
     int itemType;
     bool ignoreEvents;
 };

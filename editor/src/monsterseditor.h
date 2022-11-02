@@ -26,6 +26,8 @@
 #define MONSTERSEDITOR_H
 
 #include "ui_monsterseditor.h"
+#include "image.h"
+#include "monster.h"
 
 class MonstersEditor : public QDialog, public Ui::MonstersEditor
 {
@@ -33,6 +35,34 @@ class MonstersEditor : public QDialog, public Ui::MonstersEditor
   public:
     MonstersEditor(QWidget *parent=nullptr);
     ~MonstersEditor();
+  protected slots:
+    void on_lstMonsters_itemSelectionChanged();
+    void on_leName_textChanged(QString value);
+    void on_numGold_valueChanged(int value);
+    void on_numExperience_valueChanged(int value);
+    void on_numHP_valueChanged(int value);
+    void on_numMP_valueChanged(int value);
+    void on_numAttack_valueChanged(int value);
+    void on_numDefense_valueChanged(int value);
+    void on_numAgility_valueChanged(int value);
+    void on_numMagic_valueChanged(int value);
+    void on_lstSpells_itemClicked(QListWidgetItem *item);
+    void on_numPoison_valueChanged(int value);
+    void on_numSlow_valueChanged(int value);
+    void on_treeIntroEvents_insertEvent(QTreeWidgetItem *item);
+    void on_treeIntroEvents_editEvent(QTreeWidgetItem *item);
+    void on_treeIntroEvents_deleteEvent(QTreeWidgetItem *item);
+    void on_treeOutroEvents_insertEvent(QTreeWidgetItem *item);
+    void on_treeOutroEvents_editEvent(QTreeWidgetItem *item);
+    void on_treeOutroEvents_deleteEvent(QTreeWidgetItem *item);
+    void on_treeTurnEvents_insertEvent(QTreeWidgetItem *item);
+    void on_treeTurnEvents_editEvent(QTreeWidgetItem *item);
+    void on_treeTurnEvents_deleteEvent(QTreeWidgetItem *item);
+  private:
+    Monster *monster;
+    Image *sprite;
+    int currentMonsterID;
+    bool ignoreEvents;
 };
 
 #endif //MONSTERSEDITOR_H

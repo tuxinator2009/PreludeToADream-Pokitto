@@ -31,7 +31,7 @@ namespace PTAD
       if (stringsEqual(value, lookupTable[i]))
         return i;
     }
-    assert(false, value);
+    //assert(false, value);
   }
   struct Item
   {

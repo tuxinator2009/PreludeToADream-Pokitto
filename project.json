@@ -317,27 +317,28 @@
 	},
 	"meta": {
 		"AUTHORS.txt": {},
-		"LICENSE": {},
 		"EEP.ROM": {},
-		"PreludeToADream": {},
+		"LICENSE": {},
 		"My_settings.h": {},
-		"PreludeToADream.bin": {},
-		"PreludeToADream.elf": {},
 		"data": {
 			"sdcard": true
 		},
+		"editor": {},
 		"project.json": {},
 		"resources": {},
 		"scripts": {},
 		"src": {},
 		"tools": {},
 		"data/preludetoadream.pak": {},
-		"data/preludetoadream.sav": {},
-		"resources/BattleAnimation.mp4": {},
-		"resources/Gate.gif": {},
-		"resources/Gate.mp4": {},
+		"editor/Makefile": {},
+		"editor/compile.sh": {},
+		"editor/data": {},
+		"editor/editor": {},
+		"editor/editor.pro": {},
+		"editor/out.txt": {},
+		"editor/src": {},
+		"editor/test.raw": {},
 		"resources/POP": {},
-		"resources/Shrine.mp4": {},
 		"resources/Tiled": {},
 		"resources/animations": {},
 		"resources/backdrops": {},
@@ -355,6 +356,7 @@
 		"resources/newGameEvent.dat": {},
 		"resources/newGameEvent.txt": {},
 		"resources/objectives.txt": {},
+		"resources/progress.todo": {},
 		"resources/screen.png": {},
 		"resources/screen_bestiary.png": {},
 		"resources/screen_dialog.png": {},
@@ -366,6 +368,7 @@
 		"resources/screen_stats.png": {},
 		"resources/screen_volume.png": {},
 		"resources/screens": {},
+		"resources/settings.xml": {},
 		"resources/sfx": {},
 		"resources/sprites": {},
 		"resources/stats.ods": {},
@@ -416,6 +419,294 @@
 		"tools/common.css": {},
 		"tools/editorLayout.png": {},
 		"tools/frameNumber.png": {},
+		"editor/data/settings.xml": {},
+		"editor/data/tilesets": {},
+		"editor/src/Makefile": {},
+		"editor/src/battleanimation.cpp": {},
+		"editor/src/battleanimation.h": {},
+		"editor/src/battleanimation.o": {},
+		"editor/src/battleanimationseditor.cpp": {},
+		"editor/src/battleanimationseditor.h": {},
+		"editor/src/battleanimationseditor.o": {},
+		"editor/src/battleanimationseditor.ui": {},
+		"editor/src/choosemapevent.cpp": {},
+		"editor/src/choosemapevent.h": {},
+		"editor/src/choosemapevent.o": {},
+		"editor/src/choosemapevent.ui": {},
+		"editor/src/colorpicker.cpp": {},
+		"editor/src/colorpicker.h": {},
+		"editor/src/colorpicker.o": {},
+		"editor/src/colorpicker.ui": {},
+		"editor/src/configureevent_battle.h": {},
+		"editor/src/configureevent_battle.ui": {},
+		"editor/src/configureevent_buffercharacter.h": {},
+		"editor/src/configureevent_buffercharacter.ui": {},
+		"editor/src/configureevent_buffervalue.h": {},
+		"editor/src/configureevent_buffervalue.ui": {},
+		"editor/src/configureevent_changeeventflags.h": {},
+		"editor/src/configureevent_changeeventflags.ui": {},
+		"editor/src/configureevent_changeeventlocation.cpp": {},
+		"editor/src/configureevent_changeeventlocation.h": {},
+		"editor/src/configureevent_changeeventlocation.o": {},
+		"editor/src/configureevent_changeeventlocation.ui": {},
+		"editor/src/configureevent_changepassability.cpp": {},
+		"editor/src/configureevent_changepassability.h": {},
+		"editor/src/configureevent_changepassability.o": {},
+		"editor/src/configureevent_changepassability.ui": {},
+		"editor/src/configureevent_changesprite.h": {},
+		"editor/src/configureevent_changesprite.ui": {},
+		"editor/src/configureevent_changevariable.h": {},
+		"editor/src/configureevent_changevariable.ui": {},
+		"editor/src/configureevent_giveplayeritem.h": {},
+		"editor/src/configureevent_giveplayeritem.ui": {},
+		"editor/src/configureevent_ifexited.h": {},
+		"editor/src/configureevent_ifexited.ui": {},
+		"editor/src/configureevent_ifhasitem.h": {},
+		"editor/src/configureevent_ifhasitem.ui": {},
+		"editor/src/configureevent_ifswitch.h": {},
+		"editor/src/configureevent_ifswitch.ui": {},
+		"editor/src/configureevent_ifvalue.h": {},
+		"editor/src/configureevent_ifvalue.ui": {},
+		"editor/src/configureevent_ifvariable.h": {},
+		"editor/src/configureevent_ifvariable.ui": {},
+		"editor/src/configureevent_ifyesno.h": {},
+		"editor/src/configureevent_ifyesno.ui": {},
+		"editor/src/configureevent_moveplayer.h": {},
+		"editor/src/configureevent_moveplayer.ui": {},
+		"editor/src/configureevent_playmusic.h": {},
+		"editor/src/configureevent_playmusic.ui": {},
+		"editor/src/configureevent_playsoundeffect.h": {},
+		"editor/src/configureevent_playsoundeffect.ui": {},
+		"editor/src/configureevent_shakescreen.h": {},
+		"editor/src/configureevent_shakescreen.ui": {},
+		"editor/src/configureevent_showhidescreen.h": {},
+		"editor/src/configureevent_showhidescreen.ui": {},
+		"editor/src/configureevent_showimage.h": {},
+		"editor/src/configureevent_showimage.ui": {},
+		"editor/src/configureevent_showmessage.h": {},
+		"editor/src/configureevent_showmessage.ui": {},
+		"editor/src/configureevent_showshopmenu.h": {},
+		"editor/src/configureevent_showshopmenu.ui": {},
+		"editor/src/configureevent_switchrange.h": {},
+		"editor/src/configureevent_switchrange.ui": {},
+		"editor/src/configureevent_teleport.cpp": {},
+		"editor/src/configureevent_teleport.h": {},
+		"editor/src/configureevent_teleport.o": {},
+		"editor/src/configureevent_teleport.ui": {},
+		"editor/src/eventview.cpp": {},
+		"editor/src/eventview.h": {},
+		"editor/src/eventview.o": {},
+		"editor/src/globals.cpp": {},
+		"editor/src/globals.h": {},
+		"editor/src/globals.o": {},
+		"editor/src/icons": {},
+		"editor/src/icons.qrc": {},
+		"editor/src/image.cpp": {},
+		"editor/src/image.h": {},
+		"editor/src/image.o": {},
+		"editor/src/images": {},
+		"editor/src/imageview.cpp": {},
+		"editor/src/imageview.h": {},
+		"editor/src/imageview.o": {},
+		"editor/src/itemseditor.cpp": {},
+		"editor/src/itemseditor.h": {},
+		"editor/src/itemseditor.o": {},
+		"editor/src/itemseditor.ui": {},
+		"editor/src/main.cpp": {},
+		"editor/src/main.o": {},
+		"editor/src/mainwindow.cpp": {},
+		"editor/src/mainwindow.h": {},
+		"editor/src/mainwindow.o": {},
+		"editor/src/mainwindow.ui": {},
+		"editor/src/map.cpp": {},
+		"editor/src/map.h": {},
+		"editor/src/map.o": {},
+		"editor/src/mapevent.cpp": {},
+		"editor/src/mapevent.h": {},
+		"editor/src/mapevent.o": {},
+		"editor/src/mapeventeditor.cpp": {},
+		"editor/src/mapeventeditor.h": {},
+		"editor/src/mapeventeditor.o": {},
+		"editor/src/mapeventeditor.ui": {},
+		"editor/src/mapflags.cpp": {},
+		"editor/src/mapflags.h": {},
+		"editor/src/mapflags.o": {},
+		"editor/src/mapflags.ui": {},
+		"editor/src/mapspritepicker.cpp": {},
+		"editor/src/mapspritepicker.h": {},
+		"editor/src/mapspritepicker.o": {},
+		"editor/src/mapspritepicker.ui": {},
+		"editor/src/messageseditor.cpp": {},
+		"editor/src/messageseditor.h": {},
+		"editor/src/messageseditor.o": {},
+		"editor/src/messageseditor.ui": {},
+		"editor/src/moc_battleanimationseditor.cpp": {},
+		"editor/src/moc_battleanimationseditor.o": {},
+		"editor/src/moc_choosemapevent.cpp": {},
+		"editor/src/moc_choosemapevent.o": {},
+		"editor/src/moc_colorpicker.cpp": {},
+		"editor/src/moc_colorpicker.o": {},
+		"editor/src/moc_configureevent_battle.cpp": {},
+		"editor/src/moc_configureevent_battle.o": {},
+		"editor/src/moc_configureevent_buffercharacter.cpp": {},
+		"editor/src/moc_configureevent_buffercharacter.o": {},
+		"editor/src/moc_configureevent_buffervalue.cpp": {},
+		"editor/src/moc_configureevent_buffervalue.o": {},
+		"editor/src/moc_configureevent_changeeventflags.cpp": {},
+		"editor/src/moc_configureevent_changeeventflags.o": {},
+		"editor/src/moc_configureevent_changeeventlocation.cpp": {},
+		"editor/src/moc_configureevent_changeeventlocation.o": {},
+		"editor/src/moc_configureevent_changepassability.cpp": {},
+		"editor/src/moc_configureevent_changepassability.o": {},
+		"editor/src/moc_configureevent_changesprite.cpp": {},
+		"editor/src/moc_configureevent_changesprite.o": {},
+		"editor/src/moc_configureevent_changevariable.cpp": {},
+		"editor/src/moc_configureevent_changevariable.o": {},
+		"editor/src/moc_configureevent_giveplayeritem.cpp": {},
+		"editor/src/moc_configureevent_giveplayeritem.o": {},
+		"editor/src/moc_configureevent_ifexited.cpp": {},
+		"editor/src/moc_configureevent_ifexited.o": {},
+		"editor/src/moc_configureevent_ifhasitem.cpp": {},
+		"editor/src/moc_configureevent_ifhasitem.o": {},
+		"editor/src/moc_configureevent_ifswitch.cpp": {},
+		"editor/src/moc_configureevent_ifswitch.o": {},
+		"editor/src/moc_configureevent_ifvalue.cpp": {},
+		"editor/src/moc_configureevent_ifvalue.o": {},
+		"editor/src/moc_configureevent_ifvariable.cpp": {},
+		"editor/src/moc_configureevent_ifvariable.o": {},
+		"editor/src/moc_configureevent_ifyesno.cpp": {},
+		"editor/src/moc_configureevent_ifyesno.o": {},
+		"editor/src/moc_configureevent_moveplayer.cpp": {},
+		"editor/src/moc_configureevent_moveplayer.o": {},
+		"editor/src/moc_configureevent_playmusic.cpp": {},
+		"editor/src/moc_configureevent_playmusic.o": {},
+		"editor/src/moc_configureevent_playsoundeffect.cpp": {},
+		"editor/src/moc_configureevent_playsoundeffect.o": {},
+		"editor/src/moc_configureevent_shakescreen.cpp": {},
+		"editor/src/moc_configureevent_shakescreen.o": {},
+		"editor/src/moc_configureevent_showhidescreen.cpp": {},
+		"editor/src/moc_configureevent_showhidescreen.o": {},
+		"editor/src/moc_configureevent_showimage.cpp": {},
+		"editor/src/moc_configureevent_showimage.o": {},
+		"editor/src/moc_configureevent_showmessage.cpp": {},
+		"editor/src/moc_configureevent_showmessage.o": {},
+		"editor/src/moc_configureevent_showshopmenu.cpp": {},
+		"editor/src/moc_configureevent_showshopmenu.o": {},
+		"editor/src/moc_configureevent_switchrange.cpp": {},
+		"editor/src/moc_configureevent_switchrange.o": {},
+		"editor/src/moc_configureevent_teleport.cpp": {},
+		"editor/src/moc_configureevent_teleport.o": {},
+		"editor/src/moc_eventview.cpp": {},
+		"editor/src/moc_eventview.o": {},
+		"editor/src/moc_image.cpp": {},
+		"editor/src/moc_image.o": {},
+		"editor/src/moc_imageview.cpp": {},
+		"editor/src/moc_imageview.o": {},
+		"editor/src/moc_itemseditor.cpp": {},
+		"editor/src/moc_itemseditor.o": {},
+		"editor/src/moc_mainwindow.cpp": {},
+		"editor/src/moc_mainwindow.o": {},
+		"editor/src/moc_mapeventeditor.cpp": {},
+		"editor/src/moc_mapeventeditor.o": {},
+		"editor/src/moc_mapflags.cpp": {},
+		"editor/src/moc_mapflags.o": {},
+		"editor/src/moc_mapspritepicker.cpp": {},
+		"editor/src/moc_mapspritepicker.o": {},
+		"editor/src/moc_messageseditor.cpp": {},
+		"editor/src/moc_messageseditor.o": {},
+		"editor/src/moc_monsterseditor.cpp": {},
+		"editor/src/moc_monsterseditor.o": {},
+		"editor/src/moc_predefs.h": {},
+		"editor/src/moc_resources.cpp": {},
+		"editor/src/moc_resources.o": {},
+		"editor/src/moc_skillsspellseditor.cpp": {},
+		"editor/src/moc_skillsspellseditor.o": {},
+		"editor/src/moc_spritepicker.cpp": {},
+		"editor/src/moc_spritepicker.o": {},
+		"editor/src/moc_statseditor.cpp": {},
+		"editor/src/moc_statseditor.o": {},
+		"editor/src/moc_tileseteditor.cpp": {},
+		"editor/src/moc_tileseteditor.o": {},
+		"editor/src/moc_tilesetview.cpp": {},
+		"editor/src/moc_tilesetview.o": {},
+		"editor/src/monster.cpp": {},
+		"editor/src/monster.h": {},
+		"editor/src/monsterseditor.cpp": {},
+		"editor/src/monsterseditor.h": {},
+		"editor/src/monsterseditor.o": {},
+		"editor/src/monsterseditor.ui": {},
+		"editor/src/qrc_icons.cpp": {},
+		"editor/src/qrc_icons.o": {},
+		"editor/src/resources.cpp": {},
+		"editor/src/resources.h": {},
+		"editor/src/resources.o": {},
+		"editor/src/resources.ui": {},
+		"editor/src/skillsspellseditor.cpp": {},
+		"editor/src/skillsspellseditor.h": {},
+		"editor/src/skillsspellseditor.o": {},
+		"editor/src/skillsspellseditor.ui": {},
+		"editor/src/spritepicker.cpp": {},
+		"editor/src/spritepicker.h": {},
+		"editor/src/spritepicker.o": {},
+		"editor/src/spritepicker.ui": {},
+		"editor/src/src.pro": {},
+		"editor/src/statseditor.cpp": {},
+		"editor/src/statseditor.h": {},
+		"editor/src/statseditor.o": {},
+		"editor/src/statseditor.ui": {},
+		"editor/src/tileset.cpp": {},
+		"editor/src/tileset.h": {},
+		"editor/src/tileset.o": {},
+		"editor/src/tileseteditor.cpp": {},
+		"editor/src/tileseteditor.h": {},
+		"editor/src/tileseteditor.o": {},
+		"editor/src/tileseteditor.ui": {},
+		"editor/src/tilesetview.cpp": {},
+		"editor/src/tilesetview.h": {},
+		"editor/src/tilesetview.o": {},
+		"editor/src/ui_battleanimationseditor.h": {},
+		"editor/src/ui_choosemapevent.h": {},
+		"editor/src/ui_colorpicker.h": {},
+		"editor/src/ui_configureevent_battle.h": {},
+		"editor/src/ui_configureevent_buffercharacter.h": {},
+		"editor/src/ui_configureevent_buffervalue.h": {},
+		"editor/src/ui_configureevent_changeeventflags.h": {},
+		"editor/src/ui_configureevent_changeeventlocation.h": {},
+		"editor/src/ui_configureevent_changepassability.h": {},
+		"editor/src/ui_configureevent_changesprite.h": {},
+		"editor/src/ui_configureevent_changevariable.h": {},
+		"editor/src/ui_configureevent_giveplayeritem.h": {},
+		"editor/src/ui_configureevent_ifexited.h": {},
+		"editor/src/ui_configureevent_ifhasitem.h": {},
+		"editor/src/ui_configureevent_ifswitch.h": {},
+		"editor/src/ui_configureevent_ifvalue.h": {},
+		"editor/src/ui_configureevent_ifvariable.h": {},
+		"editor/src/ui_configureevent_ifyesno.h": {},
+		"editor/src/ui_configureevent_moveplayer.h": {},
+		"editor/src/ui_configureevent_playmusic.h": {},
+		"editor/src/ui_configureevent_playsoundeffect.h": {},
+		"editor/src/ui_configureevent_shakescreen.h": {},
+		"editor/src/ui_configureevent_showhidescreen.h": {},
+		"editor/src/ui_configureevent_showimage.h": {},
+		"editor/src/ui_configureevent_showmessage.h": {},
+		"editor/src/ui_configureevent_showshopmenu.h": {},
+		"editor/src/ui_configureevent_switchrange.h": {},
+		"editor/src/ui_configureevent_teleport.h": {},
+		"editor/src/ui_itemseditor.h": {},
+		"editor/src/ui_mainwindow.h": {},
+		"editor/src/ui_mapeventeditor.h": {},
+		"editor/src/ui_mapflags.h": {},
+		"editor/src/ui_mapspritepicker.h": {},
+		"editor/src/ui_messageseditor.h": {},
+		"editor/src/ui_monsterseditor.h": {},
+		"editor/src/ui_resources.h": {},
+		"editor/src/ui_skillsspellseditor.h": {},
+		"editor/src/ui_spritepicker.h": {},
+		"editor/src/ui_statseditor.h": {},
+		"editor/src/ui_tileseteditor.h": {},
+		"editor/src/xmlParser.cpp": {},
+		"editor/src/xmlParser.h": {},
+		"editor/src/xmlParser.o": {},
 		"resources/POP/banner.ase": {},
 		"resources/POP/banner.png": {},
 		"resources/POP/icon_24x24.ase": {},
@@ -427,36 +718,17 @@
 		"resources/POP/screenshot3.png": {},
 		"resources/Tiled/battlers.tsx": {},
 		"resources/Tiled/borderClosed.png": {},
-		"resources/Tiled/benjaminsHouse.png": {},
 		"resources/Tiled/borderOpen.png": {},
-		"resources/Tiled/caveA.png": {},
-		"resources/Tiled/caveB.png": {},
-		"resources/Tiled/caveC.png": {},
-		"resources/Tiled/caveD.png": {},
-		"resources/Tiled/caveE.png": {},
-		"resources/Tiled/caveF.png": {},
-		"resources/Tiled/caveG.png": {},
-		"resources/Tiled/cliffs.png": {},
-		"resources/Tiled/floor1.png": {},
-		"resources/Tiled/floor2.png": {},
 		"resources/Tiled/grid.png": {},
 		"resources/Tiled/grid.tsx": {},
 		"resources/Tiled/main": {},
 		"resources/Tiled/objecttypes.xml": {},
-		"resources/Tiled/overworld.png": {},
-		"resources/Tiled/part1.png": {},
-		"resources/Tiled/part2.png": {},
-		"resources/Tiled/part3.png": {},
 		"resources/Tiled/passability.png": {},
 		"resources/Tiled/passability.tsx": {},
 		"resources/Tiled/ptad.tiled-project": {},
 		"resources/Tiled/ptad.tiled-session": {},
 		"resources/Tiled/region.tx": {},
-		"resources/Tiled/shrine1.png": {},
 		"resources/Tiled/sprites.tsx": {},
-		"resources/Tiled/test.png": {},
-		"resources/Tiled/town1_postRaid.png": {},
-		"resources/Tiled/town2.png": {},
 		"resources/Tiled/town4.png": {},
 		"resources/Tiled/visibility.png": {},
 		"resources/Tiled/visibility.tsx": {},
@@ -464,25 +736,39 @@
 		"resources/animations/animations.gfx": {},
 		"resources/animations/animations.png": {},
 		"resources/animations/enemy_bite.anim": {},
+		"resources/animations/enemy_bite.xml": {},
 		"resources/animations/enemy_bite2.anim": {},
+		"resources/animations/enemy_bite2.xml": {},
 		"resources/animations/enemy_claw.anim": {},
+		"resources/animations/enemy_claw.xml": {},
 		"resources/animations/enemy_pickaxe.anim": {},
+		"resources/animations/enemy_pickaxe.xml": {},
 		"resources/animations/enemy_punch.anim": {},
+		"resources/animations/enemy_punch.xml": {},
 		"resources/animations/enemy_punch2.anim": {},
+		"resources/animations/enemy_punch2.xml": {},
 		"resources/animations/enemy_quake.anim": {},
+		"resources/animations/enemy_quake.xml": {},
 		"resources/animations/enemy_sting.anim": {},
+		"resources/animations/enemy_sting.xml": {},
 		"resources/animations/enemy_tusk.anim": {},
+		"resources/animations/enemy_tusk.xml": {},
 		"resources/animations/enemy_venom.anim": {},
+		"resources/animations/enemy_venom.xml": {},
 		"resources/animations/enemy_web.anim": {},
+		"resources/animations/enemy_web.xml": {},
 		"resources/animations/enemy_web2.anim": {},
+		"resources/animations/enemy_web2.xml": {},
 		"resources/animations/player_sword.anim": {},
+		"resources/animations/player_sword.xml": {},
 		"resources/animations/player_unarmed.anim": {},
+		"resources/animations/player_unarmed.xml": {},
 		"resources/animations/test.anim": {},
+		"resources/animations/test.xml": {},
 		"resources/backdrops/cavern.ase": {},
 		"resources/backdrops/cavern.gfx": {},
 		"resources/backdrops/cavern.png": {},
 		"resources/backdrops/desert.ase": {},
-		"resources/backdrops/desert.gfx": {},
 		"resources/backdrops/desert.png": {},
 		"resources/backdrops/empty.txt": {},
 		"resources/backdrops/field.ase": {},
@@ -504,9 +790,7 @@
 		"resources/backdrops/swamp.gfx": {},
 		"resources/backdrops/swamp.png": {},
 		"resources/backdrops/tribalPit.ase": {},
-		"resources/backdrops/tribalPit.gfx": {},
 		"resources/backdrops/tribalPit.png": {},
-		"resources/battlers/akacheta.dat": {},
 		"resources/battlers/akacheta.xml": {},
 		"resources/battlers/bat.dat": {},
 		"resources/battlers/bat.xml": {},
@@ -515,10 +799,8 @@
 		"resources/battlers/battlers.png": {},
 		"resources/battlers/benjamin.dat": {},
 		"resources/battlers/benjamin.xml": {},
-		"resources/battlers/core": {},
 		"resources/battlers/cougar.dat": {},
 		"resources/battlers/cougar.xml": {},
-		"resources/battlers/eagle.dat": {},
 		"resources/battlers/eagle.xml": {},
 		"resources/battlers/goliath.dat": {},
 		"resources/battlers/goliath.xml": {},
@@ -526,35 +808,74 @@
 		"resources/battlers/gorilla.xml": {},
 		"resources/battlers/grizzly.dat": {},
 		"resources/battlers/grizzly.xml": {},
-		"resources/battlers/hornet.dat": {},
 		"resources/battlers/hornet.xml": {},
 		"resources/battlers/miner": {},
 		"resources/battlers/miner.ase": {},
 		"resources/battlers/rat.dat": {},
 		"resources/battlers/rat.xml": {},
 		"resources/battlers/sandworm": {},
-		"resources/battlers/sandworm.dat": {},
 		"resources/battlers/sandworm.xml": {},
-		"resources/battlers/scorpion.dat": {},
 		"resources/battlers/scorpion.xml": {},
 		"resources/battlers/snake.dat": {},
 		"resources/battlers/snake.xml": {},
 		"resources/battlers/spider.dat": {},
 		"resources/battlers/spider.xml": {},
 		"resources/battlers/template.xml": {},
-		"resources/battlers/warthog.dat": {},
 		"resources/battlers/warthog.xml": {},
 		"resources/battlers/wolf.dat": {},
 		"resources/battlers/wolf.xml": {},
-		"resources/maps/borderClosed.dat": {},
 		"resources/maps/borderClosed.tmx": {},
-		"resources/maps/borderOpen.dat": {},
 		"resources/maps/borderOpen.tmx": {},
+		"resources/maps/map0000.xml": {},
+		"resources/maps/map0001.xml": {},
+		"resources/maps/map0002.xml": {},
+		"resources/maps/map0003.xml": {},
+		"resources/maps/map0004.xml": {},
+		"resources/maps/map0005.xml": {},
+		"resources/maps/map0006.xml": {},
+		"resources/maps/map0007.xml": {},
+		"resources/maps/map0008.xml": {},
+		"resources/maps/map0009.xml": {},
+		"resources/maps/map0010.xml": {},
+		"resources/maps/map0011.xml": {},
+		"resources/maps/map0012.xml": {},
+		"resources/maps/map0013.xml": {},
+		"resources/maps/map0014.xml": {},
+		"resources/maps/map0015.xml": {},
+		"resources/maps/map0016.xml": {},
+		"resources/maps/map0017.xml": {},
+		"resources/maps/map0018.xml": {},
+		"resources/maps/map0019.xml": {},
+		"resources/maps/map0020.xml": {},
+		"resources/maps/map0021.xml": {},
+		"resources/maps/map0022.xml": {},
+		"resources/maps/map0023.xml": {},
+		"resources/maps/map0024.xml": {},
+		"resources/maps/map0025.xml": {},
+		"resources/maps/map0026.xml": {},
+		"resources/maps/map0027.xml": {},
+		"resources/maps/map0028.xml": {},
+		"resources/maps/map0029.xml": {},
+		"resources/maps/map0030.xml": {},
+		"resources/maps/map0031.xml": {},
+		"resources/maps/map0032.xml": {},
+		"resources/maps/map0033.xml": {},
+		"resources/maps/map0034.xml": {},
+		"resources/maps/map0035.xml": {},
+		"resources/maps/map0036.xml": {},
+		"resources/maps/map0037.xml": {},
+		"resources/maps/map0038.xml": {},
+		"resources/maps/map0039.xml": {},
+		"resources/maps/map0040.xml": {},
+		"resources/maps/map0041.xml": {},
+		"resources/maps/map0042.xml": {},
+		"resources/maps/map0043.xml": {},
 		"resources/maps/mountain": {},
 		"resources/maps/overworld.dat": {},
 		"resources/maps/overworld.tmx": {},
 		"resources/maps/shrine1.dat": {},
 		"resources/maps/shrine1.tmx": {},
+		"resources/maps/test.tmx": {},
 		"resources/maps/town1": {},
 		"resources/maps/town1.dat": {},
 		"resources/maps/town1.tmx": {},
@@ -565,13 +886,9 @@
 		"resources/maps/town2.tmx": {},
 		"resources/maps/town4": {},
 		"resources/maps/town4.tmx": {},
-		"resources/maps/town4.dat": {},
 		"resources/music/JRPG_battleBoss_loop.ogg": {},
-		"resources/music/JRPG_battleBoss_loop.raw": {},
 		"resources/music/JRPG_battleFinal.ogg": {},
-		"resources/music/JRPG_battleFinal.raw": {},
 		"resources/music/JRPG_battle_loop.ogg": {},
-		"resources/music/JRPG_battle_loop.raw": {},
 		"resources/music/JRPG_characterRevived.ogg": {},
 		"resources/music/JRPG_characterRevived.raw": {},
 		"resources/music/JRPG_discovery.ogg": {},
@@ -622,6 +939,34 @@
 		"resources/music/JRPG_winBattleBoss.raw": {},
 		"resources/music/JRPG_winBattleFinal.ogg": {},
 		"resources/music/JRPG_winBattleFinal.raw": {},
+		"resources/music/battle.ogg": {},
+		"resources/music/battleBoss.ogg": {},
+		"resources/music/battleFinal.ogg": {},
+		"resources/music/characterRevived.ogg": {},
+		"resources/music/discovery.ogg": {},
+		"resources/music/docks.ogg": {},
+		"resources/music/dungeon.ogg": {},
+		"resources/music/fields.ogg": {},
+		"resources/music/gameOver.ogg": {},
+		"resources/music/goodMorning.ogg": {},
+		"resources/music/goodNight.ogg": {},
+		"resources/music/inn.ogg": {},
+		"resources/music/joinParty.ogg": {},
+		"resources/music/labyrinth.ogg": {},
+		"resources/music/levelUp.ogg": {},
+		"resources/music/machineRoom.ogg": {},
+		"resources/music/mainTheme.ogg": {},
+		"resources/music/mysticIsle.ogg": {},
+		"resources/music/princess.ogg": {},
+		"resources/music/royalCourt.ogg": {},
+		"resources/music/shop.ogg": {},
+		"resources/music/tavern.ogg": {},
+		"resources/music/temple.ogg": {},
+		"resources/music/town.ogg": {},
+		"resources/music/winBattle.ogg": {},
+		"resources/music/winBattleBig.ogg": {},
+		"resources/music/winBattleBoss.ogg": {},
+		"resources/music/winBattleFinal.ogg": {},
 		"resources/screens/gameover1.ase": {},
 		"resources/screens/gameover1.gfx": {},
 		"resources/screens/gameover1.png": {},
@@ -636,37 +981,23 @@
 		"resources/screens/viewpoint.ase": {},
 		"resources/screens/viewpoint.gfx": {},
 		"resources/screens/viewpoint.png": {},
-		"resources/sfx/berserk.raw": {},
 		"resources/sfx/berserk.wav": {},
-		"resources/sfx/cancel.raw": {},
 		"resources/sfx/cancel.wav": {},
-		"resources/sfx/claw.raw": {},
 		"resources/sfx/claw.wav": {},
-		"resources/sfx/coin.raw": {},
 		"resources/sfx/coin.wav": {},
-		"resources/sfx/cursor.raw": {},
 		"resources/sfx/cursor.wav": {},
-		"resources/sfx/dialog.raw": {},
 		"resources/sfx/dialog.wav": {},
-		"resources/sfx/dream.raw": {},
 		"resources/sfx/dream.wav": {},
-		"resources/sfx/droplet.raw": {},
 		"resources/sfx/droplet.wav": {},
-		"resources/sfx/gate.raw": {},
 		"resources/sfx/gate.wav": {},
-		"resources/sfx/getItem.raw": {},
 		"resources/sfx/getItem.wav": {},
-		"resources/sfx/heal.raw": {},
 		"resources/sfx/heal.wav": {},
-		"resources/sfx/hit.raw": {},
 		"resources/sfx/hit.wav": {},
-		"resources/sfx/invalid.raw": {},
 		"resources/sfx/invalid.wav": {},
 		"resources/sfx/miss.raw": {},
 		"resources/sfx/miss.wav": {},
 		"resources/sfx/poison.raw": {},
 		"resources/sfx/poison.wav": {},
-		"resources/sfx/punch.raw": {},
 		"resources/sfx/punch.wav": {},
 		"resources/sfx/quake.raw": {},
 		"resources/sfx/quake.wav": {},
@@ -678,19 +1009,16 @@
 		"resources/sfx/select.wav": {},
 		"resources/sfx/slow.raw": {},
 		"resources/sfx/slow.wav": {},
-		"resources/sfx/sword.raw": {},
 		"resources/sfx/sword.wav": {},
 		"resources/sfx/useitem.raw": {},
 		"resources/sfx/useitem.wav": {},
-		"resources/sprites/player.ase": {},
 		"resources/sprites/player.gfx": {},
+		"resources/sprites/player.ase": {},
 		"resources/sprites/player.png": {},
 		"resources/sprites/sprites.ase": {},
 		"resources/sprites/sprites.gfx": {},
 		"resources/sprites/sprites.png": {},
 		"resources/tilesets/castleExterior.ase": {},
-		"resources/tilesets/castleExterior.dat": {},
-		"resources/tilesets/castleExterior.gfx": {},
 		"resources/tilesets/castleExterior.png": {},
 		"resources/tilesets/castleExterior.tsx": {},
 		"resources/tilesets/castleExterior.txt": {},
@@ -707,8 +1035,6 @@
 		"resources/tilesets/dreamworld.gfx": {},
 		"resources/tilesets/dreamworld.png": {},
 		"resources/tilesets/forestTown.ase": {},
-		"resources/tilesets/forestTown.dat": {},
-		"resources/tilesets/forestTown.gfx": {},
 		"resources/tilesets/forestTown.png": {},
 		"resources/tilesets/forestTown.tsx": {},
 		"resources/tilesets/forestTown.txt": {},
@@ -749,6 +1075,7 @@
 		"resources/tilesets/shrine.txt": {},
 		"resources/tilesets/spiritworld.gfx": {},
 		"resources/tilesets/spiritworld.png": {},
+		"resources/tilesets/tilesets.xml": {},
 		"resources/tilesets/town": {},
 		"resources/tilesets/town.ase": {},
 		"resources/tilesets/town.dat": {},
@@ -758,6 +1085,30 @@
 		"resources/tilesets/town.txt": {},
 		"src/DataPack/DataPack.h": {},
 		"": {},
+		"editor/data/tilesets/tilesets.xml": {},
+		"editor/src/icons/add.png": {},
+		"editor/src/icons/bg.png": {},
+		"editor/src/icons/circle.png": {},
+		"editor/src/icons/delete.png": {},
+		"editor/src/icons/flip.png": {},
+		"editor/src/icons/icon.png": {},
+		"editor/src/icons/mirror.png": {},
+		"editor/src/icons/pencil.png": {},
+		"editor/src/icons/play.png": {},
+		"editor/src/icons/spellResistance0.png": {},
+		"editor/src/icons/spellResistance05.png": {},
+		"editor/src/icons/spellResistance1.png": {},
+		"editor/src/icons/spellResistance2.png": {},
+		"editor/src/icons/square.png": {},
+		"editor/src/icons/stop.png": {},
+		"editor/src/icons/tileGrid.png": {},
+		"editor/src/icons/tileSubGrid.png": {},
+		"editor/src/icons/visible_no.png": {},
+		"editor/src/icons/visible_yes.png": {},
+		"editor/src/images/battle.png": {},
+		"editor/src/images/frameNumber.png": {},
+		"editor/src/images/numbers.png": {},
+		"editor/src/images/passability.png": {},
 		"resources/battlers/miner/00_firstTry.png": {},
 		"resources/battlers/miner/01_justSketchPose.png": {},
 		"resources/battlers/miner/02_outlineHD.png": {},
@@ -766,8 +1117,8 @@
 		"resources/battlers/miner/05_outlineAdjustments.png": {},
 		"resources/battlers/miner/06_final.png": {},
 		"resources/battlers/miner/07_preview.png": {},
-		"resources/battlers/sandworm/shape.blend": {},
 		"resources/battlers/sandworm/process.png": {},
+		"resources/battlers/sandworm/shape.blend": {},
 		"resources/battlers/sandworm/shape.blend1": {},
 		"resources/maps/mountain/cabin2_floor1.dat": {},
 		"resources/maps/mountain/cabin2_floor1.tmx": {},
@@ -819,14 +1170,15 @@
 		"resources/maps/town2/benjaminsHouse.dat": {},
 		"resources/maps/town2/benjaminsHouse.tmx": {},
 		"resources/maps/town2/mine": {},
+		"resources/maps/town4/house2.tmx": {},
 		"resources/maps/town4/inn.tmx": {},
 		"resources/tilesets/town/path.ase": {},
 		"resources/tilesets/town/soil.ase": {},
 		"resources/tilesets/town/townTest.ase": {},
 		"resources/tilesets/town/wall.ase": {},
 		"resources/maps/town1/cavern/floor1.dat": {},
-		"resources/maps/town1/cavern/floor1.tmx": {},
 		"resources/maps/town1/cavern/floor2.dat": {},
+		"resources/maps/town1/cavern/floor1.tmx": {},
 		"resources/maps/town1/cavern/floor2.tmx": {},
 		"resources/maps/town1/cavern/floor3_lower.dat": {},
 		"resources/maps/town1/cavern/floor3_lower.tmx": {},
@@ -851,22 +1203,19 @@
 		"/AUTHORS.txt": {
 			"sdcard": false
 		},
-		"/My_settings.h": {
+		"/EEP.ROM": {
 			"sdcard": false
 		},
 		"/LICENSE": {
 			"sdcard": false
 		},
-		"/PreludeToADream": {
-			"sdcard": false
-		},
-		"/PreludeToADream.bin": {
-			"sdcard": false
-		},
-		"/EEP.ROM": {
+		"/My_settings.h": {
 			"sdcard": false
 		},
 		"/data": {
+			"sdcard": false
+		},
+		"/editor": {
 			"sdcard": false
 		},
 		"/project.json": {
@@ -875,37 +1224,43 @@
 		"/resources": {
 			"sdcard": false
 		},
-		"/PreludeToADream.elf": {
-			"sdcard": false
-		},
 		"/scripts": {
-			"sdcard": false
-		},
-		"/tools": {
 			"sdcard": false
 		},
 		"/src": {
 			"sdcard": false
 		},
+		"/tools": {
+			"sdcard": false
+		},
 		"/data/preludetoadream.pak": {
 			"sdcard": false
 		},
-		"/data/preludetoadream.sav": {
+		"/editor/data": {
 			"sdcard": false
 		},
-		"/resources/BattleAnimation.mp4": {
+		"/editor/compile.sh": {
 			"sdcard": false
 		},
-		"/resources/Gate.gif": {
+		"/editor/Makefile": {
 			"sdcard": false
 		},
-		"/resources/Gate.mp4": {
+		"/editor/editor": {
+			"sdcard": false
+		},
+		"/editor/editor.pro": {
+			"sdcard": false
+		},
+		"/editor/out.txt": {
+			"sdcard": false
+		},
+		"/editor/src": {
+			"sdcard": false
+		},
+		"/editor/test.raw": {
 			"sdcard": false
 		},
 		"/resources/POP": {
-			"sdcard": false
-		},
-		"/resources/Shrine.mp4": {
 			"sdcard": false
 		},
 		"/resources/Tiled": {
@@ -938,10 +1293,10 @@
 		"/resources/font.png": {
 			"sdcard": false
 		},
-		"/resources/maps": {
+		"/resources/menu_items.png": {
 			"sdcard": false
 		},
-		"/resources/menu_items.png": {
+		"/resources/maps": {
 			"sdcard": false
 		},
 		"/resources/messages.txt": {
@@ -957,6 +1312,9 @@
 			"sdcard": false
 		},
 		"/resources/objectives.txt": {
+			"sdcard": false
+		},
+		"/resources/progress.todo": {
 			"sdcard": false
 		},
 		"/resources/screen.png": {
@@ -992,6 +1350,9 @@
 		"/resources/screens": {
 			"sdcard": false
 		},
+		"/resources/settings.xml": {
+			"sdcard": false
+		},
 		"/resources/sfx": {
 			"sdcard": false
 		},
@@ -1020,33 +1381,6 @@
 			"sdcard": false
 		},
 		"/scripts/MapEditor.js": {
-			"sdcard": false
-		},
-		"/tools/BattleAnimationEditor.css": {
-			"sdcard": false
-		},
-		"/tools/BattleAnimationEditor.html": {
-			"sdcard": false
-		},
-		"/tools/BattleAnimationEditor.js": {
-			"sdcard": false
-		},
-		"/tools/MapEditor.css": {
-			"sdcard": false
-		},
-		"/tools/MapEditor.html": {
-			"sdcard": false
-		},
-		"/tools/battle.png": {
-			"sdcard": false
-		},
-		"/tools/common.css": {
-			"sdcard": false
-		},
-		"/tools/editorLayout.png": {
-			"sdcard": false
-		},
-		"/tools/frameNumber.png": {
 			"sdcard": false
 		},
 		"/src/DataPack": {
@@ -1142,6 +1476,897 @@
 		"/src/ui.h": {
 			"sdcard": false
 		},
+		"/tools/BattleAnimationEditor.css": {
+			"sdcard": false
+		},
+		"/tools/BattleAnimationEditor.html": {
+			"sdcard": false
+		},
+		"/tools/BattleAnimationEditor.js": {
+			"sdcard": false
+		},
+		"/tools/MapEditor.css": {
+			"sdcard": false
+		},
+		"/tools/MapEditor.html": {
+			"sdcard": false
+		},
+		"/tools/battle.png": {
+			"sdcard": false
+		},
+		"/tools/common.css": {
+			"sdcard": false
+		},
+		"/tools/editorLayout.png": {
+			"sdcard": false
+		},
+		"/tools/frameNumber.png": {
+			"sdcard": false
+		},
+		"/editor/data/tilesets": {
+			"sdcard": false
+		},
+		"/editor/data/settings.xml": {
+			"sdcard": false
+		},
+		"/editor/src/Makefile": {
+			"sdcard": false
+		},
+		"/editor/src/battleanimation.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/battleanimation.o": {
+			"sdcard": false
+		},
+		"/editor/src/battleanimation.h": {
+			"sdcard": false
+		},
+		"/editor/src/battleanimationseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/battleanimationseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/battleanimationseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/battleanimationseditor.ui": {
+			"sdcard": false
+		},
+		"/editor/src/choosemapevent.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/choosemapevent.h": {
+			"sdcard": false
+		},
+		"/editor/src/choosemapevent.o": {
+			"sdcard": false
+		},
+		"/editor/src/choosemapevent.ui": {
+			"sdcard": false
+		},
+		"/editor/src/colorpicker.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/colorpicker.h": {
+			"sdcard": false
+		},
+		"/editor/src/colorpicker.o": {
+			"sdcard": false
+		},
+		"/editor/src/colorpicker.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_battle.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_battle.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_buffercharacter.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_buffercharacter.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_buffervalue.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_buffervalue.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changeeventflags.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changeeventflags.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changeeventlocation.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changeeventlocation.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changeeventlocation.o": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changeeventlocation.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changepassability.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changepassability.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changepassability.o": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changepassability.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changesprite.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changesprite.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changevariable.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_changevariable.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_giveplayeritem.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_giveplayeritem.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifexited.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifexited.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifhasitem.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifhasitem.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifswitch.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifswitch.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifvalue.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifvalue.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifvariable.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifvariable.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifyesno.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_ifyesno.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_moveplayer.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_moveplayer.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_playmusic.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_playmusic.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_playsoundeffect.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_playsoundeffect.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_shakescreen.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_shakescreen.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_showhidescreen.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_showhidescreen.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_showimage.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_showimage.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_showmessage.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_showmessage.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_showshopmenu.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_showshopmenu.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_switchrange.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_switchrange.ui": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_teleport.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_teleport.h": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_teleport.o": {
+			"sdcard": false
+		},
+		"/editor/src/configureevent_teleport.ui": {
+			"sdcard": false
+		},
+		"/editor/src/eventview.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/eventview.h": {
+			"sdcard": false
+		},
+		"/editor/src/eventview.o": {
+			"sdcard": false
+		},
+		"/editor/src/globals.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/globals.h": {
+			"sdcard": false
+		},
+		"/editor/src/globals.o": {
+			"sdcard": false
+		},
+		"/editor/src/icons": {
+			"sdcard": false
+		},
+		"/editor/src/icons.qrc": {
+			"sdcard": false
+		},
+		"/editor/src/image.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/image.h": {
+			"sdcard": false
+		},
+		"/editor/src/image.o": {
+			"sdcard": false
+		},
+		"/editor/src/images": {
+			"sdcard": false
+		},
+		"/editor/src/imageview.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/imageview.h": {
+			"sdcard": false
+		},
+		"/editor/src/imageview.o": {
+			"sdcard": false
+		},
+		"/editor/src/itemseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/itemseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/itemseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/itemseditor.ui": {
+			"sdcard": false
+		},
+		"/editor/src/main.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/main.o": {
+			"sdcard": false
+		},
+		"/editor/src/mainwindow.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/mainwindow.h": {
+			"sdcard": false
+		},
+		"/editor/src/mainwindow.o": {
+			"sdcard": false
+		},
+		"/editor/src/mainwindow.ui": {
+			"sdcard": false
+		},
+		"/editor/src/map.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/map.h": {
+			"sdcard": false
+		},
+		"/editor/src/map.o": {
+			"sdcard": false
+		},
+		"/editor/src/mapevent.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/mapevent.h": {
+			"sdcard": false
+		},
+		"/editor/src/mapevent.o": {
+			"sdcard": false
+		},
+		"/editor/src/mapeventeditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/mapeventeditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/mapeventeditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/mapeventeditor.ui": {
+			"sdcard": false
+		},
+		"/editor/src/mapflags.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/mapflags.h": {
+			"sdcard": false
+		},
+		"/editor/src/mapflags.o": {
+			"sdcard": false
+		},
+		"/editor/src/mapflags.ui": {
+			"sdcard": false
+		},
+		"/editor/src/mapspritepicker.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/mapspritepicker.h": {
+			"sdcard": false
+		},
+		"/editor/src/mapspritepicker.o": {
+			"sdcard": false
+		},
+		"/editor/src/messageseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/messageseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/messageseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/messageseditor.ui": {
+			"sdcard": false
+		},
+		"/editor/src/mapspritepicker.ui": {
+			"sdcard": false
+		},
+		"/editor/src/moc_battleanimationseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_battleanimationseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_choosemapevent.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_choosemapevent.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_colorpicker.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_colorpicker.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_battle.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_battle.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_buffercharacter.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_buffercharacter.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_buffervalue.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_buffervalue.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_changeeventflags.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_changeeventflags.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_changeeventlocation.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_changeeventlocation.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_changepassability.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_changepassability.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_changesprite.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_changesprite.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_changevariable.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_changevariable.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_giveplayeritem.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_giveplayeritem.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifexited.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifexited.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifhasitem.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifhasitem.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifswitch.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifswitch.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifvalue.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifvalue.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifvariable.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifvariable.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifyesno.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_ifyesno.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_moveplayer.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_moveplayer.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_playmusic.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_playmusic.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_playsoundeffect.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_playsoundeffect.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_shakescreen.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_shakescreen.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_showhidescreen.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_showhidescreen.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_showimage.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_showimage.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_showmessage.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_showmessage.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_showshopmenu.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_showshopmenu.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_switchrange.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_switchrange.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_teleport.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_configureevent_teleport.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_eventview.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_eventview.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_image.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_image.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_imageview.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_imageview.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_itemseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_itemseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_mainwindow.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_mainwindow.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_mapeventeditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_mapeventeditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_mapflags.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_mapflags.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_mapspritepicker.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_mapspritepicker.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_messageseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_messageseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_monsterseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_monsterseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_predefs.h": {
+			"sdcard": false
+		},
+		"/editor/src/moc_resources.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_resources.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_skillsspellseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_skillsspellseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_spritepicker.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_spritepicker.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_statseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_statseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_tileseteditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_tileseteditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/moc_tilesetview.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/moc_tilesetview.o": {
+			"sdcard": false
+		},
+		"/editor/src/monster.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/monster.h": {
+			"sdcard": false
+		},
+		"/editor/src/monsterseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/monsterseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/monsterseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/monsterseditor.ui": {
+			"sdcard": false
+		},
+		"/editor/src/qrc_icons.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/qrc_icons.o": {
+			"sdcard": false
+		},
+		"/editor/src/resources.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/resources.h": {
+			"sdcard": false
+		},
+		"/editor/src/resources.o": {
+			"sdcard": false
+		},
+		"/editor/src/resources.ui": {
+			"sdcard": false
+		},
+		"/editor/src/skillsspellseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/skillsspellseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/skillsspellseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/skillsspellseditor.ui": {
+			"sdcard": false
+		},
+		"/editor/src/spritepicker.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/spritepicker.h": {
+			"sdcard": false
+		},
+		"/editor/src/spritepicker.o": {
+			"sdcard": false
+		},
+		"/editor/src/spritepicker.ui": {
+			"sdcard": false
+		},
+		"/editor/src/src.pro": {
+			"sdcard": false
+		},
+		"/editor/src/statseditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/statseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/statseditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/statseditor.ui": {
+			"sdcard": false
+		},
+		"/editor/src/tileset.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/tileset.h": {
+			"sdcard": false
+		},
+		"/editor/src/tileset.o": {
+			"sdcard": false
+		},
+		"/editor/src/tileseteditor.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/tileseteditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/tileseteditor.o": {
+			"sdcard": false
+		},
+		"/editor/src/tileseteditor.ui": {
+			"sdcard": false
+		},
+		"/editor/src/tilesetview.h": {
+			"sdcard": false
+		},
+		"/editor/src/tilesetview.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/tilesetview.o": {
+			"sdcard": false
+		},
+		"/editor/src/ui_battleanimationseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_choosemapevent.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_colorpicker.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_battle.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_buffercharacter.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_buffervalue.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_changeeventflags.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_changeeventlocation.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_changepassability.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_changesprite.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_changevariable.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_giveplayeritem.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_ifexited.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_ifhasitem.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_ifswitch.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_ifvalue.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_ifvariable.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_ifyesno.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_moveplayer.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_playmusic.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_playsoundeffect.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_shakescreen.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_showhidescreen.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_showimage.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_showmessage.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_showshopmenu.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_switchrange.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_configureevent_teleport.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_itemseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_mainwindow.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_mapeventeditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_mapflags.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_mapspritepicker.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_messageseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_monsterseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_resources.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_skillsspellseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_spritepicker.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_statseditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/ui_tileseteditor.h": {
+			"sdcard": false
+		},
+		"/editor/src/xmlParser.cpp": {
+			"sdcard": false
+		},
+		"/editor/src/xmlParser.h": {
+			"sdcard": false
+		},
+		"/editor/src/xmlParser.o": {
+			"sdcard": false
+		},
 		"/resources/POP/banner.ase": {
 			"sdcard": false
 		},
@@ -1172,43 +2397,10 @@
 		"/resources/Tiled/battlers.tsx": {
 			"sdcard": false
 		},
-		"/resources/Tiled/benjaminsHouse.png": {
-			"sdcard": false
-		},
 		"/resources/Tiled/borderClosed.png": {
 			"sdcard": false
 		},
 		"/resources/Tiled/borderOpen.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/caveA.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/caveB.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/caveC.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/caveD.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/caveE.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/caveF.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/caveG.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/cliffs.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/floor1.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/floor2.png": {
 			"sdcard": false
 		},
 		"/resources/Tiled/grid.png": {
@@ -1221,18 +2413,6 @@
 			"sdcard": false
 		},
 		"/resources/Tiled/objecttypes.xml": {
-			"sdcard": false
-		},
-		"/resources/Tiled/overworld.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/part1.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/part2.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/part3.png": {
 			"sdcard": false
 		},
 		"/resources/Tiled/passability.png": {
@@ -1250,19 +2430,7 @@
 		"/resources/Tiled/region.tx": {
 			"sdcard": false
 		},
-		"/resources/Tiled/shrine1.png": {
-			"sdcard": false
-		},
 		"/resources/Tiled/sprites.tsx": {
-			"sdcard": false
-		},
-		"/resources/Tiled/test.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/town1_postRaid.png": {
-			"sdcard": false
-		},
-		"/resources/Tiled/town2.png": {
 			"sdcard": false
 		},
 		"/resources/Tiled/town4.png": {
@@ -1286,46 +2454,91 @@
 		"/resources/animations/enemy_bite.anim": {
 			"sdcard": false
 		},
+		"/resources/animations/enemy_bite.xml": {
+			"sdcard": false
+		},
 		"/resources/animations/enemy_bite2.anim": {
+			"sdcard": false
+		},
+		"/resources/animations/enemy_bite2.xml": {
 			"sdcard": false
 		},
 		"/resources/animations/enemy_claw.anim": {
 			"sdcard": false
 		},
+		"/resources/animations/enemy_claw.xml": {
+			"sdcard": false
+		},
 		"/resources/animations/enemy_pickaxe.anim": {
+			"sdcard": false
+		},
+		"/resources/animations/enemy_pickaxe.xml": {
 			"sdcard": false
 		},
 		"/resources/animations/enemy_punch.anim": {
 			"sdcard": false
 		},
+		"/resources/animations/enemy_punch.xml": {
+			"sdcard": false
+		},
 		"/resources/animations/enemy_punch2.anim": {
+			"sdcard": false
+		},
+		"/resources/animations/enemy_punch2.xml": {
 			"sdcard": false
 		},
 		"/resources/animations/enemy_quake.anim": {
 			"sdcard": false
 		},
+		"/resources/animations/enemy_quake.xml": {
+			"sdcard": false
+		},
 		"/resources/animations/enemy_sting.anim": {
+			"sdcard": false
+		},
+		"/resources/animations/enemy_sting.xml": {
 			"sdcard": false
 		},
 		"/resources/animations/enemy_tusk.anim": {
 			"sdcard": false
 		},
+		"/resources/animations/enemy_tusk.xml": {
+			"sdcard": false
+		},
 		"/resources/animations/enemy_venom.anim": {
+			"sdcard": false
+		},
+		"/resources/animations/enemy_venom.xml": {
 			"sdcard": false
 		},
 		"/resources/animations/enemy_web.anim": {
 			"sdcard": false
 		},
+		"/resources/animations/enemy_web.xml": {
+			"sdcard": false
+		},
 		"/resources/animations/enemy_web2.anim": {
+			"sdcard": false
+		},
+		"/resources/animations/enemy_web2.xml": {
 			"sdcard": false
 		},
 		"/resources/animations/player_sword.anim": {
 			"sdcard": false
 		},
+		"/resources/animations/player_sword.xml": {
+			"sdcard": false
+		},
 		"/resources/animations/player_unarmed.anim": {
 			"sdcard": false
 		},
+		"/resources/animations/player_unarmed.xml": {
+			"sdcard": false
+		},
 		"/resources/animations/test.anim": {
+			"sdcard": false
+		},
+		"/resources/animations/test.xml": {
 			"sdcard": false
 		},
 		"/resources/backdrops/cavern.ase": {
@@ -1338,9 +2551,6 @@
 			"sdcard": false
 		},
 		"/resources/backdrops/desert.ase": {
-			"sdcard": false
-		},
-		"/resources/backdrops/desert.gfx": {
 			"sdcard": false
 		},
 		"/resources/backdrops/desert.png": {
@@ -1406,13 +2616,7 @@
 		"/resources/backdrops/tribalPit.ase": {
 			"sdcard": false
 		},
-		"/resources/backdrops/tribalPit.gfx": {
-			"sdcard": false
-		},
 		"/resources/backdrops/tribalPit.png": {
-			"sdcard": false
-		},
-		"/resources/battlers/akacheta.dat": {
 			"sdcard": false
 		},
 		"/resources/battlers/akacheta.xml": {
@@ -1421,10 +2625,10 @@
 		"/resources/battlers/bat.dat": {
 			"sdcard": false
 		},
-		"/resources/battlers/battlers.ase": {
+		"/resources/battlers/bat.xml": {
 			"sdcard": false
 		},
-		"/resources/battlers/bat.xml": {
+		"/resources/battlers/battlers.ase": {
 			"sdcard": false
 		},
 		"/resources/battlers/battlers.gfx": {
@@ -1439,16 +2643,10 @@
 		"/resources/battlers/benjamin.xml": {
 			"sdcard": false
 		},
-		"/resources/battlers/core": {
-			"sdcard": false
-		},
 		"/resources/battlers/cougar.dat": {
 			"sdcard": false
 		},
 		"/resources/battlers/cougar.xml": {
-			"sdcard": false
-		},
-		"/resources/battlers/eagle.dat": {
 			"sdcard": false
 		},
 		"/resources/battlers/eagle.xml": {
@@ -1472,9 +2670,6 @@
 		"/resources/battlers/grizzly.xml": {
 			"sdcard": false
 		},
-		"/resources/battlers/hornet.dat": {
-			"sdcard": false
-		},
 		"/resources/battlers/hornet.xml": {
 			"sdcard": false
 		},
@@ -1493,13 +2688,7 @@
 		"/resources/battlers/sandworm": {
 			"sdcard": false
 		},
-		"/resources/battlers/sandworm.dat": {
-			"sdcard": false
-		},
 		"/resources/battlers/sandworm.xml": {
-			"sdcard": false
-		},
-		"/resources/battlers/scorpion.dat": {
 			"sdcard": false
 		},
 		"/resources/battlers/scorpion.xml": {
@@ -1520,9 +2709,6 @@
 		"/resources/battlers/template.xml": {
 			"sdcard": false
 		},
-		"/resources/battlers/warthog.dat": {
-			"sdcard": false
-		},
 		"/resources/battlers/warthog.xml": {
 			"sdcard": false
 		},
@@ -1532,16 +2718,142 @@
 		"/resources/battlers/wolf.xml": {
 			"sdcard": false
 		},
-		"/resources/maps/borderClosed.dat": {
-			"sdcard": false
-		},
 		"/resources/maps/borderClosed.tmx": {
 			"sdcard": false
 		},
-		"/resources/maps/borderOpen.dat": {
+		"/resources/maps/borderOpen.tmx": {
 			"sdcard": false
 		},
-		"/resources/maps/borderOpen.tmx": {
+		"/resources/maps/map0000.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0001.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0002.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0003.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0004.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0005.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0006.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0007.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0008.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0009.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0010.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0011.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0012.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0013.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0014.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0015.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0016.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0017.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0018.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0019.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0020.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0021.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0022.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0023.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0024.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0025.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0026.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0027.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0028.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0029.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0030.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0031.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0032.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0033.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0034.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0035.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0036.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0037.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0038.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0039.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0040.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0041.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0042.xml": {
+			"sdcard": false
+		},
+		"/resources/maps/map0043.xml": {
 			"sdcard": false
 		},
 		"/resources/maps/mountain": {
@@ -1557,6 +2869,9 @@
 			"sdcard": false
 		},
 		"/resources/maps/shrine1.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/test.tmx": {
 			"sdcard": false
 		},
 		"/resources/maps/town1": {
@@ -1586,28 +2901,16 @@
 		"/resources/maps/town4": {
 			"sdcard": false
 		},
-		"/resources/maps/town4.dat": {
-			"sdcard": false
-		},
 		"/resources/maps/town4.tmx": {
 			"sdcard": false
 		},
 		"/resources/music/JRPG_battleBoss_loop.ogg": {
 			"sdcard": false
 		},
-		"/resources/music/JRPG_battleBoss_loop.raw": {
-			"sdcard": false
-		},
 		"/resources/music/JRPG_battleFinal.ogg": {
 			"sdcard": false
 		},
-		"/resources/music/JRPG_battleFinal.raw": {
-			"sdcard": false
-		},
 		"/resources/music/JRPG_battle_loop.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/JRPG_battle_loop.raw": {
 			"sdcard": false
 		},
 		"/resources/music/JRPG_characterRevived.ogg": {
@@ -1760,6 +3063,90 @@
 		"/resources/music/JRPG_winBattleFinal.raw": {
 			"sdcard": false
 		},
+		"/resources/music/battle.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/battleBoss.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/battleFinal.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/characterRevived.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/discovery.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/docks.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/dungeon.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/fields.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/gameOver.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/goodMorning.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/goodNight.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/inn.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/joinParty.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/labyrinth.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/levelUp.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/machineRoom.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/mainTheme.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/mysticIsle.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/princess.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/royalCourt.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/shop.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/tavern.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/temple.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/town.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/winBattle.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/winBattleBig.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/winBattleBoss.ogg": {
+			"sdcard": false
+		},
+		"/resources/music/winBattleFinal.ogg": {
+			"sdcard": false
+		},
 		"/resources/screens/gameover1.ase": {
 			"sdcard": false
 		},
@@ -1802,79 +3189,40 @@
 		"/resources/screens/viewpoint.png": {
 			"sdcard": false
 		},
-		"/resources/sfx/berserk.raw": {
-			"sdcard": false
-		},
 		"/resources/sfx/berserk.wav": {
-			"sdcard": false
-		},
-		"/resources/sfx/cancel.raw": {
 			"sdcard": false
 		},
 		"/resources/sfx/cancel.wav": {
 			"sdcard": false
 		},
-		"/resources/sfx/claw.raw": {
-			"sdcard": false
-		},
 		"/resources/sfx/claw.wav": {
-			"sdcard": false
-		},
-		"/resources/sfx/coin.raw": {
 			"sdcard": false
 		},
 		"/resources/sfx/coin.wav": {
 			"sdcard": false
 		},
-		"/resources/sfx/cursor.raw": {
-			"sdcard": false
-		},
 		"/resources/sfx/cursor.wav": {
-			"sdcard": false
-		},
-		"/resources/sfx/dialog.raw": {
 			"sdcard": false
 		},
 		"/resources/sfx/dialog.wav": {
 			"sdcard": false
 		},
-		"/resources/sfx/dream.raw": {
-			"sdcard": false
-		},
 		"/resources/sfx/dream.wav": {
-			"sdcard": false
-		},
-		"/resources/sfx/droplet.raw": {
 			"sdcard": false
 		},
 		"/resources/sfx/droplet.wav": {
 			"sdcard": false
 		},
-		"/resources/sfx/gate.raw": {
-			"sdcard": false
-		},
 		"/resources/sfx/gate.wav": {
-			"sdcard": false
-		},
-		"/resources/sfx/getItem.raw": {
 			"sdcard": false
 		},
 		"/resources/sfx/getItem.wav": {
 			"sdcard": false
 		},
-		"/resources/sfx/heal.raw": {
-			"sdcard": false
-		},
 		"/resources/sfx/heal.wav": {
 			"sdcard": false
 		},
-		"/resources/sfx/hit.raw": {
-			"sdcard": false
-		},
 		"/resources/sfx/hit.wav": {
-			"sdcard": false
-		},
-		"/resources/sfx/invalid.raw": {
 			"sdcard": false
 		},
 		"/resources/sfx/invalid.wav": {
@@ -1890,9 +3238,6 @@
 			"sdcard": false
 		},
 		"/resources/sfx/poison.wav": {
-			"sdcard": false
-		},
-		"/resources/sfx/punch.raw": {
 			"sdcard": false
 		},
 		"/resources/sfx/punch.wav": {
@@ -1928,9 +3273,6 @@
 		"/resources/sfx/slow.wav": {
 			"sdcard": false
 		},
-		"/resources/sfx/sword.raw": {
-			"sdcard": false
-		},
 		"/resources/sfx/sword.wav": {
 			"sdcard": false
 		},
@@ -1959,12 +3301,6 @@
 			"sdcard": false
 		},
 		"/resources/tilesets/castleExterior.ase": {
-			"sdcard": false
-		},
-		"/resources/tilesets/castleExterior.dat": {
-			"sdcard": false
-		},
-		"/resources/tilesets/castleExterior.gfx": {
 			"sdcard": false
 		},
 		"/resources/tilesets/castleExterior.png": {
@@ -2013,12 +3349,6 @@
 			"sdcard": false
 		},
 		"/resources/tilesets/forestTown.ase": {
-			"sdcard": false
-		},
-		"/resources/tilesets/forestTown.dat": {
-			"sdcard": false
-		},
-		"/resources/tilesets/forestTown.gfx": {
 			"sdcard": false
 		},
 		"/resources/tilesets/forestTown.png": {
@@ -2141,6 +3471,9 @@
 		"/resources/tilesets/spiritworld.png": {
 			"sdcard": false
 		},
+		"/resources/tilesets/tilesets.xml": {
+			"sdcard": false
+		},
 		"/resources/tilesets/town": {
 			"sdcard": false
 		},
@@ -2165,10 +3498,82 @@
 		"/src/DataPack/DataPack.h": {
 			"sdcard": false
 		},
-		"/resources/battlers/miner/01_justSketchPose.png": {
+		"/editor/data/tilesets/tilesets.xml": {
+			"sdcard": false
+		},
+		"/editor/src/icons/add.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/bg.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/circle.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/delete.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/flip.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/icon.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/mirror.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/pencil.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/play.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/spellResistance0.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/spellResistance05.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/spellResistance1.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/spellResistance2.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/square.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/stop.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/tileGrid.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/tileSubGrid.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/visible_no.png": {
+			"sdcard": false
+		},
+		"/editor/src/icons/visible_yes.png": {
+			"sdcard": false
+		},
+		"/editor/src/images/battle.png": {
+			"sdcard": false
+		},
+		"/editor/src/images/frameNumber.png": {
+			"sdcard": false
+		},
+		"/editor/src/images/numbers.png": {
+			"sdcard": false
+		},
+		"/editor/src/images/passability.png": {
 			"sdcard": false
 		},
 		"/resources/battlers/miner/00_firstTry.png": {
+			"sdcard": false
+		},
+		"/resources/battlers/miner/01_justSketchPose.png": {
 			"sdcard": false
 		},
 		"/resources/battlers/miner/02_outlineHD.png": {
@@ -2228,16 +3633,16 @@
 		"/resources/maps/mountain/caveA.tmx": {
 			"sdcard": false
 		},
-		"/resources/maps/mountain/caveB.tmx": {
-			"sdcard": false
-		},
 		"/resources/maps/mountain/caveB.dat": {
 			"sdcard": false
 		},
-		"/resources/maps/mountain/caveC.tmx": {
+		"/resources/maps/mountain/caveB.tmx": {
 			"sdcard": false
 		},
 		"/resources/maps/mountain/caveC.dat": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/caveC.tmx": {
 			"sdcard": false
 		},
 		"/resources/maps/mountain/caveD.dat": {
@@ -2246,10 +3651,10 @@
 		"/resources/maps/mountain/caveD.tmx": {
 			"sdcard": false
 		},
-		"/resources/maps/mountain/caveE.tmx": {
+		"/resources/maps/mountain/caveE.dat": {
 			"sdcard": false
 		},
-		"/resources/maps/mountain/caveE.dat": {
+		"/resources/maps/mountain/caveE.tmx": {
 			"sdcard": false
 		},
 		"/resources/maps/mountain/caveF.dat": {
@@ -2288,10 +3693,13 @@
 		"/resources/maps/mountain/part2.tmx": {
 			"sdcard": false
 		},
-		"/resources/maps/mountain/test.tmx": {
+		"/resources/maps/mountain/part3.dat": {
 			"sdcard": false
 		},
 		"/resources/maps/mountain/part3.tmx": {
+			"sdcard": false
+		},
+		"/resources/maps/mountain/test.tmx": {
 			"sdcard": false
 		},
 		"/resources/maps/mountain/test2.tmx": {
@@ -2300,16 +3708,13 @@
 		"/resources/maps/town1/cavern": {
 			"sdcard": false
 		},
+		"/resources/maps/town1/hall": {
+			"sdcard": false
+		},
 		"/resources/maps/town1/home.dat": {
 			"sdcard": false
 		},
 		"/resources/maps/town1/home.tmx": {
-			"sdcard": false
-		},
-		"/resources/maps/mountain/part3.dat": {
-			"sdcard": false
-		},
-		"/resources/maps/town1/hall": {
 			"sdcard": false
 		},
 		"/resources/maps/town1/house1.dat": {
@@ -2321,10 +3726,10 @@
 		"/resources/maps/town1/house2.dat": {
 			"sdcard": false
 		},
-		"/resources/maps/town1/house3.dat": {
+		"/resources/maps/town1/house2.tmx": {
 			"sdcard": false
 		},
-		"/resources/maps/town1/house2.tmx": {
+		"/resources/maps/town1/house3.dat": {
 			"sdcard": false
 		},
 		"/resources/maps/town1/house3.tmx": {
@@ -2333,10 +3738,10 @@
 		"/resources/maps/town1/inn": {
 			"sdcard": false
 		},
-		"/resources/maps/town1/shop.tmx": {
+		"/resources/maps/town1/shop.dat": {
 			"sdcard": false
 		},
-		"/resources/maps/town1/shop.dat": {
+		"/resources/maps/town1/shop.tmx": {
 			"sdcard": false
 		},
 		"/resources/maps/town2/benjaminsHouse.dat": {
@@ -2348,7 +3753,7 @@
 		"/resources/maps/town2/mine": {
 			"sdcard": false
 		},
-		"/resources/maps/town4/inn.dat": {
+		"/resources/maps/town4/house2.tmx": {
 			"sdcard": false
 		},
 		"/resources/maps/town4/inn.tmx": {
@@ -2438,847 +3843,67 @@
 		"/resources/maps/town2/mine/floor2.tmx": {
 			"sdcard": false
 		},
-		"/editor": {
+		"/PreludeToADream": {
 			"sdcard": false
 		},
-		"/editor/Makefile": {
+		"/editor/src/monster.o": {
 			"sdcard": false
 		},
-		"/editor/compile.sh": {
+		"/resources/battlers/monster000.xml": {
 			"sdcard": false
 		},
-		"/editor/data": {
+		"/resources/battlers/monster001.xml": {
 			"sdcard": false
 		},
-		"/editor/editor": {
+		"/resources/battlers/monster002.xml": {
 			"sdcard": false
 		},
-		"/editor/editor.pro": {
+		"/resources/battlers/monster003.xml": {
 			"sdcard": false
 		},
-		"/editor/src": {
+		"/resources/battlers/monster004.xml": {
 			"sdcard": false
 		},
-		"/editor/data/animations": {
+		"/resources/battlers/monster005.xml": {
 			"sdcard": false
 		},
-		"/editor/data/backdrops": {
+		"/resources/battlers/monster006.xml": {
 			"sdcard": false
 		},
-		"/editor/data/maps": {
+		"/resources/battlers/monster007.xml": {
 			"sdcard": false
 		},
-		"/editor/data/music": {
+		"/resources/battlers/monster008.xml": {
 			"sdcard": false
 		},
-		"/editor/data/screens": {
+		"/resources/battlers/monster009.xml": {
 			"sdcard": false
 		},
-		"/editor/data/settings.xml": {
+		"/resources/battlers/monster010.xml": {
 			"sdcard": false
 		},
-		"/editor/data/sfx": {
+		"/resources/battlers/monster011.xml": {
 			"sdcard": false
 		},
-		"/editor/data/tilesets": {
+		"/resources/battlers/monster012.xml": {
 			"sdcard": false
 		},
-		"/editor/src/Makefile": {
+		"/resources/battlers/monster013.xml": {
 			"sdcard": false
 		},
-		"/editor/src/choosemapevent.ui": {
+		"/resources/battlers/monster014.xml": {
 			"sdcard": false
 		},
-		"/editor/src/globals.cpp": {
+		"/resources/battlers/monster015.xml": {
 			"sdcard": false
 		},
-		"/editor/src/globals.h": {
+		"/resources/battlers/monster016.xml": {
 			"sdcard": false
 		},
-		"/editor/src/globals.o": {
+		"/editor/src/battleevent.cpp": {
 			"sdcard": false
 		},
-		"/editor/src/icons": {
-			"sdcard": false
-		},
-		"/editor/src/image.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/image.h": {
-			"sdcard": false
-		},
-		"/editor/src/image.o": {
-			"sdcard": false
-		},
-		"/editor/src/main.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/main.o": {
-			"sdcard": false
-		},
-		"/editor/src/mainwindow.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/mainwindow.h": {
-			"sdcard": false
-		},
-		"/editor/src/mainwindow.o": {
-			"sdcard": false
-		},
-		"/editor/src/mainwindow.ui": {
-			"sdcard": false
-		},
-		"/editor/src/map.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/map.h": {
-			"sdcard": false
-		},
-		"/editor/src/map.o": {
-			"sdcard": false
-		},
-		"/editor/src/mapflags.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/mapflags.h": {
-			"sdcard": false
-		},
-		"/editor/src/mapflags.o": {
-			"sdcard": false
-		},
-		"/editor/src/mapflags.ui": {
-			"sdcard": false
-		},
-		"/editor/src/moc_image.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_image.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_mainwindow.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_mainwindow.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_mapflags.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_mapflags.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_predefs.h": {
-			"sdcard": false
-		},
-		"/editor/src/moc_resources.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_resources.o": {
-			"sdcard": false
-		},
-		"/editor/src/resources.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/resources.h": {
-			"sdcard": false
-		},
-		"/editor/src/resources.o": {
-			"sdcard": false
-		},
-		"/editor/src/resources.ui": {
-			"sdcard": false
-		},
-		"/editor/src/src.pro": {
-			"sdcard": false
-		},
-		"/editor/src/tileset.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/tileset.h": {
-			"sdcard": false
-		},
-		"/editor/src/tileset.o": {
-			"sdcard": false
-		},
-		"/editor/src/tilesetview.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/tilesetview.h": {
-			"sdcard": false
-		},
-		"/editor/src/tilesetview.o": {
-			"sdcard": false
-		},
-		"/editor/src/ui_choosemapevent.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_mainwindow.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_mapflags.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_resources.h": {
-			"sdcard": false
-		},
-		"/editor/src/xmlParser.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/xmlParser.h": {
-			"sdcard": false
-		},
-		"/editor/src/xmlParser.o": {
-			"sdcard": false
-		},
-		"/editor/data/tilesets/tilesets.xml": {
-			"sdcard": false
-		},
-		"/editor/src/icons/tileGrid.png": {
-			"sdcard": false
-		},
-		"/editor/src/icons/tileSubGrid.png": {
-			"sdcard": false
-		},
-		"/resources/maps/town4/house2.tmx": {
-			"sdcard": false
-		},
-		"/editor/core": {
-			"sdcard": false
-		},
-		"/editor/out.txt": {
-			"sdcard": false
-		},
-		"/resources/settings.xml": {
-			"sdcard": false
-		},
-		"/editor/src/choosemapevent.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/choosemapevent.h": {
-			"sdcard": false
-		},
-		"/editor/src/choosemapevent.o": {
-			"sdcard": false
-		},
-		"/editor/src/colorpicker.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/colorpicker.h": {
-			"sdcard": false
-		},
-		"/editor/src/colorpicker.o": {
-			"sdcard": false
-		},
-		"/editor/src/colorpicker.ui": {
-			"sdcard": false
-		},
-		"/editor/src/eventview.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/eventview.h": {
-			"sdcard": false
-		},
-		"/editor/src/eventview.o": {
-			"sdcard": false
-		},
-		"/editor/src/icons.qrc": {
-			"sdcard": false
-		},
-		"/editor/src/mapevent.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/mapevent.h": {
-			"sdcard": false
-		},
-		"/editor/src/mapevent.o": {
-			"sdcard": false
-		},
-		"/editor/src/mapeventeditor.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/mapeventeditor.h": {
-			"sdcard": false
-		},
-		"/editor/src/mapeventeditor.o": {
-			"sdcard": false
-		},
-		"/editor/src/mapeventeditor.ui": {
-			"sdcard": false
-		},
-		"/editor/src/mapview.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/mapview.h": {
-			"sdcard": false
-		},
-		"/editor/src/moc_choosemapevent.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_choosemapevent.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_colorpicker.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_colorpicker.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_eventview.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_eventview.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_mapeventeditor.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_mapeventeditor.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_tilesetview.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_tilesetview.o": {
-			"sdcard": false
-		},
-		"/editor/src/qrc_icons.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/qrc_icons.o": {
-			"sdcard": false
-		},
-		"/editor/src/ui_colorpicker.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_mapeventeditor.h": {
-			"sdcard": false
-		},
-		"/resources/maps/map0000.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0001.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0002.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0003.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0004.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0005.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0006.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0007.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0008.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0009.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0010.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0011.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0012.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0013.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0014.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0015.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0016.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0017.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0018.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0019.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0020.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0021.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0022.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0023.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0024.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0025.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0026.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0027.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0028.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0029.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0030.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0031.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0032.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0033.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0034.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0035.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0036.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0037.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0038.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0039.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0040.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0041.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0042.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/map0043.xml": {
-			"sdcard": false
-		},
-		"/resources/maps/test.tmx": {
-			"sdcard": false
-		},
-		"/resources/tilesets/tilesets.xml": {
-			"sdcard": false
-		},
-		"/editor/src/icons/bg.png": {
-			"sdcard": false
-		},
-		"/editor/src/icons/play.png": {
-			"sdcard": false
-		},
-		"/editor/src/icons/stop.png": {
-			"sdcard": false
-		},
-		"/editor/src/icons/visible_no.png": {
-			"sdcard": false
-		},
-		"/editor/src/icons/visible_yes.png": {
-			"sdcard": false
-		},
-		"/editor/src/battleanimation.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/battleanimation.h": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_bite.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_bite2.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_claw.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_pickaxe.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_punch.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_punch2.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_quake.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_sting.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_tusk.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_venom.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_web.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/enemy_web2.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/player_sword.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/player_unarmed.xml": {
-			"sdcard": false
-		},
-		"/resources/animations/test.xml": {
-			"sdcard": false
-		},
-		"/editor/src/icons/add.png": {
-			"sdcard": false
-		},
-		"/editor/src/icons/delete.png": {
-			"sdcard": false
-		},
-		"/editor/src/icons/flip.png": {
-			"sdcard": false
-		},
-		"/editor/src/icons/mirror.png": {
-			"sdcard": false
-		},
-		"/editor/src/battleanimation.o": {
-			"sdcard": false
-		},
-		"/editor/src/imageview.h": {
-			"sdcard": false
-		},
-		"/editor/src/images": {
-			"sdcard": false
-		},
-		"/editor/src/imageview.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/imageview.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_imageview.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_imageview.o": {
-			"sdcard": false
-		},
-		"/editor/src/images/battle.png": {
-			"sdcard": false
-		},
-		"/editor/src/images/frameNumber.png": {
-			"sdcard": false
-		},
-		"/resources/maps/town4/house2.dat": {
-			"sdcard": false
-		},
-		"/resources/Tiled/ptad.tiled-session.lock": {
-			"sdcard": false
-		},
-		"/editor/src/images/passability.png": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_battle.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_battle.ui": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_buffercharacter.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_buffercharacter.ui": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_buffervalue.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_buffervalue.ui": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_ifswitch.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_ifswitch.ui": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_moveplayer.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_moveplayer.ui": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_shakescreen.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_shakescreen.ui": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_showhidescreen.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_showhidescreen.ui": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_showimage.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_showimage.ui": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_showmessage.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_showmessage.ui": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_showshopmenu.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_showshopmenu.ui": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_teleport.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_teleport.h": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_teleport.o": {
-			"sdcard": false
-		},
-		"/editor/src/configureevent_teleport.ui": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_battle.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_battle.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_buffercharacter.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_buffercharacter.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_buffervalue.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_buffervalue.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_ifswitch.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_ifswitch.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_moveplayer.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_moveplayer.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_shakescreen.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_shakescreen.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_showhidescreen.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_showhidescreen.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_showimage.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_showimage.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_showmessage.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_showmessage.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_showshopmenu.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_showshopmenu.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_teleport.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_configureevent_teleport.o": {
-			"sdcard": false
-		},
-		"/editor/src/moc_spritepicker.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/moc_spritepicker.o": {
-			"sdcard": false
-		},
-		"/editor/src/spritepicker.cpp": {
-			"sdcard": false
-		},
-		"/editor/src/spritepicker.h": {
-			"sdcard": false
-		},
-		"/editor/src/spritepicker.o": {
-			"sdcard": false
-		},
-		"/editor/src/spritepicker.ui": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_battle.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_buffercharacter.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_buffervalue.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_ifswitch.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_moveplayer.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_shakescreen.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_showhidescreen.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_showimage.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_showmessage.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_showshopmenu.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_configureevent_teleport.h": {
-			"sdcard": false
-		},
-		"/editor/src/ui_spritepicker.h": {
-			"sdcard": false
-		},
-		"/resources/music/battle.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/battleBoss.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/battleFinal.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/characterRevived.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/discovery.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/docks.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/dungeon.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/fields.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/gameOver.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/goodMorning.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/goodNight.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/inn.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/joinParty.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/labyrinth.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/levelUp.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/machineRoom.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/mainTheme.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/mysticIsle.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/princess.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/royalCourt.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/shop.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/tavern.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/temple.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/town.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/winBattle.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/winBattleBig.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/winBattleBoss.ogg": {
-			"sdcard": false
-		},
-		"/resources/music/winBattleFinal.ogg": {
+		"/editor/src/battleevent.h": {
 			"sdcard": false
 		}
 	},

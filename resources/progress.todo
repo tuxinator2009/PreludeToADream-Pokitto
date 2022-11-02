@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project name="Prelude to a Dream" progress="44">
+<project name="Prelude to a Dream" progress="47">
 	<item name="Game" progress="15" notes="Game Progress">
 		<item name="Act 1" progress="46" notes="Ends when player finishes with brigands and breaks the seal in the first temple">
 			<item name="Chapter 1" progress="100" notes="Ends when player clears the cellar, learns of the raid and kidnapping, and leaves town"/>
@@ -75,7 +75,7 @@
 			<item name="Chapter 15" progress="0" notes=""/>
 		</item>
 	</item>
-	<item name="Editor" progress="74" notes="Editor Progress">
+	<item name="Editor" progress="79" notes="Editor Progress">
 		<item name="Map Editor" progress="100" notes="">
 			<item name="Map View" progress="100" notes=""/>
 			<item name="Layers" progress="100" notes="">
@@ -89,7 +89,7 @@
 		</item>
 		<item name="Battle Animation Editor" progress="100" notes=""/>
 		<item name="Items Editor" progress="100" notes=""/>
-		<item name="Monster Editor" progress="0" notes=""/>
+		<item name="Monster Editor" progress="50" notes="Main part done just need to finish last few events"/>
 		<item name="Messages Editor" progress="100" notes=""/>
 		<item name="Skills Editor" progress="100" notes=""/>
 		<item name="Spells Editor" progress="100" notes=""/>

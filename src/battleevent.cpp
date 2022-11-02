@@ -191,6 +191,49 @@ bool PTAD::BattleEvent::event_useSkill() //TODO
 
 bool PTAD::BattleEvent::event_castSpell()
 {
+  //TODO: implement animation
+  /*uint32_t animation;
+  uint8_t type, level, mp;
+  readValue((uint8_t*)&animation, sizeof(animation));
+  if (!PTAD::BattleAnimation::isAnimationPlaying())
+  {
+    if (counters[3] != 255) //Wait until animation is finished playing
+    {
+      counters[3] = 255;
+      PTAD::BattleAnimation::beginAnimation(animation);
+      eventPos = currentEvent;
+      return false;
+    }
+    type = nextByte() * 2;
+    level = nextByte();
+    mp = nextByte();
+    damageDealt = PTAD::Battle::magicDamageDealt(PTAD::Battle::getEnemyAttack(), PTAD::Battle::getEnemyMagic(), level, PTAD::Battle::getPlayerDefense(), PTAD::Battle::getPlayerMagic(), (PTAD::Battle::playerSpellResistance >> type) & 3);
+    if (damageDealt > 0)
+    {
+      counters[3] = 1;
+      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_BEGIN);
+      PTAD::Dialog::bufferNumber(damageDealt, 100);
+      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
+    }
+    else
+    {
+      counters[3] = 0;
+      PTAD::Music::playSFX(PTAD::Music::SFX_MISS);
+      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_MISS);
+    }
+    PTAD::Dialog::beginMessage();
+    if (damageDealt >= PTAD::Game::player.hp)
+    {
+      atEnd = true;
+      PTAD::Game::player.hp = 0;
+    }
+    else
+      PTAD::Game::player.hp -= damageDealt;
+    return true;
+  }
+  eventPos = currentEvent;
+  return false;*/
+  
   uint8_t type = nextByte() * 2;
   uint8_t level = nextByte();
   uint8_t mp = nextByte();

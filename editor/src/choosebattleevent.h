@@ -22,48 +22,19 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#ifndef CONFIGUREEVENT_BUFFERVALUE_H
-#define CONFIGUREEVENT_BUFFERVALUE_H
+#ifndef CHOOSEBATTLEEVENT_H
+#define CHOOSEBATTLEEVENT_H
 
-#include "ui_configureevent_buffervalue.h"
+#include "ui_choosebattleevent.h"
 
-class ConfigureEvent_BufferValue : public QDialog, public Ui::ConfigureEvent_BufferValue
+class ChooseBattleEvent : public QDialog, public Ui::ChooseBattleEvent
 {
   Q_OBJECT
-  public:
-    ConfigureEvent_BufferValue(bool isMapEvent=true, QWidget *parent=nullptr) : QDialog(parent)
-    {
-      setupUi(this);
-      if (!isMapEvent)
-      {
-        for (int i = 0; i < 14; ++i)
-          optValue->setItemText(i, QString("Player %1").arg(optValue->itemText(i)));
-        optValue->insertItem(14, "Monster Name");
-        optValue->insertItem(15, "Monster HP");
-        optValue->insertItem(16, "Monster MaxHP");
-        optValue->insertItem(17, "Monster Mp");
-        optValue->insertItem(18, "Monster MaxMP");
-        optValue->insertItem(19, "Monster Experience");
-        optValue->insertItem(20, "Monster Gold");
-        optValue->insertItem(21, "Monster Attack");
-        optValue->insertItem(22, "Monster Defense");
-        optValue->insertItem(23, "Monster Agility");
-        optValue->insertItem(24, "Monster Magic");
-      }
-    }
-    ~ConfigureEvent_BufferValue() {}
-    int getValue() {return optValue->currentIndex();}
-    void setValue(int value) {optValue->setCurrentIndex(value);}
-    int getVariableID() {return numVariableID->value();}
-    void setVariableID(int value) {numVariableID->setValue(value);}
-    int getSuppliedValue() {return numSuppliedValue->value();}
-    void setSuppliedValue(int value) {numSuppliedValue->setValue(value);}
-  protected slots:
-    void on_optValue_currentIndexChanged(QString text)
-    {
-      frmVariable->setEnabled(text == "Variable");
-      frmSupplied->setEnabled(text == "Supplied");
-    }
+public:
+  ChooseBattleEvent(bool allowElse, QWidget *parent=nullptr);
+  ~ChooseBattleEvent();
+private:
+  QButtonGroup *buttons;
 };
 
-#endif //CONFIGUREEVENT_BUFFERVALUE_H
+#endif //CHOOSEBATTLEEVENT_H

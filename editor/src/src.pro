@@ -9,6 +9,8 @@ QT += widgets multimedia
 HEADERS += \
   battleanimation.h \
   battleanimationseditor.h \
+  battleevent.h \
+  choosebattleevent.h \
   choosemapevent.h \
   colorpicker.h \
   configureevent_battle.h \
@@ -48,6 +50,7 @@ HEADERS += \
 	mapflags.h \
 	mapspritepicker.h \
 	messageseditor.h \
+	monster.h \
 	monsterseditor.h \
 	resources.h \
 	skillsspellseditor.h \
@@ -61,6 +64,8 @@ HEADERS += \
 SOURCES += \
   battleanimation.cpp \
   battleanimationseditor.cpp \
+  battleevent.cpp \
+  choosebattleevent.cpp \
   choosemapevent.cpp \
   colorpicker.cpp \
   configureevent_changeeventlocation.cpp \
@@ -79,6 +84,7 @@ SOURCES += \
 	mapflags.cpp \
 	mapspritepicker.cpp \
 	messageseditor.cpp \
+	monster.cpp \
 	monsterseditor.cpp \
 	resources.cpp \
 	skillsspellseditor.cpp \
@@ -91,6 +97,7 @@ SOURCES += \
 
 FORMS += \
   battleanimationseditor.ui \
+  choosebattleevent.ui \
   choosemapevent.ui \
   colorpicker.ui \
   configureevent_battle.ui \

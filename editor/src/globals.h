@@ -132,6 +132,7 @@ class Globals
     static const uint8_t codes[];
     static const char *itemTypes[8];
     static const char *statNames[7];
+    static const char *spellIcons[4];
   private:
     static void loadTilesets();
     static void saveTilesets();

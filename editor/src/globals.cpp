@@ -70,6 +70,7 @@ const uint8_t Globals::codes[] =
 };
 const char *Globals::itemTypes[8] = {"consumables","tradeables","weapons","helmets","armor","boots","rings","amulets"};
 const char *Globals::statNames[7] = {"hp", "mp", "attack", "defense", "agility", "magic", "experience"};
+const char *Globals::spellIcons[4] = {":/icons/spellResistance0.png",":/icons/spellResistance05.png",":/icons/spellResistance1.png",":/icons/spellResistance2.png"};
 
 void Globals::setupData()
 {

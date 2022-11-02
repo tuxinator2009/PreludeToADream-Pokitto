@@ -116,6 +116,7 @@ void PTAD::Game::setup()
   LOG("Battle System: ", PTAD::MEMORY_BATTLE_SIZE, " bytes\n");
   LOG("Map System:    ", PTAD::MEMORY_MAP_SIZE, " bytes\n");
   LOG("MapData:       ", sizeof(PTAD::Map::MapData), " bytes\n");
+  LOG("EnemyData:     ", sizeof(PTAD::Battle::EnemyData), " bytes\n");
   memcpy((void*)&player, (void*)&newGame, sizeof(PlayerData));
 	PTAD::Dialog::setup();
   //PTAD::Menu::setup(PTAD::Menu::State::NameEntryMenu);
