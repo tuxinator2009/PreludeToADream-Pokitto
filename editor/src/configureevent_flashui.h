@@ -22,41 +22,52 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
+#ifndef CONFIGUREEVENT_FLASHUI_H
+#define CONFIGUREEVENT_FLASHUI_H
+
+#include "ui_configureevent_flashui.h"
 #include "colorpicker.h"
 #include "image.h"
 
-ColorPicker::ColorPicker(QWidget *parent) : QWidget(parent, Qt::Popup)
+class ConfigureEvent_FlashUI : public QDialog, public Ui::ConfigureEvent_FlashUI
 {
-  setupUi(this);
-  for (int row = 0; row < 32; ++row)
-  {
-    for (int col = 0; col < 8; ++col)
+  Q_OBJECT
+  public:
+    ConfigureEvent_FlashUI(QWidget *parent=nullptr) : QDialog(parent)
     {
-      QWidget *w = new QWidget();
-      QRgb color = Image::palette[row * 8 + col];
-      w->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(qRed(color)).arg(qGreen(color)).arg(qBlue(color)));
-      tblPalette->setCellWidget(row, col, w);
+      setupUi(this);
+      colorPicker = new ColorPicker(this);
+      colorPicker->setMinimumSize(QSize(colorPicker->sizeHint().width(), colorPicker->sizeHint().width()));
+      colorPicker->setMaximumSize(QSize(colorPicker->sizeHint().width(), colorPicker->sizeHint().width()));
+      colorPicker->setVisible(false);
+      connect(colorPicker, SIGNAL(colorClicked(int)), this, SLOT(colorPicker_colorClicked(int)));
     }
-  }
-}
+    ~ConfigureEvent_FlashUI() {}
+    void setDuration(int value) {numDuration->setValue(value);}
+    int getDuration() {return numDuration->value();}
+    void setColor(int index)
+    {
+      QRgb color = Image::palette[index];
+      btnColor->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(qRed(color)).arg(qGreen(color)).arg(qBlue(color)));
+      uiColor = index;
+    }
+    int getColor() {return uiColor;}
+  protected slots:
+    void on_btnColor_clicked()
+    {
+      colorPicker->move(btnColor->mapToGlobal(QPoint(0, 0)));
+      colorPicker->show();
+    }
+    void colorPicker_colorClicked(int index)
+    {
+      QRgb color = Image::palette[index];
+      btnColor->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(qRed(color)).arg(qGreen(color)).arg(qBlue(color)));
+      colorPicker->hide();
+      uiColor = index;
+    }
+  private:
+    ColorPicker *colorPicker;
+    int uiColor;
+};
 
-ColorPicker::~ColorPicker()
-{
-}
-
-void ColorPicker::selectColor(int index)
-{
-  tblPalette->setCurrentCell(index / 8, index % 8);
-  tblPalette->item(index / 8, index % 8)->setSelected(true);
-}
-
-void ColorPicker::on_tblPalette_cellClicked(int row, int column)
-{
-  emit colorClicked(row * 8 + column);
-}
-
-void ColorPicker::leaveEvent(QEvent *event)
-{
-  event->accept();
-  this->hide();
-}
+#endif //CONFIGUREEVENT_FLASHUI_H

@@ -30,8 +30,18 @@
 #include "battleevent.h"
 #include "configureevent_buffercharacter.h"
 #include "configureevent_buffervalue.h"
+#include "configureevent_castspell.h"
+#include "configureevent_changebackgroundimage.h"
+#include "configureevent_changebattlersprite.h"
+#include "configureevent_flashbattler.h"
+#include "configureevent_flashui.h"
+#include "configureevent_ifcounter.h"
+#include "configureevent_ifstat.h"
+#include "configureevent_ifstatus.h"
+#include "configureevent_inflictstatus.h"
 #include "configureevent_showmessage.h"
 #include "configureevent_playsoundeffect.h"
+#include "configureevent_random.h"
 #include "configureevent_shakescreen.h"
 #include "globals.h"
 
@@ -87,7 +97,8 @@ const char *BattleEvent::Event::typeString[] =
   "label",
   "comment",
   "else",
-  ""
+  "",
+  "topLevelEvent"
 };
 
 const char *BattleEvent::Event::bufferValues[] =
@@ -233,11 +244,11 @@ BattleEvent::Event *BattleEvent::Event::newEvent(BattleEvent *pBase, Event *pare
     return new ShowMessage(pBase, parent, eventNode);
   if (eventType.compare("jump") == 0)
     return new Jump(pBase, parent, eventNode);
-  if (eventType.compare("ifCounter") == 0)
+  if (eventType.compare("ifCounter") == 0 || eventType.compare("elseIfCounter") == 0)
     return new IfCounter(pBase, parent, eventNode);
-  if (eventType.compare("ifStatus") == 0)
+  if (eventType.compare("ifStatus") == 0 || eventType.compare("elseIfStatus") == 0)
     return new IfStatus(pBase, parent, eventNode);
-  if (eventType.compare("ifStat") == 0)
+  if (eventType.compare("ifStat") == 0 || eventType.compare("elseIfStat") == 0)
     return new IfStat(pBase, parent, eventNode);
   if (eventType.compare("changeBattlerSprite") == 0)
     return new ChangeBattlerSprite(pBase, parent, eventNode);
@@ -425,7 +436,7 @@ QTreeWidgetItem *BattleEvent::ShakeScreen::getItem()
 }
 //END: ShakeScreen
 
-//BEGIN: FlashBattler (NEEDS EDITOR)
+//BEGIN: FlashBattler (COMPLETE)
 BattleEvent::FlashBattler::FlashBattler(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::FlashBattler)
 {
   duration = 0;
@@ -468,7 +479,21 @@ void BattleEvent::FlashBattler::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::FlashBattler::configureEvent(QWidget *parentWidget)
 {
-  //TODO
+  ConfigureEvent_FlashBattler *configure = new ConfigureEvent_FlashBattler(parentWidget);
+  configure->setDuration(duration);
+  configure->setColor1(color1);
+  configure->setColor2(color2);
+  configure->setColor3(color3);
+  if (configure->exec())
+  {
+    duration = configure->getDuration();
+    color1 = configure->getColor1();
+    color2 = configure->getColor2();
+    color3 = configure->getColor3();
+    configure->deleteLater();
+    return true;
+  }
+  configure->deleteLater();
   return false;
 }
 
@@ -479,7 +504,7 @@ QTreeWidgetItem *BattleEvent::FlashBattler::getItem()
 }
 //END: FlashBattler
 
-//BEGIN: FlashUi (NEEDS EDITOR)
+//BEGIN: FlashUi (COMPLETE)
 BattleEvent::FlashUi::FlashUi(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::FlashUi)
 {
   duration = 0;
@@ -514,13 +539,23 @@ void BattleEvent::FlashUi::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::FlashUi::configureEvent(QWidget *parentWidget)
 {
-  //TODO
+  ConfigureEvent_FlashUI *configure = new ConfigureEvent_FlashUI(parentWidget);
+  configure->setDuration(duration);
+  configure->setColor(color);
+  if (configure->exec())
+  {
+    duration = configure->getDuration();
+    color = configure->getColor();
+    configure->deleteLater();
+    return true;
+  }
+  configure->deleteLater();
   return false;
 }
 
 QTreeWidgetItem *BattleEvent::FlashUi::getItem()
 {
-  item->setText(0, QString("<> flashBattler: duration=%1 color=%2").arg(duration).arg(color));
+  item->setText(0, QString("<> flashUI: duration=%1 color=%2").arg(duration).arg(color));
   return item;
 }
 //END: FlashUi
@@ -590,6 +625,7 @@ BattleEvent::UseSkill::UseSkill(BattleEvent *pBase, Event *parent) : Event(pBase
 
 BattleEvent::UseSkill::UseSkill(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::UseSkill)
 {
+  Q_UNUSED(eventNode);
 }
 
 BattleEvent::UseSkill::~UseSkill()
@@ -608,6 +644,7 @@ void BattleEvent::UseSkill::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::UseSkill::configureEvent(QWidget *parentWidget)
 {
+  Q_UNUSED(parentWidget);
   return false;
 }
 
@@ -618,7 +655,7 @@ QTreeWidgetItem *BattleEvent::UseSkill::getItem()
 }
 //END: UseSkill
 
-//BEGIN: CastSpell (NEEDS EDITOR)
+//BEGIN: CastSpell (COMPLETE)
 BattleEvent::CastSpell::CastSpell(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::CastSpell)
 {
   QDir folder(QString("%1/animations").arg(Globals::datadir));
@@ -670,7 +707,21 @@ void BattleEvent::CastSpell::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::CastSpell::configureEvent(QWidget *parentWidget)
 {
-  //TODO
+  ConfigureEvent_CastSpell *configure = new ConfigureEvent_CastSpell(parentWidget);
+  configure->setAnimation(animation);
+  configure->setSpellType(spellType);
+  configure->setLevel(level);
+  configure->setMP(mp);
+  if (configure->exec())
+  {
+    animation = configure->getAnimation();
+    spellType = configure->getSpellType();
+    level = configure->getLevel();
+    mp = configure->getMP();
+    configure->deleteLater();
+    return true;
+  }
+  configure->deleteLater();
   return false;
 }
 
@@ -1242,7 +1293,7 @@ QTreeWidgetItem *BattleEvent::Jump::getItem()
 }
 //END: Jump
 
-//BEGIN: IfCounter (NEEDS EDITOR)
+//BEGIN: IfCounter (COMPLETE)
 BattleEvent::IfCounter::IfCounter(BattleEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfCounter)
 {
   counter = 0;
@@ -1315,7 +1366,24 @@ void BattleEvent::IfCounter::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::IfCounter::configureEvent(QWidget *parentWidget)
 {
-  //TODO
+  ConfigureEvent_IfCounter *configure = new ConfigureEvent_IfCounter(parentWidget);
+  Event *previous = parent->previousChildEvent(this);
+  if (previous != nullptr && previous->isIf())
+    configure->enableElseIf();
+  configure->setElseIf(elseIf);
+  configure->setCounter(counter);
+  configure->setCondition(condition);
+  configure->setValue(value);
+  if (configure->exec())
+  {
+    elseIf = configure->isElseIf();
+    counter = configure->getCounter();
+    condition = configure->getCondition();
+    value = configure->getValue();
+    configure->deleteLater();
+    return true;
+  }
+  configure->deleteLater();
   return false;
 }
 
@@ -1328,7 +1396,7 @@ QTreeWidgetItem *BattleEvent::IfCounter::getItem()
 }
 //END: IfCounter
 
-//BEGIN: IfStatus (NEEDS EDITOR)
+//BEGIN: IfStatus (COMPLETE)
 BattleEvent::IfStatus::IfStatus(BattleEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfStatus)
 {
   condition = CONDITION_EQUAL_TO;
@@ -1412,7 +1480,26 @@ void BattleEvent::IfStatus::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::IfStatus::configureEvent(QWidget *parentWidget)
 {
-  //TODO
+  ConfigureEvent_IfStatus *configure = new ConfigureEvent_IfStatus(parentWidget);
+  Event *previous = parent->previousChildEvent(this);
+  if (previous != nullptr && previous->isIf())
+    configure->enableElseIf();
+  configure->setElseIf(elseIf);
+  configure->setTarget(self);
+  configure->setStatus(status);
+  configure->setCondition(condition);
+  configure->setLevel(level);
+  if (configure->exec())
+  {
+    elseIf = configure->isElseIf();
+    self = configure->isTargetSelf();
+    status = configure->getStatus();
+    condition = configure->getCondition();
+    level = configure->getLevel();
+    configure->deleteLater();
+    return true;
+  }
+  configure->deleteLater();
   return false;
 }
 
@@ -1425,7 +1512,7 @@ QTreeWidgetItem *BattleEvent::IfStatus::getItem()
 }
 //END: IfStatus
 
-//BEGIN: IfStat (NEEDS EDITOR)
+//BEGIN: IfStat (COMPLETE)
 BattleEvent::IfStat::IfStat(BattleEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfStat)
 {
   condition = CONDITION_EQUAL_TO;
@@ -1504,7 +1591,24 @@ void BattleEvent::IfStat::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::IfStat::configureEvent(QWidget *parentWidget)
 {
-  //TODO
+  ConfigureEvent_IfStat *configure = new ConfigureEvent_IfStat(parentWidget);
+  Event *previous = parent->previousChildEvent(this);
+  if (previous != nullptr && previous->isIf())
+    configure->enableElseIf();
+  configure->setElseIf(elseIf);
+  configure->setStat(hp);
+  configure->setCondition(condition);
+  configure->setValue(value);
+  if (configure->exec())
+  {
+    elseIf = configure->isElseIf();
+    hp = configure->isStatHP();
+    condition = configure->getCondition();
+    value = configure->getValue();
+    configure->deleteLater();
+    return true;
+  }
+  configure->deleteLater();
   return false;
 }
 
@@ -1517,7 +1621,7 @@ QTreeWidgetItem *BattleEvent::IfStat::getItem()
 }
 //END: IfStat
 
-//BEGIN: ChangeBattlerSprite (NEEDS EDITOR)
+//BEGIN: ChangeBattlerSprite (COMPLETE)
 BattleEvent::ChangeBattlerSprite::ChangeBattlerSprite(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::ChangeBattlerSprite)
 {
   spriteID = 0;
@@ -1548,7 +1652,15 @@ void BattleEvent::ChangeBattlerSprite::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::ChangeBattlerSprite::configureEvent(QWidget *parentWidget)
 {
-  //TODO
+  ConfigureEvent_ChangeBattlerSprite *configure = new ConfigureEvent_ChangeBattlerSprite(parentWidget);
+  configure->setSpriteID(spriteID);
+  if (configure->exec())
+  {
+    spriteID = configure->getSpriteID();
+    configure->deleteLater();
+    return true;
+  }
+  configure->deleteLater();
   return false;
 }
 
@@ -1559,7 +1671,7 @@ QTreeWidgetItem *BattleEvent::ChangeBattlerSprite::getItem()
 }
 //END: ChangeBattlerSprite
 
-//BEGIN: ChangeBackgroundImage (NEEDS EDITOR)
+//BEGIN: ChangeBackgroundImage (COMPLETE)
 BattleEvent::ChangeBackgroundImage::ChangeBackgroundImage(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::ChangeBackgroundImage)
 {
   image = Globals::backdrops[0];
@@ -1591,7 +1703,15 @@ void BattleEvent::ChangeBackgroundImage::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::ChangeBackgroundImage::configureEvent(QWidget *parentWidget)
 {
-  //TODO
+  ConfigureEvent_ChangeBackgroundImage *configure = new ConfigureEvent_ChangeBackgroundImage(parentWidget);
+  configure->setBackground(image);
+  if (configure->exec())
+  {
+    image = configure->getBackground();
+    configure->deleteLater();
+    return true;
+  }
+  configure->deleteLater();
   return false;
 }
 
@@ -1706,7 +1826,7 @@ QTreeWidgetItem *BattleEvent::WaitFrames::getItem()
 }
 //END: WaitFrames
 
-//BEGIN: InflictStatus (NEEDS EDITOR)
+//BEGIN: InflictStatus (COMPLETE)
 BattleEvent::InflictStatus::InflictStatus(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::InflictStatus)
 {
   successMessage = "Success";
@@ -1772,7 +1892,25 @@ void BattleEvent::InflictStatus::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::InflictStatus::configureEvent(QWidget *parentWidget)
 {
-  //TODO
+  ConfigureEvent_InflictStatus *configure = new ConfigureEvent_InflictStatus(parentWidget);
+  configure->setTarget(self);
+  configure->setStatus(status);
+  configure->setLevel(level);
+  configure->setChance(chance);
+  configure->setSuccessMessage(successMessage);
+  configure->setFailMessage(failMessage);
+  if (configure->exec())
+  {
+    self = configure->isTargetSelf();
+    status = configure->getStatus();
+    level = configure->getLevel();
+    chance = configure->getChance();
+    successMessage = configure->getSuccessMessage();
+    failMessage = configure->getFailMessage();
+    configure->deleteLater();
+    return true;
+  }
+  configure->deleteLater();
   return false;
 }
 
@@ -1835,7 +1973,7 @@ QTreeWidgetItem *BattleEvent::ConsumeMP::getItem()
 }
 //END: ConsumeMP
 
-//BEGIN: Random (NEEDS EDITOR)
+//BEGIN: Random (COMPLETE)
 BattleEvent::Random::Random(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::Random)
 {
   counter = 0;
@@ -1870,7 +2008,17 @@ void BattleEvent::Random::compileEvent(QByteArray *bytes)
 
 bool BattleEvent::Random::configureEvent(QWidget *parentWidget)
 {
-  //TODO
+  ConfigureEvent_Random *configure = new ConfigureEvent_Random(parentWidget);
+  configure->setCounter(counter);
+  configure->setMax(max);
+  if (configure->exec())
+  {
+    counter = configure->getCounter();
+    max = configure->getMax();
+    configure->deleteLater();
+    return true;
+  }
+  configure->deleteLater();
   return false;
 }
 

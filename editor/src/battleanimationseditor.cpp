@@ -585,7 +585,7 @@ void BattleAnimationsEditor::on_numFlashUIDuration_valueChanged(int value)
 void BattleAnimationsEditor::on_btnFlashUIColor_clicked()
 {
   colorPickerButton = btnFlashUIColor;
-  colorPicker->move(colorPickerButton->mapTo(this, QPoint(colorPickerButton->width() - colorPicker->width(), 0)));
+  colorPicker->move(colorPickerButton->mapToGlobal(QPoint(0, 0)));
   colorPicker->show();
 }
 
@@ -607,21 +607,21 @@ void BattleAnimationsEditor::on_numFlashEnemyDuration_valueChanged(int value)
 void BattleAnimationsEditor::on_btnFlashEnemyColor1_clicked()
 {
   colorPickerButton = btnFlashEnemyColor1;
-  colorPicker->move(colorPickerButton->mapTo(this, QPoint(colorPickerButton->width() - colorPicker->width(), 0)));
+  colorPicker->move(colorPickerButton->mapToGlobal(QPoint(0, 0)));
   colorPicker->show();
 }
 
 void BattleAnimationsEditor::on_btnFlashEnemyColor2_clicked()
 {
   colorPickerButton = btnFlashEnemyColor2;
-  colorPicker->move(colorPickerButton->mapTo(this, QPoint(colorPickerButton->width() - colorPicker->width(), 0)));
+  colorPicker->move(colorPickerButton->mapToGlobal(QPoint(0, 0)));
   colorPicker->show();
 }
 
 void BattleAnimationsEditor::on_btnFlashEnemyColor3_clicked()
 {
   colorPickerButton = btnFlashEnemyColor3;
-  colorPicker->move(colorPickerButton->mapTo(this, QPoint(colorPickerButton->width() - colorPicker->width(), 0)));
+  colorPicker->move(colorPickerButton->mapToGlobal(QPoint(0, 0)));
   colorPicker->show();
 }
 
@@ -643,21 +643,21 @@ void BattleAnimationsEditor::on_numFlashPlayerDuration_valueChanged(int value)
 void BattleAnimationsEditor::on_btnFlashPlayerColor1_clicked()
 {
   colorPickerButton = btnFlashPlayerColor1;
-  colorPicker->move(colorPickerButton->mapTo(this, QPoint(colorPickerButton->width() - colorPicker->width(), 0)));
+  colorPicker->move(colorPickerButton->mapToGlobal(QPoint(0, 0)));
   colorPicker->show();
 }
 
 void BattleAnimationsEditor::on_btnFlashPlayerColor2_clicked()
 {
   colorPickerButton = btnFlashPlayerColor2;
-  colorPicker->move(colorPickerButton->mapTo(this, QPoint(colorPickerButton->width() - colorPicker->width(), 0)));
+  colorPicker->move(colorPickerButton->mapToGlobal(QPoint(0, 0)));
   colorPicker->show();
 }
 
 void BattleAnimationsEditor::on_btnFlashPlayerColor3_clicked()
 {
   colorPickerButton = btnFlashPlayerColor3;
-  colorPicker->move(colorPickerButton->mapTo(this, QPoint(colorPickerButton->width() - colorPicker->width(), 0)));
+  colorPicker->move(colorPickerButton->mapToGlobal(QPoint(0, 0)));
   colorPicker->show();
 }
 

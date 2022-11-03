@@ -22,41 +22,28 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#include "colorpicker.h"
-#include "image.h"
+#ifndef CONFIGUREEVENT_IFSTATUS_H
+#define CONFIGUREEVENT_IFSTATUS_H
 
-ColorPicker::ColorPicker(QWidget *parent) : QWidget(parent, Qt::Popup)
-{
-  setupUi(this);
-  for (int row = 0; row < 32; ++row)
-  {
-    for (int col = 0; col < 8; ++col)
-    {
-      QWidget *w = new QWidget();
-      QRgb color = Image::palette[row * 8 + col];
-      w->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(qRed(color)).arg(qGreen(color)).arg(qBlue(color)));
-      tblPalette->setCellWidget(row, col, w);
-    }
-  }
-}
+#include "ui_configureevent_ifstatus.h"
 
-ColorPicker::~ColorPicker()
+class ConfigureEvent_IfStatus : public QDialog, public Ui::ConfigureEvent_IfStatus
 {
-}
+  Q_OBJECT
+  public:
+    ConfigureEvent_IfStatus(QWidget *parent=nullptr) : QDialog(parent) {setupUi(this);}
+    ~ConfigureEvent_IfStatus() {}
+    void enableElseIf() {chkElseIf->setEnabled(true);}
+    void setElseIf(bool value) {(value) ? chkElseIf->setChecked(true):chkIf->setChecked(true);}
+    bool isElseIf() {return chkElseIf->isChecked();}
+    void setTarget(bool self) {(self) ? chkSelf->setChecked(true):chkPlayer->setChecked(true);}
+    bool isTargetSelf() {return chkSelf->isChecked();}
+    void setStatus(int value) {optStatus->setCurrentIndex(value);}
+    int getStatus() {return optStatus->currentIndex();}
+    void setCondition(int value) {optCondition->setCurrentIndex(value);}
+    int getCondition() {return optCondition->currentIndex();}
+    void setLevel(int value) {numLevel->setValue(value);}
+    int getLevel() {return numLevel->value();}
+};
 
-void ColorPicker::selectColor(int index)
-{
-  tblPalette->setCurrentCell(index / 8, index % 8);
-  tblPalette->item(index / 8, index % 8)->setSelected(true);
-}
-
-void ColorPicker::on_tblPalette_cellClicked(int row, int column)
-{
-  emit colorClicked(row * 8 + column);
-}
-
-void ColorPicker::leaveEvent(QEvent *event)
-{
-  event->accept();
-  this->hide();
-}
+#endif //CONFIGUREEVENT_IFSTATUS_H

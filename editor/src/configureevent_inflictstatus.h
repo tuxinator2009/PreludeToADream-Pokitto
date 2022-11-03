@@ -22,41 +22,29 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#include "colorpicker.h"
-#include "image.h"
+#ifndef CONFIGUREEVENT_INFLICTSTATUS_H
+#define CONFIGUREEVENT_INFLICTSTATUS_H
 
-ColorPicker::ColorPicker(QWidget *parent) : QWidget(parent, Qt::Popup)
-{
-  setupUi(this);
-  for (int row = 0; row < 32; ++row)
-  {
-    for (int col = 0; col < 8; ++col)
-    {
-      QWidget *w = new QWidget();
-      QRgb color = Image::palette[row * 8 + col];
-      w->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(qRed(color)).arg(qGreen(color)).arg(qBlue(color)));
-      tblPalette->setCellWidget(row, col, w);
-    }
-  }
-}
+#include "ui_configureevent_inflictstatus.h"
 
-ColorPicker::~ColorPicker()
+class ConfigureEvent_InflictStatus : public QDialog, public Ui::ConfigureEvent_InflictStatus
 {
-}
+  Q_OBJECT
+  public:
+    ConfigureEvent_InflictStatus(QWidget *parent=nullptr) : QDialog(parent) {setupUi(this);}
+    ~ConfigureEvent_InflictStatus() {}
+    void setTarget(bool self) {(self) ? chkSelf->setChecked(true):chkPlayer->setChecked(true);}
+    bool isTargetSelf() {return chkSelf->isChecked();}
+    void setStatus(int value) {optStatus->setCurrentIndex(value);}
+    int getStatus() {return optStatus->currentIndex();}
+    void setLevel(int value) {numLevel->setValue(value);}
+    int getLevel() {return numLevel->value();}
+    void setChance(int value) {numChance->setValue(value);}
+    int getChance() {return numChance->value();}
+    void setSuccessMessage(QString value) {leSuccessMessage->setText(value);}
+    QString getSuccessMessage() {return leSuccessMessage->text();}
+    void setFailMessage(QString value) {leFailMessage->setText(value);}
+    QString getFailMessage() {return leFailMessage->text();}
+};
 
-void ColorPicker::selectColor(int index)
-{
-  tblPalette->setCurrentCell(index / 8, index % 8);
-  tblPalette->item(index / 8, index % 8)->setSelected(true);
-}
-
-void ColorPicker::on_tblPalette_cellClicked(int row, int column)
-{
-  emit colorClicked(row * 8 + column);
-}
-
-void ColorPicker::leaveEvent(QEvent *event)
-{
-  event->accept();
-  this->hide();
-}
+#endif //CONFIGUREEVENT_INFLICTSTATUS_H

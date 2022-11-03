@@ -22,41 +22,32 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#include "colorpicker.h"
+#ifndef CONFIGUREEVENT_CHANGEBACKGROUNDIMAGE_H
+#define CONFIGUREEVENT_CHANGEBACKGROUNDIMAGE_H
+
+#include "ui_configureevent_changebackgroundimage.h"
+#include "globals.h"
 #include "image.h"
 
-ColorPicker::ColorPicker(QWidget *parent) : QWidget(parent, Qt::Popup)
+class ConfigureEvent_ChangeBackgroundImage : public QDialog, public Ui::ConfigureEvent_ChangeBackgroundImage
 {
-  setupUi(this);
-  for (int row = 0; row < 32; ++row)
-  {
-    for (int col = 0; col < 8; ++col)
+  Q_OBJECT
+  public:
+    ConfigureEvent_ChangeBackgroundImage(QWidget *parent=nullptr) : QDialog(parent)
     {
-      QWidget *w = new QWidget();
-      QRgb color = Image::palette[row * 8 + col];
-      w->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(qRed(color)).arg(qGreen(color)).arg(qBlue(color)));
-      tblPalette->setCellWidget(row, col, w);
+      setupUi(this);
+      Globals::refreshBackdrops();
+      lstBackdrops->clear();
+      for (int i = 0; i < Globals::backdrops.count(); ++i)
+        lstBackdrops->addItem(new QListWidgetItem(QIcon(QPixmap(QString("%1/backdrops/%2.png").arg(Globals::datadir).arg(Globals::backdrops[i])).scaled(192, 128)), Globals::backdrops[i]));
     }
-  }
-}
+    ~ConfigureEvent_ChangeBackgroundImage() {}
+    void setBackground(QString value)
+    {
+      lstBackdrops->setCurrentRow(Globals::backdrops.indexOf(value));
+      lstBackdrops->item(Globals::backdrops.indexOf(value))->setSelected(true);
+    }
+    QString getBackground() {return lstBackdrops->currentItem()->text();}
+};
 
-ColorPicker::~ColorPicker()
-{
-}
-
-void ColorPicker::selectColor(int index)
-{
-  tblPalette->setCurrentCell(index / 8, index % 8);
-  tblPalette->item(index / 8, index % 8)->setSelected(true);
-}
-
-void ColorPicker::on_tblPalette_cellClicked(int row, int column)
-{
-  emit colorClicked(row * 8 + column);
-}
-
-void ColorPicker::leaveEvent(QEvent *event)
-{
-  event->accept();
-  this->hide();
-}
+#endif //CONFIGUREEVENT_CHANGEBACKGROUND_H

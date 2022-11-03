@@ -22,41 +22,34 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#include "colorpicker.h"
-#include "image.h"
+#ifndef CONFIGUREEVENT_CASTSPELL_H
+#define CONFIGUREEVENT_CASTSPELL_H
 
-ColorPicker::ColorPicker(QWidget *parent) : QWidget(parent, Qt::Popup)
+#include <QDir>
+#include "ui_configureevent_castspell.h"
+#include "globals.h"
+
+class ConfigureEvent_CastSpell : public QDialog, public Ui::ConfigureEvent_CastSpell
 {
-  setupUi(this);
-  for (int row = 0; row < 32; ++row)
-  {
-    for (int col = 0; col < 8; ++col)
+  Q_OBJECT
+  public:
+    ConfigureEvent_CastSpell(QWidget *parent=nullptr) : QDialog(parent)
     {
-      QWidget *w = new QWidget();
-      QRgb color = Image::palette[row * 8 + col];
-      w->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(qRed(color)).arg(qGreen(color)).arg(qBlue(color)));
-      tblPalette->setCellWidget(row, col, w);
+      QDir folder(QString("%1/animations").arg(Globals::datadir));
+      QStringList animations = folder.entryList(QStringList() << "*.anim", QDir::Files, QDir::Name);
+      animations.replaceInStrings(".anim", "", Qt::CaseInsensitive);
+      setupUi(this);
+      optAnimation->addItems(animations);
     }
-  }
-}
+    ~ConfigureEvent_CastSpell() {}
+    void setAnimation(QString value) {optAnimation->setCurrentText(value);}
+    QString getAnimation() {return optAnimation->currentText();}
+    void setSpellType(int value) {optSpellType->setCurrentIndex(value);}
+    int getSpellType() {return optSpellType->currentIndex();}
+    void setLevel(int value) {numLevel->setValue(value);}
+    int getLevel() {return numLevel->value();}
+    void setMP(int value) {numMP->setValue(value);}
+    int getMP() {return numMP->value();}
+};
 
-ColorPicker::~ColorPicker()
-{
-}
-
-void ColorPicker::selectColor(int index)
-{
-  tblPalette->setCurrentCell(index / 8, index % 8);
-  tblPalette->item(index / 8, index % 8)->setSelected(true);
-}
-
-void ColorPicker::on_tblPalette_cellClicked(int row, int column)
-{
-  emit colorClicked(row * 8 + column);
-}
-
-void ColorPicker::leaveEvent(QEvent *event)
-{
-  event->accept();
-  this->hide();
-}
+#endif //CONFIGUREEVENT_CASTSPELL_H

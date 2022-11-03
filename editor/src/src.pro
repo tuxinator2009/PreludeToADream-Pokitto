@@ -16,21 +16,31 @@ HEADERS += \
   configureevent_battle.h \
   configureevent_buffercharacter.h \
   configureevent_buffervalue.h \
+  configureevent_castspell.h \
+  configureevent_changebackgroundimage.h \
+  configureevent_changebattlersprite.h \
   configureevent_changeeventflags.h \
   configureevent_changeeventlocation.h \
   configureevent_changepassability.h \
   configureevent_changesprite.h \
   configureevent_changevariable.h \
+  configureevent_flashbattler.h \
+  configureevent_flashui.h \
   configureevent_giveplayeritem.h \
+  configureevent_ifcounter.h \
   configureevent_ifexited.h \
   configureevent_ifhasitem.h \
+  configureevent_ifstat.h \
+  configureevent_ifstatus.h \
   configureevent_ifswitch.h \
   configureevent_ifvalue.h \
   configureevent_ifvariable.h \
   configureevent_ifyesno.h \
+  configureevent_inflictstatus.h \
   configureevent_moveplayer.h \
   configureevent_playmusic.h \
   configureevent_playsoundeffect.h \
+  configureevent_random.h \
   configureevent_shakescreen.h \
   configureevent_showhidescreen.h \
   configureevent_showimage.h \
@@ -103,21 +113,31 @@ FORMS += \
   configureevent_battle.ui \
   configureevent_buffercharacter.ui \
   configureevent_buffervalue.ui \
+  configureevent_castspell.ui \
+  configureevent_changebackgroundimage.ui \
+  configureevent_changebattlersprite.ui \
   configureevent_changeeventflags.ui \
   configureevent_changeeventlocation.ui \
   configureevent_changepassability.ui \
   configureevent_changesprite.ui \
   configureevent_changevariable.ui \
+  configureevent_flashbattler.ui \
+  configureevent_flashui.ui \
   configureevent_giveplayeritem.ui \
+  configureevent_ifcounter.ui \
   configureevent_ifexited.ui \
   configureevent_ifhasitem.ui \
+  configureevent_ifstat.ui \
+  configureevent_ifstatus.ui \
   configureevent_ifswitch.ui \
   configureevent_ifvalue.ui \
   configureevent_ifvariable.ui \
   configureevent_ifyesno.ui \
+  configureevent_inflictstatus.ui \
   configureevent_moveplayer.ui \
   configureevent_playmusic.ui \
   configureevent_playsoundeffect.ui \
+  configureevent_random.ui \
   configureevent_shakescreen.ui \
   configureevent_showhidescreen.ui \
   configureevent_showimage.ui \

@@ -22,41 +22,69 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#include "colorpicker.h"
+#ifndef CONFIGUREEVENT_CHANGEBATTLERSPRITE_H
+#define CONFIGUREEVENT_CHANGEBATTLERSPRITE_H
+
+#include "ui_configureevent_changebattlersprite.h"
+#include "globals.h"
 #include "image.h"
+#include "imageview.h"
 
-ColorPicker::ColorPicker(QWidget *parent) : QWidget(parent, Qt::Popup)
+class ConfigureEvent_ChangeBattlerSprite : public QDialog, public Ui::ConfigureEvent_ChangeBattlerSprite
 {
-  setupUi(this);
-  for (int row = 0; row < 32; ++row)
-  {
-    for (int col = 0; col < 8; ++col)
+  Q_OBJECT
+  public:
+    ConfigureEvent_ChangeBattlerSprite(QWidget *parent=nullptr) : QDialog(parent)
     {
-      QWidget *w = new QWidget();
-      QRgb color = Image::palette[row * 8 + col];
-      w->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(qRed(color)).arg(qGreen(color)).arg(qBlue(color)));
-      tblPalette->setCellWidget(row, col, w);
+      setupUi(this);
+      image = new Image(QSize(768, 768));
+      imgBattlerSprites->setImage(image);
+      imgBattlerSprites->setTransparent(true);
+      battlersImageChanged();
+      connect(Globals::battlers, SIGNAL(imageChanged()), this, SLOT(battlersImageChanged()));
     }
-  }
-}
+    ~ConfigureEvent_ChangeBattlerSprite() {delete image;}
+    void setSpriteID(int value)
+    {
+      spriteID = value;
+      battlersImageChanged();
+    }
+    int getSpriteID() {return spriteID;}
+  protected slots:
+    void on_imgBattlerSprites_mousePressed(Qt::MouseButton button, QPoint pos)
+    {
+      if (button == Qt::LeftButton)
+      {
+        spriteID = pos.y() / 48 * 16 + pos.x() / 48;
+        battlersImageChanged();
+      }
+    }
+    void on_imgBattlerSprites_mouseMoved(Qt::MouseButtons buttons, QPoint pos, QPoint delta)
+    {
+      Q_UNUSED(delta);
+      if ((buttons & Qt::LeftButton) != 0)
+      {
+        spriteID = pos.y() / 48 * 16 + pos.x() / 48;
+        battlersImageChanged();
+      }
+    }
+    void on_imgBattlerSprites_mouseReleased(Qt::MouseButton button, QPoint pos)
+    {
+      if (button == Qt::LeftButton)
+      {
+        spriteID = pos.y() / 48 * 16 + pos.x() / 48;
+        battlersImageChanged();
+      }
+    }
+    void battlersImageChanged()
+    {
+      image->blitImage(*Globals::battlers, QRect(0, 0, 768, 768), QPoint(0, 0), false);
+      image->drawRect(QRect(spriteID % 16 * 48, spriteID / 16 * 48, 48, 48), 223);
+      imgBattlerSprites->imageChanged();
+    }
+  private:
+    Image *image;
+    int spriteID;
+};
 
-ColorPicker::~ColorPicker()
-{
-}
-
-void ColorPicker::selectColor(int index)
-{
-  tblPalette->setCurrentCell(index / 8, index % 8);
-  tblPalette->item(index / 8, index % 8)->setSelected(true);
-}
-
-void ColorPicker::on_tblPalette_cellClicked(int row, int column)
-{
-  emit colorClicked(row * 8 + column);
-}
-
-void ColorPicker::leaveEvent(QEvent *event)
-{
-  event->accept();
-  this->hide();
-}
+#endif //CONFIGUREEVENT_CHANGEBATTLERSPRITE_H

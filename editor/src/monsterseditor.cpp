@@ -52,9 +52,6 @@ MonstersEditor::MonstersEditor(QWidget *parent) : QDialog(parent)
   lstMonsters->item(0)->setSelected(true);
   ignoreEvents = false;
   on_lstMonsters_itemSelectionChanged();
-  resize(sizeHint());
-  setMinimumSize(sizeHint());
-  setMaximumSize(sizeHint());
 }
 
 MonstersEditor::~MonstersEditor()

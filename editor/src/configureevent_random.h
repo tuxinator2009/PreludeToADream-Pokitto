@@ -22,41 +22,21 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#include "colorpicker.h"
-#include "image.h"
+#ifndef CONFIGUREEVENT_RANDOM_H
+#define CONFIGUREEVENT_RANDOM_H
 
-ColorPicker::ColorPicker(QWidget *parent) : QWidget(parent, Qt::Popup)
-{
-  setupUi(this);
-  for (int row = 0; row < 32; ++row)
-  {
-    for (int col = 0; col < 8; ++col)
-    {
-      QWidget *w = new QWidget();
-      QRgb color = Image::palette[row * 8 + col];
-      w->setStyleSheet(QString("background-color: rgb(%1, %2, %3);").arg(qRed(color)).arg(qGreen(color)).arg(qBlue(color)));
-      tblPalette->setCellWidget(row, col, w);
-    }
-  }
-}
+#include "ui_configureevent_random.h"
 
-ColorPicker::~ColorPicker()
+class ConfigureEvent_Random : public QDialog, public Ui::ConfigureEvent_Random
 {
-}
+  Q_OBJECT
+  public:
+    ConfigureEvent_Random(QWidget *parent=nullptr) : QDialog(parent) {setupUi(this);}
+    ~ConfigureEvent_Random() {}
+    void setCounter(int value) {numCounter->setValue(value);}
+    int getCounter() {return numCounter->value();}
+    void setMax(int value) {numMax->setValue(value);}
+    int getMax() {return numMax->value();}
+};
 
-void ColorPicker::selectColor(int index)
-{
-  tblPalette->setCurrentCell(index / 8, index % 8);
-  tblPalette->item(index / 8, index % 8)->setSelected(true);
-}
-
-void ColorPicker::on_tblPalette_cellClicked(int row, int column)
-{
-  emit colorClicked(row * 8 + column);
-}
-
-void ColorPicker::leaveEvent(QEvent *event)
-{
-  event->accept();
-  this->hide();
-}
+#endif //CONFIGUREEVENT_RANDOM_H
