@@ -832,8 +832,8 @@ void BattleAnimationsEditor::animationNextFrame()
 void BattleAnimationsEditor::refreshBattleAnimations()
 {
   QDir folder(QString("%1/animations").arg(Globals::datadir));
-  QStringList animations = folder.entryList(QStringList() << "*.anim", QDir::Files, QDir::Name);
-  animations.replaceInStrings(".anim", "", Qt::CaseInsensitive);
+  QStringList animations = folder.entryList(QStringList() << "*.xml", QDir::Files, QDir::Name);
+  animations.replaceInStrings(".xml", "", Qt::CaseInsensitive);
   lstAnimations->clear();
   lstAnimations->addItems(animations);
 }

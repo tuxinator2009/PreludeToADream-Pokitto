@@ -22,28 +22,35 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#ifndef TILESETEDITOR_H
-#define TILESETEDITOR_H
+#ifndef SHIFTMAP_H
+#define SHIFTMAP_H
 
-#include "ui_tileseteditor.h"
-#include "tileset.h"
+#include "ui_shiftmap.h"
+#include "image.h"
 
-class TilesetEditor : public QDialog, public Ui::TilesetEditor
+class ShiftMap : public QDialog, public Ui::ShiftMap
 {
   Q_OBJECT
   public:
-    TilesetEditor(Tileset *set, QWidget *parent=nullptr);
-    ~TilesetEditor();
+    ShiftMap(QWidget *parent=nullptr);
+    ~ShiftMap();
+    int getXShift() {return numXShift->value();}
+    int getYShift() {return numYShift->value();}
+    int getWrap() {return optWrap->currentIndex();}
+    void shiftMap();
   protected slots:
-    void on_leName_textChanged(QString text);
-    void on_imgTileset_mousePressed(Qt::MouseButton button, QPoint pos);
-    void on_imgTileset_mouseMoved(Qt::MouseButtons buttons, QPoint pos);
+    void on_optZoom_currentIndexChanged(int index);
+    void on_imgMapView_mouseMoved(Qt::MouseButtons buttons, QPoint pos, QPoint delta);
+    void on_imgMapView_zoomOut(QPoint pos);
+    void on_imgMapView_zoomIn(QPoint pos);
+    void updateZoom();
+    void updateMapView();
   private:
-    void redrawImage();
-    void drawNumber(uint8_t value, int x, int y);
-    Image *numbers;
-    Image *image;
-    Tileset *tileset;
+    static const int WRAP_HORIZONTALLY = 1;
+    static const int WRAP_VERTICALLY = 2;
+    static const int zoom[5];
+    Image *mapImage;
+    QPoint zoomPos;
 };
 
-#endif //TILESETEDITOR_H
+#endif //SHIFTMAP_H

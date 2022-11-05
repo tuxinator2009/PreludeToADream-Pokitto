@@ -35,11 +35,17 @@ TilesetEditor::TilesetEditor(Tileset *set, QWidget *parent) : QDialog(parent)
   imgTileset->setTransparent(true);
   imgTileset->setImage(image);
   redrawImage();
+  leName->setText(tileset->getName());
   optBackdrops->addItems(Globals::backdrops);
 }
 
 TilesetEditor::~TilesetEditor()
 {
+}
+
+void TilesetEditor::on_leName_textChanged(QString text)
+{
+  tileset->setName(text);
 }
 
 void TilesetEditor::on_imgTileset_mousePressed(Qt::MouseButton button, QPoint pos)

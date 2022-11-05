@@ -22,10 +22,13 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
+#include <QDir>
+#include <QInputDialog>
 #include <QMessageBox>
 #include <QScrollBar>
 #include <QTimer>
 #include "battleanimationseditor.h"
+#include "compiledata.h"
 #include "globals.h"
 #include "image.h"
 #include "itemseditor.h"
@@ -35,7 +38,11 @@
 #include "mapeventeditor.h"
 #include "messageseditor.h"
 #include "monsterseditor.h"
+#include "newmap.h"
+#include "previewmap.h"
+#include "resizemap.h"
 #include "resources.h"
+#include "shiftmap.h"
 #include "skillsspellseditor.h"
 #include "statseditor.h"
 #include "tileset.h"
@@ -48,6 +55,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
   ignoreEvents = true;
   setupUi(this);
+  treeMaps->addAction(aAddTopLevelMap);
+  treeMaps->addAction(aAddChildMap);
+  treeMaps->addAction(aDeleteMap);
+  treeMaps->invisibleRootItem()->setText(2, "/maps");
   mapImage = nullptr;
   QTimer::singleShot(10, this, SLOT(setup()));
   ignoreEvents = false;
@@ -239,7 +250,10 @@ void MainWindow::on_btnEditStats_clicked()
 
 void MainWindow::on_btnCompileData_clicked()
 {
-  QString fileLocation = QString("%1/music/%2.ogg").arg(Globals::datadir).arg(Globals::bgms[0]);
+  CompileData *compileData = new CompileData(treeMaps->invisibleRootItem(), this);
+  compileData->exec();
+  compileData->deleteLater();
+  /*QString fileLocation = QString("%1/music/%2.ogg").arg(Globals::datadir).arg(Globals::bgms[0]);
   audioData.clear();
   audioFormat.setChannelCount(1);
   audioFormat.setCodec("audio/x-raw");
@@ -253,7 +267,9 @@ void MainWindow::on_btnCompileData_clicked()
   audioDecoder->setAudioFormat(audioFormat);
   printf("decoding: \"%s\"\n", fileLocation.toLocal8Bit().data());
   audioDecoder->setSourceFilename(fileLocation);
-  audioDecoder->start();
+  audioDecoder->start();*/
+  //QByteArray bytes = Globals::convertAudio(QString("%1/music/%2.ogg").arg(Globals::datadir).arg(Globals::bgms[0]));
+  //printf("size: %d bytes\n", bytes.size());
 }
 
 void MainWindow::audioBufferReady()
@@ -270,20 +286,12 @@ void MainWindow::audioError(QAudioDecoder::Error error)
 
 void MainWindow::audioFinished()
 {
-  QFile output("test.raw");
-  output.open(QFile::WriteOnly);
-  output.write(audioData);
-  output.close();
+  //QFile output("test.raw");
+  //output.open(QFile::WriteOnly);
+  //output.write(audioData);
+  //output.close();
   audioDecoder->deleteLater();
-  printf("Decoding finished\n");
-}
-
-void MainWindow::on_btnNewMap_clicked()
-{
-}
-
-void MainWindow::on_btnDeleteMap_clicked()
-{
+  printf("Decoding finished: %d bytes\n", audioData.size());
 }
 
 void MainWindow::on_treeMaps_itemClicked(QTreeWidgetItem *item)
@@ -329,6 +337,49 @@ void MainWindow::on_treeMaps_itemClicked(QTreeWidgetItem *item)
   leFlags->setText(flagsList.join(","));
   optTileset->setCurrentIndex(Globals::map->getTilesetID());
   updateMapView();
+}
+
+void MainWindow::on_aAddTopLevelMap_triggered()
+{
+  addMap(treeMaps->invisibleRootItem());
+}
+
+void MainWindow::on_aAddChildMap_triggered()
+{
+  if (Globals::map == nullptr || treeMaps->currentItem() == nullptr)
+    return;
+  addMap(treeMaps->currentItem());
+}
+
+void MainWindow::on_aDeleteMap_triggered()
+{
+  QTreeWidgetItem *item = treeMaps->currentItem();
+  if (item == nullptr)
+    return;
+  if (Globals::map == nullptr)
+    return;
+  if (QMessageBox::question(this, "Delete Map", QString("Are you sure you want to delete \"%1\" and all it's children?").arg(item->text(0))) == QMessageBox::No)
+    return;
+  deleteMap(item);
+  Globals::map = nullptr;
+  if (mapImage != nullptr)
+    delete mapImage;
+  mapImage = nullptr;
+  imgMapView->setSize(256, 256);
+  imgMapView->setImage(nullptr);
+  frmMapView->setEnabled(false);
+  wMapTools->setEnabled(false);
+  stkLayerTools->setCurrentWidget(pgBlank);
+  item = treeMaps->currentItem();
+  if (item != nullptr)
+    on_treeMaps_itemClicked(item);
+}
+
+void MainWindow::on_btnPreviewMap_clicked()
+{
+  PreviewMap *preview = new PreviewMap(this);
+  preview->exec();
+  preview->deleteLater();
 }
 
 void MainWindow::on_tblLayers_itemSelectionChanged()
@@ -433,6 +484,25 @@ void MainWindow::on_btnEditOnLoadEvent_clicked()
   }
 }
 
+void MainWindow::on_btnResizeMap_clicked()
+{
+  ResizeMap *resizeMap = new ResizeMap(this);
+  resizeMap->setWidth(Globals::map->getWidth());
+  resizeMap->setHeight(Globals::map->getHeight());
+  if (resizeMap->exec())
+    Globals::map->resize(resizeMap->getWidth(), resizeMap->getHeight());
+  resizeMap->deleteLater();
+  updateMapView();
+}
+
+void MainWindow::on_btnShiftMap_clicked()
+{
+  ShiftMap *shiftMap = new ShiftMap(this);
+  if (shiftMap->exec())
+    shiftMap->shiftMap();
+  shiftMap->deleteLater();
+}
+
 void MainWindow::on_tblSprites_cellDoubleClicked()
 {
   spritePicker->move(tblSprites->mapTo(this, QPoint(tblSprites->width() - spritePicker->width(), 0)));
@@ -485,15 +555,44 @@ void MainWindow::on_optTileset_currentIndexChanged(int index)
   if (ignoreEvents)
     return;
   if (Globals::map != nullptr)
+  {
     Globals::map->setTilesetID(index);
+    updateMapView();
+  }
   gvTileset->changeTileset(index);
 }
 
 void MainWindow::on_btnEditTileset_clicked()
 {
-  TilesetEditor *editor = new TilesetEditor(Globals::tilesets[optTileset->currentIndex()], this);
+  int index = optTileset->currentIndex();
+  TilesetEditor *editor = new TilesetEditor(Globals::tilesets[index], this);
   editor->exec();
   editor->deleteLater();
+  optTileset->setItemText(index, Globals::tilesets[index]->getName());
+}
+
+void MainWindow::on_btnAddTileset_clicked()
+{
+  QDir folder(QString("%1/tilesets").arg(Globals::datadir));
+  QStringList images = folder.entryList(QStringList() << "*.png", QDir::Files, QDir::Name);
+  QString choice;
+  bool ok;
+  for (auto tileset : Globals::tilesets)
+    images.removeAll(tileset->getLocation());
+  if (images.isEmpty())
+  {
+    QMessageBox::critical(this, "No Tilesets", "There are no unused tileset images.");
+    return;
+  }
+  choice = QInputDialog::getItem(this, "Tileset", "Image", images, 0, false, &ok);
+  if (ok)
+  {
+    QString name = choice;
+    name.chop(4);
+    Globals::tilesets += new Tileset(name, choice);
+    optTileset->addItem(name);
+    optTileset->setCurrentIndex(Globals::tilesets.count() - 1);
+  }
 }
 
 void MainWindow::on_gvTileset_selectionChanged(QRect rect)
@@ -942,8 +1041,6 @@ void MainWindow::on_imgMapView_zoomOut(QPoint pos)
   if (optZoom->currentIndex() == 0)
     return;
   optZoom->setCurrentIndex(optZoom->currentIndex() - 1);
-  imgMapView->setSize(Globals::map->getWidth() * zoom[optZoom->currentIndex()], Globals::map->getHeight() * zoom[optZoom->currentIndex()]);
-  imgMapView->imageChanged();
   zoomPos = (pos / 2) - (pos - QPoint(panMapArea->horizontalScrollBar()->value(), panMapArea->verticalScrollBar()->value()));
   QTimer::singleShot(10, this, SLOT(updateZoom()));
 }
@@ -953,7 +1050,6 @@ void MainWindow::on_imgMapView_zoomIn(QPoint pos)
   if (optZoom->currentIndex() == 4)
     return;
   optZoom->setCurrentIndex(optZoom->currentIndex() + 1);
-  imgMapView->setSize(Globals::map->getWidth() * zoom[optZoom->currentIndex()], Globals::map->getHeight() * zoom[optZoom->currentIndex()]);
   zoomPos = (pos * 2) - (pos - QPoint(panMapArea->horizontalScrollBar()->value(), panMapArea->verticalScrollBar()->value()));
   QTimer::singleShot(10, this, SLOT(updateZoom()));
 }
@@ -1034,6 +1130,61 @@ void MainWindow::renameMap(QTreeWidgetItem *item, QString name)
     for (int i = 0; i < current->childCount(); ++i)
       items += current->child(i);
   }
+}
+
+void MainWindow::addMap(QTreeWidgetItem *parent)
+{
+  NewMap *newMap = new NewMap(this);
+  QTreeWidgetItem *item;
+  if (Globals::map == nullptr || parent == nullptr)
+    return;
+  if (newMap->exec() && !newMap->getName().isEmpty())
+  {
+    int mapID = 0;
+    if (Globals::map != nullptr)
+    {
+      XMLNode mapNode = Globals::map->toXMLNode();
+      mapNode.writeToFile(currentMapFile.toLocal8Bit().data());
+      delete Globals::map;
+    }
+    currentMapFile = QString("%1/maps/map0000.xml").arg(Globals::datadir);
+    while (QFile::exists(currentMapFile))
+    {
+      ++mapID;
+      currentMapFile = QString("%1/maps/map%2.xml").arg(Globals::datadir).arg(mapID, 4, 10, QChar('0'));
+    }
+    Globals::map = new Map(newMap->getWidth(), newMap->getHeight());
+    item = new QTreeWidgetItem();
+    item->setText(0, newMap->getName());
+    item->setText(1, QString("map%1.xml").arg(mapID, 4, 10, QChar('0')));
+    item->setText(2, QString("%1/%2").arg(parent->text(2)).arg(newMap->getName()));
+    parent->addChild(item);
+    treeMaps->setCurrentItem(item);
+    item->setSelected(true);
+    frmMapView->setEnabled(true);
+    wMapTools->setEnabled(true);
+    redrawSprites();
+    if (mapImage != nullptr)
+      delete mapImage;
+    mapImage = new Image(QSize(Globals::map->getWidth() * 256, Globals::map->getHeight() * 256));
+    imgMapView->setSize(Globals::map->getWidth() * zoom[optZoom->currentIndex()], Globals::map->getHeight() * zoom[optZoom->currentIndex()]);
+    imgMapView->setImage(mapImage);
+    leName->setText(item->text(0));
+    numMinSteps->setValue(Globals::map->getMinSteps());
+    numMaxSteps->setValue(Globals::map->getMaxSteps());
+    optMusic->setCurrentText(Globals::map->getBGM());
+    leFlags->setText("");
+    optTileset->setCurrentIndex(Globals::map->getTilesetID());
+    updateMapView();
+  }
+}
+
+void MainWindow::deleteMap(QTreeWidgetItem *item)
+{
+  for (int i = 0; i < item->childCount(); ++i)
+    deleteMap(item->child(i));
+  QFile::remove(QString("%1/maps/%2").arg(Globals::datadir).arg(item->text(1)));
+  delete item;
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

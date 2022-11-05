@@ -49,6 +49,7 @@ class Map
     Map(uint8_t width, uint8_t height);
     ~Map();
     XMLNode toXMLNode();
+    QByteArray compile();
     uint8_t getTilesetID() const {return data.tilesetID;}
     void setTilesetID(uint8_t value) {data.tilesetID = value;}
     QString getBGM() const {return bgm;}

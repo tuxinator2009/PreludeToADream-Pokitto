@@ -30,6 +30,7 @@
 #include <QList>
 #include <QProgressBar>
 #include <QString>
+#include <QThread>
 #include "globals.h"
 #include "image.h"
 #include "map.h"
@@ -185,7 +186,7 @@ QByteArray Globals::convertAudio(QString fileLocation, QProgressBar *progress)
     progress->setValue(0);
   }
   QCoreApplication::processEvents();
-  while (decoder->position() != decoder->duration())
+  while (decoder->state() == QAudioDecoder::DecodingState)
   {
     if (decoder->bufferAvailable())
     {
@@ -195,6 +196,8 @@ QByteArray Globals::convertAudio(QString fileLocation, QProgressBar *progress)
         progress->setValue(decoder->position());
       QCoreApplication::processEvents();
     }
+    else
+      QThread::msleep(100);
   }
   return bytes;
 }

@@ -50,7 +50,10 @@ void ImageView::setSize(QSize s)
 void ImageView::setImage(Image *i)
 {
   image = i;
-  connect(image, SIGNAL(imageChanged()), this, SLOT(imageChanged()));
+  if (image == nullptr)
+    setPixmap(QPixmap());
+  else
+    connect(image, SIGNAL(imageChanged()), this, SLOT(imageChanged()));
 }
 
 void ImageView::imageChanged()

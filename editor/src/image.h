@@ -25,6 +25,7 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
+#include <QByteArray>
 #include <QObject>
 #include <QImage>
 #include <QPoint>
@@ -55,6 +56,7 @@ class Image : public QObject
     QSize getSize() {return size;}
     QImage toQImage(QRect r, bool transparent=true) const;
     QImage toQImage(bool transparent=true) {return toQImage(QRect(QPoint(0, 0), size), transparent);}
+    QByteArray toByteArray(int frameW, int frameH);
     static const QVector<QRgb> palette;
   signals:
     void imageChanged();

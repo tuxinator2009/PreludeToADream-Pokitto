@@ -58,9 +58,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void audioBufferReady();
     void audioError(QAudioDecoder::Error error);
     void audioFinished();
-    void on_btnNewMap_clicked();
-    void on_btnDeleteMap_clicked();
     void on_treeMaps_itemClicked(QTreeWidgetItem *item);
+    void on_aAddTopLevelMap_triggered();
+    void on_aAddChildMap_triggered();
+    void on_aDeleteMap_triggered();
+    void on_btnPreviewMap_clicked();
     void on_tblLayers_itemSelectionChanged();
     void on_tblLayers_itemChanged();
     void on_leName_textEdited(QString text);
@@ -71,12 +73,15 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_btnFlags_clicked();
     void flagsChanged(uint8_t flags);
     void on_btnEditOnLoadEvent_clicked();
+    void on_btnResizeMap_clicked();
+    void on_btnShiftMap_clicked();
     void on_tblSprites_cellDoubleClicked();
     void on_tblSprites_itemSelectionChanged();
     void spritePicker_spriteClicked(uint8_t spriteID);
     void on_tblEnemies_itemSelectionChanged();
     void on_optTileset_currentIndexChanged(int index);
     void on_btnEditTileset_clicked();
+    void on_btnAddTileset_clicked();
     void on_gvTileset_selectionChanged(QRect rect);
     void on_optZoom_currentIndexChanged(int index);
     void on_imgMapView_mousePressed(Qt::MouseButton button, QPoint pos);
@@ -93,6 +98,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void loadMapTree(QTreeWidgetItem *parent, XMLNode mapNode);
     void saveMapTree(QTreeWidgetItem *parent, XMLNode mapNode);
     void renameMap(QTreeWidgetItem *item, QString name);
+    void addMap(QTreeWidgetItem *parent);
+    void deleteMap(QTreeWidgetItem *item);
     void closeEvent(QCloseEvent *event);
     void updateMapView();
     MapFlags *flags;

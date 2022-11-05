@@ -22,28 +22,20 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#ifndef TILESETEDITOR_H
-#define TILESETEDITOR_H
+#ifndef NEWMAP_H
+#define NEWMAP_H
 
-#include "ui_tileseteditor.h"
-#include "tileset.h"
+#include "ui_newmap.h"
 
-class TilesetEditor : public QDialog, public Ui::TilesetEditor
+class NewMap : public QDialog, public Ui::NewMap
 {
   Q_OBJECT
   public:
-    TilesetEditor(Tileset *set, QWidget *parent=nullptr);
-    ~TilesetEditor();
-  protected slots:
-    void on_leName_textChanged(QString text);
-    void on_imgTileset_mousePressed(Qt::MouseButton button, QPoint pos);
-    void on_imgTileset_mouseMoved(Qt::MouseButtons buttons, QPoint pos);
-  private:
-    void redrawImage();
-    void drawNumber(uint8_t value, int x, int y);
-    Image *numbers;
-    Image *image;
-    Tileset *tileset;
+    NewMap(QWidget *parent=nullptr) : QDialog(parent) {setupUi(this);}
+    ~NewMap() {}
+    QString getName() {return leName->text();}
+    int getWidth() {return numWidth->value();}
+    int getHeight() {return numHeight->value();}
 };
 
-#endif //TILESETEDITOR_H
+#endif //NEWMAP_H

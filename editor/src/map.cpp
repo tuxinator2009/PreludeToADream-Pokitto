@@ -99,6 +99,7 @@ Map::Map(XMLNode mapNode)
 
 Map::Map(uint8_t width, uint8_t height)
 {
+  bgm = Globals::bgms[0];
   data.tilesetID = 0;
   data.bgmID = 0;
   data.width = width;
@@ -121,7 +122,12 @@ Map::Map(uint8_t width, uint8_t height)
     bg[i] = 255;
     fg[i] = 255;
   }
-  for (int i = 0; i < 128*128/8; ++i)
+  for (int y = 0; y < 128; ++y)
+  {
+    for (int x = 0; x < 128; ++x)
+      bg[y * 256 + x] = (y % 2) * 16 + (x % 2);
+  }
+  for (int i = 0; i < 64*64/8; ++i)
     passability[i] = 0;
   onLoadEvent = new MapEvent(this);
   for (int i = 0; i < 29; ++i)
@@ -192,6 +198,41 @@ XMLNode Map::toXMLNode()
       tempNode.addChild(events[i]->toXMLNode(false));
   }
   return mapNode;
+}
+
+QByteArray Map::compile()
+{
+  QByteArray bytes;
+  bytes.append(sizeof(Globals::MapData), 0);
+  for (int y = 0; y < data.height * 2; ++y)
+  {
+    for (int x = 0; x < data.width * 16; ++x)
+      bytes += passability[y * 64 + x];
+  }
+  for (int y = 0; y < data.height * 32; y += 32)
+  {
+    for (int x = 0; x < data.width * 32; x += 32)
+    {
+      for (int y2 = 0; y2 < 32; ++y2)
+      {
+        for (int x2 = 0; x2 < 32; ++x2)
+          bytes += bg[(y + y2) * 256 + (x + x2)];
+      }
+      for (int y2 = 0; y2 < 32; ++y2)
+      {
+        for (int x2 = 0; x2 < 32; ++x2)
+          bytes += fg[(y + y2) * 256 + (x + x2)];
+      }
+    }
+  }
+  onLoadEvent->compileEvent(&data, -1, &bytes);
+  for (int i = 0; i < 29; ++i)
+  {
+    if (events[i] != nullptr)
+      events[i]->compileEvent(&data, i, &bytes);
+  }
+  bytes.replace(0, sizeof(Globals::MapData), (char*)&data);
+  return bytes;
 }
 
 void Map::resize(uint8_t width, uint8_t height)

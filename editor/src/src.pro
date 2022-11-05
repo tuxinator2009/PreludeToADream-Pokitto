@@ -13,6 +13,7 @@ HEADERS += \
   choosebattleevent.h \
   choosemapevent.h \
   colorpicker.h \
+  compiledata.h \
   configureevent_battle.h \
   configureevent_buffercharacter.h \
   configureevent_buffervalue.h \
@@ -62,7 +63,11 @@ HEADERS += \
 	messageseditor.h \
 	monster.h \
 	monsterseditor.h \
+	newmap.h \
+	previewmap.h \
+	resizemap.h \
 	resources.h \
+	shiftmap.h \
 	skillsspellseditor.h \
 	spritepicker.h \
 	statseditor.h \
@@ -78,6 +83,7 @@ SOURCES += \
   choosebattleevent.cpp \
   choosemapevent.cpp \
   colorpicker.cpp \
+  compiledata.cpp \
   configureevent_changeeventlocation.cpp \
   configureevent_changepassability.cpp \
   configureevent_teleport.cpp \
@@ -96,7 +102,9 @@ SOURCES += \
 	messageseditor.cpp \
 	monster.cpp \
 	monsterseditor.cpp \
+	previewmap.cpp \
 	resources.cpp \
+	shiftmap.cpp \
 	skillsspellseditor.cpp \
 	spritepicker.cpp \
 	statseditor.cpp \
@@ -110,6 +118,7 @@ FORMS += \
   choosebattleevent.ui \
   choosemapevent.ui \
   colorpicker.ui \
+  compiledata.ui \
   configureevent_battle.ui \
   configureevent_buffercharacter.ui \
   configureevent_buffervalue.ui \
@@ -152,7 +161,11 @@ FORMS += \
 	mapspritepicker.ui \
 	messageseditor.ui \
 	monsterseditor.ui \
+	newmap.ui \
+	previewmap.ui \
+	resizemap.ui \
 	resources.ui \
+	shiftmap.ui \
 	skillsspellseditor.ui \
 	spritepicker.ui \
 	statseditor.ui \

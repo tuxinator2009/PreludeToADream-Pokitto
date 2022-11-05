@@ -230,6 +230,23 @@ QImage Image::toQImage(QRect r, bool transparent) const
   return image;
 }
 
+QByteArray Image::toByteArray(int frameW, int frameH)
+{
+  QByteArray bytes;
+  for (int y = 0; y < size.height(); y += frameH)
+  {
+    for (int x = 0; x < size.width(); x += frameW)
+    {
+      for (int y2 = 0; y2 < frameH; ++y2)
+      {
+        for (int x2 = 0; x2 < frameW; ++x2)
+          bytes += (char)pixels[(y + y2) * size.width() + x + x2];
+      }
+    }
+  }
+  return bytes;
+}
+
 void Image::reloadImage(QString location)
 {
   if (location != filename && !location.isNull())

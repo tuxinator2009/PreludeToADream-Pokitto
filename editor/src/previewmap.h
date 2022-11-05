@@ -22,28 +22,30 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#ifndef TILESETEDITOR_H
-#define TILESETEDITOR_H
+#ifndef PREVIEWMAP_H
+#define PREVIEWMAP_H
 
-#include "ui_tileseteditor.h"
-#include "tileset.h"
+#include "ui_previewmap.h"
+#include "image.h"
 
-class TilesetEditor : public QDialog, public Ui::TilesetEditor
+class PreviewMap : public QDialog, public Ui::PreviewMap
 {
   Q_OBJECT
   public:
-    TilesetEditor(Tileset *set, QWidget *parent=nullptr);
-    ~TilesetEditor();
+    PreviewMap(QWidget *parent=nullptr);
+    ~PreviewMap();
   protected slots:
-    void on_leName_textChanged(QString text);
-    void on_imgTileset_mousePressed(Qt::MouseButton button, QPoint pos);
-    void on_imgTileset_mouseMoved(Qt::MouseButtons buttons, QPoint pos);
+    void on_optZoom_currentIndexChanged(int index);
+    void on_btnExportImage_clicked();
+    void on_imgMapView_mouseMoved(Qt::MouseButtons buttons, QPoint pos, QPoint delta);
+    void on_imgMapView_zoomOut(QPoint pos);
+    void on_imgMapView_zoomIn(QPoint pos);
+    void updateZoom();
+    void updateMapView();
   private:
-    void redrawImage();
-    void drawNumber(uint8_t value, int x, int y);
-    Image *numbers;
-    Image *image;
-    Tileset *tileset;
+    static const int zoom[5];
+    Image *mapImage;
+    QPoint zoomPos;
 };
 
-#endif //TILESETEDITOR_H
+#endif //PREVIEWMAP_H

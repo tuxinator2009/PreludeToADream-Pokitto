@@ -22,28 +22,32 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#ifndef TILESETEDITOR_H
-#define TILESETEDITOR_H
+#ifndef RESIZEMAP_H
+#define RESIZEMAP_H
 
-#include "ui_tileseteditor.h"
-#include "tileset.h"
+#include "ui_resizemap.h"
 
-class TilesetEditor : public QDialog, public Ui::TilesetEditor
+class ResizeMap : public QDialog, public Ui::ResizeMap
 {
   Q_OBJECT
   public:
-    TilesetEditor(Tileset *set, QWidget *parent=nullptr);
-    ~TilesetEditor();
+    ResizeMap(QWidget *parent=nullptr) : QDialog(parent) {setupUi(this);}
+    ~ResizeMap() {}
+    void setWidth(int value) {numWidth->setValue(value);}
+    int getWidth() {return numWidth->value();}
+    void setHeight(int value) {numHeight->setValue(value);}
+    int getHeight() {return numHeight->value();}
   protected slots:
-    void on_leName_textChanged(QString text);
-    void on_imgTileset_mousePressed(Qt::MouseButton button, QPoint pos);
-    void on_imgTileset_mouseMoved(Qt::MouseButtons buttons, QPoint pos);
-  private:
-    void redrawImage();
-    void drawNumber(uint8_t value, int x, int y);
-    Image *numbers;
-    Image *image;
-    Tileset *tileset;
+    void on_numWidth_valueChanged(int value)
+    {
+      lblTileWidth->setText(QString::number(value * 32));
+      lblStepWidth->setText(QString::number(value * 16));
+    }
+    void on_numHeight_valueChanged(int value)
+    {
+      lblTileHeight->setText(QString::number(value * 32));
+      lblStepHeight->setText(QString::number(value * 16));
+    }
 };
 
-#endif //TILESETEDITOR_H
+#endif //RESIZEMAP_H

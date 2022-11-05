@@ -523,7 +523,7 @@ BattleEvent::FlashUi::~FlashUi()
 
 XMLNode BattleEvent::FlashUi::toXMLNode()
 {
-  XMLNode eventNode = XMLNode::createXMLTopNode("flashBattler");
+  XMLNode eventNode = XMLNode::createXMLTopNode("flashUi");
   eventNode.addAttribute("duration", QString::number(duration).toLocal8Bit().data());
   eventNode.addAttribute("color", QString::number(color).toLocal8Bit().data());
   return eventNode;
@@ -580,7 +580,7 @@ BattleEvent::BasicAttack::~BasicAttack()
 
 XMLNode BattleEvent::BasicAttack::toXMLNode()
 {
-  XMLNode eventNode = XMLNode::createXMLTopNode("flashBattler");
+  XMLNode eventNode = XMLNode::createXMLTopNode("basicAttack");
   eventNode.addAttribute("animation", animation.toLocal8Bit().data());
   return eventNode;
 }
