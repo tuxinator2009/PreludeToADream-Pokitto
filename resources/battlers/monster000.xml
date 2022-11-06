@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Wolf" experience="6" hp="14" attack="20" defense="18" agility="15" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="8">
+<monster name="Wolf" experience="6" hp="14" attack="20" defense="18" agility="15" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="0" gold="8">
 	<intro>
 		<bufferMessage message="A wolf corners you!"/>
 		<showMessage/>

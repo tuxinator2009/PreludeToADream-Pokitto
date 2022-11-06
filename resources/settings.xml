@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-settings>
+<ptad-settings femtoIDE="/programming/pokitto/FemtoIDE_PtaD/nw">
 	<maps>
 		<map name="Overworld" file="map0000.xml"/>
 		<map name="Town 1" file="map0001.xml">
@@ -248,22 +248,22 @@
 		</amulets>
 	</items>
 	<skills>
-		<skill name="Examine" description="Get information on enemy" mp="1"/>
-		<skill name="Focus 1" description="Raises focus to level 1" mp="2"/>
-		<skill name="Focus 2" description="Raises focus to level 2" mp="1"/>
-		<skill name="Focus 3" description="Raises focus to level 3" mp="1"/>
-		<skill name="Dbl Hit" description="Strike enemy twice" mp="5"/>
-		<skill name="Pwr Shot" description="Deal double damage" mp="1"/>
-		<skill name="Dash" description="Hasten one&apos;s movements" mp="1"/>
-		<skill name="Enrage 1" description="Raise berserk to level 1" mp="1"/>
-		<skill name="Enrage 2" description="Raise berserk to level 2" mp="1"/>
-		<skill name="Enrage 3" description="Raise berserk to level 3" mp="1"/>
-		<skill name="Meditate" description="Recover from berserk" mp="3"/>
-		<skill name="UNKNOWN" description="" mp="1"/>
-		<skill name="UNKNOWN" description="" mp="1"/>
-		<skill name="UNKNOWN" description="" mp="1"/>
-		<skill name="UNKNOWN" description="" mp="1"/>
-		<skill name="UNKNOWN" description="" mp="1"/>
+		<skill name="Examine" description="Get information on enemy" mp="1" learned="2"/>
+		<skill name="Focus 1" description="Raises focus to level 1" mp="2" learned="4"/>
+		<skill name="Focus 2" description="Raises focus to level 2" mp="1" learned="0"/>
+		<skill name="Focus 3" description="Raises focus to level 3" mp="1" learned="0"/>
+		<skill name="Dbl Hit" description="Strike enemy twice" mp="5" learned="12"/>
+		<skill name="Pwr Shot" description="Deal double damage" mp="1" learned="0"/>
+		<skill name="Dash" description="Hasten one&apos;s movements" mp="1" learned="0"/>
+		<skill name="Enrage 1" description="Raise berserk to level 1" mp="1" learned="0"/>
+		<skill name="Enrage 2" description="Raise berserk to level 2" mp="1" learned="0"/>
+		<skill name="Enrage 3" description="Raise berserk to level 3" mp="1" learned="0"/>
+		<skill name="Meditate" description="Recover from berserk" mp="3" learned="7"/>
+		<skill name="UNKNOWN" description="" mp="1" learned="0"/>
+		<skill name="UNKNOWN" description="" mp="1" learned="0"/>
+		<skill name="UNKNOWN" description="" mp="1" learned="0"/>
+		<skill name="UNKNOWN" description="" mp="1" learned="0"/>
+		<skill name="UNKNOWN" description="" mp="1" learned="0"/>
 	</skills>
 	<spells>
 		<spell name="Fireball" description="Casts a ball of fire" mp="1"/>

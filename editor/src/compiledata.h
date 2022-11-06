@@ -41,15 +41,21 @@ class CompileData : public QDialog, public Ui::CompileData
     CompileData(QTreeWidgetItem *root, QWidget *parent=nullptr);
     ~CompileData();
   protected slots:
-    void compileData();
+    void on_btnBrowseFemtoIDE_clicked();
+    void on_btnCompileData_clicked();
     void on_btnCompileHW_clicked();
     void on_btnCompileSIM_clicked();
     void on_btnLaunchSIM_clicked();
     void audioBufferReady();
     void audioError(QAudioDecoder::Error error);
     void audioFinished();
+    void processError(QProcess::ProcessError error);
+    void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
+    void processReadyReadStandardError();
+    void processReadyReadStandardOutput();
   private:
     static const size_t BLOCK_SIZE = 512;
+    static const uint8_t newGameEvent[];
     struct FileHeader
     {
       uint32_t hash;
@@ -82,7 +88,7 @@ class CompileData : public QDialog, public Ui::CompileData
       {
         char *pByte = bytes + (BLOCK_SIZE - availableBytes);
         for (int i = 0; i < data.size(); ++i)
-          *pByte = data[i];
+          *pByte++ = data[i];
         availableBytes -= data.size();
       }
       void write(QFile &file) {file.write(bytes, BLOCK_SIZE);}
@@ -100,9 +106,10 @@ class CompileData : public QDialog, public Ui::CompileData
     bool compileTilesets();
     bool packData();
     bool generateResourcesHeader();
+    bool generateResourcesSource();
     void outputText(QColor color, QString text);
     QTreeWidgetItem *rootMapItem;
-    QProcess process;
+    QProcess *process;
     QAudioFormat audioFormat;
     QAudioDecoder *audioDecoder;
     QByteArray audioData;

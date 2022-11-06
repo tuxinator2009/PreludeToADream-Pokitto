@@ -1,2 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Rat" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Rat" experience="2" hp="2" attack="2" defense="4" agility="8" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="0" gold="2">
+	<intro>
+		<bufferMessage message="You encountered a rat!"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="You defeated the rat!"/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<bufferMessage message="The rat claws your face."/>
+		<showMessage/>
+		<basicAttack animation="enemy_claw"/>
+	</turn>
+</monster>

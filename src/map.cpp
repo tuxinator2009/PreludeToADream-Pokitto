@@ -40,7 +40,7 @@ uint8_t *PTAD::Map::tiledata = PTAD::memory + PTAD::MEMORY_MAP_TILEDATA_OFFSET;
 const uint8_t PTAD::Map::playerFrames[] = {0, 1, 2, 1};
 const uint8_t PTAD::Map::movement[] = {1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2};
 
-const uint32_t PTAD::Map::tiledataFiles[] =
+/*const uint32_t PTAD::Map::tiledataFiles[] =
 {
   DataPack::hash("tilesets/overworld.dat"),
   DataPack::hash("tilesets/town.dat"),
@@ -52,7 +52,7 @@ const uint32_t PTAD::Map::tiledataFiles[] =
   DataPack::hash("tilesets/shrine.dat"),
   DataPack::hash("tilesets/castleExterior.dat"),
   DataPack::hash("tilesets/forestTown.dat")
-};
+};*/
 
 const uint8_t PTAD::Map::txtOptions[] = 
 {
@@ -205,13 +205,13 @@ void PTAD::Map::setup()
   DataPack::PackedFile file;
   if (!PTAD::dataFile->getPackedFile(PTAD::Game::player.mapHash, &mapFile))
   {
-    PTAD::GameOver::load(DataPack::hash("screens/mapnotfound.gfx"));
+    PTAD::GameOver::load(DataPack::hash("screens/mapnotfound.png"));
     PTAD::Game::state = PTAD::Game::State::GameOverInit;
     return;
   }
   PTAD::dataFile->readBytes(&mapFile, (void*)data, sizeof(MapData));
   PTAD::dataFile->readBytes(&mapFile, passability, PTAD::MAP_PASSABILITY_SIZE);
-  PTAD::dataFile->getPackedFile(tiledataFiles[data->tilesetID], &file);
+  PTAD::dataFile->getPackedFile(PTAD::Resources::tiledataFiles[data->tilesetID], &file);
   PTAD::dataFile->readBytes(&file, tiledata, PTAD::MEMORY_MAP_TILEDATA_SIZE);
   PTAD::loadTileset(data->tilesetID);
   loadSprites();
@@ -321,7 +321,7 @@ void PTAD::Map::update()
     }
     else if (PTAD::justPressed(PTAD::BTN_MASK_C))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       drawMainMenu();
       state = State::Menu;
       menuState = MenuState::MainMenu;
@@ -483,7 +483,7 @@ void PTAD::Map::update()
     if (data->events[i].spriteID < 16 && data->events[i].y * 16 < PTAD::Game::player.y + 16)
       PD::drawSpriteBitmap(data->events[i].x * 16 - screenX, data->events[i].y * 16 - screenY - (data->events[i].flags & PTAD::MapEvent::FLAGS_OFFSET), 16, 24, sprites + data->events[i].spriteID * 384);
   }
-  PD::drawSpriteBitmap(PTAD::Game::player.x - screenX, PTAD::Game::player.y - screenY - 8, 16, 24, playerSprite + PTAD::Game::player.dir * 1152 + playerFrames[playerFrame] * 384);
+  PD::drawSpriteBitmap(PTAD::Game::player.x - screenX, PTAD::Game::player.y - screenY - 8, 16, 24, PTAD::Resources::playerSprite + PTAD::Game::player.dir * 1152 + playerFrames[playerFrame] * 384);
   for (int i = 0; i < 29 && data->events[i].flags != PTAD::MapEvent::FLAGS_NULL; ++i)
   {
     if (data->events[i].spriteID < 16 && data->events[i].y * 16 >= PTAD::Game::player.y + 16)
@@ -508,7 +508,7 @@ void PTAD::Map::update()
 void PTAD::Map::loadSprites()
 {
   DataPack::PackedFile file;
-  PTAD::dataFile->getPackedFile(DataPack::hash("sprites/sprites.gfx"), &file);
+  PTAD::dataFile->getPackedFile(DataPack::hash("/sprites.png"), &file);
   for (int i = 0; i < 16; ++i)
   {
     if (data->sprites[i] != 255)
@@ -613,11 +613,11 @@ void PTAD::Map::randomBattle()
     return;
   PTAD::battleMonsterID = 255;
   PTAD::battleBG = tiledata[tileIndex * 2];
-  PTAD::battleBGM = 2;
+  PTAD::battleBGM = PTAD::Resources::music_battle;
   if (random(0, encounterRate) == 0 || steps >= data->maxSteps)
   {
     uint8_t monsterID = random(0, 4);
-    PTAD::battleMonsterID = data->regions[(PTAD::Game::player.y / 128) * data->width * 2 + (PTAD::Game::player.x / 128)][monsterID];
+    PTAD::battleMonsterID = data->regions[(PTAD::Game::player.y / 128) * 8 + (PTAD::Game::player.x / 128)][monsterID];
     if (PTAD::battleMonsterID != 255)
       PTAD::Game::state = PTAD::Game::State::BattleInit;
     steps = 0;
@@ -689,18 +689,18 @@ void PTAD::Map::drawStatsMenu()
       }
       else
       {
-        playerStats[i] += PTAD::equipmentStats[j][PTAD::Game::player.equippedItems[j]].stats[i];
-        if (PTAD::equipmentStats[j][PTAD::Game::player.equippedItems[j]].stats[i] < 0)
+        playerStats[i] += PTAD::Resources::equipmentStats[j][PTAD::Game::player.equippedItems[j]].stats[i];
+        if (PTAD::Resources::equipmentStats[j][PTAD::Game::player.equippedItems[j]].stats[i] < 0)
         {
           PTAD::Ui::drawCharacter(PTAD::FONT_MINUS, 7 + i * 5, 9 + j);
-          PTAD::Ui::drawNumber(PTAD::equipmentStats[j][PTAD::Game::player.equippedItems[j]].stats[i] * -1, 8 + i * 5, 9 + j, 100);
+          PTAD::Ui::drawNumber(PTAD::Resources::equipmentStats[j][PTAD::Game::player.equippedItems[j]].stats[i] * -1, 8 + i * 5, 9 + j, 100);
         }
-        else if (PTAD::equipmentStats[j][PTAD::Game::player.equippedItems[j]].stats[i] == 0)
+        else if (PTAD::Resources::equipmentStats[j][PTAD::Game::player.equippedItems[j]].stats[i] == 0)
           PTAD::Ui::drawCharacter(PTAD::FONT_0, 10 + i * 5, 9 + j);
         else
         {
           PTAD::Ui::drawCharacter(PTAD::FONT_PLUS, 7 + i * 5, 9 + j);
-          PTAD::Ui::drawNumber(PTAD::equipmentStats[j][PTAD::Game::player.equippedItems[j]].stats[i], 8 + i * 5, 9 + j, 100);
+          PTAD::Ui::drawNumber(PTAD::Resources::equipmentStats[j][PTAD::Game::player.equippedItems[j]].stats[i], 8 + i * 5, 9 + j, 100);
         }
       }
     }
@@ -734,7 +734,7 @@ void PTAD::Map::drawItemsMenu()
   {
     if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][i] > 0)
     {
-      PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][i].name, 8, 2, i + 2);
+      PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][i].name, 8, 2, i + 2);
       PTAD::Ui::drawNumber(PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][i], 11, i + 2, 10);
       hasItems = true;
     }
@@ -744,7 +744,7 @@ void PTAD::Map::drawItemsMenu()
   if (!hasItems)
     PTAD::Ui::drawText(infoText, 24, 2, 19);
   else if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][0] > 0)
-    PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][0].description, 24, 2, 19);
+    PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][0].description, 24, 2, 19);
   else
     PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
 }
@@ -757,14 +757,14 @@ void PTAD::Map::drawSkillsMenu()
   {
     if (((PTAD::Game::player.skills >> i) & 1) != 0)
     {
-      PTAD::Ui::drawText(PTAD::skills[i].name, 8, 4, i + 2);
-      PTAD::Ui::drawNumber(PTAD::skills[i].price, 13, i + 2, 10);
+      PTAD::Ui::drawText(PTAD::Resources::skills[i].name, 8, 4, i + 2);
+      PTAD::Ui::drawNumber(PTAD::Resources::skills[i].price, 13, i + 2, 10);
     }
   }
   if (PTAD::Game::player.skills == 0)
     PTAD::Ui::drawText(infoText + 72, 24, 2, 19);
   else if ((PTAD::Game::player.skills & 1) != 0)
-    PTAD::Ui::drawText(PTAD::skills[0].description, 24, 2, 19);
+    PTAD::Ui::drawText(PTAD::Resources::skills[0].description, 24, 2, 19);
   else
     PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
 }
@@ -777,14 +777,14 @@ void PTAD::Map::drawSpellsMenu()
   {
     if (((PTAD::Game::player.spells >> i) & 1) != 0)
     {
-      PTAD::Ui::drawText(PTAD::spells[i].name, 8, 4, i + 2);
-      PTAD::Ui::drawNumber(PTAD::spells[i].price, 13, i + 2, 10);
+      PTAD::Ui::drawText(PTAD::Resources::spells[i].name, 8, 4, i + 2);
+      PTAD::Ui::drawNumber(PTAD::Resources::spells[i].price, 13, i + 2, 10);
     }
   }
   if (PTAD::Game::player.spells == 0)
     PTAD::Ui::drawText(infoText + 96, 24, 2, 19);
   else if ((PTAD::Game::player.spells & 1) != 0)
-    PTAD::Ui::drawText(PTAD::spells[0].description, 24, 2, 19);
+    PTAD::Ui::drawText(PTAD::Resources::spells[0].description, 24, 2, 19);
   else
     PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
 }
@@ -793,7 +793,7 @@ void PTAD::Map::drawDialogMenu()
 {
   PTAD::Ui::drawFrame(3, 6, 11, 13);
   PTAD::Ui::drawFrame(1, 18, 26, 20);
-  PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_MENU_DIALOG_TEST);
+  PTAD::Dialog::addMessage(PTAD::Resources::menuDialogTest);
   PTAD::Dialog::beginMessage(false);
   for (int i = 0; i < 6; ++i)
     PTAD::Ui::drawText(PTAD::Game::messageSpeeds + i * 8, 8, 4, i + 7);
@@ -803,7 +803,7 @@ void PTAD::Map::drawBattleMenu()
 {
   PTAD::Ui::drawFrame(3, 7, 11, 14);
   PTAD::Ui::drawFrame(1, 18, 26, 20);
-  PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_MENU_DIALOG_TEST);
+  PTAD::Dialog::addMessage(PTAD::Resources::menuDialogTest);
   PTAD::Dialog::beginMessage(false);
   for (int i = 0; i < 6; ++i)
     PTAD::Ui::drawText(PTAD::Game::messageSpeeds + i * 8, 8, 4, i + 8);
@@ -861,8 +861,8 @@ void PTAD::Map::drawShopMenu_BuyItems(uint8_t type)
       PTAD::Ui::drawText(shopSoldOut, 12, 13, 2 + i);
     else
     {
-      PTAD::Ui::drawText(PTAD::items[type][i].name, 8, 13, 2 + i);
-      PTAD::Ui::drawNumber(PTAD::items[type][i].price, 22, 2 + i, 100);
+      PTAD::Ui::drawText(PTAD::Resources::items[type][i].name, 8, 13, 2 + i);
+      PTAD::Ui::drawNumber(PTAD::Resources::items[type][i].price, 22, 2 + i, 100);
     }
   }
 }
@@ -892,7 +892,7 @@ void PTAD::Map::drawShopMenu_BuyQty()
   PTAD::Ui::drawCharacter(PTAD::FONT_i, 4, 13);
   PTAD::Ui::drawCharacter(PTAD::FONT_c, 5, 13);
   PTAD::Ui::drawCharacter(PTAD::FONT_e, 6, 13);
-  PTAD::Ui::drawNumber(PTAD::items[0][itemID].price, 8, 13, 10000);
+  PTAD::Ui::drawNumber(PTAD::Resources::items[0][itemID].price, 8, 13, 10000);
   PTAD::Ui::drawText(shopHowMany, 24, 2, 19);
 }
 
@@ -904,14 +904,14 @@ void PTAD::Map::drawShopMenu_SellWhat()
   {
     if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_TREASURES][i] > 0)
     {
-      PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_TREASURES][i].name, 8, 13, 2 + i);
-      PTAD::Ui::drawNumber(PTAD::items[PTAD::Game::ITEM_TYPE_TREASURES][i].price, 22, 2 + i, 100);
+      PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_TREASURES][i].name, 8, 13, 2 + i);
+      PTAD::Ui::drawNumber(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_TREASURES][i].price, 22, 2 + i, 100);
     }
     else
       PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 12, 13, 2 + i);
   }
   if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_TREASURES][PTAD::globalCounter] > 0)
-    PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_TREASURES][PTAD::globalCounter].description, 24, 2, 19);
+    PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_TREASURES][PTAD::globalCounter].description, 24, 2, 19);
   else
     PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
 }
@@ -940,7 +940,7 @@ void PTAD::Map::drawShopMenu_SellQty()
   PTAD::Ui::drawCharacter(PTAD::FONT_i, 4, 13);
   PTAD::Ui::drawCharacter(PTAD::FONT_c, 5, 13);
   PTAD::Ui::drawCharacter(PTAD::FONT_e, 6, 13);
-  PTAD::Ui::drawNumber(PTAD::items[1][itemID].price, 8, 13, 10000);
+  PTAD::Ui::drawNumber(PTAD::Resources::items[1][itemID].price, 8, 13, 10000);
   PTAD::Ui::drawText(shopSellQtyMessage, 24, 2, 19);
 }
 
@@ -950,7 +950,7 @@ void PTAD::Map::updateMainMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
@@ -961,7 +961,7 @@ void PTAD::Map::updateMainMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter == 10)
@@ -970,7 +970,7 @@ void PTAD::Map::updateMainMenu()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
     if (PTAD::globalCounter == 0) //Stats Menu
     {
       menuState = MenuState::StatsMenu;
@@ -1055,7 +1055,7 @@ void PTAD::Map::updateMainMenu()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     state = State::Idle;
   }
   else
@@ -1088,7 +1088,7 @@ void PTAD::Map::updateStatsMenu()
   PTAD::Ui::drawCharacter(PTAD::FONT_0 + s % 10, 17, 0);
   if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     menuState = MenuState::MainMenu;
     PTAD::Ui::clear();
     drawMainMenu();
@@ -1113,13 +1113,13 @@ void PTAD::Map::updateItemsMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
         PTAD::globalCounter = 15;
       if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter] > 0)
-        PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -1128,13 +1128,13 @@ void PTAD::Map::updateItemsMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter == 16)
         PTAD::globalCounter = 0;
       if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter] > 0)
-        PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -1142,34 +1142,34 @@ void PTAD::Map::updateItemsMenu()
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
     if (PTAD::globalCounter < 0)
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
     else if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter] == 0)
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
     else if (PTAD::globalCounter >= PTAD::ITEMS_BATTLE_ONLY)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(infoText + 24, 24, 2, 19);
     }
     else
     {
       if (hpRecovered[PTAD::globalCounter] > 0 && mpRecovered[PTAD::globalCounter] == 0 && PTAD::Game::player.hp == PTAD::Game::player.maxHP)
       {
-        PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
         PTAD::Ui::drawText(infoText + 48, 24, 2, 19);
       }
       else if (hpRecovered[PTAD::globalCounter] == 0 && mpRecovered[PTAD::globalCounter] > 0 && PTAD::Game::player.mp == PTAD::Game::player.maxMP)
       {
-        PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
         PTAD::Ui::drawText(infoText + 48, 24, 2, 19);
       }
       else if (hpRecovered[PTAD::globalCounter] > 0 && mpRecovered[PTAD::globalCounter] > 0 && PTAD::Game::player.hp == PTAD::Game::player.maxHP && PTAD::Game::player.mp == PTAD::Game::player.maxMP)
       {
-        PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
         PTAD::Ui::drawText(infoText + 48, 24, 2, 19);
       }
       else
       {
-        PTAD::Music::playSFX(PTAD::Music::SFX_USEITEM);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_useitem);
         --PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter];
         PTAD::Game::player.hp += hpRecovered[PTAD::globalCounter];
         PTAD::Game::player.mp += mpRecovered[PTAD::globalCounter];
@@ -1195,7 +1195,7 @@ void PTAD::Map::updateItemsMenu()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     menuState = MenuState::MainMenu;
     PTAD::globalCounter = 2;
   }
@@ -1217,13 +1217,13 @@ void PTAD::Map::updateSkillsMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
         PTAD::globalCounter = 15;
       if (((PTAD::Game::player.skills >> PTAD::globalCounter) & 1) != 0)
-        PTAD::Ui::drawText(PTAD::skills[PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::skills[PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -1232,25 +1232,25 @@ void PTAD::Map::updateSkillsMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter == 16)
         PTAD::globalCounter = 0;
       if (((PTAD::Game::player.skills >> PTAD::globalCounter) & 1) != 0)
-        PTAD::Ui::drawText(PTAD::skills[PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::skills[PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
     PTAD::Ui::drawText(infoText + 24, 24, 2, 19);
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     menuState = MenuState::MainMenu;
     PTAD::globalCounter = 3;
   }
@@ -1272,13 +1272,13 @@ void PTAD::Map::updateSpellsMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
         PTAD::globalCounter = 15;
       if (((PTAD::Game::player.spells >> PTAD::globalCounter) & 1) != 0)
-        PTAD::Ui::drawText(PTAD::spells[PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::spells[PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -1287,25 +1287,25 @@ void PTAD::Map::updateSpellsMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter == 16)
         PTAD::globalCounter = 0;
       if (((PTAD::Game::player.spells >> PTAD::globalCounter) & 1) != 0)
-        PTAD::Ui::drawText(PTAD::spells[PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::spells[PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
     PTAD::Ui::drawText(infoText + 24, 24, 2, 19);
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     menuState = MenuState::MainMenu;
     PTAD::globalCounter = 4;
   }
@@ -1328,14 +1328,14 @@ void PTAD::Map::updateDialogMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --speed;
       if (speed == -1)
         speed = 5;
       PTAD::Dialog::setMessageSpeed(speed);
       PTAD::Dialog::stopMessage();
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_MENU_DIALOG_TEST);
+      PTAD::Dialog::addMessage(PTAD::Resources::menuDialogTest);
       PTAD::Dialog::beginMessage(false);
     }
   }
@@ -1343,26 +1343,26 @@ void PTAD::Map::updateDialogMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++speed;
       if (speed == 6)
         speed = 0;
       PTAD::Dialog::setMessageSpeed(speed);
       PTAD::Dialog::stopMessage();
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_MENU_DIALOG_TEST);
+      PTAD::Dialog::addMessage(PTAD::Resources::menuDialogTest);
       PTAD::Dialog::beginMessage(false);
     }
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
     PTAD::Game::player.messageSpeed = (PTAD::Game::player.messageSpeed & 0xF0) | PTAD::Dialog::getMessageSpeed();
     menuState = MenuState::MainMenu;
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     PTAD::Dialog::setMessageSpeed(PTAD::Game::player.messageSpeed & 0xF);
     menuState = MenuState::MainMenu;
   }
@@ -1386,14 +1386,14 @@ void PTAD::Map::updateBattleMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --speed;
       if (speed == -1)
         speed = 5;
       PTAD::Dialog::setMessageSpeed(speed);
       PTAD::Dialog::stopMessage();
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_MENU_DIALOG_TEST);
+      PTAD::Dialog::addMessage(PTAD::Resources::menuDialogTest);
       PTAD::Dialog::beginMessage(false);
     }
   }
@@ -1401,14 +1401,14 @@ void PTAD::Map::updateBattleMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++speed;
       if (speed == 6)
         speed = 0;
       PTAD::Dialog::setMessageSpeed(speed);
       PTAD::Dialog::stopMessage();
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_MENU_DIALOG_TEST);
+      PTAD::Dialog::addMessage(PTAD::Resources::menuDialogTest);
       PTAD::Dialog::beginMessage(false);
     }
   }
@@ -1416,12 +1416,12 @@ void PTAD::Map::updateBattleMenu()
   {
     PTAD::Game::player.messageSpeed = (PTAD::Game::player.messageSpeed & 0xF) | (PTAD::Dialog::getMessageSpeed() << 4);
     PTAD::Dialog::setMessageSpeed(PTAD::Game::player.messageSpeed & 0xF);
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
     menuState = MenuState::MainMenu;
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     PTAD::Dialog::setMessageSpeed(PTAD::Game::player.messageSpeed & 0xF);
     menuState = MenuState::MainMenu;
   }
@@ -1447,7 +1447,7 @@ void PTAD::Map::updateVolumeMenu()
       lastPress = PC::getTime();
       if (Pokitto::discrete_vol < 6)
       {
-        PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
         ++Pokitto::discrete_vol;
         PTAD::Ui::drawCharacter(PTAD::FONT_SOLID, 11, 15 - Pokitto::discrete_vol);
       }
@@ -1461,7 +1461,7 @@ void PTAD::Map::updateVolumeMenu()
       lastPress = PC::getTime();
       if (Pokitto::discrete_vol > 0)
       {
-        PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
         --Pokitto::discrete_vol;
         PTAD::Ui::drawCharacter(PTAD::FONT_SPACE, 11, 14 - Pokitto::discrete_vol);
       }
@@ -1470,13 +1470,13 @@ void PTAD::Map::updateVolumeMenu()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
     menuState = MenuState::MainMenu;
     PTAD::Game::volume = Pokitto::discrete_vol;
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     menuState = MenuState::MainMenu;
     Pokitto::discrete_vol = PTAD::Game::volume;
     Audio::setVolume(Pokitto::discrete_vol_levels[Pokitto::discrete_vol]);
@@ -1524,14 +1524,14 @@ void PTAD::Map::updateShopMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP) || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       PTAD::globalCounter ^= 8;
     }
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
     if (PTAD::globalCounter == 0) //Buy
     {
       drawShopMenu_BuyWhat();
@@ -1546,7 +1546,7 @@ void PTAD::Map::updateShopMenu()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     state = State::Idle;
   }
   if (state == State::Menu && menuState == MenuState::ShopMenu)
@@ -1568,7 +1568,7 @@ void PTAD::Map::updateShopMenu_BuyWhat()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       PTAD::Ui::drawText(shopMessage, 24, 2, 19);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
@@ -1581,7 +1581,7 @@ void PTAD::Map::updateShopMenu_BuyWhat()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       PTAD::Ui::drawText(shopMessage, 24, 2, 19);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
@@ -1594,26 +1594,26 @@ void PTAD::Map::updateShopMenu_BuyWhat()
   {
     if (PTAD::globalCounter == 0 && shopItems == 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(shopNoneAvailable, 24, 2, 19);
     }
     else if (PTAD::globalCounter > 0 && shopEquipment[PTAD::globalCounter - 1] == 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(shopNoneAvailable, 24, 2, 19);
     }
     else if (PTAD::globalCounter == 0) //Items
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       menuState = MenuState::ShopMenu_BuyItems;
       PTAD::globalCounter = 0;
       while (((shopItems >> PTAD::globalCounter) & 1) == 0)
         ++PTAD::globalCounter;
-      PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter].description, 24, 2, 19);
+      PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter].description, 24, 2, 19);
     }
     else //Equipment
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       menuState = MenuState::ShopMenu_BuyEquipment;
       itemID = PTAD::globalCounter - 1;
       PTAD::globalCounter = 0;
@@ -1622,12 +1622,12 @@ void PTAD::Map::updateShopMenu_BuyWhat()
       if (((PTAD::Game::player.equippableItems[itemID] >> PTAD::globalCounter) & 1) != 0)
         PTAD::Ui::drawText(shopSoldOutMessage, 24, 2, 19);
       else
-        PTAD::Ui::drawText(PTAD::items[itemID + 2][PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::items[itemID + 2][PTAD::globalCounter].description, 24, 2, 19);
     }
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     PTAD::Ui::clear();
     drawShopMenu();
     menuState = MenuState::ShopMenu;
@@ -1646,41 +1646,41 @@ void PTAD::Map::updateShopMenu_BuyItems()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       PTAD::globalCounter = (PTAD::globalCounter + 15) % 16;
       while (((shopItems >> PTAD::globalCounter) & 1) == 0)
         PTAD::globalCounter = (PTAD::globalCounter + 15) % 16;
-      PTAD::Ui::drawText(PTAD::items[0][PTAD::globalCounter].description, 24, 2, 19);
+      PTAD::Ui::drawText(PTAD::Resources::items[0][PTAD::globalCounter].description, 24, 2, 19);
     }
   }
   else if (PB::downBtn())
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       PTAD::globalCounter = (PTAD::globalCounter + 1) % 16;
       while (((shopItems >> PTAD::globalCounter) & 1) == 0)
         PTAD::globalCounter = (PTAD::globalCounter + 1) % 16;
-      PTAD::Ui::drawText(PTAD::items[0][PTAD::globalCounter].description, 24, 2, 19);
+      PTAD::Ui::drawText(PTAD::Resources::items[0][PTAD::globalCounter].description, 24, 2, 19);
     }
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    if (PTAD::items[0][PTAD::globalCounter].price > PTAD::Game::player.gold)
+    if (PTAD::Resources::items[0][PTAD::globalCounter].price > PTAD::Game::player.gold)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(shopNotEnoughMoney, 24, 2, 19);
     }
     else if (PTAD::Game::player.items[0][PTAD::globalCounter] == 99)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(shopNotEnoughRoom, 24, 2, 19);
     }
     else
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       itemID = PTAD::globalCounter;
       PTAD::globalCounter = 1;
       menuState = MenuState::ShopMenu_BuyQty;
@@ -1692,7 +1692,7 @@ void PTAD::Map::updateShopMenu_BuyItems()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     menuState = MenuState::ShopMenu_BuyWhat;
     PTAD::globalCounter = 0;
     PTAD::Ui::drawText(shopMessage, 24, 2, 19);
@@ -1710,7 +1710,7 @@ void PTAD::Map::updateShopMenu_BuyEquipment()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       PTAD::globalCounter = (PTAD::globalCounter + 15) % 16;
       while (((shopEquipment[itemID] >> PTAD::globalCounter) & 1) == 0)
@@ -1718,14 +1718,14 @@ void PTAD::Map::updateShopMenu_BuyEquipment()
       if (((PTAD::Game::player.equippableItems[itemID] >> PTAD::globalCounter) & 1) == 1)
         PTAD::Ui::drawText(shopSoldOutMessage, 24, 2, 19);
       else
-        PTAD::Ui::drawText(PTAD::items[itemID + 2][PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::items[itemID + 2][PTAD::globalCounter].description, 24, 2, 19);
     }
   }
   else if (PB::downBtn())
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       PTAD::globalCounter = (PTAD::globalCounter + 1) % 16;
       while (((shopEquipment[itemID] >> PTAD::globalCounter) & 1) == 0)
@@ -1733,22 +1733,22 @@ void PTAD::Map::updateShopMenu_BuyEquipment()
       if (((PTAD::Game::player.equippableItems[itemID] >> PTAD::globalCounter) & 1) == 1)
         PTAD::Ui::drawText(shopSoldOutMessage, 24, 2, 19);
       else
-        PTAD::Ui::drawText(PTAD::items[itemID + 2][PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::items[itemID + 2][PTAD::globalCounter].description, 24, 2, 19);
     }
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
     if (((PTAD::Game::player.equippableItems[itemID] >> PTAD::globalCounter) & 1) == 1)
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
-    else if (PTAD::Game::player.gold < PTAD::items[itemID + 2][PTAD::globalCounter].price)
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
+    else if (PTAD::Game::player.gold < PTAD::Resources::items[itemID + 2][PTAD::globalCounter].price)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(shopNotEnoughMoney, 24, 2, 19);
     }
     else
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_COIN);
-      PTAD::Game::player.gold -= PTAD::items[itemID + 2][PTAD::globalCounter].price;
+      PTAD::Music::playSFX(PTAD::Resources::sfx_coin);
+      PTAD::Game::player.gold -= PTAD::Resources::items[itemID + 2][PTAD::globalCounter].price;
       PTAD::Game::player.equippableItems[itemID] |= 1 << PTAD::globalCounter;
       PTAD::Ui::drawText(shopSoldOut, 12, 13, 2 + PTAD::globalCounter);
       PTAD::Ui::drawText(shopSoldOutMessage, 24, 2, 19);
@@ -1757,7 +1757,7 @@ void PTAD::Map::updateShopMenu_BuyEquipment()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     menuState = MenuState::ShopMenu_BuyWhat;
     PTAD::globalCounter = itemID + 1;
     PTAD::Ui::drawText(shopMessage, 24, 2, 19);
@@ -1775,58 +1775,58 @@ void PTAD::Map::updateShopMenu_BuyQty()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_LEFT))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter < 1)
         PTAD::globalCounter = 1;
       PTAD::Ui::drawNumber(PTAD::globalCounter, 11, 12, 10);
-      PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::items[0][itemID].price, 8, 13, 10000);
+      PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::Resources::items[0][itemID].price, 8, 13, 10000);
     }
   }
   else if (PB::rightBtn())
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_RIGHT))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter > 99)
         PTAD::globalCounter = 99;
       PTAD::Ui::drawNumber(PTAD::globalCounter, 11, 12, 10);
-      PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::items[0][itemID].price, 8, 13, 10000);
+      PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::Resources::items[0][itemID].price, 8, 13, 10000);
     }
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_UP))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
-    PTAD::globalCounter = std::min(PTAD::Game::player.gold / PTAD::items[0][itemID].price, 99 - PTAD::Game::player.items[0][itemID]);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
+    PTAD::globalCounter = std::min(PTAD::Game::player.gold / PTAD::Resources::items[0][itemID].price, 99 - PTAD::Game::player.items[0][itemID]);
     PTAD::Ui::drawNumber(PTAD::globalCounter, 11, 12, 10);
-    PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::items[0][itemID].price, 8, 13, 10000);
+    PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::Resources::items[0][itemID].price, 8, 13, 10000);
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_DOWN))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
     PTAD::globalCounter = 1;
     PTAD::Ui::drawNumber(PTAD::globalCounter, 11, 12, 10);
-    PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::items[0][itemID].price, 8, 13, 10000);
+    PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::Resources::items[0][itemID].price, 8, 13, 10000);
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    if (PTAD::globalCounter * PTAD::items[0][itemID].price > PTAD::Game::player.gold)
+    if (PTAD::globalCounter * PTAD::Resources::items[0][itemID].price > PTAD::Game::player.gold)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(shopNotEnoughMoney, 24, 2, 19);
     }
     else if (PTAD::globalCounter + PTAD::Game::player.items[0][itemID] > 99)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(shopNotEnoughRoom, 24, 2, 19);
     }
     else
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_COIN);
-      PTAD::Game::player.gold -= PTAD::globalCounter * PTAD::items[0][itemID].price;
+      PTAD::Music::playSFX(PTAD::Resources::sfx_coin);
+      PTAD::Game::player.gold -= PTAD::globalCounter * PTAD::Resources::items[0][itemID].price;
       PTAD::Game::player.items[0][itemID] += PTAD::globalCounter;
       menuState = MenuState::ShopMenu_BuyItems;
       PTAD::Ui::drawNumber(PTAD::Game::player.gold, 4, 16, 10000);
@@ -1834,7 +1834,7 @@ void PTAD::Map::updateShopMenu_BuyQty()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     menuState = MenuState::ShopMenu_BuyItems;
   }
   if (menuState != MenuState::ShopMenu_BuyQty)
@@ -1853,11 +1853,11 @@ void PTAD::Map::updateShopMenu_SellWhat()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       PTAD::globalCounter = (PTAD::globalCounter + 15) % 16;
       if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_TREASURES][PTAD::globalCounter] > 0)
-        PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_TREASURES][PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_TREASURES][PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -1866,11 +1866,11 @@ void PTAD::Map::updateShopMenu_SellWhat()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       PTAD::globalCounter = (PTAD::globalCounter + 1) % 16;
       if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_TREASURES][PTAD::globalCounter] > 0)
-        PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_TREASURES][PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_TREASURES][PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -1879,12 +1879,12 @@ void PTAD::Map::updateShopMenu_SellWhat()
   {
     if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_TREASURES][PTAD::globalCounter] == 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(infoText + 5 * 24, 24, 2, 19);
     }
     else
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       itemID = PTAD::globalCounter;
       PTAD::globalCounter = 1;
       menuState = MenuState::ShopMenu_SellQty;
@@ -1896,7 +1896,7 @@ void PTAD::Map::updateShopMenu_SellWhat()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     PTAD::Ui::clear();
     drawShopMenu();
     menuState = MenuState::ShopMenu;
@@ -1915,53 +1915,53 @@ void PTAD::Map::updateShopMenu_SellQty()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_LEFT))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter < 1)
         PTAD::globalCounter = 1;
       PTAD::Ui::drawNumber(PTAD::globalCounter, 11, 12, 10);
-      PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::items[1][itemID].price, 8, 13, 10000);
+      PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::Resources::items[1][itemID].price, 8, 13, 10000);
     }
   }
   else if (PB::rightBtn())
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_RIGHT))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter > 99)
         PTAD::globalCounter = 99;
       PTAD::Ui::drawNumber(PTAD::globalCounter, 11, 12, 10);
-      PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::items[1][itemID].price, 8, 13, 10000);
+      PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::Resources::items[1][itemID].price, 8, 13, 10000);
     }
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_UP))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
     PTAD::globalCounter = PTAD::Game::player.items[1][itemID];
     PTAD::Ui::drawNumber(PTAD::globalCounter, 11, 12, 10);
-    PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::items[1][itemID].price, 8, 13, 10000);
+    PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::Resources::items[1][itemID].price, 8, 13, 10000);
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_DOWN))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
     PTAD::globalCounter = 1;
     PTAD::Ui::drawNumber(PTAD::globalCounter, 11, 12, 10);
-    PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::items[1][itemID].price, 8, 13, 10000);
+    PTAD::Ui::drawNumber(PTAD::globalCounter * PTAD::Resources::items[1][itemID].price, 8, 13, 10000);
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
     if (PTAD::Game::player.items[1][itemID] < PTAD::globalCounter)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(infoText + 6 * 24, 24, 2, 19);
     }
     else
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_COIN);
-      PTAD::Game::player.gold += PTAD::globalCounter * PTAD::items[1][itemID].price;
+      PTAD::Music::playSFX(PTAD::Resources::sfx_coin);
+      PTAD::Game::player.gold += PTAD::globalCounter * PTAD::Resources::items[1][itemID].price;
       PTAD::Game::player.items[1][itemID] -= PTAD::globalCounter;
       menuState = MenuState::ShopMenu_SellWhat;
       PTAD::Ui::drawNumber(PTAD::Game::player.gold, 4, 16, 10000);
@@ -1969,7 +1969,7 @@ void PTAD::Map::updateShopMenu_SellQty()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     menuState = MenuState::ShopMenu_SellWhat;
   }
   if (menuState != MenuState::ShopMenu_SellQty)

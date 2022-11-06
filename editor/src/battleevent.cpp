@@ -156,130 +156,130 @@ BattleEvent::Event::~Event()
   pBattleEvent->allEvents.removeAll(this);
 }
 
-BattleEvent::Event *BattleEvent::Event::newEvent(BattleEvent *pBase, Event *parent, Type t)
+BattleEvent::Event *BattleEvent::Event::newEvent(BattleEvent *pBase, Event *pEvent, Type t)
 {
   if (t == Type::ShakeScreen)
-    return new ShakeScreen(pBase, parent);
+    return new ShakeScreen(pBase, pEvent);
   if (t == Type::FlashBattler)
-    return new FlashBattler(pBase, parent);
+    return new FlashBattler(pBase, pEvent);
   if (t == Type::FlashUi)
-    return new FlashUi(pBase, parent);
+    return new FlashUi(pBase, pEvent);
   if (t == Type::BasicAttack)
-    return new BasicAttack(pBase, parent);
+    return new BasicAttack(pBase, pEvent);
   if (t == Type::UseSkill)
-    return new UseSkill(pBase, parent);
+    return new UseSkill(pBase, pEvent);
   if (t == Type::CastSpell)
-    return new CastSpell(pBase, parent);
+    return new CastSpell(pBase, pEvent);
   if (t == Type::PlaySoundEffect)
-    return new PlaySoundEffect(pBase, parent);
+    return new PlaySoundEffect(pBase, pEvent);
   if (t == Type::BufferMessage)
-    return new BufferMessage(pBase, parent);
+    return new BufferMessage(pBase, pEvent);
   if (t == Type::BufferValue)
-    return new BufferValue(pBase, parent);
+    return new BufferValue(pBase, pEvent);
   if (t == Type::BufferCharacter)
-    return new BufferCharacter(pBase, parent);
+    return new BufferCharacter(pBase, pEvent);
   if (t == Type::ShowMessage)
-    return new ShowMessage(pBase, parent);
+    return new ShowMessage(pBase, pEvent);
   if (t == Type::Jump)
-    return new Jump(pBase, parent);
+    return new Jump(pBase, pEvent);
   if (t == Type::IfCounter)
-    return new IfCounter(pBase, parent);
+    return new IfCounter(pBase, pEvent);
   if (t == Type::IfStatus)
-    return new IfStatus(pBase, parent);
+    return new IfStatus(pBase, pEvent);
   if (t == Type::IfStat)
-    return new IfStat(pBase, parent);
+    return new IfStat(pBase, pEvent);
   if (t == Type::ChangeBattlerSprite)
-    return new ChangeBattlerSprite(pBase, parent);
+    return new ChangeBattlerSprite(pBase, pEvent);
   if (t == Type::ChangeBackgroundImage)
-    return new ChangeBackgroundImage(pBase, parent);
+    return new ChangeBackgroundImage(pBase, pEvent);
   if (t == Type::PlayBattleAnimation)
-    return new PlayBattleAnimation(pBase, parent);
+    return new PlayBattleAnimation(pBase, pEvent);
   if (t == Type::WaitFrames)
-    return new WaitFrames(pBase, parent);
+    return new WaitFrames(pBase, pEvent);
   if (t == Type::WaitButtons)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   if (t == Type::InflictStatus)
-    return new InflictStatus(pBase, parent);
+    return new InflictStatus(pBase, pEvent);
   if (t == Type::ConsumeMP)
-    return new ConsumeMP(pBase, parent);
+    return new ConsumeMP(pBase, pEvent);
   if (t == Type::Random)
-    return new Random(pBase, parent);
+    return new Random(pBase, pEvent);
   if (t == Type::EndEventProcessing)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   if (t == Type::Label)
-    return new Label(pBase, parent);
+    return new Label(pBase, pEvent);
   if (t == Type::Comment)
-    return new Comment(pBase, parent);
+    return new Comment(pBase, pEvent);
   if (t == Type::Else)
-    return new Else(pBase, parent);
+    return new Else(pBase, pEvent);
   if (t == Type::End)
-    return new End(pBase, parent);
+    return new End(pBase, pEvent);
   return nullptr;
 }
 
-BattleEvent::Event *BattleEvent::Event::newEvent(BattleEvent *pBase, Event *parent, XMLNode eventNode)
+BattleEvent::Event *BattleEvent::Event::newEvent(BattleEvent *pBase, Event *pEvent, XMLNode eventNode)
 {
   std::string eventType = eventNode.getName();
   if (eventType.compare("shakeScreen") == 0)
-    return new ShakeScreen(pBase, parent, eventNode);
+    return new ShakeScreen(pBase, pEvent, eventNode);
   if (eventType.compare("flashBattler") == 0)
-    return new FlashBattler(pBase, parent, eventNode);
+    return new FlashBattler(pBase, pEvent, eventNode);
   if (eventType.compare("flashUi") == 0)
-    return new FlashUi(pBase, parent, eventNode);
+    return new FlashUi(pBase, pEvent, eventNode);
   if (eventType.compare("basicAttack") == 0)
-    return new BasicAttack(pBase, parent, eventNode);
+    return new BasicAttack(pBase, pEvent, eventNode);
   if (eventType.compare("useSkill") == 0)
-    return new UseSkill(pBase, parent, eventNode);
+    return new UseSkill(pBase, pEvent, eventNode);
   if (eventType.compare("castSpell") == 0)
-    return new CastSpell(pBase, parent, eventNode);
+    return new CastSpell(pBase, pEvent, eventNode);
   if (eventType.compare("playSoundEffect") == 0)
-    return new PlaySoundEffect(pBase, parent, eventNode);
+    return new PlaySoundEffect(pBase, pEvent, eventNode);
   if (eventType.compare("bufferMessage") == 0)
-    return new BufferMessage(pBase, parent, eventNode);
+    return new BufferMessage(pBase, pEvent, eventNode);
   if (eventType.compare("bufferValue") == 0)
-    return new BufferValue(pBase, parent, eventNode);
+    return new BufferValue(pBase, pEvent, eventNode);
   if (eventType.compare("bufferCharacter") == 0)
-    return new BufferCharacter(pBase, parent, eventNode);
+    return new BufferCharacter(pBase, pEvent, eventNode);
   if (eventType.compare("showMessage") == 0)
-    return new ShowMessage(pBase, parent, eventNode);
+    return new ShowMessage(pBase, pEvent, eventNode);
   if (eventType.compare("jump") == 0)
-    return new Jump(pBase, parent, eventNode);
+    return new Jump(pBase, pEvent, eventNode);
   if (eventType.compare("ifCounter") == 0 || eventType.compare("elseIfCounter") == 0)
-    return new IfCounter(pBase, parent, eventNode);
+    return new IfCounter(pBase, pEvent, eventNode);
   if (eventType.compare("ifStatus") == 0 || eventType.compare("elseIfStatus") == 0)
-    return new IfStatus(pBase, parent, eventNode);
+    return new IfStatus(pBase, pEvent, eventNode);
   if (eventType.compare("ifStat") == 0 || eventType.compare("elseIfStat") == 0)
-    return new IfStat(pBase, parent, eventNode);
+    return new IfStat(pBase, pEvent, eventNode);
   if (eventType.compare("changeBattlerSprite") == 0)
-    return new ChangeBattlerSprite(pBase, parent, eventNode);
+    return new ChangeBattlerSprite(pBase, pEvent, eventNode);
   if (eventType.compare("changeBackgroundImage") == 0)
-    return new ChangeBackgroundImage(pBase, parent, eventNode);
+    return new ChangeBackgroundImage(pBase, pEvent, eventNode);
   if (eventType.compare("playBattleAnimation") == 0)
-    return new PlayBattleAnimation(pBase, parent, eventNode);
+    return new PlayBattleAnimation(pBase, pEvent, eventNode);
   if (eventType.compare("waitFrames") == 0)
-    return new WaitFrames(pBase, parent, eventNode);
+    return new WaitFrames(pBase, pEvent, eventNode);
   if (eventType.compare("waitButtons") == 0)
-    return new Event(pBase, parent, Type::WaitButtons);
+    return new Event(pBase, pEvent, Type::WaitButtons);
   if (eventType.compare("inflictStatus") == 0)
-    return new InflictStatus(pBase, parent, eventNode);
+    return new InflictStatus(pBase, pEvent, eventNode);
   if (eventType.compare("consumeMP") == 0)
-    return new ConsumeMP(pBase, parent, eventNode);
+    return new ConsumeMP(pBase, pEvent, eventNode);
   if (eventType.compare("random") == 0)
-    return new Random(pBase, parent, eventNode);
+    return new Random(pBase, pEvent, eventNode);
   if (eventType.compare("endEventProcessing") == 0)
-    return new Event(pBase, parent, Type::EndEventProcessing);
+    return new Event(pBase, pEvent, Type::EndEventProcessing);
   if (eventType.compare("label") == 0)
-    return new Label(pBase, parent, eventNode);
+    return new Label(pBase, pEvent, eventNode);
   if (eventType.compare("comment") == 0)
-    return new Comment(pBase, parent, eventNode);
+    return new Comment(pBase, pEvent, eventNode);
   if (eventType.compare("else") == 0)
-    return new Else(pBase, parent, eventNode);
+    return new Else(pBase, pEvent, eventNode);
   return nullptr;
 }
 //END: Event
 
 //BEGIN: TopLevelEvent (COMPLETE)
-BattleEvent::TopLevelEvent::TopLevelEvent(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::TopLevelEvent)
+BattleEvent::TopLevelEvent::TopLevelEvent(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::TopLevelEvent)
 {
   for (int i = 0; i < eventNode.nChildNode(); ++i)
     events += Event::newEvent(pBase, this, eventNode.getChildNode(i));
@@ -309,7 +309,6 @@ void BattleEvent::TopLevelEvent::compileEvent(QByteArray *bytes)
   offset = bytes->count();
   for (auto event : events)
     event->compileEvent(bytes);
-  delete events.takeLast();
 }
 
 BattleEvent::Event *BattleEvent::TopLevelEvent::previousChildEvent(Event *event)
@@ -342,7 +341,7 @@ void BattleEvent::TopLevelEvent::setItem(QTreeWidgetItem *value)
 //END: TopLevelEvent
 
 //BEGIN: IfEvent (COMPLETE)
-BattleEvent::IfEvent::IfEvent(BattleEvent *pBase, Event *parent, Type t, XMLNode eventNode) : Event(pBase, parent, t)
+BattleEvent::IfEvent::IfEvent(BattleEvent *pBase, Event *pEvent, Type t, XMLNode eventNode) : Event(pBase, pEvent, t)
 {
   elseIf = strncmp(eventNode.getName(), "else", 4) == 0;
   for (int i = 0; i < eventNode.nChildNode(); ++i)
@@ -373,7 +372,7 @@ BattleEvent::Event *BattleEvent::IfEvent::nextChildEvent(Event *event)
   return events[index + 1];
 }
 
-void BattleEvent::IfEvent::addItems(QTreeWidgetItem *item)
+void BattleEvent::IfEvent::addItems()
 {
   for (auto event : events)
     item->addChild(event->getItem());
@@ -381,13 +380,13 @@ void BattleEvent::IfEvent::addItems(QTreeWidgetItem *item)
 //END: IfEvent
 
 //BEGIN: ShakeScreen (COMPLETE)
-BattleEvent::ShakeScreen::ShakeScreen(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::ShakeScreen)
+BattleEvent::ShakeScreen::ShakeScreen(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ShakeScreen)
 {
   duration = 0;
   rate = 0;
 }
 
-BattleEvent::ShakeScreen::ShakeScreen(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ShakeScreen)
+BattleEvent::ShakeScreen::ShakeScreen(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ShakeScreen)
 {
   duration = atoi(eventNode.getAttribute("duration"));
   rate = atoi(eventNode.getAttribute("rate"));
@@ -437,7 +436,7 @@ QTreeWidgetItem *BattleEvent::ShakeScreen::getItem()
 //END: ShakeScreen
 
 //BEGIN: FlashBattler (COMPLETE)
-BattleEvent::FlashBattler::FlashBattler(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::FlashBattler)
+BattleEvent::FlashBattler::FlashBattler(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::FlashBattler)
 {
   duration = 0;
   color1 = 0;
@@ -445,7 +444,7 @@ BattleEvent::FlashBattler::FlashBattler(BattleEvent *pBase, Event *parent) : Eve
   color3 = 0;
 }
 
-BattleEvent::FlashBattler::FlashBattler(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::FlashBattler)
+BattleEvent::FlashBattler::FlashBattler(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::FlashBattler)
 {
   duration = atoi(eventNode.getAttribute("duration"));
   color1 = atoi(eventNode.getAttribute("color1"));
@@ -505,13 +504,13 @@ QTreeWidgetItem *BattleEvent::FlashBattler::getItem()
 //END: FlashBattler
 
 //BEGIN: FlashUi (COMPLETE)
-BattleEvent::FlashUi::FlashUi(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::FlashUi)
+BattleEvent::FlashUi::FlashUi(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::FlashUi)
 {
   duration = 0;
   color = 0;
 }
 
-BattleEvent::FlashUi::FlashUi(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::FlashUi)
+BattleEvent::FlashUi::FlashUi(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::FlashUi)
 {
   duration = atoi(eventNode.getAttribute("duration"));
   color = atoi(eventNode.getAttribute("color"));
@@ -561,7 +560,7 @@ QTreeWidgetItem *BattleEvent::FlashUi::getItem()
 //END: FlashUi
 
 //BEGIN: BasicAttack (COMPLETE)
-BattleEvent::BasicAttack::BasicAttack(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::BasicAttack)
+BattleEvent::BasicAttack::BasicAttack(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::BasicAttack)
 {
   QDir folder(QString("%1/animations").arg(Globals::datadir));
   QStringList animations = folder.entryList(QStringList() << "*.anim", QDir::Files, QDir::Name);
@@ -569,7 +568,7 @@ BattleEvent::BasicAttack::BasicAttack(BattleEvent *pBase, Event *parent) : Event
   animation = animations[0];
 }
 
-BattleEvent::BasicAttack::BasicAttack(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::BasicAttack)
+BattleEvent::BasicAttack::BasicAttack(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::BasicAttack)
 {
   animation = eventNode.getAttribute("animation");
 }
@@ -587,10 +586,10 @@ XMLNode BattleEvent::BasicAttack::toXMLNode()
 
 void BattleEvent::BasicAttack::compileEvent(QByteArray *bytes)
 {
-  QString location = QString("animations/%1.anim").arg(animation);
+  QString location = QString("/animations/%1.xml").arg(animation);
   Globals::Value32 value32;
   offset = bytes->count();
-  value32.uValue = Globals::hash(location.toLocal8Bit().data(), location.size());
+  value32.uValue = Globals::hash(location.toLocal8Bit().data(), location.size() + 1);
   bytes->append(static_cast<char>(type));
   bytes->append(value32.bytes[0]);
   bytes->append(value32.bytes[1]);
@@ -619,11 +618,11 @@ QTreeWidgetItem *BattleEvent::BasicAttack::getItem()
 //END: BasicAttack
 
 //BEGIN: UseSkill (NOT IMPLEMENTED IN ENGINE)
-BattleEvent::UseSkill::UseSkill(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::UseSkill)
+BattleEvent::UseSkill::UseSkill(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::UseSkill)
 {
 }
 
-BattleEvent::UseSkill::UseSkill(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::UseSkill)
+BattleEvent::UseSkill::UseSkill(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::UseSkill)
 {
   Q_UNUSED(eventNode);
 }
@@ -656,7 +655,7 @@ QTreeWidgetItem *BattleEvent::UseSkill::getItem()
 //END: UseSkill
 
 //BEGIN: CastSpell (COMPLETE)
-BattleEvent::CastSpell::CastSpell(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::CastSpell)
+BattleEvent::CastSpell::CastSpell(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::CastSpell)
 {
   QDir folder(QString("%1/animations").arg(Globals::datadir));
   QStringList animations = folder.entryList(QStringList() << "*.anim", QDir::Files, QDir::Name);
@@ -667,7 +666,7 @@ BattleEvent::CastSpell::CastSpell(BattleEvent *pBase, Event *parent) : Event(pBa
   mp = 1;
 }
 
-BattleEvent::CastSpell::CastSpell(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::CastSpell)
+BattleEvent::CastSpell::CastSpell(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::CastSpell)
 {
   animation = eventNode.getAttribute("animation");
   spellType = QString(eventNode.getAttribute("type")).toInt();
@@ -691,10 +690,10 @@ XMLNode BattleEvent::CastSpell::toXMLNode()
 
 void BattleEvent::CastSpell::compileEvent(QByteArray *bytes)
 {
-  QString location = QString("animations/%1.anim").arg(animation);
+  QString location = QString("/animations/%1.xml").arg(animation);
   Globals::Value32 value32;
   offset = bytes->count();
-  value32.uValue = Globals::hash(location.toLocal8Bit().data(), location.size());
+  value32.uValue = Globals::hash(location.toLocal8Bit().data(), location.size() + 1);
   bytes->append(static_cast<char>(type));
   bytes->append(value32.bytes[0]);
   bytes->append(value32.bytes[1]);
@@ -733,13 +732,13 @@ QTreeWidgetItem *BattleEvent::CastSpell::getItem()
 //END: CastSpell
 
 //BEGIN: PlaySoundEffect (COMPLETE)
-BattleEvent::PlaySoundEffect::PlaySoundEffect(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::PlaySoundEffect)
+BattleEvent::PlaySoundEffect::PlaySoundEffect(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::PlaySoundEffect)
 {
   sfx = Globals::sfx[0];
   loop = false;
 }
 
-BattleEvent::PlaySoundEffect::PlaySoundEffect(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::PlaySoundEffect)
+BattleEvent::PlaySoundEffect::PlaySoundEffect(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::PlaySoundEffect)
 {
   sfx = eventNode.getAttribute("sound");
   loop = strcmp(eventNode.getAttribute("loop"), "true") == 0;
@@ -791,12 +790,12 @@ QTreeWidgetItem *BattleEvent::PlaySoundEffect::getItem()
 //END: PlaySoundEffect
 
 //BEGIN: BufferMessage (COMPLETE)
-BattleEvent::BufferMessage::BufferMessage(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::BufferMessage)
+BattleEvent::BufferMessage::BufferMessage(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::BufferMessage)
 {
   message = "";
 }
 
-BattleEvent::BufferMessage::BufferMessage(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::BufferMessage)
+BattleEvent::BufferMessage::BufferMessage(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::BufferMessage)
 {
   message = eventNode.getAttribute("message");
 }
@@ -847,13 +846,13 @@ QTreeWidgetItem *BattleEvent::BufferMessage::getItem()
 //END: BufferMessage
 
 //BEGIN: BufferValue (COMPLETE)
-BattleEvent::BufferValue::BufferValue(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::BufferValue)
+BattleEvent::BufferValue::BufferValue(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::BufferValue)
 {
   valueType = VALUE_PLAYER_NAME;
   value = 0;
 }
 
-BattleEvent::BufferValue::BufferValue(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::BufferValue)
+BattleEvent::BufferValue::BufferValue(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::BufferValue)
 {
   valueType = atoi(eventNode.getAttribute("value"));
   if (valueType == VALUE_VARIABLE)
@@ -927,12 +926,12 @@ QTreeWidgetItem *BattleEvent::BufferValue::getItem()
 //END: BufferValue
 
 //BEGIN: BufferCharacter (COMPLETE)
-BattleEvent::BufferCharacter::BufferCharacter(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::BufferCharacter)
+BattleEvent::BufferCharacter::BufferCharacter(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::BufferCharacter)
 {
   character = ' ';
 }
 
-BattleEvent::BufferCharacter::BufferCharacter(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::BufferCharacter)
+BattleEvent::BufferCharacter::BufferCharacter(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::BufferCharacter)
 {
   character = eventNode.getAttribute("char")[0];
 }
@@ -977,11 +976,11 @@ QTreeWidgetItem *BattleEvent::BufferCharacter::getItem()
 //END: BufferCharacter
 
 //BEGIN: ShowMessage (COMPLETE)
-BattleEvent::ShowMessage::ShowMessage(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::ShowMessage)
+BattleEvent::ShowMessage::ShowMessage(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ShowMessage)
 {
 }
 
-BattleEvent::ShowMessage::ShowMessage(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ShowMessage)
+BattleEvent::ShowMessage::ShowMessage(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ShowMessage)
 {
   for (int i = 0; i < eventNode.nChildNode("line"); ++i)
     message += eventNode.getChildNode("line", i).getAttribute("message");
@@ -1084,17 +1083,6 @@ void BattleEvent::ShowMessage::compileEvent(QByteArray *bytes)
             bytes->append(VALUE_PLAYER_MAGIC);
             j += 2;
           }
-          static constexpr uint8_t VALUE_MONSTER_NAME = 14;
-          static constexpr uint8_t VALUE_MONSTER_HP = 15;
-          static constexpr uint8_t VALUE_MONSTER_MAXHP = 16;
-          static constexpr uint8_t VALUE_MONSTER_MP = 17;
-          static constexpr uint8_t VALUE_MONSTER_MAXMP = 18;
-          static constexpr uint8_t VALUE_MONSTER_EXPERIENCE = 19;
-          static constexpr uint8_t VALUE_MONSTER_GOLD = 20;
-          static constexpr uint8_t VALUE_MONSTER_ATTACK = 21;
-          static constexpr uint8_t VALUE_MONSTER_DEFENSE = 22;
-          static constexpr uint8_t VALUE_MONSTER_AGILITY = 23;
-          static constexpr uint8_t VALUE_MONSTER_MAGIC = 24;
           if (message[i].mid(j).startsWith("__name__"))
           {
             bytes->append(VALUE_MONSTER_NAME);
@@ -1113,11 +1101,6 @@ void BattleEvent::ShowMessage::compileEvent(QByteArray *bytes)
           else if (message[i].mid(j).startsWith("_p"))
           {
             bytes->append(VALUE_MONSTER_MP);
-            j += 1;
-          }
-          else if (message[i].mid(j).startsWith("_P"))
-          {
-            bytes->append(VALUE_MONSTER_MAXMP);
             j += 1;
           }
           else if (message[i].mid(j).startsWith("__xp__"))
@@ -1214,12 +1197,12 @@ void BattleEvent::ShowMessage::bufferMessage(QByteArray *bytes, QString line)
 //END: ShowMessage
 
 //BEGIN: Jump (COMPLETE)
-BattleEvent::Jump::Jump(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::Jump)
+BattleEvent::Jump::Jump(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Jump)
 {
   label = "";
 }
 
-BattleEvent::Jump::Jump(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Jump)
+BattleEvent::Jump::Jump(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Jump)
 {
   label = eventNode.getAttribute("label");
 }
@@ -1294,14 +1277,14 @@ QTreeWidgetItem *BattleEvent::Jump::getItem()
 //END: Jump
 
 //BEGIN: IfCounter (COMPLETE)
-BattleEvent::IfCounter::IfCounter(BattleEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfCounter)
+BattleEvent::IfCounter::IfCounter(BattleEvent *pBase, Event *pEvent) : IfEvent(pBase, pEvent, Type::IfCounter)
 {
   counter = 0;
   value = 0;
   condition = CONDITION_EQUAL_TO;
 }
 
-BattleEvent::IfCounter::IfCounter(BattleEvent *pBase, Event *parent, XMLNode eventNode) : IfEvent(pBase, parent, Type::IfCounter, eventNode)
+BattleEvent::IfCounter::IfCounter(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : IfEvent(pBase, pEvent, Type::IfCounter, eventNode)
 {
   QString conditionString = eventNode.getAttribute("condition");
   counter = QString(eventNode.getAttribute("counter")).toInt();
@@ -1390,14 +1373,14 @@ bool BattleEvent::IfCounter::configureEvent(QWidget *parentWidget)
 QTreeWidgetItem *BattleEvent::IfCounter::getItem()
 {
   if (item->childCount() == 0)
-    addItems(item);
+    addItems();
   item->setText(0, QString("<> %1: counters[%2] %3 %4").arg((elseIf) ? "elseIfCounter":"ifCounter").arg(counter).arg(conditions[condition]).arg(value));
   return item;
 }
 //END: IfCounter
 
 //BEGIN: IfStatus (COMPLETE)
-BattleEvent::IfStatus::IfStatus(BattleEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfStatus)
+BattleEvent::IfStatus::IfStatus(BattleEvent *pBase, Event *pEvent) : IfEvent(pBase, pEvent, Type::IfStatus)
 {
   condition = CONDITION_EQUAL_TO;
   status = 0;
@@ -1405,7 +1388,7 @@ BattleEvent::IfStatus::IfStatus(BattleEvent *pBase, Event *parent) : IfEvent(pBa
   self = false;
 }
 
-BattleEvent::IfStatus::IfStatus(BattleEvent *pBase, Event *parent, XMLNode eventNode) : IfEvent(pBase, parent, Type::IfStatus, eventNode)
+BattleEvent::IfStatus::IfStatus(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : IfEvent(pBase, pEvent, Type::IfStatus, eventNode)
 {
   QString statusString = eventNode.getAttribute("status");
   QString conditionString = eventNode.getAttribute("condition");
@@ -1455,7 +1438,7 @@ XMLNode BattleEvent::IfStatus::toXMLNode()
 void BattleEvent::IfStatus::compileEvent(QByteArray *bytes)
 {
   JumpLocation trueJump, falseJump;
-  uint8_t value = (status << 2) | level | ((self) ? 128:0);
+  uint8_t value = (status << 3) | level | ((self) ? 128:0);
   offset = bytes->count();
   bytes->append(static_cast<char>(type));
   bytes->append(value);
@@ -1506,21 +1489,21 @@ bool BattleEvent::IfStatus::configureEvent(QWidget *parentWidget)
 QTreeWidgetItem *BattleEvent::IfStatus::getItem()
 {
   if (item->childCount() == 0)
-    addItems(item);
+    addItems();
   item->setText(0, QString("<> %1: %2 %3 %4 %5").arg((elseIf) ? "elseIfStatus":"ifStatus").arg((self) ? "self":"player").arg(statuses[status]).arg(conditions[condition]).arg(level));
   return item;
 }
 //END: IfStatus
 
 //BEGIN: IfStat (COMPLETE)
-BattleEvent::IfStat::IfStat(BattleEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfStat)
+BattleEvent::IfStat::IfStat(BattleEvent *pBase, Event *pEvent) : IfEvent(pBase, pEvent, Type::IfStat)
 {
   condition = CONDITION_EQUAL_TO;
   value = 0;
   hp = true;
 }
 
-BattleEvent::IfStat::IfStat(BattleEvent *pBase, Event *parent, XMLNode eventNode) : IfEvent(pBase, parent, Type::IfStat, eventNode)
+BattleEvent::IfStat::IfStat(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : IfEvent(pBase, pEvent, Type::IfStat, eventNode)
 {
   QString conditionString = eventNode.getAttribute("condition");
   value = QString(eventNode.getAttribute("value")).toInt();
@@ -1615,19 +1598,19 @@ bool BattleEvent::IfStat::configureEvent(QWidget *parentWidget)
 QTreeWidgetItem *BattleEvent::IfStat::getItem()
 {
   if (item->childCount() == 0)
-    addItems(item);
+    addItems();
   item->setText(0, QString("<> %1: %2 %3 %4").arg((elseIf) ? "elseIfStat":"ifStat").arg((hp) ? "HP":"MP").arg(conditions[condition]).arg(value));
   return item;
 }
 //END: IfStat
 
 //BEGIN: ChangeBattlerSprite (COMPLETE)
-BattleEvent::ChangeBattlerSprite::ChangeBattlerSprite(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::ChangeBattlerSprite)
+BattleEvent::ChangeBattlerSprite::ChangeBattlerSprite(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ChangeBattlerSprite)
 {
   spriteID = 0;
 }
 
-BattleEvent::ChangeBattlerSprite::ChangeBattlerSprite(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ChangeBattlerSprite)
+BattleEvent::ChangeBattlerSprite::ChangeBattlerSprite(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ChangeBattlerSprite)
 {
   spriteID = QString(eventNode.getAttribute("spriteID")).toInt();
 }
@@ -1672,12 +1655,12 @@ QTreeWidgetItem *BattleEvent::ChangeBattlerSprite::getItem()
 //END: ChangeBattlerSprite
 
 //BEGIN: ChangeBackgroundImage (COMPLETE)
-BattleEvent::ChangeBackgroundImage::ChangeBackgroundImage(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::ChangeBackgroundImage)
+BattleEvent::ChangeBackgroundImage::ChangeBackgroundImage(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ChangeBackgroundImage)
 {
   image = Globals::backdrops[0];
 }
 
-BattleEvent::ChangeBackgroundImage::ChangeBackgroundImage(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ChangeBackgroundImage)
+BattleEvent::ChangeBackgroundImage::ChangeBackgroundImage(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ChangeBackgroundImage)
 {
   image = eventNode.getAttribute("image");
 }
@@ -1723,7 +1706,7 @@ QTreeWidgetItem *BattleEvent::ChangeBackgroundImage::getItem()
 //END: ChangeBackgroundImage
 
 //BEGIN: PlayBattleAnimation (COMPLETE)
-BattleEvent::PlayBattleAnimation::PlayBattleAnimation(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::PlayBattleAnimation)
+BattleEvent::PlayBattleAnimation::PlayBattleAnimation(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::PlayBattleAnimation)
 {
   QDir folder(QString("%1/animations").arg(Globals::datadir));
   QStringList animations = folder.entryList(QStringList() << "*.anim", QDir::Files, QDir::Name);
@@ -1731,7 +1714,7 @@ BattleEvent::PlayBattleAnimation::PlayBattleAnimation(BattleEvent *pBase, Event 
   animation = animations[0];
 }
 
-BattleEvent::PlayBattleAnimation::PlayBattleAnimation(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::PlayBattleAnimation)
+BattleEvent::PlayBattleAnimation::PlayBattleAnimation(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::PlayBattleAnimation)
 {
   animation = eventNode.getAttribute("animation");
 }
@@ -1749,10 +1732,10 @@ XMLNode BattleEvent::PlayBattleAnimation::toXMLNode()
 
 void BattleEvent::PlayBattleAnimation::compileEvent(QByteArray *bytes)
 {
-  QString location = QString("animations/%1.anim").arg(animation);
+  QString location = QString("/animations/%1.xml").arg(animation);
   Globals::Value32 value32;
   offset = bytes->count();
-  value32.uValue = Globals::hash(location.toLocal8Bit().data(), location.size());
+  value32.uValue = Globals::hash(location.toLocal8Bit().data(), location.size() + 1);
   bytes->append(static_cast<char>(type));
   bytes->append(value32.bytes[0]);
   bytes->append(value32.bytes[1]);
@@ -1781,12 +1764,12 @@ QTreeWidgetItem *BattleEvent::PlayBattleAnimation::getItem()
 //END: PlayBattleAnimation
 
 //BEGIN: WaitFrames (COMPLETE)
-BattleEvent::WaitFrames::WaitFrames(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::WaitFrames)
+BattleEvent::WaitFrames::WaitFrames(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::WaitFrames)
 {
   numFrames = 0;
 }
 
-BattleEvent::WaitFrames::WaitFrames(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::WaitFrames)
+BattleEvent::WaitFrames::WaitFrames(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::WaitFrames)
 {
   numFrames = atoi(eventNode.getAttribute("frames"));
 }
@@ -1827,7 +1810,7 @@ QTreeWidgetItem *BattleEvent::WaitFrames::getItem()
 //END: WaitFrames
 
 //BEGIN: InflictStatus (COMPLETE)
-BattleEvent::InflictStatus::InflictStatus(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::InflictStatus)
+BattleEvent::InflictStatus::InflictStatus(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::InflictStatus)
 {
   successMessage = "Success";
   failMessage = "Failed";
@@ -1837,7 +1820,7 @@ BattleEvent::InflictStatus::InflictStatus(BattleEvent *pBase, Event *parent) : E
   self = true;
 }
 
-BattleEvent::InflictStatus::InflictStatus(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::InflictStatus)
+BattleEvent::InflictStatus::InflictStatus(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::InflictStatus)
 {
   QString statusString = eventNode.getAttribute("status");
   successMessage = eventNode.getAttribute("success");
@@ -1879,7 +1862,7 @@ void BattleEvent::InflictStatus::compileEvent(QByteArray *bytes)
 {
   offset = bytes->count();
   bytes->append(static_cast<char>(type));
-  bytes->append((status << 2) | level | ((self) ? 128:0));
+  bytes->append((status << 3) | level | ((self) ? 128:0));
   bytes->append(successMessage.size());
   bytes->append(failMessage.size());
   if (!self)
@@ -1928,12 +1911,12 @@ QTreeWidgetItem *BattleEvent::InflictStatus::getItem()
 //END: InflictStatus
 
 //BEGIN: ConsumeMP (COMPLETE)
-BattleEvent::ConsumeMP::ConsumeMP(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::ConsumeMP)
+BattleEvent::ConsumeMP::ConsumeMP(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ConsumeMP)
 {
   amount = 1;
 }
 
-BattleEvent::ConsumeMP::ConsumeMP(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ConsumeMP)
+BattleEvent::ConsumeMP::ConsumeMP(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ConsumeMP)
 {
   amount = QString(eventNode.getAttribute("amount")).toInt();
 }
@@ -1974,13 +1957,13 @@ QTreeWidgetItem *BattleEvent::ConsumeMP::getItem()
 //END: ConsumeMP
 
 //BEGIN: Random (COMPLETE)
-BattleEvent::Random::Random(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::Random)
+BattleEvent::Random::Random(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Random)
 {
   counter = 0;
   max = 255;
 }
 
-BattleEvent::Random::Random(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Random)
+BattleEvent::Random::Random(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Random)
 {
   counter = QString(eventNode.getAttribute("counter")).toInt();
   max = QString(eventNode.getAttribute("max")).toInt();
@@ -2030,12 +2013,12 @@ QTreeWidgetItem *BattleEvent::Random::getItem()
 //END: Random
 
 //BEGIN: Label (COMPLETE)
-BattleEvent::Label::Label(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::Label)
+BattleEvent::Label::Label(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Label)
 {
   name = "";
 }
 
-BattleEvent::Label::Label(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Label)
+BattleEvent::Label::Label(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Label)
 {
   name = eventNode.getAttribute("name");
 }
@@ -2082,12 +2065,12 @@ QTreeWidgetItem *BattleEvent::Label::getItem()
 //END: Label
 
 //BEGIN: Comment (COMPLETE)
-BattleEvent::Comment::Comment(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::Comment)
+BattleEvent::Comment::Comment(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Comment)
 {
   comment = "";
 }
 
-BattleEvent::Comment::Comment(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Comment)
+BattleEvent::Comment::Comment(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Comment)
 {
   comment = QString(eventNode.getAttribute("value")).replace("\\n", "\n").replace("\\\\", "\\");
 }
@@ -2151,12 +2134,12 @@ QTreeWidgetItem *BattleEvent::Comment::getItem()
 //END: Comment
 
 //BEGIN: Else (COMPLETE)
-BattleEvent::Else::Else(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::Else)
+BattleEvent::Else::Else(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Else)
 {
   events += Event::newEvent(pBase, this, Type::End);
 }
 
-BattleEvent::Else::Else(BattleEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Else)
+BattleEvent::Else::Else(BattleEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Else)
 {
   for (int i = 0; i < eventNode.nChildNode(); ++i)
     events += Event::newEvent(pBase, this, eventNode.getChildNode(i));
@@ -2220,6 +2203,7 @@ QTreeWidgetItem *BattleEvent::Else::getItem()
 //BEGIN: End (COMPLETE)
 void BattleEvent::End::compileEvent(QByteArray *bytes)
 {
+  offset = bytes->count();
   if (parent->getType() == Event::Type::TopLevelEvent)
     bytes->append(static_cast<char>(Event::Type::EndEventProcessing));
   else

@@ -145,7 +145,7 @@ void PTAD::Ui::lineFiller(uint8_t *line, uint32_t y, bool skip) noexcept
 		uint8_t tile = uimap[tileIndex++];
 		if (tile != 255)
 		{
-			for (uint32_t j = 0; j < iter; ++j)
+			for (int j = 0; j < iter; ++j)
         line[i + j] = (PTAD::font[tile * 8 + j + tileX] & mask) ? fgColor:bgColor;
 		}
 		i += iter;
@@ -154,7 +154,7 @@ void PTAD::Ui::lineFiller(uint8_t *line, uint32_t y, bool skip) noexcept
 	finalX = cursorX - cameraX + 2;
   finalY = cursorY - cameraY;
   if (y >= finalY && y < finalY + 16)
-    pixelCopy(line + finalX, PTAD::cursor + (y - finalY) * 16, 16);
+    pixelCopy(line + finalX, PTAD::Resources::cursor + (y - finalY) * 16, 16);
   else if (y >= finalY + 16)
     cursorY = -16;
   finalX = dialogCursorX - cameraX + 2;

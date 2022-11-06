@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project name="Prelude to a Dream" progress="56">
+<project name="Prelude to a Dream" progress="57">
 	<item name="Game" progress="15" notes="Game Progress">
 		<item name="Act 1" progress="46" notes="Ends when player finishes with brigands and breaks the seal in the first temple">
 			<item name="Chapter 1" progress="100" notes="Ends when player clears the cellar, learns of the raid and kidnapping, and leaves town"/>
@@ -75,7 +75,7 @@
 			<item name="Chapter 15" progress="0" notes=""/>
 		</item>
 	</item>
-	<item name="Editor" progress="98" notes="Editor Progress">
+	<item name="Editor" progress="100" notes="Editor Progress">
 		<item name="Map Editor" progress="100" notes="">
 			<item name="Map View" progress="100" notes=""/>
 			<item name="Layers" progress="100" notes="">
@@ -98,7 +98,7 @@
 		<item name="Skills Editor" progress="100" notes=""/>
 		<item name="Spells Editor" progress="100" notes=""/>
 		<item name="Stats Editor" progress="100" notes=""/>
-		<item name="Compile Data" progress="90" notes="">
+		<item name="Compile Data" progress="100" notes="">
 			<item name="Battle Animations" progress="100" notes=""/>
 			<item name="Battle Backgrounds" progress="100" notes=""/>
 			<item name="Monsters" progress="100" notes=""/>
@@ -109,7 +109,7 @@
 			<item name="Sprites" progress="100" notes=""/>
 			<item name="Tilesets" progress="100" notes=""/>
 			<item name="Pack Data" progress="100" notes=""/>
-			<item name="Generate resources.h" progress="0" notes=""/>
+			<item name="Generate resources.h" progress="100" notes=""/>
 		</item>
 	</item>
 </project>

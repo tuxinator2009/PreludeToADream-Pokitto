@@ -4,7 +4,7 @@ using PC=Pokitto::Core;
 using PD=Pokitto::Display;
 using PB=Pokitto::Buttons;
 
-const uint32_t PTAD::Battle::backgrounds[] =
+/*const uint32_t PTAD::Battle::backgrounds[] =
 {
 	DataPack::hash("backdrops/field.gfx"),    //0x00 ( 0)
 	DataPack::hash("backdrops/forest.gfx"),   //0x01 ( 1)
@@ -36,30 +36,30 @@ const uint32_t PTAD::Battle::enemies[] =
 	DataPack::hash("battlers/warthog.dat"),  //0x0E (14)
 	DataPack::hash("battlers/sandworm.dat"), //0x0F (15)
 	DataPack::hash("battlers/akacheta.dat"), //0x10 (16)
-};
+};*/
 
 const uint32_t PTAD::Battle::playerBattleAnimations[] =
 {
-  DataPack::hash("animations/player_sword.anim"), //Rusty Sword
-  DataPack::hash("animations/player_sword.anim"),     //Dagger
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 3
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 4
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 5
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 6
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 7
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 8
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 9
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 10
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 11
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 12
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 13
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 14
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 15
-  DataPack::hash("animations/player_sword.anim"),    //Weapon 16
-  DataPack::hash("animations/player_unarmed.anim")     //No weapon
+  DataPack::hash("/animations/player_sword.xml"), //Rusty Sword
+  DataPack::hash("/animations/player_sword.xml"),     //Dagger
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 3
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 4
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 5
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 6
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 7
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 8
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 9
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 10
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 11
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 12
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 13
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 14
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 15
+  DataPack::hash("/animations/player_sword.xml"),    //Weapon 16
+  DataPack::hash("/animations/player_unarmed.xml")     //No weapon
 };
 
-const uint8_t PTAD::Battle::enemyNames[]
+/*const uint8_t PTAD::Battle::enemyNames[]
 {
   //Wolf____
   0x30,0x42,0x3F,0x39,0x0A,0x0A,0x0A,0x0A,
@@ -97,7 +97,7 @@ const uint8_t PTAD::Battle::enemyNames[]
   0x1A,0x3E,0x34,0x36,0x3B,0x38,0x47,0x34,
 };
 
-const uint8_t PTAD::Battle::numEnemies = sizeof(PTAD::Battle::enemies) / sizeof(PTAD::Battle::enemies[0]);
+const uint8_t PTAD::Battle::numEnemies = sizeof(PTAD::Battle::enemies) / sizeof(PTAD::Battle::enemies[0]);*/
 
 const uint8_t PTAD::Battle::showBackgroundOrder[] =
 {
@@ -145,9 +145,10 @@ bool PTAD::Battle::keepFocus = false;
 void PTAD::Battle::setup()
 {
 	state = State::Init;
-  PTAD::dataFile->getPackedFile(DataPack::hash("battlers/battlers.gfx"), &battlerFile);
-	PTAD::dataFile->getPackedFile(enemies[PTAD::battleMonsterID], &enemyFile);
-	PTAD::dataFile->readBytes(&enemyFile, (void*)enemy, sizeof(EnemyData));
+  PTAD::dataFile->getPackedFile(DataPack::hash("/battlers.png"), &battlerFile);
+	PTAD::dataFile->getPackedFile(PTAD::Resources::enemies[PTAD::battleMonsterID], &enemyFile);
+  PTAD::dataFile->readBytes(&enemyFile, (void*)enemy, sizeof(EnemyData));
+  fflush(stdout);
 	PTAD::globalCounter = 0;
   PTAD::Music::playMusic(PTAD::battleBGM, 1);
   loadBackgroundImage();
@@ -216,21 +217,21 @@ void PTAD::Battle::update()
     if (state != State::Victory)
     {
       if (((enemyStatus >> STATUS_POISON) & 3) != 0)
-        PD::drawSpriteBitmap(22, 12, 16, 16, PTAD::statusIcons + ((((enemyStatus >> STATUS_POISON) & 3) - 1) * 256));
+        PD::drawSpriteBitmap(22, 14, 16, 16, PTAD::Resources::statusIcons + ((((enemyStatus >> STATUS_POISON) & 3) - 1) * 256));
       if (((enemyStatus >> STATUS_SPEED) & 3) != 0)
-        PD::drawSpriteBitmap(22 + 16, 12, 16, 16, PTAD::statusIcons + 768 + ((((enemyStatus >> STATUS_SPEED) & 3) - 1) * 256));
+        PD::drawSpriteBitmap(22 + 16, 14, 16, 16, PTAD::Resources::statusIcons + 768 + ((((enemyStatus >> STATUS_SPEED) & 3) - 1) * 256));
       if (((enemyStatus >> STATUS_FOCUSED) & 3) != 0)
-        PD::drawSpriteBitmap(22 + 32, 12, 16, 16, PTAD::statusIcons + 1536 + ((((enemyStatus >> STATUS_FOCUSED) & 3) - 1) * 256));
+        PD::drawSpriteBitmap(22 + 32, 14, 16, 16, PTAD::Resources::statusIcons + 1536 + ((((enemyStatus >> STATUS_FOCUSED) & 3) - 1) * 256));
       if (((enemyStatus >> STATUS_BERSERK) & 3) != 0)
-        PD::drawSpriteBitmap(22 + 48, 12, 16, 16, PTAD::statusIcons + 2304 + ((((enemyStatus >> STATUS_BERSERK) & 3) - 1) * 256));
+        PD::drawSpriteBitmap(22 + 48, 14, 16, 16, PTAD::Resources::statusIcons + 2304 + ((((enemyStatus >> STATUS_BERSERK) & 3) - 1) * 256));
       if (((playerStatus >> STATUS_POISON) & 3) != 0)
-        PD::drawSpriteBitmap(22, 88, 16, 16, PTAD::statusIcons + ((((playerStatus >> STATUS_POISON) & 3) - 1) * 256));
+        PD::drawSpriteBitmap(22, 90, 16, 16, PTAD::Resources::statusIcons + ((((playerStatus >> STATUS_POISON) & 3) - 1) * 256));
       if (((playerStatus >> STATUS_SPEED) & 3) != 0)
-        PD::drawSpriteBitmap(22 + 16, 88, 16, 16, PTAD::statusIcons + 768 + ((((playerStatus >> STATUS_SPEED) & 3) - 1) * 256));
+        PD::drawSpriteBitmap(22 + 16, 90, 16, 16, PTAD::Resources::statusIcons + 768 + ((((playerStatus >> STATUS_SPEED) & 3) - 1) * 256));
       if (((playerStatus >> STATUS_FOCUSED) & 3) != 0)
-        PD::drawSpriteBitmap(22 + 32, 88, 16, 16, PTAD::statusIcons + 1536 + ((((playerStatus >> STATUS_FOCUSED) & 3) - 1) * 256));
+        PD::drawSpriteBitmap(22 + 32, 90, 16, 16, PTAD::Resources::statusIcons + 1536 + ((((playerStatus >> STATUS_FOCUSED) & 3) - 1) * 256));
       if (((playerStatus >> STATUS_BERSERK) & 3) != 0)
-        PD::drawSpriteBitmap(22 + 48, 88, 16, 16, PTAD::statusIcons + 2304 + ((((playerStatus >> STATUS_BERSERK) & 3) - 1) * 256));
+        PD::drawSpriteBitmap(22 + 48, 90, 16, 16, PTAD::Resources::statusIcons + 2304 + ((((playerStatus >> STATUS_BERSERK) & 3) - 1) * 256));
     }
     if (PTAD::BattleAnimation::isAnimationPlaying())
       PTAD::BattleAnimation::renderFrame();
@@ -323,7 +324,7 @@ void PTAD::Battle::showFrames()
 {
   PTAD::Ui::drawFrame(2, 1, 11, 3); //Enemy status icons
   for (uint8_t i = 0; i < 8; ++i)
-    PTAD::Ui::drawCharacter(enemyNames[PTAD::battleMonsterID * 8 + i], i + 3, 1);
+    PTAD::Ui::drawCharacter(PTAD::Resources::enemyNames[PTAD::battleMonsterID * 8 + i], i + 3, 1);
   for (uint8_t i = 10; i >= 3; --i)
   {
     if (PTAD::Ui::getCharacter(i, 1) == PTAD::FONT_SPACE)
@@ -351,7 +352,7 @@ void PTAD::Battle::showFrames()
 
 void PTAD::Battle::loadBackgroundImage()
 {
-  PTAD::dataFile->getPackedFile(backgrounds[PTAD::battleBG], &backgroundFile);
+  PTAD::dataFile->getPackedFile(PTAD::Resources::backgrounds[PTAD::battleBG], &backgroundFile);
   PTAD::dataFile->readBytes(&backgroundFile, backgroundImage, PTAD::MEMORY_BATTLE_BACKGROUND_SIZE);
 }
 
@@ -363,9 +364,9 @@ void PTAD::Battle::loadBattlerSprite()
 
 void PTAD::Battle::loadPlayerSprite()
 {
-  const uint8_t *src = PTAD::playerSprite + 384;
+  const uint8_t *src = PTAD::Resources::playerSprite + 384;
   uint8_t *dst = playerImage;
-  for (int i = 0; i < MEMORY_BATTLE_PLAYER_SIZE; ++i)
+  for (size_t i = 0; i < MEMORY_BATTLE_PLAYER_SIZE; ++i)
     *dst++ = *src++;
 }
 
@@ -416,6 +417,7 @@ int PTAD::Battle::attackDamageDealt(int attack, int agility1, int defense, int a
     damage /= 2;
   else if (resistance == 3)
     damage *= 2;
+  fflush(stdout);
 	return std::min(999, std::max(1, damage));
 }
 
@@ -449,7 +451,7 @@ void PTAD::Battle::init()
 
 void PTAD::Battle::surpriseAttack()
 {
-	PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_SURPRISE_ATTACK);
+  PTAD::Dialog::addMessage(PTAD::Resources::battleSurpriseAttack);
 	PTAD::Dialog::beginMessage();
 	PTAD::globalCounter = 1;
   state = State::EnemyTurnInit;
@@ -460,7 +462,7 @@ void PTAD::Battle::playerTurnInit()
   uint8_t playerSpeed = (playerStatus >> STATUS_SPEED) & 3;
   uint8_t enemySpeed = (enemyStatus >> STATUS_SPEED) & 3;
 	state = State::ChooseFightRun;
-	PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_CHOOSE_ACTION);
+	PTAD::Dialog::addMessage(PTAD::Resources::battleChooseAction);
 	PTAD::Dialog::beginMessage();
   if (turnCount == 0)
   {
@@ -482,21 +484,21 @@ void PTAD::Battle::chooseFightRun()
   PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 12, 14, 3);
   if (PTAD::justPressed(PTAD::BTN_MASK_LEFT) || PTAD::justPressed(PTAD::BTN_MASK_RIGHT))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
     PTAD::globalCounter ^= 1;
   }
   PTAD::Ui::cursorX = 102 + PTAD::globalCounter * 56;
   PTAD::Ui::cursorY = 16;
   if (PTAD::justPressed(BTN_MASK_A) || PB::cBtn())
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
     if (PTAD::globalCounter == 0)
       state = State::ChooseAction;
     else
       state = State::Run;
     PTAD::globalCounter = 0;
   }
-  else if ((playerStatus >> STATUS_BERSERK) & 3 != 0)
+  else if (((playerStatus >> STATUS_BERSERK) & 3) != 0)
   {
     state = State::ChooseAction;
     PTAD::globalCounter = 0;
@@ -509,19 +511,19 @@ void PTAD::Battle::chooseAction()
   PTAD::Ui::drawText(txtActions + 24, 12, 14, 3);
   if (PTAD::justPressed(PTAD::BTN_MASK_LEFT) || PTAD::justPressed(PTAD::BTN_MASK_RIGHT))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
     PTAD::globalCounter ^= 1;
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_UP) || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
     PTAD::globalCounter ^= 2;
   }
   PTAD::Ui::cursorX = 94 + (PTAD::globalCounter % 2) * 56;
   PTAD::Ui::cursorY = 16 + (PTAD::globalCounter / 2) * 8;
   if (PTAD::justPressed(BTN_MASK_A) || PB::cBtn())
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
 		if (PTAD::globalCounter == ACTION_ATTACK)
       state = State::Attack;
     else if (PTAD::globalCounter == ACTION_ITEM)
@@ -534,12 +536,12 @@ void PTAD::Battle::chooseAction()
       {
         if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][i] > 0)
         {
-          PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][i].name, 8, 15, i + 2);
+          PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][i].name, 8, 15, i + 2);
           PTAD::Ui::drawNumber(PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][i], 24, i + 2, 10);
         }
       }
       if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][0] > 0)
-        PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][0].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][0].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -553,12 +555,12 @@ void PTAD::Battle::chooseAction()
       {
         if (((PTAD::Game::player.skills >> i) & 1) != 0)
         {
-          PTAD::Ui::drawText(PTAD::skills[i].name, 8, 15, i + 2);
-          PTAD::Ui::drawNumber(PTAD::skills[i].price, 24, i + 2, 10);
+          PTAD::Ui::drawText(PTAD::Resources::skills[i].name, 8, 15, i + 2);
+          PTAD::Ui::drawNumber(PTAD::Resources::skills[i].price, 24, i + 2, 10);
         }
       }
       if ((PTAD::Game::player.skills & 1) != 0)
-        PTAD::Ui::drawText(PTAD::skills[0].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::skills[0].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -572,12 +574,12 @@ void PTAD::Battle::chooseAction()
       {
         if (((PTAD::Game::player.spells >> i) & 1) != 0)
         {
-          PTAD::Ui::drawText(PTAD::spells[i].name, 8, 15, i + 2);
-          PTAD::Ui::drawNumber(PTAD::spells[i].price, 24, i + 2, 10);
+          PTAD::Ui::drawText(PTAD::Resources::spells[i].name, 8, 15, i + 2);
+          PTAD::Ui::drawNumber(PTAD::Resources::spells[i].price, 24, i + 2, 10);
         }
       }
       if ((PTAD::Game::player.spells & 1) != 0)
-        PTAD::Ui::drawText(PTAD::spells[0].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::spells[0].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -585,7 +587,7 @@ void PTAD::Battle::chooseAction()
 	}
 	else if (PTAD::justPressed(BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     state = State::ChooseFightRun;
     PTAD::globalCounter = 0;
   }
@@ -597,13 +599,13 @@ void PTAD::Battle::chooseItem()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
         PTAD::globalCounter = 15;
       if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter] > 0)
-        PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -612,13 +614,13 @@ void PTAD::Battle::chooseItem()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter == 16)
         PTAD::globalCounter = 0;
       if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter] > 0)
-        PTAD::Ui::drawText(PTAD::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -626,50 +628,50 @@ void PTAD::Battle::chooseItem()
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
     if (PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][PTAD::globalCounter] == 0)
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
     else if (PTAD::globalCounter >= PTAD::ITEM_POTION && PTAD::globalCounter <= PTAD::ITEM_S_POTION && PTAD::Game::player.hp == PTAD::Game::player.maxHP)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter >= PTAD::ITEM_ETHER && PTAD::globalCounter <= PTAD::ITEM_S_ETHER && PTAD::Game::player.mp == PTAD::Game::player.maxMP)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::ITEM_ELIXIR && PTAD::Game::player.hp != PTAD::Game::player.maxHP && PTAD::Game::player.mp != PTAD::Game::player.maxMP)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::ITEM_ANTIDOTE && ((playerStatus >> STATUS_POISON) & 3) == 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::ITEM_STIMULNT && ((playerStatus >> STATUS_SPEED) & 3) != SPEED_SLOW)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::ITEM_HERBS && ((playerStatus >> STATUS_BERSERK) & 3) == 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::ITEM_REMEDY && (playerStatus & 0xF) == 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::ITEM_SMOKE_B && battleBGM != 2)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       state = State::UseItem;
       lastPress = PTAD::globalCounter;
       PTAD::globalCounter = 0;
@@ -677,7 +679,7 @@ void PTAD::Battle::chooseItem()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     state = State::ChooseAction;
     PTAD::globalCounter = ACTION_ITEM;
   }
@@ -700,13 +702,13 @@ void PTAD::Battle::chooseSkill()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
         PTAD::globalCounter = 15;
       if (((PTAD::Game::player.skills >> PTAD::globalCounter) & 1) != 0)
-        PTAD::Ui::drawText(PTAD::skills[PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::skills[PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -715,13 +717,13 @@ void PTAD::Battle::chooseSkill()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter == 16)
         PTAD::globalCounter = 0;
       if (((PTAD::Game::player.skills >> PTAD::globalCounter) & 1) != 0)
-        PTAD::Ui::drawText(PTAD::skills[PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::skills[PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -729,80 +731,80 @@ void PTAD::Battle::chooseSkill()
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
     if (((PTAD::Game::player.skills >> PTAD::globalCounter) & 1) == 0)
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
     else if (PTAD::globalCounter == PTAD::SKILL_FOCUS_1 && ((playerStatus >> STATUS_FOCUSED) & 3) != 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_FOCUS_2 && ((playerStatus >> STATUS_FOCUSED) & 3) != 1)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_FOCUS_3 && ((playerStatus >> STATUS_FOCUSED) & 3) != 2)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_DASH && ((playerStatus >> STATUS_SPEED) & 3) == SPEED_HASTE)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_ENRAGE_1 && ((playerStatus >> STATUS_BERSERK) & 3) != 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_ENRAGE_2 && ((playerStatus >> STATUS_BERSERK) & 3) != 1)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_ENRAGE_3 && ((playerStatus >> STATUS_BERSERK) & 3) != 2)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_MEDITATE && ((playerStatus >> STATUS_BERSERK) & 3) == 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_UNKNOWN1)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_UNKNOWN2)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_UNKNOWN3)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_UNKNOWN4)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SKILL_UNKNOWN5)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
-    else if (PTAD::Game::player.mp < PTAD::skills[PTAD::globalCounter].price)
+    else if (PTAD::Game::player.mp < PTAD::Resources::skills[PTAD::globalCounter].price)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNotEnoughMana, 24, 2, 19);
     }
     else
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       state = State::UseSkill;
       lastPress = PTAD::globalCounter;
       PTAD::globalCounter = 0;
@@ -810,7 +812,7 @@ void PTAD::Battle::chooseSkill()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     state = State::ChooseAction;
     PTAD::globalCounter = ACTION_SKILL;
   }
@@ -833,13 +835,13 @@ void PTAD::Battle::chooseSpell()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
         PTAD::globalCounter = 15;
       if (((PTAD::Game::player.spells >> PTAD::globalCounter) & 1) != 0)
-        PTAD::Ui::drawText(PTAD::spells[PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::spells[PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -848,13 +850,13 @@ void PTAD::Battle::chooseSpell()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter == 16)
         PTAD::globalCounter = 0;
       if (((PTAD::Game::player.spells >> PTAD::globalCounter) & 1) != 0)
-        PTAD::Ui::drawText(PTAD::spells[PTAD::globalCounter].description, 24, 2, 19);
+        PTAD::Ui::drawText(PTAD::Resources::spells[PTAD::globalCounter].description, 24, 2, 19);
       else
         PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
     }
@@ -862,35 +864,35 @@ void PTAD::Battle::chooseSpell()
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
     if (((PTAD::Game::player.spells >> PTAD::globalCounter) & 1) == 0)
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
     else if (PTAD::globalCounter == PTAD::SPELL_ENVENOM && ((enemyStatus >> STATUS_POISON) & 3) == 3)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SPELL_ENSNARE && ((enemyStatus >> STATUS_SPEED) & 3) == SPEED_SLOW)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SPELL_RECOVERY && PTAD::Game::player.hp == PTAD::Game::player.maxHP)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
     else if (PTAD::globalCounter == PTAD::SPELL_CLEANSER && (playerStatus & 0x0F) == 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNoEffect, 24, 2, 19);
     }
-    else if (PTAD::Game::player.mp < PTAD::spells[PTAD::globalCounter].price)
+    else if (PTAD::Game::player.mp < PTAD::Resources::spells[PTAD::globalCounter].price)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       PTAD::Ui::drawText(txtNotEnoughMana, 24, 2, 19);
     }
     else
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       state = State::CastSpell;
       lastPress = PTAD::globalCounter;
       PTAD::globalCounter = 0;
@@ -898,7 +900,7 @@ void PTAD::Battle::chooseSpell()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     state = State::ChooseAction;
     PTAD::globalCounter = ACTION_SPELL;
   }
@@ -921,19 +923,19 @@ void PTAD::Battle::run()
 	{
 		if (battleBGM != 2)
 		{
-			PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RUN_IMPOSSIBLE);
+			PTAD::Dialog::addMessage(PTAD::Resources::battleRunImpossible);
 			state = State::PlayerTurnInit;
 		}
 		if (random(0, getPlayerAgility() * 16) <= getEnemyAgility())
 		{
-      PTAD::Music::playSFX(PTAD::Music::SFX_MISS);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RUN_FAIL);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_miss);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRunFail);
       endOfPlayersTurn();
 		}
 		else
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_RUN);
-			PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RUN_SUCCESS);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_run);
+			PTAD::Dialog::addMessage(PTAD::Resources::battleRunSuccess);
     }
 		PTAD::Dialog::beginMessage();
 		++PTAD::globalCounter;
@@ -950,16 +952,16 @@ void PTAD::Battle::attack(uint8_t multiplier)
 {
   if (PTAD::globalCounter == 0)
   {
-    PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_FIGHT);
+    PTAD::Dialog::addMessage(PTAD::Resources::battleFight);
     PTAD::Dialog::beginMessage();
   }
   if (PTAD::globalCounter == 1)
   {
-    lastPress = attackDamageDealt(getPlayerAttack() * multiplier, getPlayerAgility(), getEnemyDefense(), getEnemyAgility(), (enemy->spellResistance >> 14) & 3);
+    lastPress = attackDamageDealt(getPlayerAttack() * multiplier, getPlayerAgility(), getEnemyDefense(), getEnemyAgility(), (enemy->spellResistance >> 12) & 3);
     if (lastPress == 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_MISS);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_MISS);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_miss);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleMiss);
     }
     else if (random(0, 100) < 5)
     {
@@ -968,12 +970,12 @@ void PTAD::Battle::attack(uint8_t multiplier)
       else
         PTAD::BattleAnimation::beginAnimation(playerBattleAnimations[PTAD::Game::player.equippedItems[0]]);
       //flashBattlerSprite(16, 8, 88, 168);
-      //PTAD::Music::playSFX(PTAD::Music::SFX_HIT);
+      //PTAD::Music::playSFX(PTAD::Resources::sfx_hit);
       lastPress *= 2;
       enemyStatus &= ~(3 << STATUS_FOCUSED);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_CRITICAL_HIT);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleCriticalHit);
       PTAD::Dialog::bufferNumber(lastPress, 100);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageTakenEnd);
     }
     else
     {
@@ -982,10 +984,10 @@ void PTAD::Battle::attack(uint8_t multiplier)
       else
         PTAD::BattleAnimation::beginAnimation(playerBattleAnimations[PTAD::Game::player.equippedItems[0]]);
       flashBattlerSprite(16, 8, 88, 168);
-      PTAD::Music::playSFX(PTAD::Music::SFX_HIT);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_DEALT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_hit);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageDealt);
       PTAD::Dialog::bufferNumber(lastPress, 100);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageTakenEnd);
     }
     PTAD::Dialog::beginMessage();
   }
@@ -1010,14 +1012,14 @@ void PTAD::Battle::useItem()
   {
     if (random(0, 255) < berserkFailRate[(playerStatus >> STATUS_BERSERK) & 3] && lastPress != PTAD::ITEM_HERBS) //attack instead
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_BERSERK_ATTACK);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleBerserkAttack);
       PTAD::Dialog::beginMessage();
       state = State::Attack;
       return;
     }
-    PTAD::Music::playSFX(PTAD::Music::SFX_USEITEM);
-    PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_USE_ITEM);
-    PTAD::Dialog::bufferText(PTAD::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][lastPress].name, 8);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_useitem);
+    PTAD::Dialog::addMessage(PTAD::Resources::battleUseItem);
+    PTAD::Dialog::bufferText(PTAD::Resources::items[PTAD::Game::ITEM_TYPE_CONSUMABLES][lastPress].name, 8);
     PTAD::Dialog::trimBuffer();
     PTAD::Dialog::beginMessage();
     --PTAD::Game::player.items[PTAD::Game::ITEM_TYPE_CONSUMABLES][lastPress];
@@ -1029,7 +1031,7 @@ void PTAD::Battle::useItem()
       PTAD::Game::player.hp += 50;
       if (PTAD::Game::player.hp > PTAD::Game::player.maxHP)
         PTAD::Game::player.hp = PTAD::Game::player.maxHP;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RECOVERED_AMOUNT);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRecoveredAmount);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_5);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_0);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_SPACE);
@@ -1042,7 +1044,7 @@ void PTAD::Battle::useItem()
       PTAD::Game::player.hp += 150;
       if (PTAD::Game::player.hp > PTAD::Game::player.maxHP)
         PTAD::Game::player.hp = PTAD::Game::player.maxHP;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RECOVERED_AMOUNT);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRecoveredAmount);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_1);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_5);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_0);
@@ -1056,7 +1058,7 @@ void PTAD::Battle::useItem()
       PTAD::Game::player.hp += 300;
       if (PTAD::Game::player.hp > PTAD::Game::player.maxHP)
         PTAD::Game::player.hp = PTAD::Game::player.maxHP;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RECOVERED_AMOUNT);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRecoveredAmount);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_3);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_0);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_0);
@@ -1070,7 +1072,7 @@ void PTAD::Battle::useItem()
       PTAD::Game::player.mp += 5;
       if (PTAD::Game::player.mp > PTAD::Game::player.maxMP)
         PTAD::Game::player.mp = PTAD::Game::player.maxMP;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RECOVERED_AMOUNT);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRecoveredAmount);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_5);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_SPACE);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_m);
@@ -1084,7 +1086,7 @@ void PTAD::Battle::useItem()
       PTAD::Game::player.mp += 15;
       if (PTAD::Game::player.mp > PTAD::Game::player.maxMP)
         PTAD::Game::player.mp = PTAD::Game::player.maxMP;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RECOVERED_AMOUNT);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRecoveredAmount);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_1);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_5);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_SPACE);
@@ -1099,7 +1101,7 @@ void PTAD::Battle::useItem()
       PTAD::Game::player.mp += 30;
       if (PTAD::Game::player.mp > PTAD::Game::player.maxMP)
         PTAD::Game::player.mp = PTAD::Game::player.maxMP;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RECOVERED_AMOUNT);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRecoveredAmount);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_3);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_0);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_SPACE);
@@ -1140,54 +1142,54 @@ void PTAD::Battle::useItem()
     else if (lastPress == PTAD::ITEM_ANTIDOTE)
     {
       playerStatus &= ~(3 << STATUS_POISON);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_REMOVE_POISON);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRemovePoison);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == PTAD::ITEM_STIMULNT)
     {
       playerStatus &= ~(3 << STATUS_SPEED);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_REMOVE_SLOW);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRemoveSlow);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == PTAD::ITEM_HERBS)
     {
       playerStatus &= ~(3 << STATUS_BERSERK);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_REMOVE_BERSERK);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRemoveBerserk);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == PTAD::ITEM_REMEDY)
     {
       playerStatus &= 0xF0;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_CLEANSED);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleCleansed);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == PTAD::ITEM_X_ATTACK)
     {
       playerStats.attack = (playerStats.attack * 3) / 2;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_ATTACK_UP);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleAttackUp);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == PTAD::ITEM_X_DEFEND)
     {
       playerStats.defense = (playerStats.defense * 3) / 2;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DEFENSE_UP);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDefenseUp);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == PTAD::ITEM_X_SPEED)
     {
       playerStats.agility = (playerStats.agility * 3) / 2;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_AGILITY_UP);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleAgilityUp);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == PTAD::ITEM_X_MAGIC)
     {
       playerStats.magic = (playerStats.magic * 3) / 2;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_MAGIC_UP);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleMagicUp);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == PTAD::ITEM_SMOKE_B)
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RUN_SUCCESS);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRunSuccess);
       PTAD::Dialog::beginMessage();
       ++PTAD::globalCounter;
     }
@@ -1212,17 +1214,17 @@ void PTAD::Battle::useSkill()
   {
     if (random(0, 255) < berserkFailRate[(playerStatus >> STATUS_BERSERK) & 3] && lastPress < PTAD::SKILL_ENRAGE_1 && lastPress > PTAD::SKILL_MEDITATE) //attack instead
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_BERSERK_ATTACK);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleBerserkAttack);
       PTAD::Dialog::beginMessage();
       state = State::Attack;
       return;
     }
-    PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_USE_SKILL);
-    PTAD::Dialog::bufferText(PTAD::skills[lastPress].name, 8);
+    PTAD::Dialog::addMessage(PTAD::Resources::battleUseSkill);
+    PTAD::Dialog::bufferText(PTAD::Resources::skills[lastPress].name, 8);
     PTAD::Dialog::trimBuffer();
     PTAD::Dialog::beginMessage();
     //TODO: Play skill's battle animation
-    PTAD::Game::player.mp -= PTAD::skills[lastPress].price;
+    PTAD::Game::player.mp -= PTAD::Resources::skills[lastPress].price;
   }
   else if (PTAD::globalCounter == 1)
   {
@@ -1272,21 +1274,21 @@ void PTAD::Battle::useSkill()
     }
     if (lastPress == PTAD::SKILL_FOCUS_1)
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_FOCUS1);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleFocus1);
       PTAD::Dialog::beginMessage();
       playerStatus = (playerStatus & ~(3 << STATUS_FOCUSED)) | (1 << STATUS_FOCUSED);
       keepFocus = true;
     }
     else if (lastPress == PTAD::SKILL_FOCUS_2)
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_FOCUS2);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleFocus2);
       PTAD::Dialog::beginMessage();
       playerStatus = (playerStatus & ~(3 << STATUS_FOCUSED)) | (2 << STATUS_FOCUSED);
       keepFocus = true;
     }
     else if (lastPress == PTAD::SKILL_FOCUS_3)
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_FOCUS3);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleFocus3);
       PTAD::Dialog::beginMessage();
       playerStatus = (playerStatus & ~(3 << STATUS_FOCUSED)) | (3 << STATUS_FOCUSED);
       keepFocus = true;
@@ -1316,30 +1318,30 @@ void PTAD::Battle::useSkill()
       else if (playerSpeed == SPEED_NORMAL)
         playerSpeed = SPEED_HASTE;
       playerStatus = (playerStatus & ~(3 << STATUS_SPEED)) | (playerSpeed << STATUS_SPEED);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_INFLICT_HASTE);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleInflictHaste);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == PTAD::SKILL_ENRAGE_1)
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_BERSERK1);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleBerserk1);
       PTAD::Dialog::beginMessage();
       playerStatus = (playerStatus & ~(3 << STATUS_BERSERK)) | (1 << STATUS_BERSERK);
     }
     else if (lastPress == PTAD::SKILL_ENRAGE_2)
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_BERSERK2);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleBerserk2);
       PTAD::Dialog::beginMessage();
       playerStatus = (playerStatus & ~(3 << STATUS_BERSERK)) | (2 << STATUS_BERSERK);
     }
     else if (lastPress == PTAD::SKILL_ENRAGE_3)
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_BERSERK3);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleBerserk3);
       PTAD::Dialog::beginMessage();
       playerStatus = (playerStatus & ~(3 << STATUS_BERSERK)) | (3 << STATUS_BERSERK);
     }
     else if (lastPress == PTAD::SKILL_MEDITATE)
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_REMOVE_BERSERK);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRemoveBerserk);
       PTAD::Dialog::beginMessage();
       playerStatus &= ~(3 << STATUS_BERSERK);
     }
@@ -1396,16 +1398,16 @@ void PTAD::Battle::castSpell()
   {
     if (random(0, 255) < berserkFailRate[(playerStatus >> STATUS_BERSERK) & 3]) //attack instead
     {
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_BERSERK_ATTACK);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleBerserkAttack);
       PTAD::Dialog::beginMessage();
       state = State::Attack;
       return;
     }
-    PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_CAST_SPELL);
-    PTAD::Dialog::bufferText(PTAD::spells[lastPress].name, 8);
+    PTAD::Dialog::addMessage(PTAD::Resources::battleCastSpell);
+    PTAD::Dialog::bufferText(PTAD::Resources::spells[lastPress].name, 8);
     PTAD::Dialog::trimBuffer();
     PTAD::Dialog::beginMessage();
-    PTAD::Game::player.mp -= PTAD::spells[lastPress].price;
+    PTAD::Game::player.mp -= PTAD::Resources::spells[lastPress].price;
     //TODO show spells battle animation
   }
   else if (PTAD::globalCounter == 1)
@@ -1413,9 +1415,9 @@ void PTAD::Battle::castSpell()
     if (lastPress >= PTAD::SPELL_FIREBALL && lastPress <= PTAD::SPELL_ECLIPSE)
     {
       int damageDealt = magicDamageDealt(getPlayerAttack(), getPlayerMagic(), (lastPress & 1) + 1, getEnemyDefense(), getEnemyMagic(), (enemy->spellResistance >> (lastPress & 14)) & 3);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_DEALT);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageDealt);
       PTAD::Dialog::bufferNumber(damageDealt, 1000);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageTakenEnd);
       PTAD::Dialog::beginMessage();
       if (damageDealt > enemy->hp)
         enemy->hp = 0;
@@ -1428,11 +1430,11 @@ void PTAD::Battle::castSpell()
       {
         uint8_t enemyPoisonLevel = (enemyStatus >> STATUS_POISON) & 3;
         ++enemyPoisonLevel;
-        PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_INFLICT_POISON);
+        PTAD::Dialog::addMessage(PTAD::Resources::battleInflictPoison);
         enemyStatus = (enemyStatus & ~(3 << STATUS_POISON)) | enemyPoisonLevel;
       }
       else
-        PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_INFLICT_POISON_FAIL);
+        PTAD::Dialog::addMessage(PTAD::Resources::battleInflictPoisonFail);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == SPELL_ENSNARE)
@@ -1444,11 +1446,11 @@ void PTAD::Battle::castSpell()
           enemySlownessLevel = SPEED_SLOW;
         else if (enemySlownessLevel == SPEED_HASTE)
           enemySlownessLevel = SPEED_NORMAL;
-        PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_INFLICT_SLOW);
+        PTAD::Dialog::addMessage(PTAD::Resources::battleInflictSlow);
         enemyStatus = (enemyStatus & ~(3 << STATUS_SPEED)) | enemySlownessLevel;
       }
       else
-        PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_INFLICT_SLOW_FAIL);
+        PTAD::Dialog::addMessage(PTAD::Resources::battleInflictSlowFail);
       PTAD::Dialog::beginMessage();
     }
     else if (lastPress == SPELL_RECOVERY)
@@ -1457,8 +1459,8 @@ void PTAD::Battle::castSpell()
       if (PTAD::Game::player.hp + hpRecovered > PTAD::Game::player.maxHP)
         hpRecovered = PTAD::Game::player.maxHP - PTAD::Game::player.hp;
       PTAD::Game::player.hp += hpRecovered;
-      PTAD::Music::playSFX(PTAD::Music::SFX_HEAL);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_RECOVERED_AMOUNT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_heal);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleRecoveredAmount);
       PTAD::Dialog::bufferNumber(hpRecovered, 1000);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_SPACE);
       PTAD::Dialog::bufferCharacter(PTAD::FONT_H);
@@ -1468,8 +1470,8 @@ void PTAD::Battle::castSpell()
     else if (lastPress == SPELL_CLEANSER)
     {
       playerStatus &= 0xF0;
-      PTAD::Music::playSFX(PTAD::Music::SFX_HEAL);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_CLEANSED);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_heal);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleCleansed);
       PTAD::Dialog::beginMessage();
     }
   }
@@ -1523,9 +1525,9 @@ void PTAD::Battle::enemyTurn()
     if (damageDealt > 0)
     {
       flashBattlerSprite(8, 32, 112, 192);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_POISON_BEGIN);
+      PTAD::Dialog::addMessage(PTAD::Resources::battlePoisonBegin);
       PTAD::Dialog::bufferNumber(damageDealt, 100);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageTakenEnd);
       PTAD::Dialog::beginMessage();
       if (damageDealt > enemy->hp)
       {
@@ -1553,7 +1555,7 @@ void PTAD::Battle::victory()
 	{
 		PTAD::Game::player.gold += enemy->gold;
     PTAD::Dialog::bufferNumber(enemy->gold, 100);
-		PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_GOLD_EARNED);
+    PTAD::Dialog::addMessage(PTAD::Resources::battleGoldEarned);
 		PTAD::Dialog::beginMessage();
 	}
 	else if (globalCounter == 2)
@@ -1562,7 +1564,7 @@ void PTAD::Battle::victory()
 		{
       PTAD::Game::player.experience += enemy->experience;
       PTAD::Dialog::bufferNumber(enemy->experience, 1000);
-			PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_EXPERIENCE_GAINED);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleExperienceGained);
 			PTAD::Dialog::beginMessage();
 		}
 		else
@@ -1573,8 +1575,8 @@ void PTAD::Battle::victory()
 		if (PTAD::Game::player.experience >= PTAD::Game::player.nextLevel)
 		{
 			PTAD::Game::levelUp();
-      PTAD::Music::playMusic(PTAD::Music::MUSIC_LEVEL_UP, 1, false);
-			PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_LEVEL_UP);
+      PTAD::Music::playMusic(PTAD::Resources::music_levelUp, 1, false);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleLevelUp);
 			PTAD::Dialog::beginMessage();
 		}
 		else
@@ -1582,11 +1584,11 @@ void PTAD::Battle::victory()
 	}
 	else if (globalCounter == 4)
 	{
-		if (PTAD::Game::skillLearned[PTAD::Game::player.level - 1] != 255)
+    if (PTAD::Resources::skillLearned[PTAD::Game::player.level - 1] != 255)
     {
-      PTAD::Music::playMusic(PTAD::Music::MUSIC_REVIVED, 1, false);
-			PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_SKILL_LEARNED);
-      PTAD::Dialog::bufferText(PTAD::skills[PTAD::Game::skillLearned[PTAD::Game::player.level - 1]].name, 8);
+      PTAD::Music::playMusic(PTAD::Resources::music_characterRevived, 1, false);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleSkillLearned);
+      PTAD::Dialog::bufferText(PTAD::Resources::skills[PTAD::Resources::skillLearned[PTAD::Game::player.level - 1]].name, 8);
       PTAD::Dialog::trimBuffer();
       PTAD::Dialog::bufferCharacter(PTAD::FONT_EXCLAMATION);
 			PTAD::Dialog::beginMessage();
@@ -1609,7 +1611,7 @@ void PTAD::Battle::defeat()
 {
 	if (PTAD::globalCounter == 0)
 	{
-		PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DEFEAT);
+    PTAD::Dialog::addMessage(PTAD::Resources::battleDefeat);
 		PTAD::Dialog::beginMessage();
     PTAD::Music::stopMusic();
 		++PTAD::globalCounter;
@@ -1620,7 +1622,7 @@ void PTAD::Battle::defeat()
     {
 			++PTAD::globalCounter;
       lastPress = 64;
-      PTAD::Music::playMusic(PTAD::Music::MUSIC_GAME_OVER, 1, false);
+      PTAD::Music::playMusic(PTAD::Resources::music_gameOver, 1, false);
     }
 	}
 	else if (PTAD::globalCounter == 2)
@@ -1651,9 +1653,9 @@ void PTAD::Battle::defeat()
     PTAD::Ui::fgColor = 7;
     PTAD::Ui::clear();
     if (PTAD::Game::player.variables[0] <= PTAD::Game::GAME_OVER_VALUE1)
-      PTAD::GameOver::load(DataPack::hash("screens/gameover1.gfx"));
+      PTAD::GameOver::load(DataPack::hash("/screens/gameover1.png"));
     else if (PTAD::Game::player.variables[0] <= PTAD::Game::GAME_OVER_VALUE2)
-      PTAD::GameOver::load(DataPack::hash("screens/gameover1.gfx"));//TODO replace with screen showing Cecilia trapped in a cage
+      PTAD::GameOver::load(DataPack::hash("/screens/gameover1.png"));//TODO replace with screen showing Cecilia trapped in a cage
 	}
 }
 
@@ -1671,9 +1673,9 @@ void PTAD::Battle::endOfPlayersTurn()
     shakeScreen = 1;
     shakeRate = 8;
     flashUi = 16;
-    PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_POISON_BEGIN);
+    PTAD::Dialog::addMessage(PTAD::Resources::battlePoisonBegin);
     PTAD::Dialog::bufferNumber(damageDealt, 100);
-    PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
+    PTAD::Dialog::addMessage(PTAD::Resources::battleDamageTakenEnd);
     PTAD::Dialog::beginMessage();
     if (damageDealt >= PTAD::Game::player.hp)
     {
@@ -1697,7 +1699,7 @@ uint16_t PTAD::Battle::getPlayerAttack()
   for (int i = 0; i < 6; ++i)
   {
     if (PTAD::Game::player.equippedItems[i] != 255)
-      value += PTAD::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[0];
+      value += PTAD::Resources::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[0];
   }
   return value * (((playerStatus >> STATUS_BERSERK) & 3) + 1);
 }
@@ -1708,7 +1710,7 @@ uint16_t PTAD::Battle::getPlayerDefense()
   for (int i = 0; i < 6; ++i)
   {
     if (PTAD::Game::player.equippedItems[i] != 255)
-      value += PTAD::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[1];
+      value += PTAD::Resources::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[1];
   }
   return value;
 }
@@ -1719,7 +1721,7 @@ uint16_t PTAD::Battle::getPlayerAgility()
   for (int i = 0; i < 6; ++i)
   {
     if (PTAD::Game::player.equippedItems[i] != 255)
-      value += PTAD::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[2];
+      value += PTAD::Resources::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[2];
   }
   return value;
 }
@@ -1730,7 +1732,7 @@ uint16_t PTAD::Battle::getPlayerMagic()
   for (int i = 0; i < 6; ++i)
   {
     if (PTAD::Game::player.equippedItems[i] != 255)
-      value += PTAD::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[3];
+      value += PTAD::Resources::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[3];
   }
   return value;
 }

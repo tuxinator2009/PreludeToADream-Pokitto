@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="2" bgm="21" width="1" height="1" minSteps="0" maxSteps="0" flags="15" sprites="7,8,9,10,255,255,255,255,255,255,255,255,255,255,255,255">
+<ptad-map tileset="2" bgm="tavern" width="1" height="1" minSteps="0" maxSteps="0" flags="15" sprites="7,8,9,10,255,255,255,255,255,255,255,255,255,255,255,255">
 	<onLoadEvent>
 		<ifVariable variableID="0" condition="&gt;=" value="3">
 			<changeSprite event="Cecilia" spriteID="255"/>
@@ -38,7 +38,7 @@
 		<event name="Potion" x="5" y="8" flags="9" sprite="1">
 			<changeSprite event="this" spriteID="3"/>
 			<ifSwitch switchID="0" is="OFF">
-				<playSoundEffect sound="4" loop="false"/>
+				<playSoundEffect sound="getItem" loop="false"/>
 				<givePlayerItem type="0" item="0" amount="1"/>
 				<showOneLiner message="You found a potion."/>
 			</ifSwitch>
@@ -72,31 +72,31 @@
 			<showScreen transition="4" speed="1"/>
 		</event>
 		<event name="Bed" x="13" y="8" flags="9" sprite="255">
-			<playMusic music="10" loop="false"/>
+			<playMusic music="goodNight" loop="false"/>
 			<hideScreen transition="1" speed="1"/>
 			<waitMusic/>
-			<playSoundEffect sound="10" loop="false"/>
+			<playSoundEffect sound="heal" loop="false"/>
 			<heal/>
 			<waitSoundEffect/>
-			<playMusic music="9" loop="false"/>
+			<playMusic music="goodMorning" loop="false"/>
 			<showScreen transition="1" speed="1"/>
 			<waitMusic/>
-			<playMusic music="21" loop="true"/>
+			<playMusic music="tavern" loop="true"/>
 			<showOneLiner message="You feel well rested!"/>
 			<waitButtons/>
 			<hideDialog/>
 		</event>
 		<event name="Bed" x="11" y="8" flags="9" sprite="255">
-			<playMusic music="10" loop="false"/>
+			<playMusic music="goodNight" loop="false"/>
 			<hideScreen transition="1" speed="1"/>
 			<waitMusic/>
-			<playSoundEffect sound="10" loop="false"/>
+			<playSoundEffect sound="heal" loop="false"/>
 			<heal/>
 			<waitSoundEffect/>
-			<playMusic music="9" loop="false"/>
+			<playMusic music="goodMorning" loop="false"/>
 			<showScreen transition="1" speed="1"/>
 			<waitMusic/>
-			<playMusic music="21" loop="true"/>
+			<playMusic music="tavern" loop="true"/>
 			<showOneLiner message="You feel well rested!"/>
 			<waitButtons/>
 			<hideDialog/>

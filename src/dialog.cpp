@@ -6,7 +6,7 @@ using PB=Pokitto::Buttons;
 
 extern const uint8_t *tilemap[];
 
-const uint8_t PTAD::Dialog::messages[] =
+/*const uint8_t PTAD::Dialog::messages[] =
 {
   0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,
   0x30,0x3B,0x34,0x47,0x0A,0x34,0x36,0x47,0x3C,0x42,0x41,0x0A,0x37,0x42,0x0A,0x4C,0x42,0x48,0x0A,0x46,0x38,0x38,0x3E,0x05,
@@ -52,9 +52,9 @@ const uint8_t PTAD::Dialog::messages[] =
   0x32,0x42,0x48,0x0A,0x35,0x38,0x36,0x42,0x40,0x38,0x0A,0x46,0x4A,0x3C,0x39,0x47,0x38,0x45,0x0A,0x0A,0x0A,0x0A,0x0A,0x0A,
   0x32,0x42,0x48,0x0A,0x35,0x38,0x36,0x42,0x40,0x38,0x0A,0x40,0x42,0x45,0x38,0x0A,0x43,0x42,0x4A,0x38,0x45,0x39,0x48,0x3F
 };
-const uint8_t PTAD::Dialog::messageSizes[] = {24,24,23,13,13,19,15,14,9,8,24,24,21,23,23,10,5,13,24,23,11,9,9,21,22,22,24,14,24,18,23,24,18,23,24,21,24,24,22,19,18,18,24};
+const uint8_t PTAD::Dialog::messageSizes[] = {24,24,23,13,13,19,15,14,9,8,24,24,21,23,23,10,5,13,24,23,11,9,9,21,22,22,24,14,24,18,23,24,18,23,24,21,24,24,22,19,18,18,24};*/
 
-DataPack::PackedFile PTAD::Dialog::messagesFile;
+//DataPack::PackedFile PTAD::Dialog::messagesFile;
 uint8_t PTAD::Dialog::buffer[MESSAGES_SIZE];
 uint8_t PTAD::Dialog::counter = 0;
 uint8_t PTAD::Dialog::messageSize = 0;
@@ -62,7 +62,7 @@ uint8_t PTAD::Dialog::messageSpeed = 0;
 
 void PTAD::Dialog::setup()
 {
-	PTAD::dataFile->getPackedFile(DataPack::hash("messages.dat"), &messagesFile);
+//	PTAD::dataFile->getPackedFile(DataPack::hash("messages.dat"), &messagesFile);
 }
 
 void PTAD::Dialog::showWindow()
@@ -83,7 +83,7 @@ void PTAD::Dialog::bufferText(const uint8_t *array, uint8_t numChars)
 		buffer[messageSize++] = *array++;
 }
 
-void PTAD::Dialog::bufferNumber(int32_t value, uint32_t start)
+void PTAD::Dialog::bufferNumber(int32_t value, int32_t start)
 {
   if (value < 0)
   {
@@ -96,6 +96,7 @@ void PTAD::Dialog::bufferNumber(int32_t value, uint32_t start)
       buffer[messageSize++] = PTAD::FONT_0 + (value / start) % 10;
 		start /= 10;
 	}
+	buffer[messageSize++] = PTAD::FONT_SPACE;
 }
 
 void PTAD::Dialog::bufferCharacter(uint8_t character)
@@ -114,8 +115,8 @@ void PTAD::Dialog::trimBuffer()
 
 void PTAD::Dialog::addMessage(uint8_t id)
 {
-  for (uint8_t i = 0; i < messageSizes[id]; ++i)
-    buffer[messageSize++] = messages[id * 24 + i];
+  for (uint8_t i = 0; i < PTAD::Resources::messageSizes[id]; ++i)
+    buffer[messageSize++] = PTAD::Resources::messages[id * 24 + i];
 }
 
 void PTAD::Dialog::beginMessage(bool shiftUp)
@@ -147,7 +148,7 @@ bool PTAD::Dialog::updateMessage(bool skippable)
   if (bufferPos != messageSize - (counter / messageSpeed))
   {
     if (buffer[bufferPos] != PTAD::FONT_SPACE)
-      PTAD::Music::playSFX(PTAD::Music::SFX_DIALOG, false);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_dialog, false);
     PTAD::Ui::dialogCursorX += 8;
   }
 	if (skippable && (PB::bBtn() || PB::cBtn() || PTAD::justPressed(PTAD::BTN_MASK_A)))

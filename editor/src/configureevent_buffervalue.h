@@ -42,7 +42,6 @@ class ConfigureEvent_BufferValue : public QDialog, public Ui::ConfigureEvent_Buf
         optValue->insertItem(15, "Monster HP");
         optValue->insertItem(16, "Monster MaxHP");
         optValue->insertItem(17, "Monster Mp");
-        optValue->insertItem(18, "Monster MaxMP");
         optValue->insertItem(19, "Monster Experience");
         optValue->insertItem(20, "Monster Gold");
         optValue->insertItem(21, "Monster Attack");

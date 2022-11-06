@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <cstdint>
 #include "DataPack/DataPack.h"
+#include "resources.h"
 #include "game.h"
 #include "battleanimation.h"
 #include "battleevent.h"

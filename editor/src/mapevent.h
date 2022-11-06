@@ -122,8 +122,8 @@ class MapEvent
         virtual bool isIf() {return false;}
         virtual bool isElse() {return false;}
         Event *getParentEvent() {return parent;}
-        static Event *newEvent(MapEvent *pBase, Event *parent, Type t);
-        static Event *newEvent(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        static Event *newEvent(MapEvent *pBase, Event *pEvent, Type t);
+        static Event *newEvent(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         //BEGIN Constants
         static constexpr uint8_t DIR_UP = 0;
         static constexpr uint8_t DIR_RIGHT = 1;
@@ -211,8 +211,8 @@ class MapEvent
     class TopLevelEvent: public Event
     {
       public:
-        TopLevelEvent(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::TopLevelEvent) {events += Event::newEvent(pBase, this, Type::End);}
-        TopLevelEvent(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        TopLevelEvent(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::TopLevelEvent) {events += Event::newEvent(pBase, this, Type::End);}
+        TopLevelEvent(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~TopLevelEvent();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -230,8 +230,8 @@ class MapEvent
     class IfEvent: public Event
     {
       public:
-        IfEvent(MapEvent *pBase, Event *parent, Type t) : Event(pBase, parent, t) {events += Event::newEvent(pBase, this, Type::End); elseIf = false;}
-        IfEvent(MapEvent *pBase, Event *parent, Type t, XMLNode eventNode);
+        IfEvent(MapEvent *pBase, Event *pEvent, Type t) : Event(pBase, pEvent, t) {events += Event::newEvent(pBase, this, Type::End); elseIf = false;}
+        IfEvent(MapEvent *pBase, Event *pEvent, Type t, XMLNode eventNode);
         virtual ~IfEvent();
         void addChildEvent(Event *event, int location) {events.insert(location, event);item->insertChild(location, event->getItem());}
         void deleteChildEvent(int location) {delete events.takeAt(location);}
@@ -242,7 +242,7 @@ class MapEvent
         int numChildEvents() {return events.count();}
         bool isIf() {return true;}
         bool isElse() {return elseIf;}
-        void addItems(QTreeWidgetItem *item);
+        void addItems();
       protected:
         QList<Event*> events;
         bool elseIf;
@@ -250,8 +250,8 @@ class MapEvent
     class HideScreen: public Event
     {
       public:
-        HideScreen(MapEvent *pBase, Event *parent);
-        HideScreen(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        HideScreen(MapEvent *pBase, Event *pEvent);
+        HideScreen(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~HideScreen();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -264,8 +264,8 @@ class MapEvent
     class ShowScreen: public Event
     {
       public:
-        ShowScreen(MapEvent *pBase, Event *parent);
-        ShowScreen(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ShowScreen(MapEvent *pBase, Event *pEvent);
+        ShowScreen(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ShowScreen();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -278,8 +278,8 @@ class MapEvent
     class Teleport: public Event
     {
       public:
-        Teleport(MapEvent *pBase, Event *parent);
-        Teleport(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        Teleport(MapEvent *pBase, Event *pEvent);
+        Teleport(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Teleport();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -294,8 +294,8 @@ class MapEvent
     class ShowDialog: public Event
     {
       public:
-        ShowDialog(MapEvent *pBase, Event *parent);
-        ShowDialog(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ShowDialog(MapEvent *pBase, Event *pEvent);
+        ShowDialog(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ShowDialog();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -307,8 +307,8 @@ class MapEvent
     class BufferMessage: public Event
     {
       public:
-        BufferMessage(MapEvent *pBase, Event *parent);
-        BufferMessage(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        BufferMessage(MapEvent *pBase, Event *pEvent);
+        BufferMessage(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~BufferMessage();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -320,8 +320,8 @@ class MapEvent
     class BufferValue: public Event
     {
       public:
-        BufferValue(MapEvent *pBase, Event *parent);
-        BufferValue(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        BufferValue(MapEvent *pBase, Event *pEvent);
+        BufferValue(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~BufferValue();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -334,8 +334,8 @@ class MapEvent
     class BufferCharacter: public Event
     {
       public:
-        BufferCharacter(MapEvent *pBase, Event *parent);
-        BufferCharacter(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        BufferCharacter(MapEvent *pBase, Event *pEvent);
+        BufferCharacter(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~BufferCharacter();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -347,8 +347,8 @@ class MapEvent
     class ShowMessage: public Event
     {
       public:
-        ShowMessage(MapEvent *pBase, Event *parent);
-        ShowMessage(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ShowMessage(MapEvent *pBase, Event *pEvent);
+        ShowMessage(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ShowMessage();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -361,8 +361,8 @@ class MapEvent
     class ShowOneLiner: public Event
     {
       public:
-        ShowOneLiner(MapEvent *pBase, Event *parent);
-        ShowOneLiner(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ShowOneLiner(MapEvent *pBase, Event *pEvent);
+        ShowOneLiner(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ShowOneLiner();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -374,8 +374,8 @@ class MapEvent
     class ShowShopMenu: public Event
     {
       public:
-        ShowShopMenu(MapEvent *pBase, Event *parent);
-        ShowShopMenu(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ShowShopMenu(MapEvent *pBase, Event *pEvent);
+        ShowShopMenu(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ShowShopMenu();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -395,8 +395,8 @@ class MapEvent
     class WaitFrames: public Event
     {
       public:
-        WaitFrames(MapEvent *pBase, Event *parent);
-        WaitFrames(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        WaitFrames(MapEvent *pBase, Event *pEvent);
+        WaitFrames(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~WaitFrames();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -408,8 +408,8 @@ class MapEvent
     class Battle: public Event
     {
       public:
-        Battle(MapEvent *pBase, Event *parent);
-        Battle(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        Battle(MapEvent *pBase, Event *pEvent);
+        Battle(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Battle();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -423,8 +423,8 @@ class MapEvent
     class ShakeScreen: public Event
     {
       public:
-        ShakeScreen(MapEvent *pBase, Event *parent);
-        ShakeScreen(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ShakeScreen(MapEvent *pBase, Event *pEvent);
+        ShakeScreen(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ShakeScreen();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -437,8 +437,8 @@ class MapEvent
     class Cutscene: public Event
     {
       public:
-        Cutscene(MapEvent *pBase, Event *parent);
-        Cutscene(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        Cutscene(MapEvent *pBase, Event *pEvent);
+        Cutscene(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Cutscene();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -450,8 +450,8 @@ class MapEvent
     class Jump: public Event
     {
       public:
-        Jump(MapEvent *pBase, Event *parent);
-        Jump(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        Jump(MapEvent *pBase, Event *pEvent);
+        Jump(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Jump();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -465,8 +465,8 @@ class MapEvent
     class IfSwitch: public IfEvent
     {
       public:
-        IfSwitch(MapEvent *pBase, Event *parent);
-        IfSwitch(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        IfSwitch(MapEvent *pBase, Event *pEvent);
+        IfSwitch(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~IfSwitch();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -479,8 +479,8 @@ class MapEvent
     class IfVariable: public IfEvent
     {
       public:
-        IfVariable(MapEvent *pBase, Event *parent);
-        IfVariable(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        IfVariable(MapEvent *pBase, Event *pEvent);
+        IfVariable(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~IfVariable();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -494,8 +494,8 @@ class MapEvent
     class IfHasItem: public IfEvent
     {
       public:
-        IfHasItem(MapEvent *pBase, Event *parent);
-        IfHasItem(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        IfHasItem(MapEvent *pBase, Event *pEvent);
+        IfHasItem(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~IfHasItem();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -508,8 +508,8 @@ class MapEvent
     class IfExited: public IfEvent
     {
       public:
-        IfExited(MapEvent *pBase, Event *parent);
-        IfExited(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        IfExited(MapEvent *pBase, Event *pEvent);
+        IfExited(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~IfExited();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -521,8 +521,8 @@ class MapEvent
     class IfYesNo: public IfEvent
     {
       public:
-        IfYesNo(MapEvent *pBase, Event *parent);
-        IfYesNo(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        IfYesNo(MapEvent *pBase, Event *pEvent);
+        IfYesNo(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~IfYesNo();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -534,8 +534,8 @@ class MapEvent
     class IfValue: public IfEvent
     {
       public:
-        IfValue(MapEvent *pBase, Event *parent);
-        IfValue(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        IfValue(MapEvent *pBase, Event *pEvent);
+        IfValue(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~IfValue();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -549,8 +549,8 @@ class MapEvent
     class IfFacing: public IfEvent
     {
       public:
-        IfFacing(MapEvent *pBase, Event *parent);
-        IfFacing(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        IfFacing(MapEvent *pBase, Event *pEvent);
+        IfFacing(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~IfFacing();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -562,8 +562,8 @@ class MapEvent
     class PlaySoundEffect: public Event
     {
       public:
-        PlaySoundEffect(MapEvent *pBase, Event *parent);
-        PlaySoundEffect(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        PlaySoundEffect(MapEvent *pBase, Event *pEvent);
+        PlaySoundEffect(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~PlaySoundEffect();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -576,8 +576,8 @@ class MapEvent
     class PlayMusic: public Event
     {
       public:
-        PlayMusic(MapEvent *pBase, Event *parent);
-        PlayMusic(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        PlayMusic(MapEvent *pBase, Event *pEvent);
+        PlayMusic(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~PlayMusic();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -590,8 +590,8 @@ class MapEvent
     class TurnSwitchOn: public Event
     {
       public:
-        TurnSwitchOn(MapEvent *pBase, Event *parent);
-        TurnSwitchOn(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        TurnSwitchOn(MapEvent *pBase, Event *pEvent);
+        TurnSwitchOn(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~TurnSwitchOn();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -603,8 +603,8 @@ class MapEvent
     class TurnSwitchOff: public Event
     {
       public:
-        TurnSwitchOff(MapEvent *pBase, Event *parent);
-        TurnSwitchOff(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        TurnSwitchOff(MapEvent *pBase, Event *pEvent);
+        TurnSwitchOff(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~TurnSwitchOff();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -616,8 +616,8 @@ class MapEvent
     class ToggleSwitch: public Event
     {
       public:
-        ToggleSwitch(MapEvent *pBase, Event *parent);
-        ToggleSwitch(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ToggleSwitch(MapEvent *pBase, Event *pEvent);
+        ToggleSwitch(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ToggleSwitch();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -629,8 +629,8 @@ class MapEvent
     class TurnSwitchRangeOn: public Event
     {
       public:
-        TurnSwitchRangeOn(MapEvent *pBase, Event *parent);
-        TurnSwitchRangeOn(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        TurnSwitchRangeOn(MapEvent *pBase, Event *pEvent);
+        TurnSwitchRangeOn(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~TurnSwitchRangeOn();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -643,8 +643,8 @@ class MapEvent
     class TurnSwitchRangeOff: public Event
     {
       public:
-        TurnSwitchRangeOff(MapEvent *pBase, Event *parent);
-        TurnSwitchRangeOff(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        TurnSwitchRangeOff(MapEvent *pBase, Event *pEvent);
+        TurnSwitchRangeOff(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~TurnSwitchRangeOff();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -657,8 +657,8 @@ class MapEvent
     class ToggleSwitchRange: public Event
     {
       public:
-        ToggleSwitchRange(MapEvent *pBase, Event *parent);
-        ToggleSwitchRange(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ToggleSwitchRange(MapEvent *pBase, Event *pEvent);
+        ToggleSwitchRange(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ToggleSwitchRange();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -671,8 +671,8 @@ class MapEvent
     class ChangeVariable: public Event
     {
       public:
-        ChangeVariable(MapEvent *pBase, Event *parent);
-        ChangeVariable(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ChangeVariable(MapEvent *pBase, Event *pEvent);
+        ChangeVariable(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ChangeVariable();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -686,8 +686,8 @@ class MapEvent
     class ChangeSprite: public Event
     {
       public:
-        ChangeSprite(MapEvent *pBase, Event *parent);
-        ChangeSprite(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ChangeSprite(MapEvent *pBase, Event *pEvent);
+        ChangeSprite(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ChangeSprite();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -700,8 +700,8 @@ class MapEvent
     class ChangeEventLocation: public Event
     {
       public:
-        ChangeEventLocation(MapEvent *pBase, Event *parent);
-        ChangeEventLocation(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ChangeEventLocation(MapEvent *pBase, Event *pEvent);
+        ChangeEventLocation(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ChangeEventLocation();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -711,13 +711,13 @@ class MapEvent
         QString event;
         uint8_t x;
         uint8_t y;
-        bool offset;
+        bool offsetFlag;
     };
     class ChangeEventFlags: public Event
     {
       public:
-        ChangeEventFlags(MapEvent *pBase, Event *parent);
-        ChangeEventFlags(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ChangeEventFlags(MapEvent *pBase, Event *pEvent);
+        ChangeEventFlags(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ChangeEventFlags();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -731,8 +731,8 @@ class MapEvent
     class ChangePassability: public Event
     {
       public:
-        ChangePassability(MapEvent *pBase, Event *parent);
-        ChangePassability(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ChangePassability(MapEvent *pBase, Event *pEvent);
+        ChangePassability(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ChangePassability();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -746,8 +746,8 @@ class MapEvent
     class GivePlayerItem: public Event
     {
       public:
-        GivePlayerItem(MapEvent *pBase, Event *parent);
-        GivePlayerItem(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        GivePlayerItem(MapEvent *pBase, Event *pEvent);
+        GivePlayerItem(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~GivePlayerItem();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -761,8 +761,8 @@ class MapEvent
     class GivePlayerGold: public Event
     {
       public:
-        GivePlayerGold(MapEvent *pBase, Event *parent);
-        GivePlayerGold(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        GivePlayerGold(MapEvent *pBase, Event *pEvent);
+        GivePlayerGold(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~GivePlayerGold();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -774,8 +774,8 @@ class MapEvent
     class ShowImage: public Event
     {
       public:
-        ShowImage(MapEvent *pBase, Event *parent);
-        ShowImage(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        ShowImage(MapEvent *pBase, Event *pEvent);
+        ShowImage(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ShowImage();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -787,8 +787,8 @@ class MapEvent
     class MovePlayer: public Event
     {
       public:
-        MovePlayer(MapEvent *pBase, Event *parent);
-        MovePlayer(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        MovePlayer(MapEvent *pBase, Event *pEvent);
+        MovePlayer(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~MovePlayer();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -801,8 +801,8 @@ class MapEvent
     class Label: public Event
     {
       public:
-        Label(MapEvent *pBase, Event *parent);
-        Label(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        Label(MapEvent *pBase, Event *pEvent);
+        Label(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Label();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -815,8 +815,8 @@ class MapEvent
     class Comment: public Event
     {
       public:
-        Comment(MapEvent *pBase, Event *parent);
-        Comment(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        Comment(MapEvent *pBase, Event *pEvent);
+        Comment(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Comment();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -828,8 +828,8 @@ class MapEvent
     class Else: public Event
     {
       public:
-        Else(MapEvent *pBase, Event *parent);
-        Else(MapEvent *pBase, Event *parent, XMLNode eventNode);
+        Else(MapEvent *pBase, Event *pEvent);
+        Else(MapEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Else();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -849,7 +849,7 @@ class MapEvent
     class End: public Event
     {
       public:
-        End(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::End) {}
+        End(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::End) {}
         virtual ~End() {}
         void compileEvent(QByteArray *bytes);
     };

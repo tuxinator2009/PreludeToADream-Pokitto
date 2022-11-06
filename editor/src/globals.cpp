@@ -22,9 +22,6 @@
  * SOFTWARE.                                                                      *
  **********************************************************************************/
 
-#include <QAudioBuffer>
-#include <QAudioDecoder>
-#include <QAudioFormat>
 #include <QDir>
 #include <QMessageBox>
 #include <QList>
@@ -54,11 +51,13 @@ Globals::Item Globals::spells[16];
 Globals::EquipmentStats Globals::equipmentStats[6][16];
 Globals::StatGrowth Globals::statsGrowth[7];
 QString Globals::datadir;
+QString Globals::femtoIDE;
 QMap<int, QString> Globals::mapNames;
 QMap<QString, QString> Globals::messages;
 QStringList Globals::backdrops;
 QStringList Globals::bgms;
 QStringList Globals::sfx;
+uint8_t Globals::skillLearned[16];
 const uint8_t Globals::codes[] =
 {
   '!',',','.','/','\'','?',201,'=',187,199,' ',182,200,207,188,'\n',
@@ -163,43 +162,6 @@ void Globals::refreshSFX()
   QDir folder(QString("%1/sfx").arg(Globals::datadir));
   sfx = folder.entryList(QStringList() << "*.wav", QDir::Files, QDir::Name);
   sfx.replaceInStrings(".wav", "", Qt::CaseInsensitive);
-}
-
-QByteArray Globals::convertAudio(QString fileLocation, QProgressBar *progress)
-{
-  QAudioDecoder *decoder = new QAudioDecoder();
-  QAudioFormat format;
-  QByteArray bytes;
-  format.setChannelCount(1);
-  format.setCodec("audio/x-raw");
-  format.setSampleType(QAudioFormat::UnSignedInt);
-  format.setSampleRate(8000);
-  format.setSampleSize(8);
-  decoder->setAudioFormat(format);
-  printf("decoding: \"%s\"\n", fileLocation.toLocal8Bit().data());
-  decoder->setSourceFilename(fileLocation);
-  decoder->start();
-  printf("length: %lld\n", decoder->duration());
-  if (progress != nullptr)
-  {
-    progress->setRange(0, decoder->duration());
-    progress->setValue(0);
-  }
-  QCoreApplication::processEvents();
-  while (decoder->state() == QAudioDecoder::DecodingState)
-  {
-    if (decoder->bufferAvailable())
-    {
-      QAudioBuffer buffer = decoder->read();
-      bytes.append(buffer.data<char>(), buffer.byteCount());
-      if (progress != nullptr)
-        progress->setValue(decoder->position());
-      QCoreApplication::processEvents();
-    }
-    else
-      QThread::msleep(100);
-  }
-  return bytes;
 }
 
 void Globals::loadTilesets()

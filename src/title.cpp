@@ -15,7 +15,7 @@ void PTAD::Title::setup()
 {
   DataPack::PackedFile file;
   uint8_t scanline[220];
-  PTAD::dataFile->getPackedFile(DataPack::hash("screens/title.gfx"), &file);
+  PTAD::dataFile->getPackedFile(DataPack::hash("/screens/title.png"), &file);
   Pokitto::lcdPrepareRefresh();
   for (int y = 0; y < 176; ++y)
   {
@@ -33,7 +33,7 @@ void PTAD::Title::setup()
   PTAD::Ui::drawFrame(9, 17, 18, 20);
   PTAD::Ui::drawText(txtContinue, 8, 10, 18);
   PTAD::Ui::drawText(txtNewGame, 8, 10, 19);
-  PTAD::Music::playMusic(PTAD::Music::MUSIC_MAIN_THEME, 0);
+  PTAD::Music::playMusic(PTAD::Resources::music_mainTheme, 0);
 }
 
 void PTAD::Title::update()
@@ -42,13 +42,14 @@ void PTAD::Title::update()
     waveOffset[i] = sin(PC::getTime() / 250.0 + i / 8.0) * 4;
   if (PTAD::justPressed(PTAD::BTN_MASK_UP) || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
     PTAD::globalCounter ^= 1;
   }
   if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
+    PC::initRandom();
     PD::setTASRowMask(0xFFFFFFFF);
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
     if (PTAD::globalCounter == 0) //Continue
     {
       PTAD::Menu::setup(PTAD::Menu::State::LoadMenu);

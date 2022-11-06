@@ -25,6 +25,7 @@
 #ifndef EVENTVIEW_H
 #define EVENTVIEW_H
 
+#include <QElapsedTimer>
 #include <QTreeWidget>
 
 class EventView : public QTreeWidget
@@ -37,6 +38,8 @@ class EventView : public QTreeWidget
     void insertEvent(QTreeWidgetItem *item);
     void editEvent(QTreeWidgetItem *item);
     void deleteEvent(QTreeWidgetItem *item);
+  protected slots:
+    void rightClicked(const QPoint &pos);
   private:
     void keyPressEvent(QKeyEvent *event);
 };

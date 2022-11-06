@@ -31,7 +31,7 @@
 
 int main(int argc, char *argv[])
 {
-	QApplication app(argc, argv);
+  QApplication app(argc, argv);
 	Globals::mainwindow = new MainWindow;
 	Globals::mainwindow->show();
 	return app.exec();

@@ -103,8 +103,7 @@ void MainWindow::setup()
   if (results.error != XMLError::eXMLErrorNone)
     QMessageBox::critical(this, "XML Parser Error", QString("An error occurred when parsing settings.xml on line %1 column %2.\nError: %3").arg(results.nLine).arg(results.nColumn).arg(XMLNode::getError(results.error)));
   Globals::setupData();
-  Globals::watchdog->addPath(QString("%1/tilesets").arg(Globals::datadir));
-  connect(Globals::watchdog, SIGNAL(directoryChanged(const QString)), this, SLOT(refreshTilesets()));
+  Globals::femtoIDE = settingsNode.getAttribute("femtoIDE");
   connect(Globals::battlers, SIGNAL(imageChanged()), this, SLOT(redrawEnemies()));
   connect(Globals::sprites, SIGNAL(imageChanged()), this, SLOT(redrawSprites()));
   treeMaps->invisibleRootItem()->setText(2, "/maps");
@@ -144,6 +143,7 @@ void MainWindow::setup()
     Globals::skills[i].name = skillNode.getAttribute("name");
     Globals::skills[i].description = skillNode.getAttribute("description");
     Globals::skills[i].price = QString(skillNode.getAttribute("mp")).toInt();
+    Globals::skillLearned[i] = QString(skillNode.getAttribute("learned")).toInt();
   }
   childNode = settingsNode.getChildNode("spells");
   for (int i = 0; i < 16; ++i)
@@ -162,7 +162,8 @@ void MainWindow::setup()
     Globals::statsGrowth[i].exponent = QString(statNode.getAttribute("exponent")).toDouble();
   }
   redrawEnemies();
-  refreshTilesets();
+  for (int i = 0; i < Globals::tilesets.count(); ++i)
+    optTileset->addItem(Globals::tilesets[i]->getName());
   frmMapView->setEnabled(false);
   wMapTools->setEnabled(false);
   stkLayerTools->setCurrentWidget(pgBlank);
@@ -250,59 +251,21 @@ void MainWindow::on_btnEditStats_clicked()
 
 void MainWindow::on_btnCompileData_clicked()
 {
+  if (Globals::map != nullptr)
+    Globals::map->toXMLNode().writeToFile(currentMapFile.toLocal8Bit().data());
   CompileData *compileData = new CompileData(treeMaps->invisibleRootItem(), this);
   compileData->exec();
   compileData->deleteLater();
-  /*QString fileLocation = QString("%1/music/%2.ogg").arg(Globals::datadir).arg(Globals::bgms[0]);
-  audioData.clear();
-  audioFormat.setChannelCount(1);
-  audioFormat.setCodec("audio/x-raw");
-  audioFormat.setSampleType(QAudioFormat::UnSignedInt);
-  audioFormat.setSampleRate(8000);
-  audioFormat.setSampleSize(8);
-  audioDecoder = new QAudioDecoder(this);
-  connect(audioDecoder, SIGNAL(bufferReady()), this, SLOT(audioBufferReady()));
-  connect(audioDecoder, SIGNAL(error(QAudioDecoder::Error)), this, SLOT(audioError(QAudioDecoder::Error)));
-  connect(audioDecoder, SIGNAL(finished()), this, SLOT(audioFinished()));
-  audioDecoder->setAudioFormat(audioFormat);
-  printf("decoding: \"%s\"\n", fileLocation.toLocal8Bit().data());
-  audioDecoder->setSourceFilename(fileLocation);
-  audioDecoder->start();*/
-  //QByteArray bytes = Globals::convertAudio(QString("%1/music/%2.ogg").arg(Globals::datadir).arg(Globals::bgms[0]));
-  //printf("size: %d bytes\n", bytes.size());
-}
-
-void MainWindow::audioBufferReady()
-{
-  QAudioBuffer buffer = audioDecoder->read();
-  audioData.append(buffer.data<char>(), buffer.byteCount());
-}
-
-void MainWindow::audioError(QAudioDecoder::Error error)
-{
-  printf("Decoding error %d: %s\n", static_cast<int>(error), audioDecoder->errorString().toLocal8Bit().data());
-  audioDecoder->deleteLater();
-}
-
-void MainWindow::audioFinished()
-{
-  //QFile output("test.raw");
-  //output.open(QFile::WriteOnly);
-  //output.write(audioData);
-  //output.close();
-  audioDecoder->deleteLater();
-  printf("Decoding finished: %d bytes\n", audioData.size());
 }
 
 void MainWindow::on_treeMaps_itemClicked(QTreeWidgetItem *item)
 {
   XMLNode mapNode = XMLNode::openFileHelper(QString("%1/maps/%2").arg(Globals::datadir).arg(item->text(1)).toLocal8Bit().data(), "ptad-map");
   QStringList flagsList;
-  uint8_t flags;
+  uint8_t mapFlags;
   if (Globals::map != nullptr)
   {
-    XMLNode mapNode = Globals::map->toXMLNode();
-    mapNode.writeToFile(currentMapFile.toLocal8Bit().data());
+    Globals::map->toXMLNode().writeToFile(currentMapFile.toLocal8Bit().data());
     delete Globals::map;
   }
   currentMapFile = QString("%1/maps/%2").arg(Globals::datadir).arg(item->text(1));
@@ -319,20 +282,20 @@ void MainWindow::on_treeMaps_itemClicked(QTreeWidgetItem *item)
   numMinSteps->setValue(Globals::map->getMinSteps());
   numMaxSteps->setValue(Globals::map->getMaxSteps());
   optMusic->setCurrentText(Globals::map->getBGM());
-  flags = Globals::map->getFlags();
-  if (flags & Map::FLAG_CLIP_UP)
+  mapFlags = Globals::map->getFlags();
+  if (mapFlags & Map::FLAG_CLIP_UP)
     flagsList << "Up";
-  if (flags & Map::FLAG_CLIP_DOWN)
+  if (mapFlags & Map::FLAG_CLIP_DOWN)
     flagsList << "Down";
-  if (flags & Map::FLAG_CLIP_LEFT)
+  if (mapFlags & Map::FLAG_CLIP_LEFT)
     flagsList << "Left";
-  if (flags & Map::FLAG_CLIP_RIGHT)
+  if (mapFlags & Map::FLAG_CLIP_RIGHT)
     flagsList << "Right";
-  if (flags & Map::FLAG_DARK)
+  if (mapFlags & Map::FLAG_DARK)
     flagsList << "Dark";
-  if (flags & Map::FLAG_DREAM)
+  if (mapFlags & Map::FLAG_DREAM)
     flagsList << "Dream";
-  if (flags & Map::FLAG_SPIRIT)
+  if (mapFlags & Map::FLAG_SPIRIT)
     flagsList << "Spirit";
   leFlags->setText(flagsList.join(","));
   optTileset->setCurrentIndex(Globals::map->getTilesetID());
@@ -453,25 +416,25 @@ void MainWindow::on_btnFlags_clicked()
   flags->show();
 }
 
-void MainWindow::flagsChanged(uint8_t flags)
+void MainWindow::flagsChanged(uint8_t mapFlags)
 {
   QStringList flagsList;
-  if (flags & Map::FLAG_CLIP_UP)
+  if (mapFlags & Map::FLAG_CLIP_UP)
     flagsList << "Up";
-  if (flags & Map::FLAG_CLIP_DOWN)
+  if (mapFlags & Map::FLAG_CLIP_DOWN)
     flagsList << "Down";
-  if (flags & Map::FLAG_CLIP_LEFT)
+  if (mapFlags & Map::FLAG_CLIP_LEFT)
     flagsList << "Left";
-  if (flags & Map::FLAG_CLIP_RIGHT)
+  if (mapFlags & Map::FLAG_CLIP_RIGHT)
     flagsList << "Right";
-  if (flags & Map::FLAG_DARK)
+  if (mapFlags & Map::FLAG_DARK)
     flagsList << "Dark";
-  if (flags & Map::FLAG_DREAM)
+  if (mapFlags & Map::FLAG_DREAM)
     flagsList << "Dream";
-  if (flags & Map::FLAG_SPIRIT)
+  if (mapFlags & Map::FLAG_SPIRIT)
     flagsList << "Spirit";
   leFlags->setText(flagsList.join(","));
-  Globals::map->setFlags(flags);
+  Globals::map->setFlags(mapFlags);
 }
 
 void MainWindow::on_btnEditOnLoadEvent_clicked()
@@ -1079,13 +1042,6 @@ void MainWindow::redrawEnemies()
   }
 }
 
-void MainWindow::refreshTilesets()
-{
-  optTileset->clear();
-  for (int i = 0; i < Globals::tilesets.count(); ++i)
-    optTileset->addItem(Globals::tilesets[i]->getName());
-}
-
 void MainWindow::loadMapTree(QTreeWidgetItem *parent, XMLNode mapNode)
 {
   XMLNode childNode;
@@ -1191,6 +1147,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
   XMLNode settingsNode = XMLNode::createXMLTopNode("ptad-settings");
   XMLNode childNode = settingsNode.addChild("maps");
+  settingsNode.addAttribute("femtoIDE", Globals::femtoIDE.toLocal8Bit().data());
   saveMapTree(treeMaps->invisibleRootItem(), childNode);
   childNode = settingsNode.addChild("messages");
   for (auto message : Globals::messages.keys())
@@ -1224,6 +1181,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     skillNode.addAttribute("name", Globals::skills[i].name.toLocal8Bit().data());
     skillNode.addAttribute("description", Globals::skills[i].description.toLocal8Bit().data());
     skillNode.addAttribute("mp", QString::number(Globals::skills[i].price).toLocal8Bit().data());
+    skillNode.addAttribute("learned", QString::number(Globals::skillLearned[i]).toLocal8Bit().data());
   }
   childNode = settingsNode.addChild("spells");
   for (int i = 0; i < 16; ++i)

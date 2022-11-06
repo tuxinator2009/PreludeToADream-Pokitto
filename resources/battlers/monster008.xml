@@ -1,2 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Cougar" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Cougar" experience="12" hp="25" attack="24" defense="20" agility="30" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="0" gold="16">
+	<intro>
+		<bufferMessage message="A cougar blocks the path"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="You defeated the cougar."/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<bufferMessage message="The cougar claws at you."/>
+		<showMessage/>
+		<basicAttack animation="enemy_claw"/>
+	</turn>
+</monster>

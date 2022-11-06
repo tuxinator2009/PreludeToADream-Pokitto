@@ -1,2 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Hornet" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Hornet" experience="15" hp="40" attack="63" defense="21" agility="200" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="0" gold="30">
+	<intro>
+		<bufferMessage message="A hornet comes at you!"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="You defeated the hornet!"/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<bufferMessage message="The hornet stings you!"/>
+		<showMessage/>
+		<basicAttack animation="enemy_sting"/>
+		<ifStatus self="false" status="poison" condition="!=" level="1">
+			<ifCounter counter="3" condition="=" value="1">
+				<comment value="Chance of poisoning on regular hit"/>
+				<inflictStatus self="false" status="poison" level="1" chance="192" success="It&apos;s venom poisons you!" failed="It&apos;s venom did nothing."/>
+			</ifCounter>
+			<elseIfCounter counter="3" condition="=" value="2">
+				<comment value="Automatic poisoning on critical hit"/>
+				<inflictStatus self="false" status="poison" level="1" chance="255" success="It&apos;s venom poisons you!" failed="It&apos;s venom did nothing."/>
+			</elseIfCounter>
+		</ifStatus>
+	</turn>
+</monster>

@@ -4,6 +4,7 @@ DESTDIR = ..
 CONFIG += debug
 #CONFIG += sanitizer sanitize_address
 QT += widgets multimedia
+QMAKE_CXXFLAGS += -Wshadow
 
 # Input
 HEADERS += \

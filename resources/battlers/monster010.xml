@@ -1,2 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Gorilla" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Gorilla" experience="97" hp="195" attack="43" defense="58" agility="52" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="5" gold="146">
+	<intro>
+		<bufferMessage message="A gorilla blocks the way"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="You defeated the gorilla"/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<ifStat stat="HP" condition="&lt;=" value="96">
+			<ifStatus self="true" status="berserk" condition="!=" level="1">
+				<inflictStatus self="true" status="berserk" level="1" success="The gorilla is enraged!" failed=""/>
+			</ifStatus>
+			<ifStat stat="MP" condition="=" value="5">
+				<bufferMessage message="The gorilla pummels you!"/>
+				<showMessage/>
+				<basicAttack animation="enemy_punch"/>
+				<basicAttack animation="enemy_punch2"/>
+				<consumeMP amount="5"/>
+				<endEventProcessing/>
+			</ifStat>
+		</ifStat>
+		<bufferMessage message="The gorilla punches you!"/>
+		<showMessage/>
+		<basicAttack animation="enemy_punch"/>
+	</turn>
+</monster>

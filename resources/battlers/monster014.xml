@@ -1,2 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Warthog" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Warthog" experience="30" hp="70" attack="102" defense="63" agility="30" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="0" gold="40">
+	<intro>
+		<bufferMessage message="A warthog charges at you"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="You defeated the warthog"/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<bufferMessage message="The warthog strikes you!"/>
+		<showMessage/>
+		<basicAttack animation="enemy_tusk"/>
+	</turn>
+</monster>

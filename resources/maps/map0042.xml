@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="8" bgm="19" width="2" height="1" minSteps="0" maxSteps="0" flags="15" sprites="67,68,255,255,255,255,255,255,255,255,255,255,255,255,255,255">
+<ptad-map tileset="8" bgm="royalCourt" width="2" height="1" minSteps="0" maxSteps="0" flags="15" sprites="67,68,255,255,255,255,255,255,255,255,255,255,255,255,255,255">
 	<onLoadEvent/>
 	<bg>
 		116,101,0,1,0,1,116,101,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,77,10,11,10,11,10,11,10,11,10,11,10,11,76,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,116,101,0,1,0,1,116,101,68,53,16,17,16,17,68,53,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,93,26,27,26,27,26,27,26,27,26,27,26,27,92,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,68,53,16,17,16,17,68,53,112,97,0,1,0,1,112,97,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,77,10,11,10,11,10,11,10,11,10,11,10,11,76,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,112,97,0,1,0,1,112,97,116,101,82,83,82,83,116,101,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,93,26,27,26,27,26,27,26,27,26,27,26,27,92,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,116,101,82,83,82,83,116,101,68,53,34,35,34,35,68,53,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,77,10,11,10,11,10,11,10,11,10,11,10,11,76,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,68,53,34,35,34,35,68,53,113,96,34,35,34,35,113,96,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,93,26,27,26,27,26,27,26,27,26,27,26,27,92,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,113,96,34,35,34,35,113,96,64,49,34,35,34,35,64,49,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,77,10,11,10,11,10,11,10,11,10,11,10,11,76,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,64,49,34,35,34,35,64,49,65,18,81,80,81,80,3,48,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,93,26,27,26,27,26,27,26,27,26,27,26,27,92,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,65,18,81,80,81,80,3,48,64,33,32,33,32,33,32,49,0,1,116,101,0,1,116,101,0,1,116,101,0,1,116,101,0,77,116,101,10,11,116,101,10,11,116,101,10,11,116,101,0,1,116,101,0,1,116,101,0,1,116,101,0,1,116,101,64,33,32,33,32,33,32,49,65,32,33,24,25,32,33,48,16,17,68,53,16,17,68,53,16,17,68,53,16,17,68,53,16,93,68,53,26,27,68,53,26,27,68,53,26,27,68,53,16,17,68,53,16,17,68,53,16,17,68,53,16,17,68,53,65,32,33,24,25,32,33,48,64,33,32,24,25,33,32,49,82,83,112,97,82,83,112,97,82,83,112,97,82,83,112,97,82,83,112,97,82,83,112,97,82,83,112,97,82,83,112,97,82,83,112,97,82,83,112,97,82,83,112,97,82,83,112,81,64,33,32,24,25,33,32,49,65,32,49,24,25,64,33,48,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,34,35,65,32,49,24,25,64,33,48,64,33,48,24,25,65,32,49,116,101,34,35,116,101,34,35,116,101,34,35,116,101,34,35,116,101,34,35,116,101,34,35,116,101,34,35,116,101,34,35,116,101,34,35,116,101,34,35,116,101,34,35,116,101,34,35,64,33,48,24,25,65,32,49,65,32,19,80,81,2,33,48,68,53,34,35,68,53,34,35,68,53,34,35,68,53,34,35,68,53,34,35,68,53,34,35,68,53,34,35,68,53,34,35,68,53,34,35,68,53,34,35,68,53,34,35,68,53,34,35,65,32,19,80,81,2,33,48,64,33,32,33,32,33,32,49,80,97,34,35,112,97,34,35,112,97,34,35,112,97,34,35,112,97,34,35,112,97,34,35,112,97,34,35,112,97,34,35,112,97,34,35,112,97,34,35,112,97,34,35,112,97,34,35,64,33,32,33,32,33,32,49,65,32,33,32,33,32,33,48,33,18,81,80,3,18,81,80,3,18,81,80,3,18,81,80,3,18,81,80,3,18,81,80,3,18,81,80,3,18,81,80,3,18,81,80,3,18,81,80,3,18,81,80,3,19,81,80,65,32,33,32,33,32,33,48,64,33,32,33,32,33,32,49,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,64,33,32,33,32,33,32,49,65,32,33,32,33,32,33,48,33,32,33,24,25,32,33,32,33,32,33,24,25,32,33,32,33,32,33,25,24,25,24,25,24,25,24,25,42,32,33,32,33,32,33,24,25,32,33,32,33,32,33,24,25,32,33,32,65,32,33,32,33,32,33,48,64,33,32,33,32,33,32,49,32,33,32,24,25,33,32,33,32,33,32,24,25,33,32,33,32,33,24,25,24,25,24,25,24,25,24,25,24,25,32,33,32,33,32,24,25,33,32,33,32,33,32,24,25,33,32,33,64,33,32,33,32,33,32,49,65,32,33,32,33,32,33,48,33,32,49,24,25,64,33,32,33,32,49,24,25,64,33,32,33,32,24,25,24,25,24,25,24,25,24,25,24,25,33,32,33,32,49,24,25,64,33,32,33,32,49,24,25,64,33,32,65,32,33,32,33,32,33,48,64,33,32,33,32,33,32,49,32,33,48,24,25,65,32,33,32,33,48,24,25,65,32,33,32,49,24,25,24,25,24,25,24,25,24,25,24,25,64,33,32,33,48,24,25,65,32,33,32,33,48,24,25,65,32,33,64,33,32,33,32,33,32,49,65,32,33,32,33,32,33,48,33,32,19,80,81,2,33,32,33,32,19,80,81,2,33,32,33,48,24,25,24,25,24,25,24,25,24,25,24,25,65,32,33,32,19,80,81,2,33,32,33,32,19,80,81,2,33,32,65,32,33,32,33,32,33,48,64,33,32,33,32,33,32,49,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,49,24,25,24,25,24,25,24,25,24,25,24,25,64,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,64,33,32,33,32,33,32,49,65,32,33,32,33,32,33,48,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,48,24,25,24,25,24,25,24,25,24,25,24,25,65,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,65,32,33,32,33,32,33,48,64,33,32,33,32,33,32,49,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,49,24,25,24,25,24,25,24,25,24,25,24,25,64,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,64,33,32,33,32,33,32,49,65,32,33,32,33,32,33,48,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,48,24,25,24,25,24,25,24,25,24,25,24,25,65,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,65,32,33,32,33,32,33,48,64,33,32,33,32,33,32,49,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,49,24,25,24,25,24,25,24,25,24,25,24,25,64,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,32,33,64,33,32,33,32,33,32,49,65,32,33,32,33,32,33,48,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,93,26,27,26,27,26,27,26,27,26,27,26,27,92,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,65,32,33,32,33,32,33,48,64,33,32,33,32,33,32,49,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,77,10,11,10,11,10,11,10,11,10,11,10,11,76,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,64,33,32,33,32,33,32,49,65,32,33,32,33,32,33,48,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,93,26,27,26,27,26,27,26,27,26,27,26,27,92,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,65,32,33,32,33,32,33,48,64,33,32,33,32,33,32,49,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,77,10,11,10,11,10,11,10,11,10,11,10,11,76,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,64,33,32,33,32,33,32,49,65,32,33,32,33,32,33,48,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,93,26,27,26,27,26,27,26,27,26,27,26,27,92,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,16,17,65,32,33,32,33,32,33,48
@@ -19,67 +19,67 @@
 				<showDialog name="Guard"/>
 				<comment value="123456789012345678901234"/>
 				<showMessage>
-					<line message="I&apos;m sorry but the gates_"/>
+					<line message="I&apos;m sorry but the gates"/>
 					<line message="are shut by order of his"/>
-					<line message="majesty King Jed IV."/>
+					<line message="majesty King Ian."/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="I need to cross to the__"/>
-					<line message="northern area. My wife__"/>
+					<line message="I need to cross to the"/>
+					<line message="northern area. My wife"/>
 					<line message="was captured by brigands"/>
 					<line message="and I must rescue her."/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
 					<line message="I&apos;m sorry for your loss,"/>
-					<line message="but orders are orders.__"/>
+					<line message="but orders are orders."/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="What do I need to do to_"/>
+					<line message="What do I need to do to"/>
 					<line message="be allowed through?"/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
-					<line message="Perhaps you might speak_"/>
-					<line message="with his majesty. The___"/>
-					<line message="royal palace is located_"/>
-					<line message="on an island.___________"/>
+					<line message="Perhaps you might speak"/>
+					<line message="with his majesty. The"/>
+					<line message="royal palace is located"/>
+					<line message="on an island."/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="I&apos;ve seen the palace____"/>
-					<line message="from afar, but the______"/>
+					<line message="I&apos;ve seen the palace"/>
+					<line message="from afar, but the"/>
 					<line message="bridge is raised. How do"/>
 					<line message="I get acros?"/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
-					<line message="Do I have to tell you___"/>
-					<line message="everything?_____________"/>
+					<line message="Do I have to tell you"/>
+					<line message="everything?"/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="Look here, my wife was__"/>
-					<line message="captured by brigands.___"/>
+					<line message="Look here, my wife was"/>
+					<line message="captured by brigands."/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="I&apos;ve traveled very far__"/>
-					<line message="to get here and I won&apos;t_"/>
+					<line message="I&apos;ve traveled very far"/>
+					<line message="to get here and I won&apos;t"/>
 					<line message="turn back now."/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
 					<line message="I&apos;m from a small village"/>
-					<line message="beyond the mountains so_"/>
-					<line message="I&apos;m sorry if I don&apos;t____"/>
+					<line message="beyond the mountains so"/>
+					<line message="I&apos;m sorry if I don&apos;t"/>
 					<line message="know my way around here."/>
-					<line message="I&apos;m not asking for much_"/>
-					<line message="so the least you can do_"/>
-					<line message="is help point me in the_"/>
-					<line message="right direction.________"/>
+					<line message="I&apos;m not asking for much"/>
+					<line message="so the least you can do"/>
+					<line message="is help point me in the"/>
+					<line message="right direction."/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
@@ -87,22 +87,22 @@
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="Well are you going to___"/>
-					<line message="help me or not?_________"/>
+					<line message="Well are you going to"/>
+					<line message="help me or not?"/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
-					<line message="Go bother the knights.__"/>
+					<line message="Go bother the knights."/>
 					<line message="I&apos;m sure you&apos;ll find one"/>
-					<line message="of those self-absorbed__"/>
-					<line message="drunks in a tavern._____"/>
+					<line message="of those self-absorbed"/>
+					<line message="drunks in a tavern."/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
-					<line message="Now if you don&apos;t mind___"/>
-					<line message="I&apos;m getting back to my__"/>
-					<line message="post so shove off you___"/>
-					<line message="ignorant outlander._____"/>
+					<line message="Now if you don&apos;t mind"/>
+					<line message="I&apos;m getting back to my"/>
+					<line message="post so shove off you"/>
+					<line message="ignorant outlander."/>
 				</showMessage>
 				<changeVariable variableID="0" operation="1" value="1"/>
 				<hideDialog/>
@@ -119,8 +119,8 @@
 				<showDialog name="__PLAYER__"/>
 				<comment value="123456789012345678901234"/>
 				<showMessage>
-					<line message="By order of King Darius_"/>
-					<line message="you are to allow me to__"/>
+					<line message="By order of King Darius"/>
+					<line message="you are to allow me to"/>
 					<line message="pass."/>
 				</showMessage>
 				<showDialog name="Guard"/>
@@ -129,11 +129,11 @@
 				</showMessage>
 				<hideDialog/>
 				<waitFrames frames="1"/>
-				<playSoundEffect sound="18" loop="true"/>
+				<playSoundEffect sound="gate" loop="true"/>
 				<hideScreen transition="5" speed="1"/>
 				<teleport mapID="43" x="255" y="255" facing="4"/>
 				<showScreen transition="2" speed="4"/>
-				<playSoundEffect sound="18" loop="false"/>
+				<playSoundEffect sound="gate" loop="false"/>
 				<showDialog name="Gaurd"/>
 				<comment value="123456789012345678901234"/>
 				<showMessage>
@@ -148,67 +148,67 @@
 				<showDialog name="Guard"/>
 				<comment value="123456789012345678901234"/>
 				<showMessage>
-					<line message="I&apos;m sorry but the gates_"/>
+					<line message="I&apos;m sorry but the gates"/>
 					<line message="are shut by order of his"/>
-					<line message="majesty King Jed IV."/>
+					<line message="majesty King Ian."/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="I need to cross to the__"/>
-					<line message="northern area. My wife__"/>
+					<line message="I need to cross to the"/>
+					<line message="northern area. My wife"/>
 					<line message="was captured by brigands"/>
 					<line message="and I must rescue her."/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
 					<line message="I&apos;m sorry for your loss,"/>
-					<line message="but orders are orders.__"/>
+					<line message="but orders are orders."/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="What do I need to do to_"/>
+					<line message="What do I need to do to"/>
 					<line message="be allowed through?"/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
-					<line message="Perhaps you might speak_"/>
-					<line message="with his majesty. The___"/>
-					<line message="royal palace is located_"/>
-					<line message="on an island.___________"/>
+					<line message="Perhaps you might speak"/>
+					<line message="with his majesty. The"/>
+					<line message="royal palace is located"/>
+					<line message="on an island."/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="I&apos;ve seen the palace____"/>
-					<line message="from afar, but the______"/>
+					<line message="I&apos;ve seen the palace"/>
+					<line message="from afar, but the"/>
 					<line message="bridge is raised. How do"/>
 					<line message="I get acros?"/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
-					<line message="Do I have to tell you___"/>
-					<line message="everything?_____________"/>
+					<line message="Do I have to tell you"/>
+					<line message="everything?"/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="Look here, my wife was__"/>
-					<line message="captured by brigands.___"/>
+					<line message="Look here, my wife was"/>
+					<line message="captured by brigands."/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="I&apos;ve traveled very far__"/>
-					<line message="to get here and I won&apos;t_"/>
+					<line message="I&apos;ve traveled very far"/>
+					<line message="to get here and I won&apos;t"/>
 					<line message="turn back now."/>
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
 					<line message="I&apos;m from a small village"/>
-					<line message="beyond the mountains so_"/>
-					<line message="I&apos;m sorry if I don&apos;t____"/>
+					<line message="beyond the mountains so"/>
+					<line message="I&apos;m sorry if I don&apos;t"/>
 					<line message="know my way around here."/>
-					<line message="I&apos;m not asking for much_"/>
-					<line message="so the least you can do_"/>
-					<line message="is help point me in the_"/>
-					<line message="right direction.________"/>
+					<line message="I&apos;m not asking for much"/>
+					<line message="so the least you can do"/>
+					<line message="is help point me in the"/>
+					<line message="right direction."/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
@@ -216,22 +216,22 @@
 				</showMessage>
 				<showDialog name="__PLAYER__"/>
 				<showMessage>
-					<line message="Well are you going to___"/>
-					<line message="help me or not?_________"/>
+					<line message="Well are you going to"/>
+					<line message="help me or not?"/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
-					<line message="Go bother the knights.__"/>
+					<line message="Go bother the knights."/>
 					<line message="I&apos;m sure you&apos;ll find one"/>
-					<line message="of those self-absorbed__"/>
-					<line message="drunks in a tavern._____"/>
+					<line message="of those self-absorbed"/>
+					<line message="drunks in a tavern."/>
 				</showMessage>
 				<showDialog name="Guard"/>
 				<showMessage>
-					<line message="Now if you don&apos;t mind___"/>
-					<line message="I&apos;m getting back to my__"/>
-					<line message="post so shove off you___"/>
-					<line message="ignorant outlander._____"/>
+					<line message="Now if you don&apos;t mind"/>
+					<line message="I&apos;m getting back to my"/>
+					<line message="post so shove off you"/>
+					<line message="ignorant outlander."/>
 				</showMessage>
 				<changeVariable variableID="0" operation="1" value="1"/>
 				<hideDialog/>
@@ -248,8 +248,8 @@
 				<showDialog name="__PLAYER__"/>
 				<comment value="123456789012345678901234"/>
 				<showMessage>
-					<line message="By order of King Darius_"/>
-					<line message="you are to allow me to__"/>
+					<line message="By order of King Darius"/>
+					<line message="you are to allow me to"/>
 					<line message="pass."/>
 				</showMessage>
 				<showDialog name="Guard"/>
@@ -258,11 +258,11 @@
 				</showMessage>
 				<hideDialog/>
 				<waitFrames frames="1"/>
-				<playSoundEffect sound="18" loop="true"/>
+				<playSoundEffect sound="gate" loop="true"/>
 				<hideScreen transition="5" speed="1"/>
 				<teleport mapID="43" x="255" y="255" facing="4"/>
 				<showScreen transition="2" speed="4"/>
-				<playSoundEffect sound="18" loop="false"/>
+				<playSoundEffect sound="gate" loop="false"/>
 				<showDialog name="Gaurd"/>
 				<comment value="123456789012345678901234"/>
 				<showMessage>
@@ -273,7 +273,7 @@
 			</else>
 		</event>
 		<event name="Exit" x="15" y="15" flags="12" sprite="255">
-			<ifExited facing>
+			<ifExited facing="up">
 				<comment value="teleport(&quot;maps/overworld.dat&quot;, 9, 36, &quot;up&quot;)"/>
 				<hideScreen transition="1" speed="4"/>
 				<showImage location="screens/tobecontinued.gfx"/>

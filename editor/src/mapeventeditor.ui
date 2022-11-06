@@ -388,6 +388,9 @@
           <family>Monospace</family>
          </font>
         </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::CustomContextMenu</enum>
+        </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
         </property>
@@ -417,14 +420,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>EventView</class>
-   <extends>QTreeWidget</extends>
-   <header>eventview.h</header>
-  </customwidget>
-  <customwidget>
    <class>ImageView</class>
    <extends>QLabel</extends>
    <header>imageview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>EventView</class>
+   <extends>QTreeWidget</extends>
+   <header>eventview.h</header>
   </customwidget>
  </customwidgets>
  <resources>

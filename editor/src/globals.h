@@ -102,7 +102,6 @@ class Globals
     static void refreshBackdrops();
     static void refreshMusic();
     static void refreshSFX();
-    static QByteArray convertAudio(QString fileLocation, QProgressBar *progress=nullptr);
     static constexpr int getStatForLevel(int level, const StatGrowth &growth)
     {
       return growth.start + (int)(growth.base * pow(level, growth.exponent));
@@ -124,11 +123,13 @@ class Globals
     static EquipmentStats equipmentStats[6][16];
     static StatGrowth statsGrowth[7];
     static QString datadir;
+    static QString femtoIDE;
     static QMap<int, QString> mapNames;
     static QMap<QString, QString> messages;
     static QStringList backdrops;
     static QStringList bgms;
     static QStringList sfx;
+    static uint8_t skillLearned[16];
     static const uint8_t codes[];
     static const char *itemTypes[8];
     static const char *statNames[7];

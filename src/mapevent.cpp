@@ -1,5 +1,7 @@
 #include "headers.h"
 
+#define DEBUG_MAPEVENTS
+
 using PC=Pokitto::Core;
 using PD=Pokitto::Display;
 using PB=Pokitto::Buttons;
@@ -58,6 +60,62 @@ bool (*const PTAD::MapEvent::execEvent[]) () =
   PTAD::MapEvent::endEventProcessing   //0x31 (49)
 };
 
+#ifdef DEBUG_MAPEVENTS
+const char *mapEventNames[] =
+{
+  "hideScreen",
+  "showScreen",
+  "teleport",
+  "showDialog",
+  "hideDialog",
+  "bufferMessage",
+  "bufferValue",
+  "bufferCharacter",
+  "showMessage",
+  "showOneLiner",
+  "showShopMenu",
+  "showGold",
+  "hideGold",
+  "waitButtons",
+  "waitFrames",
+  "battle",
+  "shakeScreen",
+  "cutscene",
+  "jump",
+  "jumpIfSwitch",
+  "jumpIfVariable",
+  "jumpIfHasItem",
+  "jumpIfExited",
+  "jumpIfYesNo",
+  "jumpIfValue",
+  "jumpIfFacing",
+  "playSoundEffect",
+  "playMusic",
+  "pauseMusic",
+  "resumeMusic",
+  "waitMusic",
+  "waitSoundEffect",
+  "turnSwitchOn",
+  "turnSwitchOff",
+  "toggleSwitch",
+  "turnSwitchRangeOn",
+  "turnSwitchRangeOff",
+  "toggleSwitchRange",
+  "changeVariable",
+  "changeSprite",
+  "changeEventLocation",
+  "changeEventFlags",
+  "changePassability",
+  "givePlayerItem",
+  "givePlayerGold",
+  "heal",
+  "showImage",
+  "hideImage",
+  "movePlayer",
+  "endEventProcessing"
+};
+#endif
+
 const uint32_t PTAD::MapEvent::wipeDownMasks[21] = {0xFFFFF, 0xFFFFE, 0xFFFFC, 0xFFFF8, 0xFFFF0, 0xFFFE0, 0xFFFC0, 0xFFF80, 0xFFF00, 0xFFE00, 0xFFC00, 0xFF800, 0xFF000, 0xFE000, 0xFC000, 0xF8000, 0xF0000, 0xE0000, 0xC0000, 0x80000, 0x0};
 const uint32_t PTAD::MapEvent::wipeUpMasks[21] = {0xFFFFF, 0x7FFFF, 0x3FFFF, 0x1FFFF, 0xFFFF, 0x7FFF, 0x3FFF, 0x1FFF, 0xFFF, 0x7FF, 0x3FF, 0x1FF, 0xFF, 0x7F, 0x3F, 0x1F, 0xF, 0x7, 0x3, 0x1, 0x0};
 const uint32_t PTAD::MapEvent::wipeInMasks[11] = {0xFFFFF, 0x7FFFE, 0x3FFFC, 0x1FFF8, 0xFFF0, 0x7FE0, 0x3FC0, 0x1F80, 0xF00, 0x600, 0x0};
@@ -80,12 +138,20 @@ void PTAD::MapEvent::setup(uint32_t hash)
 {
   if (hash == eventFileHash)
     return;
+#ifdef DEBUG_MAPEVENTS
+  printf("setup(%X)\n", hash);
+  fflush(stdout);
+#endif
   PTAD::dataFile->getPackedFile(hash, &eventFile);
   eventFileHash = hash;
 }
 
 void PTAD::MapEvent::begin(uint32_t offset)
 {
+#ifdef DEBUG_MAPEVENTS
+  printf("begin(%d)\n", offset);
+  fflush(stdout);
+#endif
   eventFile.seek(0);
   currentBufferPos = 0;
   PTAD::dataFile->readBytes(&eventFile, eventBuffer, PTAD::EVENT_BUFFER_MEMORY_SIZE);
@@ -96,12 +162,18 @@ void PTAD::MapEvent::begin(uint32_t offset)
 
 bool PTAD::MapEvent::update()
 {
+  uint8_t eventID;
   if (atEnd)
     return true;
   do
   {
     currentEvent = eventPos;
-  } while (execEvent[nextByte()]());
+    eventID = nextByte();
+#ifdef DEBUG_MAPEVENTS
+    printf("%d: %s\n", currentEvent + currentBufferPos, mapEventNames[eventID]);
+    fflush(stdout);
+#endif
+  } while (execEvent[eventID]());
   return atEnd;
 }
 
@@ -114,6 +186,10 @@ void PTAD::MapEvent::runOnLoadEvent(uint32_t hash, uint32_t offset)
   int32_t old_currentEvent = currentEvent;
   uint8_t old_counters[4] = {counters[0], counters[1], counters[2], counters[3]};
   bool old_atEnd = atEnd;
+#ifdef DEBUG_MAPEVENTS
+  printf("runOnLoadEvent()\n");
+  fflush(stdout);
+#endif
   setup(hash);
   begin(offset);
   while (!atEnd)
@@ -721,12 +797,12 @@ bool PTAD::MapEvent::jumpIfYesNo()
   readValue((uint8_t*)&noPos, sizeof(noPos));
   if (PTAD::justPressed(PTAD::BTN_MASK_LEFT) || PTAD::justPressed(PTAD::BTN_MASK_RIGHT))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
     counters[0] ^= 32;
   }
   else if (PB::bBtn())
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     eventPos = noPos - (int32_t)currentBufferPos;
     PTAD::Ui::fillCharacter(255, 8, 1, 13);
     PTAD::Ui::fillCharacter(255, 8, 1, 14);
@@ -735,7 +811,7 @@ bool PTAD::MapEvent::jumpIfYesNo()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
     if (counters[0] == 0)
       eventPos = yesPos - (int32_t)currentBufferPos;
     else
@@ -753,9 +829,10 @@ bool PTAD::MapEvent::jumpIfYesNo()
 
 bool PTAD::MapEvent::jumpIfValue()
 {
-  int32_t truePos, falsePos, current, desired;
+  int32_t truePos, falsePos, desired;
+  int32_t current = 0;
   uint8_t value, condition;
-  bool test;
+  bool test = false;
   readValue((uint8_t*)&truePos, sizeof(truePos));
   readValue((uint8_t*)&falsePos, sizeof(falsePos));
   value = nextByte();

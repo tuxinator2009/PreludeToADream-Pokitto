@@ -1,2 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Grizzly" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Grizzly" experience="15" hp="36" attack="28" defense="35" agility="16" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="0" gold="25">
+	<intro>
+		<bufferMessage message="A grizzly attacks you!"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="You defeated the grizzly"/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<bufferMessage message="The grizzly mauls you!"/>
+		<showMessage/>
+		<basicAttack animation="enemy_claw"/>
+	</turn>
+</monster>

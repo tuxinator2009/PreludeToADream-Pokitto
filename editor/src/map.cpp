@@ -47,6 +47,14 @@ Map::Map(XMLNode mapNode)
   }
   for (int i = 0; i < 64*64/8; ++i)
     passability[i] = 0;
+  for (int i = 0; i < 29; ++i)
+  {
+    data.events[i].x = 255;
+    data.events[i].y = 255;
+    data.events[i].flags = 255;
+    data.events[i].spriteID = 255;
+    data.events[i].offset = 0xFFFFFFFF;
+  }
   bgm = mapNode.getAttribute("bgm");
   data.tilesetID = atoi(mapNode.getAttribute("tileset"));
   data.width = atoi(mapNode.getAttribute("width"));
@@ -112,6 +120,14 @@ Map::Map(uint8_t width, uint8_t height)
     data.regions[i][1] = 255;
     data.regions[i][2] = 255;
     data.regions[i][3] = 255;
+  }
+  for (int i = 0; i < 29; ++i)
+  {
+    data.events[i].x = 255;
+    data.events[i].y = 255;
+    data.events[i].flags = 255;
+    data.events[i].spriteID = 255;
+    data.events[i].offset = 0xFFFFFFFF;
   }
   data.minSteps = 0;
   data.maxSteps = 8;
@@ -203,7 +219,9 @@ XMLNode Map::toXMLNode()
 QByteArray Map::compile()
 {
   QByteArray bytes;
+  const char *pData = (const char*)&data;
   bytes.append(sizeof(Globals::MapData), 0);
+  data.bgmID = Globals::bgms.indexOf(bgm);
   for (int y = 0; y < data.height * 2; ++y)
   {
     for (int x = 0; x < data.width * 16; ++x)
@@ -225,13 +243,22 @@ QByteArray Map::compile()
       }
     }
   }
+  for (int i = 0; i < 29; ++i)
+  {
+    data.events[i].x = 255;
+    data.events[i].y = 255;
+    data.events[i].flags = 255;
+    data.events[i].spriteID = 255;
+    data.events[i].offset = 0xFFFFFFFF;
+  }
   onLoadEvent->compileEvent(&data, -1, &bytes);
   for (int i = 0; i < 29; ++i)
   {
     if (events[i] != nullptr)
       events[i]->compileEvent(&data, i, &bytes);
   }
-  bytes.replace(0, sizeof(Globals::MapData), (char*)&data);
+  for (int i = 0; i < 512; ++i)
+    bytes[i] = pData[i];
   return bytes;
 }
 

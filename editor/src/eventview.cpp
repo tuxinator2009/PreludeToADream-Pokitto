@@ -31,6 +31,7 @@
 EventView::EventView(QWidget *parent) : QTreeWidget(parent)
 {
   connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SIGNAL(insertEvent(QTreeWidgetItem*)));
+  connect(this, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(rightClicked(const QPoint&)));
 }
 
 EventView::~EventView()
@@ -49,4 +50,11 @@ void EventView::keyPressEvent(QKeyEvent *event)
   else if (event->key() == Qt::Key_Return)
     emit insertEvent(currentItem());
   event->accept();
+}
+
+void EventView::rightClicked(const QPoint &pos)
+{
+  QTreeWidgetItem *item = itemAt(pos);
+  if (item != nullptr)
+    emit editEvent(item);
 }

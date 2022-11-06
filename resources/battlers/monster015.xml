@@ -1,2 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Sandworm" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Sandworm" experience="30" hp="72" attack="56" defense="65" agility="72" magic="52" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="9" gold="40">
+	<intro>
+		<bufferMessage message="A sandworm springs out!"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="You stopped the sandworm"/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<random counter="3" max="100"/>
+		<ifCounter counter="3" condition="&lt;=" value="50">
+			<ifStat stat="MP" condition="&gt;=" value="3">
+				<bufferMessage message="The sandworm casts quake"/>
+				<showMessage/>
+				<castSpell animation="enemy_quake" type="2" level="1" mp="3"/>
+				<endEventProcessing/>
+			</ifStat>
+		</ifCounter>
+		<bufferMessage message="The sandworm bites you."/>
+		<showMessage/>
+		<basicAttack animation="enemy_bite2"/>
+	</turn>
+</monster>

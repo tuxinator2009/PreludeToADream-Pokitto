@@ -11,7 +11,7 @@ namespace PTAD
       static void showWindow();
       static void shiftTextUp();
       static void bufferText(const uint8_t *array, uint8_t numChars);
-      static void bufferNumber(int32_t value, uint32_t start);
+      static void bufferNumber(int32_t value, int32_t start);
       static void bufferCharacter(uint8_t character);
       static void trimBuffer();
       static void addMessage(uint8_t id);
@@ -21,7 +21,7 @@ namespace PTAD
       static void setMessageSpeed(uint8_t speed);
       static uint8_t getMessageSpeed();
       static constexpr uint8_t MESSAGES_SIZE = 24;
-      static constexpr uint8_t MESSAGES_NULL = 0;
+      /*static constexpr uint8_t MESSAGES_NULL = 0;
       static constexpr uint8_t MESSAGES_BATTLE_CHOOSE_ACTION = 1;
       static constexpr uint8_t MESSAGES_BATTLE_SURPRISE_ATTACK = 2;
       static constexpr uint8_t MESSAGES_BATTLE_CRITICAL_HIT = 3;
@@ -63,10 +63,10 @@ namespace PTAD
       static constexpr uint8_t MESSAGES_BATTLE_ATTACK_UP = 39;
       static constexpr uint8_t MESSAGES_BATTLE_DEFENSE_UP = 40;
       static constexpr uint8_t MESSAGES_BATTLE_AGILITY_UP = 41;
-      static constexpr uint8_t MESSAGES_BATTLE_MAGIC_UP = 42;
+      static constexpr uint8_t MESSAGES_BATTLE_MAGIC_UP = 42;*/
     private:
-      static const uint8_t messages[];
-      static const uint8_t messageSizes[];
+      //static const uint8_t messages[];
+      //static const uint8_t messageSizes[];
       static DataPack::PackedFile messagesFile;
       static uint8_t buffer[MESSAGES_SIZE];
       static uint8_t counter;

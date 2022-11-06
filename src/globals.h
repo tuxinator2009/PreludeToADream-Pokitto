@@ -15,7 +15,7 @@ namespace PTAD
   void write_command_16(uint16_t data);
   void write_data_16(uint16_t data);
   void fillRegion(uint32_t count, uint16_t color);
-  constexpr bool stringsEqual(const char *string1, const char *string2)
+  /*constexpr bool stringsEqual(const char *string1, const char *string2)
   {
     while (*string1 && *string2)
     {
@@ -32,8 +32,8 @@ namespace PTAD
         return i;
     }
     //assert(false, value);
-  }
-  struct Item
+  }*/
+  /*struct Item
   {
     uint8_t name[8];
     uint8_t description[24];
@@ -44,7 +44,7 @@ namespace PTAD
     int8_t stats[4];
     uint16_t spellResistance;
     int8_t statusResistance[2];
-  };
+  };*/
   extern DataPack *dataFile;
   extern uint32_t frameCount;
   extern uint32_t fpsStart;
@@ -65,14 +65,14 @@ namespace PTAD
 	extern uint8_t tilemapBG[];
   extern uint8_t tilemapFG[];
 	#endif
-	extern const uint32_t tilesets[];
+	/*extern const uint32_t tilesets[];
 	extern const uint8_t playerSprite[];
 	extern const uint8_t cursor[];
   extern const uint8_t statusIcons[];
   extern const Item items[8][16];
   extern const Item skills[16];
   extern const Item spells[16];
-  extern const EquipmentStats equipmentStats[6][16];
+  extern const EquipmentStats equipmentStats[6][16];*/
   
   constexpr uint8_t ITEMS_BATTLE_ONLY = 7;
 	

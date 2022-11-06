@@ -29,6 +29,7 @@ SkillsSpellsEditor::SkillsSpellsEditor(bool editSkills, QWidget *parent) : QDial
 {
   setupUi(this);
   lblSkillSpell->setText((editSkills) ? "Skills":"Spells");
+  wLearned->setVisible(editSkills);
   setWindowTitle((editSkills) ? "Skills Editor":"Spells Editor");
   editingSkills = editSkills;
   ignoreEvents = true;
@@ -62,6 +63,7 @@ void SkillsSpellsEditor::on_lstSkillsSpells_itemSelectionChanged()
     leName->setText(Globals::skills[id].name);
     leDescription->setText(Globals::skills[id].description);
     numMP->setValue(Globals::skills[id].price);
+    numLearned->setValue(Globals::skillLearned[id]);
   }
   else
   {
@@ -101,4 +103,12 @@ void SkillsSpellsEditor::on_leDescription_textChanged(QString text)
     Globals::skills[lstSkillsSpells->currentRow()].description = text;
   else
     Globals::spells[lstSkillsSpells->currentRow()].description = text;
+}
+
+void SkillsSpellsEditor::on_numLearned_valueChanged(int value)
+{
+  if (ignoreEvents)
+    return;
+  if (editingSkills)
+    Globals::skillLearned[lstSkillsSpells->currentRow()] = value;
 }

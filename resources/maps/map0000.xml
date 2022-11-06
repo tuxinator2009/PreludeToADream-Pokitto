@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-map tileset="0" bgm="7" width="4" height="4" minSteps="2" maxSteps="8" flags="0" sprites="29,59,30,40,41,76,77,78,60,61,62,63,64,66,65,255">
+<ptad-map tileset="0" bgm="fields" width="4" height="4" minSteps="2" maxSteps="8" flags="0" sprites="29,59,30,40,41,76,77,78,60,61,62,63,64,66,65,255">
 	<onLoadEvent>
 		<turnSwitchRangeOff startID="0" endID="31"/>
 		<comment value="TODO: replace 200 with value when bridges are lowered"/>
@@ -70,7 +70,7 @@
 		<event name="Wall Gate" x="9" y="37" flags="8" sprite="6">
 			<comment value="TODO: replace 200 with story progression variable of gate open"/>
 			<hideScreen transition="1" speed="4"/>
-			<ifFacing direction="right">
+			<ifFacing direction="up">
 				<ifVariable variableID="0" condition="&lt;=" value="200">
 					<teleport mapID="42" x="15" y="15" facing="0"/>
 				</ifVariable>

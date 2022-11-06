@@ -89,8 +89,8 @@ class BattleEvent
         virtual bool isIf() {return false;}
         virtual bool isElse() {return false;}
         Event *getParentEvent() {return parent;}
-        static Event *newEvent(BattleEvent *pBase, Event *parent, Type t);
-        static Event *newEvent(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        static Event *newEvent(BattleEvent *pBase, Event *pEvent, Type t);
+        static Event *newEvent(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         //BEGIN Constants
         static constexpr uint8_t VALUE_PLAYER_NAME = 0;
         static constexpr uint8_t VALUE_PLAYER_HP = 1;
@@ -110,15 +110,14 @@ class BattleEvent
         static constexpr uint8_t VALUE_MONSTER_HP = 15;
         static constexpr uint8_t VALUE_MONSTER_MAXHP = 16;
         static constexpr uint8_t VALUE_MONSTER_MP = 17;
-        static constexpr uint8_t VALUE_MONSTER_MAXMP = 18;
-        static constexpr uint8_t VALUE_MONSTER_EXPERIENCE = 19;
-        static constexpr uint8_t VALUE_MONSTER_GOLD = 20;
-        static constexpr uint8_t VALUE_MONSTER_ATTACK = 21;
-        static constexpr uint8_t VALUE_MONSTER_DEFENSE = 22;
-        static constexpr uint8_t VALUE_MONSTER_AGILITY = 23;
-        static constexpr uint8_t VALUE_MONSTER_MAGIC = 24;
-        static constexpr uint8_t VALUE_VARIABLE = 25;
-        static constexpr uint8_t VALUE_SUPPLIED = 26;
+        static constexpr uint8_t VALUE_MONSTER_EXPERIENCE = 18;
+        static constexpr uint8_t VALUE_MONSTER_GOLD = 19;
+        static constexpr uint8_t VALUE_MONSTER_ATTACK = 20;
+        static constexpr uint8_t VALUE_MONSTER_DEFENSE = 21;
+        static constexpr uint8_t VALUE_MONSTER_AGILITY = 22;
+        static constexpr uint8_t VALUE_MONSTER_MAGIC = 23;
+        static constexpr uint8_t VALUE_VARIABLE = 24;
+        static constexpr uint8_t VALUE_SUPPLIED = 25;
         static constexpr uint8_t CONDITION_EQUAL_TO = 0;
         static constexpr uint8_t CONDITION_NOT_EQUAL_TO = 1;
         static constexpr uint8_t CONDITION_GREATER_THAN = 2;
@@ -141,8 +140,8 @@ class BattleEvent
     class TopLevelEvent: public Event
     {
       public:
-        TopLevelEvent(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::TopLevelEvent) {events += Event::newEvent(pBase, this, Type::End);}
-        TopLevelEvent(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        TopLevelEvent(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::TopLevelEvent) {events += Event::newEvent(pBase, this, Type::End);}
+        TopLevelEvent(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~TopLevelEvent();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -160,8 +159,8 @@ class BattleEvent
     class IfEvent: public Event
     {
       public:
-        IfEvent(BattleEvent *pBase, Event *parent, Type t) : Event(pBase, parent, t) {events += Event::newEvent(pBase, this, Type::End); elseIf = false;}
-        IfEvent(BattleEvent *pBase, Event *parent, Type t, XMLNode eventNode);
+        IfEvent(BattleEvent *pBase, Event *pEvent, Type t) : Event(pBase, pEvent, t) {events += Event::newEvent(pBase, this, Type::End); elseIf = false;}
+        IfEvent(BattleEvent *pBase, Event *pEvent, Type t, XMLNode eventNode);
         virtual ~IfEvent();
         void addChildEvent(Event *event, int location) {events.insert(location, event);item->insertChild(location, event->getItem());}
         void deleteChildEvent(int location) {delete events.takeAt(location);}
@@ -172,7 +171,7 @@ class BattleEvent
         int numChildEvents() {return events.count();}
         bool isIf() {return true;}
         bool isElse() {return elseIf;}
-        void addItems(QTreeWidgetItem *item);
+        void addItems();
       protected:
         QList<Event*> events;
         bool elseIf;
@@ -180,8 +179,8 @@ class BattleEvent
     class ShakeScreen : public Event
     {
       public:
-        ShakeScreen(BattleEvent *pBase, Event *parent);
-        ShakeScreen(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        ShakeScreen(BattleEvent *pBase, Event *pEvent);
+        ShakeScreen(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ShakeScreen();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -194,8 +193,8 @@ class BattleEvent
     class FlashBattler : public Event
     {
       public:
-        FlashBattler(BattleEvent *pBase, Event *parent);
-        FlashBattler(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        FlashBattler(BattleEvent *pBase, Event *pEvent);
+        FlashBattler(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~FlashBattler();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -210,8 +209,8 @@ class BattleEvent
     class FlashUi : public Event
     {
       public:
-        FlashUi(BattleEvent *pBase, Event *parent);
-        FlashUi(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        FlashUi(BattleEvent *pBase, Event *pEvent);
+        FlashUi(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~FlashUi();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -224,8 +223,8 @@ class BattleEvent
     class BasicAttack : public Event
     {
       public:
-        BasicAttack(BattleEvent *pBase, Event *parent);
-        BasicAttack(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        BasicAttack(BattleEvent *pBase, Event *pEvent);
+        BasicAttack(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~BasicAttack();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -237,8 +236,8 @@ class BattleEvent
     class UseSkill : public Event //TODO: possibly delete
     {
       public:
-        UseSkill(BattleEvent *pBase, Event *parent);
-        UseSkill(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        UseSkill(BattleEvent *pBase, Event *pEvent);
+        UseSkill(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~UseSkill();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -249,8 +248,8 @@ class BattleEvent
     class CastSpell : public Event
     {
       public:
-        CastSpell(BattleEvent *pBase, Event *parent);
-        CastSpell(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        CastSpell(BattleEvent *pBase, Event *pEvent);
+        CastSpell(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~CastSpell();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -265,8 +264,8 @@ class BattleEvent
     class PlaySoundEffect : public Event
     {
       public:
-        PlaySoundEffect(BattleEvent *pBase, Event *parent);
-        PlaySoundEffect(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        PlaySoundEffect(BattleEvent *pBase, Event *pEvent);
+        PlaySoundEffect(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~PlaySoundEffect();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -279,8 +278,8 @@ class BattleEvent
     class BufferMessage : public Event
     {
       public:
-        BufferMessage(BattleEvent *pBase, Event *parent);
-        BufferMessage(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        BufferMessage(BattleEvent *pBase, Event *pEvent);
+        BufferMessage(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~BufferMessage();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -292,8 +291,8 @@ class BattleEvent
     class BufferValue : public Event
     {
       public:
-        BufferValue(BattleEvent *pBase, Event *parent);
-        BufferValue(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        BufferValue(BattleEvent *pBase, Event *pEvent);
+        BufferValue(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~BufferValue();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -306,8 +305,8 @@ class BattleEvent
     class BufferCharacter : public Event
     {
       public:
-        BufferCharacter(BattleEvent *pBase, Event *parent);
-        BufferCharacter(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        BufferCharacter(BattleEvent *pBase, Event *pEvent);
+        BufferCharacter(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~BufferCharacter();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -319,8 +318,8 @@ class BattleEvent
     class ShowMessage : public Event
     {
       public:
-        ShowMessage(BattleEvent *pBase, Event *parent);
-        ShowMessage(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        ShowMessage(BattleEvent *pBase, Event *pEvent);
+        ShowMessage(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ShowMessage();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -333,8 +332,8 @@ class BattleEvent
     class Jump : public Event
     {
       public:
-        Jump(BattleEvent *pBase, Event *parent);
-        Jump(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        Jump(BattleEvent *pBase, Event *pEvent);
+        Jump(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Jump();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -348,8 +347,8 @@ class BattleEvent
     class IfCounter : public IfEvent
     {
       public:
-        IfCounter(BattleEvent *pBase, Event *parent);
-        IfCounter(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        IfCounter(BattleEvent *pBase, Event *pEvent);
+        IfCounter(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~IfCounter();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -363,8 +362,8 @@ class BattleEvent
     class IfStatus : public IfEvent
     {
       public:
-        IfStatus(BattleEvent *pBase, Event *parent);
-        IfStatus(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        IfStatus(BattleEvent *pBase, Event *pEvent);
+        IfStatus(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~IfStatus();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -379,8 +378,8 @@ class BattleEvent
     class IfStat : public IfEvent
     {
       public:
-        IfStat(BattleEvent *pBase, Event *parent);
-        IfStat(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        IfStat(BattleEvent *pBase, Event *pEvent);
+        IfStat(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~IfStat();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -394,8 +393,8 @@ class BattleEvent
     class ChangeBattlerSprite : public Event
     {
       public:
-        ChangeBattlerSprite(BattleEvent *pBase, Event *parent);
-        ChangeBattlerSprite(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        ChangeBattlerSprite(BattleEvent *pBase, Event *pEvent);
+        ChangeBattlerSprite(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ChangeBattlerSprite();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -407,8 +406,8 @@ class BattleEvent
     class ChangeBackgroundImage : public Event
     {
       public:
-        ChangeBackgroundImage(BattleEvent *pBase, Event *parent);
-        ChangeBackgroundImage(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        ChangeBackgroundImage(BattleEvent *pBase, Event *pEvent);
+        ChangeBackgroundImage(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ChangeBackgroundImage();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -420,8 +419,8 @@ class BattleEvent
     class PlayBattleAnimation : public Event
     {
       public:
-        PlayBattleAnimation(BattleEvent *pBase, Event *parent);
-        PlayBattleAnimation(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        PlayBattleAnimation(BattleEvent *pBase, Event *pEvent);
+        PlayBattleAnimation(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~PlayBattleAnimation();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -433,8 +432,8 @@ class BattleEvent
     class WaitFrames : public Event
     {
       public:
-        WaitFrames(BattleEvent *pBase, Event *parent);
-        WaitFrames(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        WaitFrames(BattleEvent *pBase, Event *pEvent);
+        WaitFrames(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~WaitFrames();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -446,8 +445,8 @@ class BattleEvent
     class InflictStatus : public Event
     {
       public:
-        InflictStatus(BattleEvent *pBase, Event *parent);
-        InflictStatus(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        InflictStatus(BattleEvent *pBase, Event *pEvent);
+        InflictStatus(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~InflictStatus();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -464,8 +463,8 @@ class BattleEvent
     class ConsumeMP : public Event
     {
       public:
-        ConsumeMP(BattleEvent *pBase, Event *parent);
-        ConsumeMP(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        ConsumeMP(BattleEvent *pBase, Event *pEvent);
+        ConsumeMP(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~ConsumeMP();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -477,8 +476,8 @@ class BattleEvent
     class Random : public Event
     {
       public:
-        Random(BattleEvent *pBase, Event *parent);
-        Random(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        Random(BattleEvent *pBase, Event *pEvent);
+        Random(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Random();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -491,8 +490,8 @@ class BattleEvent
     class Label: public Event
     {
       public:
-        Label(BattleEvent *pBase, Event *parent);
-        Label(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        Label(BattleEvent *pBase, Event *pEvent);
+        Label(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Label();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -505,8 +504,8 @@ class BattleEvent
     class Comment: public Event
     {
       public:
-        Comment(BattleEvent *pBase, Event *parent);
-        Comment(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        Comment(BattleEvent *pBase, Event *pEvent);
+        Comment(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Comment();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -518,8 +517,8 @@ class BattleEvent
     class Else: public Event
     {
       public:
-        Else(BattleEvent *pBase, Event *parent);
-        Else(BattleEvent *pBase, Event *parent, XMLNode eventNode);
+        Else(BattleEvent *pBase, Event *pEvent);
+        Else(BattleEvent *pBase, Event *pEvent, XMLNode eventNode);
         virtual ~Else();
         XMLNode toXMLNode();
         void compileEvent(QByteArray *bytes);
@@ -539,7 +538,7 @@ class BattleEvent
     class End: public Event
     {
       public:
-        End(BattleEvent *pBase, Event *parent) : Event(pBase, parent, Type::End) {}
+        End(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::End) {}
         virtual ~End() {}
         void compileEvent(QByteArray *bytes);
     };

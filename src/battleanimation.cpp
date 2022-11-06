@@ -20,7 +20,7 @@ void PTAD::BattleAnimation::beginAnimation(uint32_t animationHash)
   DataPack::PackedFile file;
   PTAD::dataFile->getPackedFile(animationHash, &file);
   PTAD::dataFile->readBytes(&file, (void*)animation, sizeof(AnimationData));
-  PTAD::dataFile->getPackedFile(DataPack::hash("animations/animations.gfx"), &file);
+  PTAD::dataFile->getPackedFile(DataPack::hash("/animations/animations.png"), &file);
   for (int i = 0; i < 8; ++i)
   {
     file.seek((uint32_t)animation->sprites[i] * 1024);

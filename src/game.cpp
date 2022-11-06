@@ -9,7 +9,7 @@ using PB=Pokitto::Buttons;
 
 #define START_LEVEL 1
 
-const uint8_t PTAD::Game::skillLearned[99] =
+/*const uint8_t PTAD::Game::skillLearned[99] =
 {
   255,SKILL_EXAMINE,255,SKILL_FOCUS_1,255,255,SKILL_MEDITATE,255,255,
   255,255,SKILL_DBL_HIT,255,255,255,255,255,255,
@@ -22,7 +22,7 @@ const uint8_t PTAD::Game::skillLearned[99] =
   255,255,255,255,255,255,255,255,255,
   255,255,255,255,255,255,255,255,255,
 	255,255,255,255,255,255,255,255,255
-};
+};*/
 
 const uint8_t PTAD::Game::messageSpeeds[]
 {
@@ -58,19 +58,24 @@ const PTAD::Game::PlayerData PTAD::Game::newGame =
   //x, y
   192, 128,
   //hp, maxHP
-  getStatForLevel(START_LEVEL, hpGrowth), getStatForLevel(START_LEVEL, hpGrowth),
+  (uint16_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::hpGrowth), (uint16_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::hpGrowth),
   //mp, maxMP
-  getStatForLevel(START_LEVEL, mpGrowth), getStatForLevel(START_LEVEL, mpGrowth),
+  (uint8_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::mpGrowth), (uint8_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::mpGrowth),
   //experience, nextLevel
-  0, getStatForLevel(START_LEVEL, experienceGrowth),
+  0, PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::experienceGrowth),
   //gold
   0,
   //level
   START_LEVEL,
   //attack, defense, agility, magic
-  {getStatForLevel(START_LEVEL, attackGrowth), getStatForLevel(START_LEVEL, defenseGrowth), getStatForLevel(START_LEVEL, agilityGrowth), getStatForLevel(START_LEVEL, magicGrowth)},
+  {
+    (uint16_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::attackGrowth),
+    (uint16_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::defenseGrowth),
+    (uint16_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::agilityGrowth),
+    (uint16_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::magicGrowth)
+  },
   //mapID
-  DataPack::hash("maps/town1/home.dat"),
+  DataPack::hash("/maps/map0003.xml"),
   //messageSpeed
   0x11,
   //dir
@@ -124,7 +129,7 @@ void PTAD::Game::setup()
   memset(PTAD::tilemapFG, 255, PTAD::TILEMAP_MEMORY_SIZE);
   state = State::TitleInit;
   volume = std::min((uint8_t)6, Pokitto::discrete_vol);
-  PTAD::Music::playMusic(PTAD::Music::MUSIC_MAIN_THEME, 0);
+  PTAD::Music::playMusic(PTAD::Resources::music_mainTheme, 0);
   previousFrame = PC::getTime();
 }
 
@@ -213,38 +218,38 @@ void PTAD::Game::update()
 #endif
 }
 
-constexpr uint32_t PTAD::Game::getStatForLevel(uint8_t level, const PTAD::Game::StatGrowth &growth)
-{
-	return growth.start + (uint32_t)(growth.base * pow(level, growth.exponent));
-}
+//constexpr uint32_t PTAD::Game::getStatForLevel(uint8_t level, const PTAD::Resources::StatGrowth &growth)
+//{
+//	return growth.start + (uint32_t)(growth.base * pow(level, growth.exponent));
+//}
 
 void PTAD::Game::levelUp()
 {
 	++player.level;
-	player.maxHP = getStatForLevel(player.level, hpGrowth);
+	player.maxHP = PTAD::Resources::getStatForLevel(player.level, PTAD::Resources::hpGrowth);
 	player.hp = player.maxHP;
-	player.maxMP = getStatForLevel(player.level, mpGrowth);
+  player.maxMP = PTAD::Resources::getStatForLevel(player.level, PTAD::Resources::mpGrowth);
 	player.mp = player.maxMP;
-	player.nextLevel += getStatForLevel(player.level, experienceGrowth);
-	player.stats.attack = getStatForLevel(player.level, attackGrowth);
-  player.stats.defense = getStatForLevel(player.level, defenseGrowth);
-  player.stats.agility = getStatForLevel(player.level, agilityGrowth);
-  player.stats.magic = getStatForLevel(player.level, magicGrowth);
-  if (skillLearned[player.level - 1] != 255)
-    player.skills |= 1 << skillLearned[player.level - 1];
+  player.nextLevel += PTAD::Resources::getStatForLevel(player.level, PTAD::Resources::experienceGrowth);
+  player.stats.attack = PTAD::Resources::getStatForLevel(player.level, PTAD::Resources::attackGrowth);
+  player.stats.defense = PTAD::Resources::getStatForLevel(player.level, PTAD::Resources::defenseGrowth);
+  player.stats.agility = PTAD::Resources::getStatForLevel(player.level, PTAD::Resources::agilityGrowth);
+  player.stats.magic = PTAD::Resources::getStatForLevel(player.level, PTAD::Resources::magicGrowth);
+  if (PTAD::Resources::skillLearned[player.level - 1] != 255)
+    player.skills |= 1 << PTAD::Resources::skillLearned[player.level - 1];
 }
 
 uint16_t PTAD::Game::calculateSpellResistance()
 {
   uint16_t total = 0;
-  for (int i = 0; i < 8; ++i)
+  for (int i = 0; i < 7; ++i)
   {
     uint8_t resistance = 0;
     for (int j = 0; j < 6; ++j)
     {
       //if player has equipment type 'j' equipped then add that equipment's resistance to spell 'i'
       if (player.equippedItems[j] != 255)
-        resistance += (PTAD::equipmentStats[j][player.equippedItems[j]].spellResistance >> (i * 2)) & 3;
+        resistance += (PTAD::Resources::equipmentStats[j][player.equippedItems[j]].spellResistance >> (i * 2)) & 3;
       else
         resistance += 2;
     }
@@ -266,7 +271,7 @@ uint8_t PTAD::Game::getPoisonResistance()
   for (int i = 0; i < 6; ++i)
   {
     if (player.equippedItems[i] != 255)
-      total += PTAD::equipmentStats[i][player.equippedItems[i]].statusResistance[0];
+      total += PTAD::Resources::equipmentStats[i][player.equippedItems[i]].statusResistance[0];
   }
   if (total < 0)
     total = 0;
@@ -281,7 +286,7 @@ uint8_t PTAD::Game::getSlowResistance()
   for (int i = 0; i < 6; ++i)
   {
     if (player.equippedItems[i] != 255)
-      total += PTAD::equipmentStats[i][player.equippedItems[i]].statusResistance[1];
+      total += PTAD::Resources::equipmentStats[i][player.equippedItems[i]].statusResistance[1];
   }
   if (total < 0)
     total = 0;

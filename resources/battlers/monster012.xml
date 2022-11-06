@@ -1,2 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Eagle" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Eagle" experience="25" hp="60" attack="78" defense="38" agility="150" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="0" gold="30">
+	<intro>
+		<bufferMessage message="An eagle spots you!"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="You felled the eagle."/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<bufferMessage message="The eagle swoops at you!"/>
+		<showMessage/>
+		<basicAttack animation="enemy_claw"/>
+	</turn>
+</monster>

@@ -1,2 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Snake" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Snake" experience="5" hp="12" attack="16" defense="15" agility="20" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="0" gold="6">
+	<intro>
+		<bufferMessage message="You stumbled on a snake!"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="You defeated the snake!"/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<random counter="3" max="100"/>
+		<ifCounter counter="3" condition="&lt;=" value="50">
+			<ifStatus self="false" status="poison" condition="!=" level="1">
+				<playBattleAnimation animation="enemy_venom"/>
+				<bufferMessage message="The snake uses venom!"/>
+				<showMessage/>
+				<inflictStatus self="false" status="poison" level="1" chance="192" success="It&apos;s venom poisons you!" failed="It&apos;s venom did nothing."/>
+				<endEventProcessing/>
+			</ifStatus>
+		</ifCounter>
+		<bufferMessage message="The snake strikes at you"/>
+		<showMessage/>
+		<basicAttack animation="enemy_bite2"/>
+	</turn>
+</monster>

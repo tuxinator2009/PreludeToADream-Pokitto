@@ -129,7 +129,7 @@ namespace PTAD
     static uint8_t *tiledata;
     static const uint8_t playerFrames[];
     static const uint8_t movement[];
-    static const uint32_t tiledataFiles[];
+    //static const uint32_t tiledataFiles[];
     static const uint8_t txtOptions[];
     static const uint8_t statsMenu[];
     static const uint8_t infoText[];

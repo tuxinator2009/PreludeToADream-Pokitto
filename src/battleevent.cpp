@@ -1,5 +1,7 @@
 #include "headers.h"
 
+#define DEBUG_BATTLEEVENTS
+
 using PC=Pokitto::Core;
 using PD=Pokitto::Display;
 using PB=Pokitto::Buttons;
@@ -32,6 +34,36 @@ bool (*const PTAD::BattleEvent::execEvent[]) () =
   PTAD::BattleEvent::event_endEventProcessing     //0x17 (23)
 };
 
+#ifdef DEBUG_BATTLEEVENTS
+const char *battleEventNames[] =
+{
+  "shakeScreen",
+  "flashBattler",
+  "flashUi",
+  "basicAttack",
+  "useSkill",
+  "castSpell",
+  "playSoundEffect",
+  "bufferMessage",
+  "bufferValue",
+  "BufferCharacter",
+  "showMessage",
+  "jump",
+  "jumpIf",
+  "jumpIfStatus",
+  "jumpIfStat",
+  "changeBattlerSprite",
+  "changeBackgroundImage",
+  "playBattleAnimation",
+  "waitFrames",
+  "waitButtons",
+  "inflictStatus",
+  "consumeMP",
+  "random",
+  "endEventProcessing"
+};
+#endif
+
 DataPack::PackedFile PTAD::BattleEvent::eventFile;
 int PTAD::BattleEvent::damageDealt = 0;
 uint32_t PTAD::BattleEvent::currentBufferPos = 0;
@@ -52,6 +84,10 @@ void PTAD::BattleEvent::setup(DataPack::PackedFile &file)
 
 void PTAD::BattleEvent::begin(uint32_t offset)
 {
+#ifdef DEBUG_BATTLEEVENTS
+  printf("PTAD::BattleEvent::begin(%d)\n", offset);
+  fflush(stdout);
+#endif
   eventFile.seek(sizeof(PTAD::Battle::EnemyData));
   currentBufferPos = sizeof(PTAD::Battle::EnemyData);
   PTAD::dataFile->readBytes(&eventFile, eventBuffer, PTAD::EVENT_BUFFER_MEMORY_SIZE);
@@ -62,12 +98,18 @@ void PTAD::BattleEvent::begin(uint32_t offset)
 
 bool PTAD::BattleEvent::update()
 {
+  uint8_t eventID;
   if (atEnd)
     return true;
   do
   {
     currentEvent = eventPos;
-  } while (execEvent[nextByte()]());
+    eventID = nextByte();
+#ifdef DEBUG_BATTLEEVENTS
+    printf("%d: %s\n", currentEvent + currentBufferPos, battleEventNames[eventID]);
+    fflush(stdout);
+#endif
+  } while (execEvent[eventID]());
   return atEnd;
 }
 
@@ -90,7 +132,7 @@ uint8_t PTAD::BattleEvent::nextByte()
     currentBufferPos -= PTAD::EVENT_BUFFER_MEMORY_SIZE;
     updateBuffer = true;
   }
-  while (eventPos >= PTAD::EVENT_BUFFER_MEMORY_SIZE)
+  while (eventPos >= (int32_t)PTAD::EVENT_BUFFER_MEMORY_SIZE)
   {
     eventPos -= PTAD::EVENT_BUFFER_MEMORY_SIZE;
     currentEvent -= PTAD::EVENT_BUFFER_MEMORY_SIZE;
@@ -139,39 +181,32 @@ bool PTAD::BattleEvent::event_basicAttack()
 {
   uint32_t animation;
   readValue((uint8_t*)&animation, sizeof(animation));
-  damageDealt = PTAD::Battle::attackDamageDealt(PTAD::Battle::getEnemyAttack(), PTAD::Battle::getEnemyAgility(), PTAD::Battle::getPlayerDefense(), PTAD::Battle::getPlayerAgility(), (PTAD::Battle::playerSpellResistance >> 14) & 3);
+  damageDealt = PTAD::Battle::attackDamageDealt(PTAD::Battle::getEnemyAttack(), PTAD::Battle::getEnemyAgility(), PTAD::Battle::getPlayerDefense(), PTAD::Battle::getPlayerAgility(), (PTAD::Battle::playerSpellResistance >> 12) & 3);
   if (damageDealt > 0)
   {
-    //PTAD::Battle::shakeScreen = 1;
-    //PTAD::Battle::shakeRate = 8;
-    //PTAD::Battle::flashUi = 8;
-    //PTAD::Ui::fgColor = 175;
     PTAD::BattleAnimation::beginAnimation(animation);
-    //PTAD::Music::playSFX(PTAD::Music::SFX_HIT);
-    //PD::shiftTilemap(random(0, 8), random(0, 8));
-    //PTAD::Battle::flashPlayerSprite(16, 8, 88, 168);
     if (random(0, 100) < 5)
     {
       counters[3] = 2;
       damageDealt *= 2;
       PTAD::Battle::playerStatus &= ~(3 << PTAD::Battle::STATUS_FOCUSED);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_CRITICAL_HIT);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleCriticalHit);
       PTAD::Dialog::bufferNumber(damageDealt, 100);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageTakenEnd);
     }
     else
     {
       counters[3] = 1;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_BEGIN);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageTakenBegin);
       PTAD::Dialog::bufferNumber(damageDealt, 100);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageTakenEnd);
     }
   }
   else
   {
     counters[3] = 0;
-    PTAD::Music::playSFX(PTAD::Music::SFX_MISS);
-    PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_MISS);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_miss);
+    PTAD::Dialog::addMessage(PTAD::Resources::battleMiss);
   }
   PTAD::Dialog::beginMessage();
   if (damageDealt >= PTAD::Game::player.hp)
@@ -192,7 +227,7 @@ bool PTAD::BattleEvent::event_useSkill() //TODO
 bool PTAD::BattleEvent::event_castSpell()
 {
   //TODO: implement animation
-  /*uint32_t animation;
+  uint32_t animation;
   uint8_t type, level, mp;
   readValue((uint8_t*)&animation, sizeof(animation));
   if (!PTAD::BattleAnimation::isAnimationPlaying())
@@ -211,15 +246,15 @@ bool PTAD::BattleEvent::event_castSpell()
     if (damageDealt > 0)
     {
       counters[3] = 1;
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_BEGIN);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageTakenBegin);
       PTAD::Dialog::bufferNumber(damageDealt, 100);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleDamageTakenEnd);
     }
     else
     {
       counters[3] = 0;
-      PTAD::Music::playSFX(PTAD::Music::SFX_MISS);
-      PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_MISS);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_miss);
+      PTAD::Dialog::addMessage(PTAD::Resources::battleMiss);
     }
     PTAD::Dialog::beginMessage();
     if (damageDealt >= PTAD::Game::player.hp)
@@ -229,33 +264,10 @@ bool PTAD::BattleEvent::event_castSpell()
     }
     else
       PTAD::Game::player.hp -= damageDealt;
+    PTAD::Battle::enemy->mp -= mp;
     return true;
   }
   eventPos = currentEvent;
-  return false;*/
-  
-  uint8_t type = nextByte() * 2;
-  uint8_t level = nextByte();
-  uint8_t mp = nextByte();
-  damageDealt = PTAD::Battle::magicDamageDealt(PTAD::Battle::getEnemyAttack(), PTAD::Battle::getEnemyMagic(), level, PTAD::Battle::getPlayerDefense(), PTAD::Battle::getPlayerMagic(), (PTAD::Battle::playerSpellResistance >> type) & 3);
-  PTAD::Battle::shakeScreen = 1;
-  PTAD::Battle::shakeRate = 8;
-  PTAD::Battle::flashUi = 8;
-  PTAD::Ui::fgColor = 175;
-  PTAD::Music::playSFX(PTAD::Music::SFX_HIT);
-  PD::shiftTilemap(random(0, 8), random(0, 8));
-  PTAD::Battle::flashPlayerSprite(16, 8, 88, 168);
-  PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_BEGIN);
-  PTAD::Dialog::bufferNumber(damageDealt, 100);
-  PTAD::Dialog::addMessage(PTAD::Dialog::MESSAGES_BATTLE_DAMAGE_TAKEN_END);
-  PTAD::Dialog::beginMessage();
-  if (damageDealt >= PTAD::Game::player.hp)
-  {
-    atEnd = true;
-    PTAD::Game::player.hp = 0;
-  }
-  else
-    PTAD::Game::player.hp -= damageDealt;
   return false;
 }
 
@@ -275,6 +287,64 @@ bool PTAD::BattleEvent::event_bufferMessage()
 
 bool PTAD::BattleEvent::event_bufferValue() //TODO
 {
+  uint8_t value = nextByte();
+  if (value == VALUE_PLAYER_NAME)
+    PTAD::Dialog::bufferText(PTAD::Game::player.name, 8);
+  else if (value == VALUE_PLAYER_HP)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.hp, 100);
+  else if (value == VALUE_PLAYER_MAXHP)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.maxHP, 100);
+  else if (value == VALUE_PLAYER_MP)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.mp, 10);
+  else if (value == VALUE_PLAYER_MAXMP)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.maxMP, 10);
+  else if (value == VALUE_PLAYER_EXPERIENCE)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.experience, 100000);
+  else if (value == VALUE_PLAYER_NEXTLEVEL)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.nextLevel, 100000);
+  else if (value == VALUE_PLAYER_EXPERIENCELEFT)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.nextLevel - PTAD::Game::player.experience, 1000);
+  else if (value == VALUE_PLAYER_GOLD)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.gold, 10000);
+  else if (value == VALUE_PLAYER_LEVEL)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.level, 10);
+  else if (value == VALUE_PLAYER_ATTACK)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.stats.attack, 100);
+  else if (value == VALUE_PLAYER_DEFENSE)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.stats.defense, 100);
+  else if (value == VALUE_PLAYER_AGILITY)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.stats.agility, 100);
+  else if (value == VALUE_PLAYER_MAGIC)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.stats.magic, 100);
+  else if (value == VALUE_MONSTER_NAME)
+    PTAD::Dialog::bufferText(PTAD::Resources::enemyNames + PTAD::battleMonsterID * 8, 8);
+  else if (value == VALUE_MONSTER_HP)
+    PTAD::Dialog::bufferNumber(PTAD::Battle::enemy->hp, 10000);
+  else if (value == VALUE_MONSTER_MAXHP)
+    PTAD::Dialog::bufferNumber(PTAD::Battle::enemy->maxHP, 10000);
+  else if (value == VALUE_MONSTER_MP)
+    PTAD::Dialog::bufferNumber(PTAD::Battle::enemy->mp, 100);
+  else if (value == VALUE_MONSTER_EXPERIENCE)
+    PTAD::Dialog::bufferNumber(PTAD::Battle::enemy->experience, 10000);
+  else if (value == VALUE_MONSTER_GOLD)
+    PTAD::Dialog::bufferNumber(PTAD::Battle::enemy->gold, 100);
+  else if (value == VALUE_MONSTER_ATTACK)
+    PTAD::Dialog::bufferNumber(PTAD::Battle::enemy->stats.attack, 10000);
+  else if (value == VALUE_MONSTER_DEFENSE)
+    PTAD::Dialog::bufferNumber(PTAD::Battle::enemy->stats.defense, 10000);
+  else if (value == VALUE_MONSTER_AGILITY)
+    PTAD::Dialog::bufferNumber(PTAD::Battle::enemy->stats.agility, 10000);
+  else if (value == VALUE_MONSTER_MAGIC)
+    PTAD::Dialog::bufferNumber(PTAD::Battle::enemy->stats.magic, 10000);
+  else if (value == VALUE_VARIABLE)
+    PTAD::Dialog::bufferNumber(PTAD::Game::player.variables[nextByte()], 1000000000);
+  else if (value == VALUE_SUPPLIED)
+  {
+    int32_t supplied;
+    readValue((uint8_t*)&supplied, sizeof(supplied));
+    PTAD::Dialog::bufferNumber(supplied, 1000000000);
+  }
+  PTAD::Dialog::trimBuffer();
   return true;
 }
 
@@ -302,7 +372,7 @@ bool PTAD::BattleEvent::event_jumpIf()
 {
   int32_t truePos, falsePos;
   uint8_t counter, value, condition;
-  bool test;
+  bool test = false;
   readValue((uint8_t*)&truePos, sizeof(truePos));
   readValue((uint8_t*)&falsePos, sizeof(falsePos));
   counter = nextByte();
@@ -336,7 +406,7 @@ bool PTAD::BattleEvent::event_jumpIfStatus()
   uint8_t level = value & 3;
   uint8_t current;
   bool self = (value & 128) != 0;
-  bool test;
+  bool test = false;
   readValue((uint8_t*)&truePos, sizeof(truePos));
   readValue((uint8_t*)&falsePos, sizeof(falsePos));
   if (self)
@@ -368,7 +438,8 @@ bool PTAD::BattleEvent::event_jumpIfStat()
   uint8_t condition = nextByte();
   uint16_t value;
   uint16_t current;
-  bool test, hp = (condition & 128) != 0;
+  bool test = false;
+  bool hp = (condition & 128) != 0;
   condition &= 0x7F;
   readValue((uint8_t*)&value, sizeof(value));
   readValue((uint8_t*)&truePos, sizeof(truePos));
@@ -473,7 +544,7 @@ bool PTAD::BattleEvent::event_inflictStatus()
     }
     else if (status == PTAD::Battle::STATUS_BERSERK)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_BERSERK);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_berserk);
       if (((PTAD::Battle::enemyStatus >> PTAD::Battle::STATUS_BERSERK) & 3) < level)
         PTAD::Battle::enemyStatus += (1 << PTAD::Battle::STATUS_BERSERK);
     }
@@ -484,6 +555,8 @@ bool PTAD::BattleEvent::event_inflictStatus()
   else
   {
     uint16_t chance = nextByte();
+    printf("inflictStats: player (%d) status=%d level=%d\n", chance, status, level);
+    fflush(stdout);
     if (random(0, 0xFFFF) <= chance * (255 - PTAD::Battle::playerStatusResistance[status / 2]))
     {
       if (status == PTAD::Battle::STATUS_POISON)
@@ -493,7 +566,7 @@ bool PTAD::BattleEvent::event_inflictStatus()
         if (current > level)
           level = current;
         PTAD::Battle::playerStatus |= (level << PTAD::Battle::STATUS_POISON);
-        PTAD::Music::playSFX(PTAD::Music::SFX_POISON);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_poison);
         PTAD::Ui::fgColor = 203;
         PTAD::Battle::shakeScreen = 1;
         PTAD::Battle::shakeRate = 8;
@@ -502,10 +575,13 @@ bool PTAD::BattleEvent::event_inflictStatus()
       else if (status == PTAD::Battle::STATUS_SPEED)
       {
         uint8_t current = (PTAD::Battle::playerStatus >> PTAD::Battle::STATUS_SPEED) & 3;
+        printf("Inflict SLOW: %d (%d) -> ", PTAD::Battle::playerStatus, current);
         PTAD::Battle::playerStatus &= ~(3 << PTAD::Battle::STATUS_SPEED);
         if (current != PTAD::Battle::SPEED_HASTE)
           PTAD::Battle::playerStatus |= (PTAD::Battle::SPEED_SLOW << PTAD::Battle::STATUS_SPEED);
-        PTAD::Music::playSFX(PTAD::Music::SFX_SLOW);
+        printf("%d\n", PTAD::Battle::playerStatus);
+        fflush(stdout);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_slow);
         PTAD::Ui::fgColor = 3;
         PTAD::Battle::shakeScreen = 1;
         PTAD::Battle::shakeRate = 8;
@@ -517,7 +593,7 @@ bool PTAD::BattleEvent::event_inflictStatus()
       {
         if (((PTAD::Battle::playerStatus >> PTAD::Battle::STATUS_BERSERK) & 3) < level)
           PTAD::Battle::playerStatus += (1 << PTAD::Battle::STATUS_BERSERK);
-        PTAD::Music::playSFX(PTAD::Music::SFX_BERSERK);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_berserk);
         PTAD::Ui::fgColor = 175;
         PTAD::Battle::shakeScreen = 1;
         PTAD::Battle::shakeRate = 8;

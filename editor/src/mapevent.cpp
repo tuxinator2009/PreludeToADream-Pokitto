@@ -104,7 +104,7 @@ XMLNode MapEvent::toXMLNode(bool onLoadEvent)
 
 void MapEvent::compileEvent(Globals::MapData *pMapData, int index, QByteArray *bytes)
 {
-  if (index > 0)
+  if (index >= 0)
   {
     pMapData->events[index].x = x;
     pMapData->events[index].y = y;
@@ -285,236 +285,236 @@ MapEvent::Event::~Event()
   pMapEvent->allEvents.removeAll(this);
 }
 
-MapEvent::Event *MapEvent::Event::newEvent(MapEvent *pBase, Event *parent, Type t)
+MapEvent::Event *MapEvent::Event::newEvent(MapEvent *pBase, Event *pEvent, Type t)
 {
   if (t == Type::HideScreen)
-    return new HideScreen(pBase, parent);
+    return new HideScreen(pBase, pEvent);
   else if (t == Type::ShowScreen)
-    return new ShowScreen(pBase, parent);
+    return new ShowScreen(pBase, pEvent);
   else if (t == Type::Teleport)
-    return new Teleport(pBase, parent);
+    return new Teleport(pBase, pEvent);
   else if (t == Type::ShowDialog)
-    return new ShowDialog(pBase, parent);
+    return new ShowDialog(pBase, pEvent);
   else if (t == Type::HideDialog)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::BufferMessage)
-    return new BufferMessage(pBase, parent);
+    return new BufferMessage(pBase, pEvent);
   else if (t == Type::BufferValue)
-    return new BufferValue(pBase, parent);
+    return new BufferValue(pBase, pEvent);
   else if (t == Type::BufferCharacter)
-    return new BufferCharacter(pBase, parent);
+    return new BufferCharacter(pBase, pEvent);
   else if (t == Type::ShowMessage)
-    return new ShowMessage(pBase, parent);
+    return new ShowMessage(pBase, pEvent);
   else if (t == Type::ShowOneLiner)
-    return new ShowOneLiner(pBase, parent);
+    return new ShowOneLiner(pBase, pEvent);
   else if (t == Type::ShowShopMenu)
-    return new ShowShopMenu(pBase, parent);
+    return new ShowShopMenu(pBase, pEvent);
   else if (t == Type::ShowGold)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::HideGold)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::WaitButtons)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::WaitFrames)
-    return new WaitFrames(pBase, parent);
+    return new WaitFrames(pBase, pEvent);
   else if (t == Type::Battle)
-    return new Battle(pBase, parent);
+    return new Battle(pBase, pEvent);
   else if (t == Type::ShakeScreen)
-    return new ShakeScreen(pBase, parent);
+    return new ShakeScreen(pBase, pEvent);
   else if (t == Type::Cutscene)
-    return new Cutscene(pBase, parent);
+    return new Cutscene(pBase, pEvent);
   else if (t == Type::Jump)
-    return new Jump(pBase, parent);
+    return new Jump(pBase, pEvent);
   else if (t == Type::IfSwitch)
-    return new IfSwitch(pBase, parent);
+    return new IfSwitch(pBase, pEvent);
   else if (t == Type::IfVariable)
-    return new IfVariable(pBase, parent);
+    return new IfVariable(pBase, pEvent);
   else if (t == Type::IfHasItem)
-    return new IfHasItem(pBase, parent);
+    return new IfHasItem(pBase, pEvent);
   else if (t == Type::IfExited)
-    return new IfExited(pBase, parent);
+    return new IfExited(pBase, pEvent);
   else if (t == Type::IfYesNo)
-    return new IfYesNo(pBase, parent);
+    return new IfYesNo(pBase, pEvent);
   else if (t == Type::IfValue)
-    return new IfValue(pBase, parent);
+    return new IfValue(pBase, pEvent);
   else if (t == Type::IfFacing)
-    return new IfFacing(pBase, parent);
+    return new IfFacing(pBase, pEvent);
   else if (t == Type::PlaySoundEffect)
-    return new PlaySoundEffect(pBase, parent);
+    return new PlaySoundEffect(pBase, pEvent);
   else if (t == Type::PlayMusic)
-    return new PlayMusic(pBase, parent);
+    return new PlayMusic(pBase, pEvent);
   else if (t == Type::PauseMusic)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::ResumeMusic)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::WaitMusic)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::WaitSoundEffect)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::TurnSwitchOn)
-    return new TurnSwitchOn(pBase, parent);
+    return new TurnSwitchOn(pBase, pEvent);
   else if (t == Type::TurnSwitchOff)
-    return new TurnSwitchOff(pBase, parent);
+    return new TurnSwitchOff(pBase, pEvent);
   else if (t == Type::ToggleSwitch)
-    return new ToggleSwitch(pBase, parent);
+    return new ToggleSwitch(pBase, pEvent);
   else if (t == Type::TurnSwitchRangeOn)
-    return new TurnSwitchRangeOn(pBase, parent);
+    return new TurnSwitchRangeOn(pBase, pEvent);
   else if (t == Type::TurnSwitchRangeOff)
-    return new TurnSwitchRangeOff(pBase, parent);
+    return new TurnSwitchRangeOff(pBase, pEvent);
   else if (t == Type::ToggleSwitchRange)
-    return new ToggleSwitchRange(pBase, parent);
+    return new ToggleSwitchRange(pBase, pEvent);
   else if (t == Type::ChangeVariable)
-    return new ChangeVariable(pBase, parent);
+    return new ChangeVariable(pBase, pEvent);
   else if (t == Type::ChangeSprite)
-    return new ChangeSprite(pBase, parent);
+    return new ChangeSprite(pBase, pEvent);
   else if (t == Type::ChangeEventLocation)
-    return new ChangeEventLocation(pBase, parent);
+    return new ChangeEventLocation(pBase, pEvent);
   else if (t == Type::ChangeEventFlags)
-    return new ChangeEventFlags(pBase, parent);
+    return new ChangeEventFlags(pBase, pEvent);
   else if (t == Type::ChangePassability)
-    return new ChangePassability(pBase, parent);
+    return new ChangePassability(pBase, pEvent);
   else if (t == Type::GivePlayerItem)
-    return new GivePlayerItem(pBase, parent);
+    return new GivePlayerItem(pBase, pEvent);
   else if (t == Type::GivePlayerGold)
-    return new GivePlayerGold(pBase, parent);
+    return new GivePlayerGold(pBase, pEvent);
   else if (t == Type::Heal)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::ShowImage)
-    return new ShowImage(pBase, parent);
+    return new ShowImage(pBase, pEvent);
   else if (t == Type::HideImage)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::MovePlayer)
-    return new MovePlayer(pBase, parent);
+    return new MovePlayer(pBase, pEvent);
   else if (t == Type::EndEventProcessing)
-    return new Event(pBase, parent, t);
+    return new Event(pBase, pEvent, t);
   else if (t == Type::Label)
-    return new Label(pBase, parent);
+    return new Label(pBase, pEvent);
   else if (t == Type::Comment)
-    return new Comment(pBase, parent);
+    return new Comment(pBase, pEvent);
   else if (t == Type::Else)
-    return new Else(pBase, parent);
+    return new Else(pBase, pEvent);
   else if (t == Type::End)
-    return new End(pBase, parent);
+    return new End(pBase, pEvent);
   return nullptr;
 }
 
-MapEvent::Event *MapEvent::Event::newEvent(MapEvent *pBase, Event *parent, XMLNode eventNode)
+MapEvent::Event *MapEvent::Event::newEvent(MapEvent *pBase, Event *pEvent, XMLNode eventNode)
 {
   std::string eventType = eventNode.getName();
   if (eventType.compare("hideScreen") == 0)
-    return new HideScreen(pBase, parent, eventNode);
+    return new HideScreen(pBase, pEvent, eventNode);
   else if (eventType.compare("showScreen") == 0)
-    return new ShowScreen(pBase, parent, eventNode);
+    return new ShowScreen(pBase, pEvent, eventNode);
   else if (eventType.compare("teleport") == 0)
-    return new Teleport(pBase, parent, eventNode);
+    return new Teleport(pBase, pEvent, eventNode);
   else if (eventType.compare("showDialog") == 0)
-    return new ShowDialog(pBase, parent, eventNode);
+    return new ShowDialog(pBase, pEvent, eventNode);
   else if (eventType.compare("hideDialog") == 0)
-    return new Event(pBase, parent, Type::HideDialog);
+    return new Event(pBase, pEvent, Type::HideDialog);
   else if (eventType.compare("bufferMessage") == 0)
-    return new BufferMessage(pBase, parent, eventNode);
+    return new BufferMessage(pBase, pEvent, eventNode);
   else if (eventType.compare("bufferValue") == 0)
-    return new BufferValue(pBase, parent, eventNode);
+    return new BufferValue(pBase, pEvent, eventNode);
   else if (eventType.compare("bufferCharacter") == 0)
-    return new BufferCharacter(pBase, parent, eventNode);
+    return new BufferCharacter(pBase, pEvent, eventNode);
   else if (eventType.compare("showMessage") == 0)
-    return new ShowMessage(pBase, parent, eventNode);
+    return new ShowMessage(pBase, pEvent, eventNode);
   else if (eventType.compare("showOneLiner") == 0)
-    return new ShowOneLiner(pBase, parent, eventNode);
+    return new ShowOneLiner(pBase, pEvent, eventNode);
   else if (eventType.compare("showShopMenu") == 0)
-    return new ShowShopMenu(pBase, parent, eventNode);
+    return new ShowShopMenu(pBase, pEvent, eventNode);
   else if (eventType.compare("showGold") == 0)
-    return new Event(pBase, parent, Type::ShowGold);
+    return new Event(pBase, pEvent, Type::ShowGold);
   else if (eventType.compare("hideGold") == 0)
-    return new Event(pBase, parent, Type::HideGold);
+    return new Event(pBase, pEvent, Type::HideGold);
   else if (eventType.compare("waitButtons") == 0)
-    return new Event(pBase, parent, Type::WaitButtons);
+    return new Event(pBase, pEvent, Type::WaitButtons);
   else if (eventType.compare("waitFrames") == 0)
-    return new WaitFrames(pBase, parent, eventNode);
+    return new WaitFrames(pBase, pEvent, eventNode);
   else if (eventType.compare("battle") == 0)
-    return new Battle(pBase, parent, eventNode);
+    return new Battle(pBase, pEvent, eventNode);
   else if (eventType.compare("shakeScreen") == 0)
-    return new ShakeScreen(pBase, parent, eventNode);
+    return new ShakeScreen(pBase, pEvent, eventNode);
   else if (eventType.compare("cutscene") == 0)
-    return new Cutscene(pBase, parent, eventNode);
+    return new Cutscene(pBase, pEvent, eventNode);
   else if (eventType.compare("jump") == 0)
-    return new Jump(pBase, parent, eventNode);
+    return new Jump(pBase, pEvent, eventNode);
   else if (eventType.compare("ifSwitch") == 0 || eventType.compare("elseIfSwitch") == 0)
-    return new IfSwitch(pBase, parent, eventNode);
+    return new IfSwitch(pBase, pEvent, eventNode);
   else if (eventType.compare("ifVariable") == 0 || eventType.compare("elseIfVariable") == 0)
-    return new IfVariable(pBase, parent, eventNode);
+    return new IfVariable(pBase, pEvent, eventNode);
   else if (eventType.compare("ifHasItem") == 0 || eventType.compare("elseHasItem") == 0)
-    return new IfHasItem(pBase, parent, eventNode);
+    return new IfHasItem(pBase, pEvent, eventNode);
   else if (eventType.compare("ifExited") == 0 || eventType.compare("elseIfExited") == 0)
-    return new IfExited(pBase, parent, eventNode);
+    return new IfExited(pBase, pEvent, eventNode);
   else if (eventType.compare("ifYes") == 0 || eventType.compare("elseIfYes") == 0)
-    return new IfYesNo(pBase, parent, eventNode);
+    return new IfYesNo(pBase, pEvent, eventNode);
   else if (eventType.compare("ifNo") == 0 || eventType.compare("elseIfNo") == 0)
-    return new IfYesNo(pBase, parent, eventNode);
+    return new IfYesNo(pBase, pEvent, eventNode);
   else if (eventType.compare("ifValue") == 0 || eventType.compare("elseIfValue") == 0)
-    return new IfValue(pBase, parent, eventNode);
+    return new IfValue(pBase, pEvent, eventNode);
   else if (eventType.compare("ifFacing") == 0 || eventType.compare("elseIfFacing") == 0)
-    return new IfFacing(pBase, parent, eventNode);
+    return new IfFacing(pBase, pEvent, eventNode);
   else if (eventType.compare("playSoundEffect") == 0)
-    return new PlaySoundEffect(pBase, parent, eventNode);
+    return new PlaySoundEffect(pBase, pEvent, eventNode);
   else if (eventType.compare("playMusic") == 0)
-    return new PlayMusic(pBase, parent, eventNode);
+    return new PlayMusic(pBase, pEvent, eventNode);
   else if (eventType.compare("pauseMusic") == 0)
-    return new Event(pBase, parent, Type::PauseMusic);
+    return new Event(pBase, pEvent, Type::PauseMusic);
   else if (eventType.compare("resumeMusic") == 0)
-    return new Event(pBase, parent, Type::ResumeMusic);
+    return new Event(pBase, pEvent, Type::ResumeMusic);
   else if (eventType.compare("waitMusic") == 0)
-    return new Event(pBase, parent, Type::WaitMusic);
+    return new Event(pBase, pEvent, Type::WaitMusic);
   else if (eventType.compare("waitSoundEffect") == 0)
-    return new Event(pBase, parent, Type::WaitSoundEffect);
+    return new Event(pBase, pEvent, Type::WaitSoundEffect);
   else if (eventType.compare("turnSwitchOn") == 0)
-    return new TurnSwitchOn(pBase, parent, eventNode);
+    return new TurnSwitchOn(pBase, pEvent, eventNode);
   else if (eventType.compare("turnSwitchOff") == 0)
-    return new TurnSwitchOff(pBase, parent, eventNode);
+    return new TurnSwitchOff(pBase, pEvent, eventNode);
   else if (eventType.compare("toggleSwitch") == 0)
-    return new ToggleSwitch(pBase, parent, eventNode);
+    return new ToggleSwitch(pBase, pEvent, eventNode);
   else if (eventType.compare("turnSwitchRangeOn") == 0)
-    return new TurnSwitchRangeOn(pBase, parent, eventNode);
+    return new TurnSwitchRangeOn(pBase, pEvent, eventNode);
   else if (eventType.compare("turnSwitchRangeOff") == 0)
-    return new TurnSwitchRangeOff(pBase, parent, eventNode);
+    return new TurnSwitchRangeOff(pBase, pEvent, eventNode);
   else if (eventType.compare("toggleSwitchRange") == 0)
-    return new ToggleSwitchRange(pBase, parent, eventNode);
+    return new ToggleSwitchRange(pBase, pEvent, eventNode);
   else if (eventType.compare("changeVariable") == 0)
-    return new ChangeVariable(pBase, parent, eventNode);
+    return new ChangeVariable(pBase, pEvent, eventNode);
   else if (eventType.compare("changeSprite") == 0)
-    return new ChangeSprite(pBase, parent, eventNode);
+    return new ChangeSprite(pBase, pEvent, eventNode);
   else if (eventType.compare("changeEventLocation") == 0)
-    return new ChangeEventLocation(pBase, parent, eventNode);
+    return new ChangeEventLocation(pBase, pEvent, eventNode);
   else if (eventType.compare("changeEventFlags") == 0)
-    return new ChangeEventFlags(pBase, parent, eventNode);
+    return new ChangeEventFlags(pBase, pEvent, eventNode);
   else if (eventType.compare("changePassability") == 0)
-    return new ChangePassability(pBase, parent, eventNode);
+    return new ChangePassability(pBase, pEvent, eventNode);
   else if (eventType.compare("givePlayerItem") == 0)
-    return new GivePlayerItem(pBase, parent, eventNode);
+    return new GivePlayerItem(pBase, pEvent, eventNode);
   else if (eventType.compare("givePlayerGold") == 0)
-    return new GivePlayerGold(pBase, parent, eventNode);
+    return new GivePlayerGold(pBase, pEvent, eventNode);
   else if (eventType.compare("heal") == 0)
-    return new Event(pBase, parent, Type::Heal);
+    return new Event(pBase, pEvent, Type::Heal);
   else if (eventType.compare("showImage") == 0)
-    return new ShowImage(pBase, parent, eventNode);
+    return new ShowImage(pBase, pEvent, eventNode);
   else if (eventType.compare("hideImage") == 0)
-    return new Event(pBase, parent, Type::HideImage);
+    return new Event(pBase, pEvent, Type::HideImage);
   else if (eventType.compare("movePlayer") == 0)
-    return new MovePlayer(pBase, parent, eventNode);
+    return new MovePlayer(pBase, pEvent, eventNode);
   else if (eventType.compare("endEventProcessing") == 0)
-    return new Event(pBase, parent, Type::EndEventProcessing);
+    return new Event(pBase, pEvent, Type::EndEventProcessing);
   else if (eventType.compare("label") == 0)
-    return new Label(pBase, parent, eventNode);
+    return new Label(pBase, pEvent, eventNode);
   else if (eventType.compare("comment") == 0)
-    return new Comment(pBase, parent, eventNode);
+    return new Comment(pBase, pEvent, eventNode);
   else if (eventType.compare("else") == 0)
-    return new Else(pBase, parent, eventNode);
+    return new Else(pBase, pEvent, eventNode);
   return nullptr;
 }
 //END: MapEvent::Event
 
 //BEGIN: TopLevelEvent (COMPLETE)
-MapEvent::TopLevelEvent::TopLevelEvent(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::TopLevelEvent)
+MapEvent::TopLevelEvent::TopLevelEvent(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::TopLevelEvent)
 {
   for (int i = 0; i < eventNode.nChildNode(); ++i)
     events += Event::newEvent(pBase, this, eventNode.getChildNode(i));
@@ -576,7 +576,7 @@ void MapEvent::TopLevelEvent::setItem(QTreeWidgetItem *value)
 //END: TopLevelEvent
 
 //BEGIN: IfEvent (COMPLETE)
-MapEvent::IfEvent::IfEvent(MapEvent *pBase, Event *parent, Type t, XMLNode eventNode) : Event(pBase, parent, t)
+MapEvent::IfEvent::IfEvent(MapEvent *pBase, Event *pEvent, Type t, XMLNode eventNode) : Event(pBase, pEvent, t)
 {
   elseIf = strncmp(eventNode.getName(), "else", 4) == 0;
   for (int i = 0; i < eventNode.nChildNode(); ++i)
@@ -607,7 +607,7 @@ MapEvent::Event *MapEvent::IfEvent::nextChildEvent(Event *event)
   return events[index + 1];
 }
 
-void MapEvent::IfEvent::addItems(QTreeWidgetItem *item)
+void MapEvent::IfEvent::addItems()
 {
   for (auto event : events)
     item->addChild(event->getItem());
@@ -615,13 +615,13 @@ void MapEvent::IfEvent::addItems(QTreeWidgetItem *item)
 //END: IfEvent
 
 //BEGIN: HideScreen (COMPLETE)
-MapEvent::HideScreen::HideScreen(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::HideScreen)
+MapEvent::HideScreen::HideScreen(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::HideScreen)
 {
   transition = HIDE_INSTANT;
   speed = 0;
 }
 
-MapEvent::HideScreen::HideScreen(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::HideScreen)
+MapEvent::HideScreen::HideScreen(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::HideScreen)
 {
   transition = atoi(eventNode.getAttribute("transition"));
   speed = atoi(eventNode.getAttribute("speed"));
@@ -672,13 +672,13 @@ QTreeWidgetItem *MapEvent::HideScreen::getItem()
 //END: HideScreen
 
 //BEGIN: ShowScreen (COMPLETE)
-MapEvent::ShowScreen::ShowScreen(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ShowScreen)
+MapEvent::ShowScreen::ShowScreen(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ShowScreen)
 {
   transition = SHOW_INSTANT;
   speed = 0;
 }
 
-MapEvent::ShowScreen::ShowScreen(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ShowScreen)
+MapEvent::ShowScreen::ShowScreen(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ShowScreen)
 {
   transition = atoi(eventNode.getAttribute("transition"));
   speed = atoi(eventNode.getAttribute("speed"));
@@ -729,7 +729,7 @@ QTreeWidgetItem *MapEvent::ShowScreen::getItem()
 //END: ShowScreen
 
 //BEGIN: Teleport (COMPLETE)
-MapEvent::Teleport::Teleport(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::Teleport)
+MapEvent::Teleport::Teleport(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Teleport)
 {
   mapID = 0;
   x = 0;
@@ -737,7 +737,7 @@ MapEvent::Teleport::Teleport(MapEvent *pBase, Event *parent) : Event(pBase, pare
   facing = DIR_RETAIN;
 }
 
-MapEvent::Teleport::Teleport(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Teleport)
+MapEvent::Teleport::Teleport(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Teleport)
 {
   mapID = atoi(eventNode.getAttribute("mapID"));
   x = atoi(eventNode.getAttribute("x"));
@@ -762,8 +762,8 @@ XMLNode MapEvent::Teleport::toXMLNode()
 void MapEvent::Teleport::compileEvent(QByteArray *bytes)
 {
   offset = bytes->count();
-  QString mapLocation = QString("maps/map%1.dat").arg(mapID, 4, 10, QChar('0'));
-  Globals::Value32 value32 = {.uValue = Globals::hash(mapLocation.toLocal8Bit().data(), mapLocation.length())};
+  QString mapLocation = QString("/maps/map%1.xml").arg(mapID, 4, 10, QChar('0'));
+  Globals::Value32 value32 = {.uValue = Globals::hash(mapLocation.toLocal8Bit().data(), mapLocation.length() + 1)};
   bytes->append(static_cast<char>(type));
   bytes->append(value32.bytes[0]);
   bytes->append(value32.bytes[1]);
@@ -801,12 +801,12 @@ QTreeWidgetItem *MapEvent::Teleport::getItem()
 //END: Teleport
 
 //BEGIN: ShowDialog (COMPLETE)
-MapEvent::ShowDialog::ShowDialog(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ShowDialog)
+MapEvent::ShowDialog::ShowDialog(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ShowDialog)
 {
   name = "";
 }
 
-MapEvent::ShowDialog::ShowDialog(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ShowDialog)
+MapEvent::ShowDialog::ShowDialog(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ShowDialog)
 {
   name = eventNode.getAttribute("name");
 }
@@ -863,12 +863,12 @@ QTreeWidgetItem *MapEvent::ShowDialog::getItem()
 //END: ShowDialog
 
 //BEGIN: BufferMessage (COMPLETE)
-MapEvent::BufferMessage::BufferMessage(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::BufferMessage)
+MapEvent::BufferMessage::BufferMessage(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::BufferMessage)
 {
   message = "";
 }
 
-MapEvent::BufferMessage::BufferMessage(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::BufferMessage)
+MapEvent::BufferMessage::BufferMessage(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::BufferMessage)
 {
   message = eventNode.getAttribute("message");
 }
@@ -919,13 +919,13 @@ QTreeWidgetItem *MapEvent::BufferMessage::getItem()
 //END: BufferMessage
 
 //BEGIN: BufferValue (COMPLETE)
-MapEvent::BufferValue::BufferValue(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::BufferValue)
+MapEvent::BufferValue::BufferValue(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::BufferValue)
 {
   valueType = VALUE_PLAYER_NAME;
   value = 0;
 }
 
-MapEvent::BufferValue::BufferValue(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::BufferValue)
+MapEvent::BufferValue::BufferValue(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::BufferValue)
 {
   valueType = atoi(eventNode.getAttribute("value"));
   if (valueType == VALUE_VARIABLE)
@@ -999,12 +999,12 @@ QTreeWidgetItem *MapEvent::BufferValue::getItem()
 //END: BufferValue
 
 //BEGIN: BufferCharacter (COMPLETE)
-MapEvent::BufferCharacter::BufferCharacter(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::BufferCharacter)
+MapEvent::BufferCharacter::BufferCharacter(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::BufferCharacter)
 {
   character = ' ';
 }
 
-MapEvent::BufferCharacter::BufferCharacter(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::BufferCharacter)
+MapEvent::BufferCharacter::BufferCharacter(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::BufferCharacter)
 {
   character = eventNode.getAttribute("char")[0];
 }
@@ -1049,11 +1049,11 @@ QTreeWidgetItem *MapEvent::BufferCharacter::getItem()
 //END: BufferCharacter
 
 //BEGIN: ShowMessage (COMPLETE)
-MapEvent::ShowMessage::ShowMessage(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ShowMessage)
+MapEvent::ShowMessage::ShowMessage(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ShowMessage)
 {
 }
 
-MapEvent::ShowMessage::ShowMessage(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ShowMessage)
+MapEvent::ShowMessage::ShowMessage(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ShowMessage)
 {
   for (int i = 0; i < eventNode.nChildNode("line"); ++i)
     message += eventNode.getChildNode("line", i).getAttribute("message");
@@ -1165,7 +1165,7 @@ void MapEvent::ShowMessage::compileEvent(QByteArray *bytes)
       if (i % 4 == 3)
         bytes->append(static_cast<char>(Type::WaitButtons));
     }
-    if (message.count() % 4 != 3)
+    if (message.count() % 4 != 0)
       bytes->append(static_cast<char>(Type::WaitButtons));
   }
   else
@@ -1220,12 +1220,12 @@ void MapEvent::ShowMessage::bufferMessage(QByteArray *bytes, QString line)
 //END: ShowMessage
 
 //BEGIN: ShowOneLiner (COMPLETE)
-MapEvent::ShowOneLiner::ShowOneLiner(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ShowOneLiner)
+MapEvent::ShowOneLiner::ShowOneLiner(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ShowOneLiner)
 {
   message = "";
 }
 
-MapEvent::ShowOneLiner::ShowOneLiner(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ShowOneLiner)
+MapEvent::ShowOneLiner::ShowOneLiner(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ShowOneLiner)
 {
   message = eventNode.getAttribute("message");
 }
@@ -1276,7 +1276,7 @@ QTreeWidgetItem *MapEvent::ShowOneLiner::getItem()
 //END: ShowOneLiner
 
 //BEGIN: ShowShopMenu (COMPLETE)
-MapEvent::ShowShopMenu::ShowShopMenu(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ShowShopMenu)
+MapEvent::ShowShopMenu::ShowShopMenu(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ShowShopMenu)
 {
   greeting = "";
   consumables = 0;
@@ -1288,7 +1288,7 @@ MapEvent::ShowShopMenu::ShowShopMenu(MapEvent *pBase, Event *parent) : Event(pBa
   amulets = 0;
 }
 
-MapEvent::ShowShopMenu::ShowShopMenu(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ShowShopMenu)
+MapEvent::ShowShopMenu::ShowShopMenu(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ShowShopMenu)
 {
   greeting = eventNode.getAttribute("greetings");
   consumables = atoi(eventNode.getAttribute("consumables"));
@@ -1455,12 +1455,12 @@ QString MapEvent::ShowShopMenu::toString(uint16_t items, const char **names)
 //END: ShowShopMenu
 
 //BEGIN: WaitFrames (COMPLETE)
-MapEvent::WaitFrames::WaitFrames(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::WaitFrames)
+MapEvent::WaitFrames::WaitFrames(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::WaitFrames)
 {
   numFrames = 0;
 }
 
-MapEvent::WaitFrames::WaitFrames(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::WaitFrames)
+MapEvent::WaitFrames::WaitFrames(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::WaitFrames)
 {
   numFrames = atoi(eventNode.getAttribute("frames"));
 }
@@ -1501,14 +1501,14 @@ QTreeWidgetItem *MapEvent::WaitFrames::getItem()
 //END: WaitFrames
 
 //BEGIN: Battle (COMPLETE)
-MapEvent::Battle::Battle(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::Battle)
+MapEvent::Battle::Battle(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Battle)
 {
   background = Globals::backdrops[0];
   music = Globals::bgms[0];
   monster = 0;
 }
 
-MapEvent::Battle::Battle(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Battle)
+MapEvent::Battle::Battle(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Battle)
 {
   monster = atoi(eventNode.getAttribute("monster"));
   background = eventNode.getAttribute("background");
@@ -1564,13 +1564,13 @@ QTreeWidgetItem *MapEvent::Battle::getItem()
 //END: Battle
 
 //BEGIN: ShakeScreen (COMPLETE)
-MapEvent::ShakeScreen::ShakeScreen(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ShakeScreen)
+MapEvent::ShakeScreen::ShakeScreen(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ShakeScreen)
 {
   duration = 0;
   magnitude = 0;
 }
 
-MapEvent::ShakeScreen::ShakeScreen(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ShakeScreen)
+MapEvent::ShakeScreen::ShakeScreen(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ShakeScreen)
 {
   duration = atoi(eventNode.getAttribute("duration"));
   magnitude = atoi(eventNode.getAttribute("magnitude"));
@@ -1620,12 +1620,12 @@ QTreeWidgetItem *MapEvent::ShakeScreen::getItem()
 //END: ShakeScreen
 
 //BEGIN: Cutscene (NOT IMPLEMENTED)
-MapEvent::Cutscene::Cutscene(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::Cutscene)
+MapEvent::Cutscene::Cutscene(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Cutscene)
 {
   location = "";
 }
 
-MapEvent::Cutscene::Cutscene(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Cutscene)
+MapEvent::Cutscene::Cutscene(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Cutscene)
 {
   location = eventNode.getAttribute("location");
 }
@@ -1646,7 +1646,7 @@ void MapEvent::Cutscene::compileEvent(QByteArray *bytes)
   offset = bytes->count();
   Globals::Value32 hash;
   bytes->append(static_cast<char>(type));
-  hash.uValue = Globals::hash(location.toLocal8Bit().data(), location.length());
+  hash.uValue = Globals::hash(location.toLocal8Bit().data(), location.length() + 1);
   bytes->append(hash.bytes[0]);
   bytes->append(hash.bytes[1]);
   bytes->append(hash.bytes[2]);
@@ -1669,12 +1669,12 @@ QTreeWidgetItem *MapEvent::Cutscene::getItem()
 //END: Cutscene
 
 //BEGIN: Jump (COMPLETE)
-MapEvent::Jump::Jump(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::Jump)
+MapEvent::Jump::Jump(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Jump)
 {
   label = "";
 }
 
-MapEvent::Jump::Jump(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Jump)
+MapEvent::Jump::Jump(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Jump)
 {
   label = eventNode.getAttribute("label");
 }
@@ -1749,13 +1749,13 @@ QTreeWidgetItem *MapEvent::Jump::getItem()
 //END: Jump
 
 //BEGIN: IfSwitch (COMPLETE)
-MapEvent::IfSwitch::IfSwitch(MapEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfSwitch)
+MapEvent::IfSwitch::IfSwitch(MapEvent *pBase, Event *pEvent) : IfEvent(pBase, pEvent, Type::IfSwitch)
 {
   switchID = 0;
   isOn = true;
 }
 
-MapEvent::IfSwitch::IfSwitch(MapEvent *pBase, Event *parent, XMLNode eventNode) : IfEvent(pBase, parent, Type::IfSwitch, eventNode)
+MapEvent::IfSwitch::IfSwitch(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : IfEvent(pBase, pEvent, Type::IfSwitch, eventNode)
 {
   switchID = atoi(eventNode.getAttribute("switchID"));
   isOn = strcmp(eventNode.getAttribute("is"), "ON") == 0;
@@ -1783,15 +1783,15 @@ XMLNode MapEvent::IfSwitch::toXMLNode()
 
 void MapEvent::IfSwitch::compileEvent(QByteArray *bytes)
 {
-  JumpLocation onJump, offJump;
+  JumpLocation offJump, onJump;
   offset = bytes->count();
   bytes->append(static_cast<char>(type));
-  onJump.pos = bytes->count();
+  offJump.pos = bytes->count();
   bytes->append(0xDE);
   bytes->append(0xAD);
   bytes->append(0xC0);
   bytes->append(0xDE);
-  offJump.pos = bytes->count();
+  onJump.pos = bytes->count();
   bytes->append(0xDE);
   bytes->append(0xAD);
   bytes->append(0xC0);
@@ -1837,21 +1837,21 @@ bool MapEvent::IfSwitch::configureEvent(QWidget *parentWidget)
 QTreeWidgetItem *MapEvent::IfSwitch::getItem()
 {
   if (item->childCount() == 0)
-    addItems(item);
+    addItems();
   item->setText(0, QString("<> %1: %2 is %3").arg(elseIf ? "elseIfSwitch":"ifSwitch").arg(switchID).arg(isOn ? "ON":"OFF"));
   return item;
 }
 //END: IfSwitch
 
 //BEGIN: IfVariable (COMPLETE)
-MapEvent::IfVariable::IfVariable(MapEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfVariable)
+MapEvent::IfVariable::IfVariable(MapEvent *pBase, Event *pEvent) : IfEvent(pBase, pEvent, Type::IfVariable)
 {
   value = 0;
   variableID = 0;
   condition = 0;
 }
 
-MapEvent::IfVariable::IfVariable(MapEvent *pBase, Event *parent, XMLNode eventNode) : IfEvent(pBase, parent, Type::IfVariable, eventNode)
+MapEvent::IfVariable::IfVariable(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : IfEvent(pBase, pEvent, Type::IfVariable, eventNode)
 {
   QString conditionString = eventNode.getAttribute("condition");
   variableID = atoi(eventNode.getAttribute("variableID"));
@@ -1945,20 +1945,20 @@ bool MapEvent::IfVariable::configureEvent(QWidget *parentWidget)
 QTreeWidgetItem *MapEvent::IfVariable::getItem()
 {
   if (item->childCount() == 0)
-    addItems(item);
+    addItems();
   item->setText(0, QString("<> %1: %2 %3 %4").arg((elseIf) ? "elseIfVariable":"ifVariable").arg(variableID).arg(conditions[condition]).arg(value));
   return item;
 }
 //END: IfVariable
 
 //BEGIN: IfHasItem (COMPLETE)
-MapEvent::IfHasItem::IfHasItem(MapEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfHasItem)
+MapEvent::IfHasItem::IfHasItem(MapEvent *pBase, Event *pEvent) : IfEvent(pBase, pEvent, Type::IfHasItem)
 {
   itemType = 0;
   itemID = 0;
 }
 
-MapEvent::IfHasItem::IfHasItem(MapEvent *pBase, Event *parent, XMLNode eventNode) : IfEvent(pBase, parent, Type::IfHasItem, eventNode)
+MapEvent::IfHasItem::IfHasItem(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : IfEvent(pBase, pEvent, Type::IfHasItem, eventNode)
 {
   itemType = atoi(eventNode.getAttribute("type"));
   itemID = atoi(eventNode.getAttribute("item"));
@@ -2028,19 +2028,19 @@ bool MapEvent::IfHasItem::configureEvent(QWidget *parentWidget)
 QTreeWidgetItem *MapEvent::IfHasItem::getItem()
 {
   if (item->childCount() == 0)
-    addItems(item);
+    addItems();
   item->setText(0, QString("<> %1: %2").arg(elseIf ? "elseIfHasItem":"ifHasItem").arg(Globals::items[itemType][itemID].name));
   return item;
 }
 //END: IfHasItem
 
 //BEGIN: IfExited (COMPLETE)
-MapEvent::IfExited::IfExited(MapEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfExited)
+MapEvent::IfExited::IfExited(MapEvent *pBase, Event *pEvent) : IfEvent(pBase, pEvent, Type::IfExited)
 {
   facing = 0;
 }
 
-MapEvent::IfExited::IfExited(MapEvent *pBase, Event *parent, XMLNode eventNode) : IfEvent(pBase, parent, Type::IfExited, eventNode)
+MapEvent::IfExited::IfExited(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : IfEvent(pBase, pEvent, Type::IfExited, eventNode)
 {
   QString facingString = eventNode.getAttribute("facing");
   if (facingString == "up")
@@ -2115,19 +2115,19 @@ bool MapEvent::IfExited::configureEvent(QWidget *parentWidget)
 QTreeWidgetItem *MapEvent::IfExited::getItem()
 {
   if (item->childCount() == 0)
-    addItems(item);
+    addItems();
   item->setText(0, QString("<> %1: %2").arg(elseIf ? "elseIfExited":"ifExited").arg(facings[facing]));
   return item;
 }
 //END: IfExited
 
 //BEGIN: IfYesNo (COMPLETE)
-MapEvent::IfYesNo::IfYesNo(MapEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfYesNo)
+MapEvent::IfYesNo::IfYesNo(MapEvent *pBase, Event *pEvent) : IfEvent(pBase, pEvent, Type::IfYesNo)
 {
   yes = true;
 }
 
-MapEvent::IfYesNo::IfYesNo(MapEvent *pBase, Event *parent, XMLNode eventNode) : IfEvent(pBase, parent, Type::IfYesNo, eventNode)
+MapEvent::IfYesNo::IfYesNo(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : IfEvent(pBase, pEvent, Type::IfYesNo, eventNode)
 {
   yes = QString(eventNode.getName()).endsWith("Yes");
 }
@@ -2204,21 +2204,21 @@ bool MapEvent::IfYesNo::configureEvent(QWidget *parentWidget)
 QTreeWidgetItem *MapEvent::IfYesNo::getItem()
 {
   if (item->childCount() == 0)
-    addItems(item);
+    addItems();
   item->setText(0, QString("<> %1%2").arg(elseIf ? "elseIf":"if").arg((yes) ? "Yes":"No"));
   return item;
 }
 //END: IfYesNo
 
 //BEGIN: IfValue (COMPLETE)
-MapEvent::IfValue::IfValue(MapEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfValue)
+MapEvent::IfValue::IfValue(MapEvent *pBase, Event *pEvent) : IfEvent(pBase, pEvent, Type::IfValue)
 {
   desiredValue = 0;
   valueToCheck = 0;
   condition = 0;
 }
 
-MapEvent::IfValue::IfValue(MapEvent *pBase, Event *parent, XMLNode eventNode) : IfEvent(pBase, parent, Type::IfValue, eventNode)
+MapEvent::IfValue::IfValue(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : IfEvent(pBase, pEvent, Type::IfValue, eventNode)
 {
   QString conditionString = eventNode.getAttribute("condition");
   valueToCheck = atoi(eventNode.getAttribute("valueToCheck"));
@@ -2312,19 +2312,19 @@ bool MapEvent::IfValue::configureEvent(QWidget *parentWidget)
 QTreeWidgetItem *MapEvent::IfValue::getItem()
 {
   if (item->childCount() == 0)
-    addItems(item);
+    addItems();
   item->setText(0, QString("<> %1: %2 %3 %4").arg(elseIf ? "elseIfValue":"ifValue").arg(bufferValues[valueToCheck]).arg(conditions[condition]).arg(desiredValue));
   return item;
 }
 //END: IfValue
 
 //BEGIN: IfFacing (COMPLETE)
-MapEvent::IfFacing::IfFacing(MapEvent *pBase, Event *parent) : IfEvent(pBase, parent, Type::IfFacing)
+MapEvent::IfFacing::IfFacing(MapEvent *pBase, Event *pEvent) : IfEvent(pBase, pEvent, Type::IfFacing)
 {
   direction = 0;
 }
 
-MapEvent::IfFacing::IfFacing(MapEvent *pBase, Event *parent, XMLNode eventNode) : IfEvent(pBase, parent, Type::IfFacing, eventNode)
+MapEvent::IfFacing::IfFacing(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : IfEvent(pBase, pEvent, Type::IfFacing, eventNode)
 {
   QString directionString = eventNode.getAttribute("direction");
   if (directionString == "up")
@@ -2400,20 +2400,20 @@ bool MapEvent::IfFacing::configureEvent(QWidget *parentWidget)
 QTreeWidgetItem *MapEvent::IfFacing::getItem()
 {
   if (item->childCount() == 0)
-    addItems(item);
+    addItems();
   item->setText(0, QString("<> %1: %2").arg(elseIf ? "elseIfFacing":"ifFacing").arg(facings[direction]));
   return item;
 }
 //END: IfFacing
 
 //BEGIN: PlaySoundEffect (COMPLETE)
-MapEvent::PlaySoundEffect::PlaySoundEffect(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::PlaySoundEffect)
+MapEvent::PlaySoundEffect::PlaySoundEffect(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::PlaySoundEffect)
 {
   sfx = Globals::sfx[0];
   loop = false;
 }
 
-MapEvent::PlaySoundEffect::PlaySoundEffect(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::PlaySoundEffect)
+MapEvent::PlaySoundEffect::PlaySoundEffect(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::PlaySoundEffect)
 {
   sfx = eventNode.getAttribute("sound");
   loop = strcmp(eventNode.getAttribute("loop"), "true") == 0;
@@ -2465,13 +2465,13 @@ QTreeWidgetItem *MapEvent::PlaySoundEffect::getItem()
 //END: PlaySoundEffect
 
 //BEGIN: PlayMusic (COMPLETE)
-MapEvent::PlayMusic::PlayMusic(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::PlayMusic)
+MapEvent::PlayMusic::PlayMusic(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::PlayMusic)
 {
   bgm = Globals::bgms[0];
   loop = true;
 }
 
-MapEvent::PlayMusic::PlayMusic(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::PlayMusic)
+MapEvent::PlayMusic::PlayMusic(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::PlayMusic)
 {
   bgm = eventNode.getAttribute("music");
   loop = strcmp(eventNode.getAttribute("loop"), "true") == 0;
@@ -2524,12 +2524,12 @@ QTreeWidgetItem *MapEvent::PlayMusic::getItem()
 //END: PlayMusic
 
 //BEGIN: TurnSwitchOn (COMPLETE)
-MapEvent::TurnSwitchOn::TurnSwitchOn(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::TurnSwitchOn)
+MapEvent::TurnSwitchOn::TurnSwitchOn(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::TurnSwitchOn)
 {
   switchID = 0;
 }
 
-MapEvent::TurnSwitchOn::TurnSwitchOn(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::TurnSwitchOn)
+MapEvent::TurnSwitchOn::TurnSwitchOn(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::TurnSwitchOn)
 {
   switchID = atoi(eventNode.getAttribute("switchID"));
 }
@@ -2571,12 +2571,12 @@ QTreeWidgetItem *MapEvent::TurnSwitchOn::getItem()
 //END: TurnSwitchOn
 
 //BEGIN: TurnSwitchOff (COMPLETE)
-MapEvent::TurnSwitchOff::TurnSwitchOff(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::TurnSwitchOff)
+MapEvent::TurnSwitchOff::TurnSwitchOff(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::TurnSwitchOff)
 {
   switchID = 0;
 }
 
-MapEvent::TurnSwitchOff::TurnSwitchOff(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::TurnSwitchOff)
+MapEvent::TurnSwitchOff::TurnSwitchOff(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::TurnSwitchOff)
 {
   switchID = atoi(eventNode.getAttribute("switchID"));
 }
@@ -2618,12 +2618,12 @@ QTreeWidgetItem *MapEvent::TurnSwitchOff::getItem()
 //END: TurnSwitchOff
 
 //BEGIN: ToggleSwitch (COMPLETE)
-MapEvent::ToggleSwitch::ToggleSwitch(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ToggleSwitch)
+MapEvent::ToggleSwitch::ToggleSwitch(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ToggleSwitch)
 {
   switchID = 0;
 }
 
-MapEvent::ToggleSwitch::ToggleSwitch(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ToggleSwitch)
+MapEvent::ToggleSwitch::ToggleSwitch(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ToggleSwitch)
 {
   switchID = atoi(eventNode.getAttribute("switchID"));
 }
@@ -2665,13 +2665,13 @@ QTreeWidgetItem *MapEvent::ToggleSwitch::getItem()
 //END: ToggleSwitch
 
 //BEGIN: TurnSwitchRangeOn (COMPLETE)
-MapEvent::TurnSwitchRangeOn::TurnSwitchRangeOn(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::TurnSwitchRangeOn)
+MapEvent::TurnSwitchRangeOn::TurnSwitchRangeOn(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::TurnSwitchRangeOn)
 {
   startSwitchID = 0;
   endSwitchID = 0;
 }
 
-MapEvent::TurnSwitchRangeOn::TurnSwitchRangeOn(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::TurnSwitchRangeOn)
+MapEvent::TurnSwitchRangeOn::TurnSwitchRangeOn(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::TurnSwitchRangeOn)
 {
   startSwitchID = atoi(eventNode.getAttribute("startID"));
   endSwitchID = atoi(eventNode.getAttribute("endID"));
@@ -2723,13 +2723,13 @@ QTreeWidgetItem *MapEvent::TurnSwitchRangeOn::getItem()
 //END: TurnSwitchRangeOn
 
 //BEGIN: TurnSwitchRangeOff (COMPLETE)
-MapEvent::TurnSwitchRangeOff::TurnSwitchRangeOff(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::TurnSwitchRangeOff)
+MapEvent::TurnSwitchRangeOff::TurnSwitchRangeOff(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::TurnSwitchRangeOff)
 {
   startSwitchID = 0;
   endSwitchID = 0;
 }
 
-MapEvent::TurnSwitchRangeOff::TurnSwitchRangeOff(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::TurnSwitchRangeOff)
+MapEvent::TurnSwitchRangeOff::TurnSwitchRangeOff(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::TurnSwitchRangeOff)
 {
   startSwitchID = atoi(eventNode.getAttribute("startID"));
   endSwitchID = atoi(eventNode.getAttribute("endID"));
@@ -2781,13 +2781,13 @@ QTreeWidgetItem *MapEvent::TurnSwitchRangeOff::getItem()
 //END: TurnSwitchRangeOff
 
 //BEGIN: ToggleSwitchRange (COMPLETE)
-MapEvent::ToggleSwitchRange::ToggleSwitchRange(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ToggleSwitchRange)
+MapEvent::ToggleSwitchRange::ToggleSwitchRange(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ToggleSwitchRange)
 {
   startSwitchID = 0;
   endSwitchID = 0;
 }
 
-MapEvent::ToggleSwitchRange::ToggleSwitchRange(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ToggleSwitchRange)
+MapEvent::ToggleSwitchRange::ToggleSwitchRange(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ToggleSwitchRange)
 {
   startSwitchID = atoi(eventNode.getAttribute("startID"));
   endSwitchID = atoi(eventNode.getAttribute("endID"));
@@ -2839,14 +2839,14 @@ QTreeWidgetItem *MapEvent::ToggleSwitchRange::getItem()
 //END: ToggleSwitchRange
 
 //BEGIN: ChangeVariable (COMPLETE)
-MapEvent::ChangeVariable::ChangeVariable(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ChangeVariable)
+MapEvent::ChangeVariable::ChangeVariable(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ChangeVariable)
 {
   value = 0;
   variableID = 0;
   operation = 0;
 }
 
-MapEvent::ChangeVariable::ChangeVariable(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ChangeVariable)
+MapEvent::ChangeVariable::ChangeVariable(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ChangeVariable)
 {
   variableID = atoi(eventNode.getAttribute("variableID"));
   operation = atoi(eventNode.getAttribute("operation"));
@@ -2906,13 +2906,13 @@ QTreeWidgetItem *MapEvent::ChangeVariable::getItem()
 //END: ChangeVariable
 
 //BEGIN: ChangeSprite (COMPLETE)
-MapEvent::ChangeSprite::ChangeSprite(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ChangeSprite)
+MapEvent::ChangeSprite::ChangeSprite(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ChangeSprite)
 {
   event = "this";
   spriteID = 0;
 }
 
-MapEvent::ChangeSprite::ChangeSprite(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ChangeSprite)
+MapEvent::ChangeSprite::ChangeSprite(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ChangeSprite)
 {
   event = eventNode.getAttribute("event");
   spriteID = atoi(eventNode.getAttribute("spriteID"));
@@ -2953,9 +2953,9 @@ bool MapEvent::ChangeSprite::configureEvent(QWidget *parentWidget)
     configure->addEvent("this");
   for (int i = 0; i < 29; ++i)
   {
-    MapEvent *event = pMapEvent->map->getMapEvent(i);
-    if (event != nullptr)
-      configure->addEvent(event->getName());
+    MapEvent *mapEvent = pMapEvent->map->getMapEvent(i);
+    if (mapEvent != nullptr)
+      configure->addEvent(mapEvent->getName());
     else
       break;
   }
@@ -2993,7 +2993,7 @@ QTreeWidgetItem *MapEvent::ChangeSprite::getItem()
 //END: ChangeSprite
 
 //BEGIN: ChangeEventLocation (COMPLETE)
-MapEvent::ChangeEventLocation::ChangeEventLocation(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ChangeEventLocation)
+MapEvent::ChangeEventLocation::ChangeEventLocation(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ChangeEventLocation)
 {
   MapEvent *initial;
   if (pBase->map->getOnLoadEvent() == pBase)
@@ -3003,15 +3003,15 @@ MapEvent::ChangeEventLocation::ChangeEventLocation(MapEvent *pBase, Event *paren
   event = initial->getName();
   x = initial->getX();
   y = initial->getY();
-  offset = initial->isFlagSet(FLAGS_OFFSET);
+  offsetFlag = initial->isFlagSet(FLAGS_OFFSET);
 }
 
-MapEvent::ChangeEventLocation::ChangeEventLocation(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ChangeEventLocation)
+MapEvent::ChangeEventLocation::ChangeEventLocation(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ChangeEventLocation)
 {
   event = eventNode.getAttribute("event");
   x = atoi(eventNode.getAttribute("x"));
   y = atoi(eventNode.getAttribute("y"));
-  offset = strcmp(eventNode.getAttribute("offset"), "true") == 0;
+  offsetFlag = strcmp(eventNode.getAttribute("offset"), "true") == 0;
 }
 
 MapEvent::ChangeEventLocation::~ChangeEventLocation()
@@ -3024,7 +3024,7 @@ XMLNode MapEvent::ChangeEventLocation::toXMLNode()
   eventNode.addAttribute("event", event.toLocal8Bit().data());
   eventNode.addAttribute("x", QString::number(x).toLocal8Bit().data());
   eventNode.addAttribute("y", QString::number(y).toLocal8Bit().data());
-  eventNode.addAttribute("offset", (offset) ? "true":"false");
+  eventNode.addAttribute("offset", (offsetFlag) ? "true":"false");
   return eventNode;
 }
 
@@ -3037,7 +3037,7 @@ void MapEvent::ChangeEventLocation::compileEvent(QByteArray *bytes)
     MapEvent *mapEvent = pMapEvent->map->getMapEvent(eventID);
     if (mapEvent == nullptr || mapEvent->getName() == event || (event == "this" && mapEvent == pMapEvent))
     {
-      if (offset)
+      if (offsetFlag)
         eventID |= 128;
       bytes->append(eventID);
       break;
@@ -3054,20 +3054,20 @@ bool MapEvent::ChangeEventLocation::configureEvent(QWidget *parentWidget)
     configure->addEvent("this");
   for (int i = 0; i < 29; ++i)
   {
-    MapEvent *event = pMapEvent->map->getMapEvent(i);
-    if (event != nullptr)
-      configure->addEvent(event->getName());
+    MapEvent *mapEvent = pMapEvent->map->getMapEvent(i);
+    if (mapEvent != nullptr)
+      configure->addEvent(mapEvent->getName());
     else
       break;
   }
   configure->setEvent(event);
-  configure->setLocation(x, y, offset);
+  configure->setLocation(x, y, offsetFlag);
   if (configure->exec())
   {
     event = configure->getEvent();
     x = configure->getX();
     y = configure->getY();
-    offset = configure->getOffset();
+    offsetFlag = configure->getOffset();
     configure->deleteLater();
     return true;
   }
@@ -3077,7 +3077,7 @@ bool MapEvent::ChangeEventLocation::configureEvent(QWidget *parentWidget)
 
 QTreeWidgetItem *MapEvent::ChangeEventLocation::getItem()
 {
-  item->setText(0, QString("<> changeEventLocation: \"%1\" %2 %3%4").arg(event).arg(x).arg(y).arg((offset) ? " (offset)":""));
+  item->setText(0, QString("<> changeEventLocation: \"%1\" %2 %3%4").arg(event).arg(x).arg(y).arg((offsetFlag) ? " (offset)":""));
   item->setBackground(0, Qt::red);
   item->setForeground(0, Qt::white);
   for (int i = 0; i < 29; ++i)
@@ -3096,14 +3096,14 @@ QTreeWidgetItem *MapEvent::ChangeEventLocation::getItem()
 //END: ChangeEventLocation
 
 //BEGIN: ChangeEventFlags (COMPLETE)
-MapEvent::ChangeEventFlags::ChangeEventFlags(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ChangeEventFlags)
+MapEvent::ChangeEventFlags::ChangeEventFlags(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ChangeEventFlags)
 {
   event = "this";
   flags = 0;
   operation = 0;
 }
 
-MapEvent::ChangeEventFlags::ChangeEventFlags(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ChangeEventFlags)
+MapEvent::ChangeEventFlags::ChangeEventFlags(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ChangeEventFlags)
 {
   event = eventNode.getAttribute("event");
   flags = atoi(eventNode.getAttribute("flags"));
@@ -3150,9 +3150,9 @@ bool MapEvent::ChangeEventFlags::configureEvent(QWidget *parentWidget)
     configure->addEvent("this");
   for (int i = 0; i < 29; ++i)
   {
-    MapEvent *event = pMapEvent->map->getMapEvent(i);
-    if (event != nullptr)
-      configure->addEvent(event->getName());
+    MapEvent *mapEvent = pMapEvent->map->getMapEvent(i);
+    if (mapEvent != nullptr)
+      configure->addEvent(mapEvent->getName());
     else
       break;
   }
@@ -3208,14 +3208,14 @@ QTreeWidgetItem *MapEvent::ChangeEventFlags::getItem()
 //END: ChangeEventFlags
 
 //BEGIN: ChangePassability (COMPLETE)
-MapEvent::ChangePassability::ChangePassability(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ChangePassability)
+MapEvent::ChangePassability::ChangePassability(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ChangePassability)
 {
   x = 0;
   y = 0;
   operation = 0;
 }
 
-MapEvent::ChangePassability::ChangePassability(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ChangePassability)
+MapEvent::ChangePassability::ChangePassability(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ChangePassability)
 {
   x = atoi(eventNode.getAttribute("x"));
   y = atoi(eventNode.getAttribute("y"));
@@ -3276,14 +3276,14 @@ QTreeWidgetItem *MapEvent::ChangePassability::getItem()
 //END: ChangePassability
 
 //BEGIN: GivePlayerItem (COMPLETE)
-MapEvent::GivePlayerItem::GivePlayerItem(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::GivePlayerItem)
+MapEvent::GivePlayerItem::GivePlayerItem(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::GivePlayerItem)
 {
   itemType = 0;
   itemID = 0;
   amount = 0;
 }
 
-MapEvent::GivePlayerItem::GivePlayerItem(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::GivePlayerItem)
+MapEvent::GivePlayerItem::GivePlayerItem(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::GivePlayerItem)
 {
   itemType = atoi(eventNode.getAttribute("type"));
   itemID = atoi(eventNode.getAttribute("item"));
@@ -3341,12 +3341,12 @@ QTreeWidgetItem *MapEvent::GivePlayerItem::getItem()
 //END: GivePlayerItem
 
 //BEGIN: GivePlayerGold (COMPLETE)
-MapEvent::GivePlayerGold::GivePlayerGold(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::GivePlayerGold)
+MapEvent::GivePlayerGold::GivePlayerGold(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::GivePlayerGold)
 {
   amount = 0;
 }
 
-MapEvent::GivePlayerGold::GivePlayerGold(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::GivePlayerGold)
+MapEvent::GivePlayerGold::GivePlayerGold(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::GivePlayerGold)
 {
   amount = atoi(eventNode.getAttribute("amount"));
 }
@@ -3390,12 +3390,12 @@ QTreeWidgetItem *MapEvent::GivePlayerGold::getItem()
 //END: GivePlayerGold
 
 //BEGIN: ShowImage (COMPLETE)
-MapEvent::ShowImage::ShowImage(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::ShowImage)
+MapEvent::ShowImage::ShowImage(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::ShowImage)
 {
   location = "";
 }
 
-MapEvent::ShowImage::ShowImage(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::ShowImage)
+MapEvent::ShowImage::ShowImage(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::ShowImage)
 {
   location = eventNode.getAttribute("location");
 }
@@ -3413,11 +3413,11 @@ XMLNode MapEvent::ShowImage::toXMLNode()
 
 void MapEvent::ShowImage::compileEvent(QByteArray *bytes)
 {
-  QString path = QString("/screens/%2.gfx").arg(location);
+  QString path = QString("/screens/%2.png").arg(location);
   Globals::Value32 hash;
   offset = bytes->count();
   bytes->append(static_cast<char>(type));
-  hash.uValue = Globals::hash(path.toLocal8Bit().data(), path.length());
+  hash.uValue = Globals::hash(path.toLocal8Bit().data(), path.length() + 1);
   bytes->append(hash.bytes[0]);
   bytes->append(hash.bytes[1]);
   bytes->append(hash.bytes[2]);
@@ -3446,13 +3446,13 @@ QTreeWidgetItem *MapEvent::ShowImage::getItem()
 //END: ShowImage
 
 //BEGIN: MovePlayer (COMPLETE)
-MapEvent::MovePlayer::MovePlayer(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::MovePlayer)
+MapEvent::MovePlayer::MovePlayer(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::MovePlayer)
 {
   movement = 0;
   retainFacing = false;
 }
 
-MapEvent::MovePlayer::MovePlayer(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::MovePlayer)
+MapEvent::MovePlayer::MovePlayer(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::MovePlayer)
 {
   movement = atoi(eventNode.getAttribute("movement"));
   retainFacing = strcmp(eventNode.getAttribute("retainFacing"), "true") == 0;
@@ -3504,12 +3504,12 @@ QTreeWidgetItem *MapEvent::MovePlayer::getItem()
 //END: MovePlayer
 
 //BEGIN: Label (COMPLETE)
-MapEvent::Label::Label(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::Label)
+MapEvent::Label::Label(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Label)
 {
   name = "";
 }
 
-MapEvent::Label::Label(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Label)
+MapEvent::Label::Label(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Label)
 {
   name = eventNode.getAttribute("name");
 }
@@ -3556,12 +3556,12 @@ QTreeWidgetItem *MapEvent::Label::getItem()
 //END: Label
 
 //BEGIN: Comment (COMPLETE)
-MapEvent::Comment::Comment(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::Comment)
+MapEvent::Comment::Comment(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Comment)
 {
   comment = "";
 }
 
-MapEvent::Comment::Comment(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Comment)
+MapEvent::Comment::Comment(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Comment)
 {
   comment = QString(eventNode.getAttribute("value")).replace("\\n", "\n").replace("\\\\", "\\");
 }
@@ -3625,12 +3625,12 @@ QTreeWidgetItem *MapEvent::Comment::getItem()
 //END: Comment
 
 //BEGIN: Else (COMPLETE)
-MapEvent::Else::Else(MapEvent *pBase, Event *parent) : Event(pBase, parent, Type::Else)
+MapEvent::Else::Else(MapEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::Else)
 {
   events += Event::newEvent(pBase, this, Type::End);
 }
 
-MapEvent::Else::Else(MapEvent *pBase, Event *parent, XMLNode eventNode) : Event(pBase, parent, Type::Else)
+MapEvent::Else::Else(MapEvent *pBase, Event *pEvent, XMLNode eventNode) : Event(pBase, pEvent, Type::Else)
 {
   for (int i = 0; i < eventNode.nChildNode(); ++i)
     events += Event::newEvent(pBase, this, eventNode.getChildNode(i));
@@ -3693,6 +3693,7 @@ QTreeWidgetItem *MapEvent::Else::getItem()
 //BEGIN: End (COMPLETE)
 void MapEvent::End::compileEvent(QByteArray *bytes)
 {
+  offset = bytes->count();
   if (parent->getType() == Event::Type::TopLevelEvent)
     bytes->append(static_cast<char>(Event::Type::EndEventProcessing));
   else

@@ -55,26 +55,15 @@ namespace PTAD
         PlayerData slots[3];
         uint8_t unused[20];
       };
-      //possible items
-      //Potion
-      //H-Potion
-      //X-Potion
-      //Antidote
-      //Ether
-      //H-Ether
-      //X-Ether
-      //Elixir
-      //Shards
-      //
-			struct StatGrowth
+			/*struct StatGrowth
 			{
 				uint32_t start;
 				float base;
 				float exponent;
-			};
+			};*/
 			static void setup();
 			static void update();
-			static constexpr uint32_t getStatForLevel(uint8_t level, const StatGrowth &growth);
+			//static constexpr uint32_t getStatForLevel(uint8_t level, const StatGrowth &growth);
 			static void levelUp();
       static uint16_t calculateSpellResistance();
       static uint8_t getPoisonResistance();
@@ -83,13 +72,13 @@ namespace PTAD
       static void saveGame(uint8_t slot);
       static void eraseGame(uint8_t slot);
       static SaveData getSaveData();
-			static constexpr StatGrowth hpGrowth = {13,3,1.75};
-			static constexpr StatGrowth mpGrowth = {1,0.25,1.5};
-			static constexpr StatGrowth attackGrowth = {2,2,1.3};
-			static constexpr StatGrowth defenseGrowth = {3,0.5,1.6};
-			static constexpr StatGrowth agilityGrowth = {1,1.25,1.4};
-			static constexpr StatGrowth magicGrowth = {0,0.75,1.5};
-			static constexpr StatGrowth experienceGrowth = {10,6,1.6};
+			//static constexpr StatGrowth hpGrowth = {13,3,1.75};
+			//static constexpr StatGrowth mpGrowth = {1,0.25,1.5};
+			//static constexpr StatGrowth attackGrowth = {2,2,1.3};
+			//static constexpr StatGrowth defenseGrowth = {3,0.5,1.6};
+			//static constexpr StatGrowth agilityGrowth = {1,1.25,1.4};
+			//static constexpr StatGrowth magicGrowth = {0,0.75,1.5};
+			//static constexpr StatGrowth experienceGrowth = {10,6,1.6};
       static constexpr uint8_t ITEM_TYPE_CONSUMABLES = 0;
       static constexpr uint8_t ITEM_TYPE_TREASURES = 1;
       static constexpr uint8_t ITEM_TYPE_WEAPONS = 2;
@@ -105,7 +94,7 @@ namespace PTAD
       static State previousState;
       static uint32_t previousFrame;
       static uint8_t volume;
-			static const uint8_t skillLearned[99];
+			//static const uint8_t skillLearned[99];
       static const uint8_t messageSpeeds[];
       static const PlayerData newGame;
 	};

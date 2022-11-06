@@ -38,7 +38,7 @@ bool PTAD::justPressed(uint8_t mask)
 void PTAD::loadTileset(uint8_t tilesetID)
 {
   DataPack::PackedFile file;
-  dataFile->getPackedFile(tilesets[tilesetID], &file);
+  dataFile->getPackedFile(PTAD::Resources::tilesets[tilesetID], &file);
   dataFile->readBytes(&file, tiles, PTAD::MEMORY_TILESET_SIZE);
 }
 
@@ -216,7 +216,7 @@ void PTAD::fillRegion(uint32_t count, uint16_t color)
 #endif
 }
 
-const uint32_t PTAD::tilesets[]
+/*const uint32_t PTAD::tilesets[]
 {
   DataPack::hash("tilesets/overworld.gfx"),      // 0
   DataPack::hash("tilesets/town.gfx"),           // 1
@@ -1459,4 +1459,4 @@ const PTAD::EquipmentStats PTAD::equipmentStats[6][16] =
     //________
     {{0, 0, 0, 0}, 0xAAAA, {0, 0}}
   }
-};
+};*/

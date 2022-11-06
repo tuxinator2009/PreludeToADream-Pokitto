@@ -44,11 +44,11 @@ namespace PTAD
 			};
 			static void setup();
       static void update();
-      static const uint32_t backgrounds[];
-      static const uint32_t enemies[];
+      //static const uint32_t backgrounds[];
+      //static const uint32_t enemies[];
       static const uint32_t playerBattleAnimations[];
-      static const uint8_t enemyNames[];
-      static const uint8_t numEnemies;
+      //static const uint8_t enemyNames[];
+      //static const uint8_t numEnemies;
 		private:
 			static bool showBackground();
 			static void showFrames();

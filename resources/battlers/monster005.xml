@@ -1,2 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Goliath" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Goliath" experience="30" hp="15" attack="12" defense="12" agility="16" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="0" gold="40">
+	<intro>
+		<bufferMessage message="A goliath spider is here"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="You squished the goliath"/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<random counter="3" max="100"/>
+		<ifCounter counter="3" condition="&lt;=" value="50">
+			<ifStatus self="false" status="speed" condition="!=" level="1">
+				<playBattleAnimation animation="enemy_web2"/>
+				<bufferMessage message="The goliath slings a web"/>
+				<showMessage/>
+				<inflictStatus self="false" status="speed" level="1" chance="192" success="You&apos;re movement is slow." failed="MISS!"/>
+				<endEventProcessing/>
+			</ifStatus>
+		</ifCounter>
+		<elseIfCounter counter="3" condition="&lt;=" value="75">
+			<ifStatus self="false" status="poison" condition="!=" level="2">
+				<playBattleAnimation animation="enemy_venom"/>
+				<bufferMessage message="The goliath uses venom!"/>
+				<showMessage/>
+				<inflictStatus self="false" status="poison" level="2" chance="128" success="You fall deathly ill!" failed="It&apos;s venom did nothing."/>
+				<endEventProcessing/>
+			</ifStatus>
+		</elseIfCounter>
+		<bufferMessage message="The goliath bites you."/>
+		<showMessage/>
+		<basicAttack animation="enemy_bite"/>
+		<ifStatus self="false" status="poison" condition="&lt;" level="1">
+			<ifCounter counter="3" condition="=" value="1">
+				<comment value="Low chance of poison on regular hit"/>
+				<inflictStatus self="false" status="poison" level="1" chance="192" success="It&apos;s venom poisons you!" failed="It&apos;s venom did nothing."/>
+				<endEventProcessing/>
+			</ifCounter>
+			<elseIfCounter counter="3" condition="=" value="2">
+				<comment value="Automatic poison on critical hit"/>
+				<inflictStatus self="false" status="poison" level="1" chance="255" success="It&apos;s venom poisons you!" failed="It&apos;s venom did nothing."/>
+				<endEventProcessing/>
+			</elseIfCounter>
+		</ifStatus>
+	</turn>
+</monster>

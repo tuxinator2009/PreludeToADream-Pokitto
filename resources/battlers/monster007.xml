@@ -1,2 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<monster name="Benjamin" experience="0" hp="0" attack="0" defense="0" agility="0" magic="0" spellResistance="0" poisonResistance="0" slowResistance="0" mp="0" gold="0"/>
+<monster name="Benjamin" experience="60" hp="150" attack="22" defense="16" agility="15" magic="0" spellResistance="10922" poisonResistance="0" slowResistance="0" mp="0" gold="100">
+	<intro>
+		<bufferMessage message="The toxic fumes in the"/>
+		<showMessage/>
+		<bufferMessage message="air enrages you guys."/>
+		<showMessage/>
+		<inflictStatus self="true" status="berserk" level="1" success="" failed=""/>
+		<inflictStatus self="false" status="berserk" level="1" chance="255" success="" failed=""/>
+		<bufferMessage message="Benjamin lunges for you!"/>
+		<showMessage/>
+	</intro>
+	<outro>
+		<bufferMessage message="BUT IT WAS ALL MINE!!!"/>
+		<showMessage/>
+		<bufferMessage message="You defeated Benjamin."/>
+		<showMessage/>
+	</outro>
+	<turn>
+		<bufferMessage message="Benjamin swings at you."/>
+		<showMessage/>
+		<basicAttack animation="enemy_pickaxe"/>
+	</turn>
+</monster>

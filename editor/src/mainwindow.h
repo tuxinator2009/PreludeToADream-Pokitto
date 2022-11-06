@@ -25,9 +25,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QAudioFormat>
-#include <QAudioDecoder>
-#include <QByteArray>
 #include <type_traits>
 #include "ui_mainwindow.h"
 #include "image.h"
@@ -55,9 +52,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_btnEditSpells_clicked();
     void on_btnEditStats_clicked();
     void on_btnCompileData_clicked();
-    void audioBufferReady();
-    void audioError(QAudioDecoder::Error error);
-    void audioFinished();
     void on_treeMaps_itemClicked(QTreeWidgetItem *item);
     void on_aAddTopLevelMap_triggered();
     void on_aAddChildMap_triggered();
@@ -71,7 +65,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_optMusic_currentIndexChanged(QString text);
     void on_btnPlayMusic_toggled(bool on);
     void on_btnFlags_clicked();
-    void flagsChanged(uint8_t flags);
+    void flagsChanged(uint8_t mapFlags);
     void on_btnEditOnLoadEvent_clicked();
     void on_btnResizeMap_clicked();
     void on_btnShiftMap_clicked();
@@ -93,7 +87,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void updateZoom();
     void redrawSprites();
     void redrawEnemies();
-    void refreshTilesets();
 	private:
     void loadMapTree(QTreeWidgetItem *parent, XMLNode mapNode);
     void saveMapTree(QTreeWidgetItem *parent, XMLNode mapNode);
@@ -106,9 +99,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     SpritePicker *spritePicker;
     Image *mapImage;
     QPoint zoomPos;
-    QAudioFormat audioFormat;
-    QAudioDecoder *audioDecoder;
-    QByteArray audioData;
     QList<QPoint> penPoints;
     QPoint rectStart;
     QPoint rectEnd;

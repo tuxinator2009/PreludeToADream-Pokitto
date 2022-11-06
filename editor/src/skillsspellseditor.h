@@ -38,6 +38,7 @@ class SkillsSpellsEditor : public QDialog, public Ui::SkillsSpellsEditor
     void on_leName_textChanged(QString text);
     void on_numMP_valueChanged(int value);
     void on_leDescription_textChanged(QString text);
+    void on_numLearned_valueChanged(int value);
   private:
     bool editingSkills;
     bool ignoreEvents;

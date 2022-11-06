@@ -115,7 +115,7 @@ void PTAD::Menu::setup(State s)
         PTAD::Ui::drawText(equipSlots + i * 6, 6, 2, i * 3 + 1);
         PTAD::Ui::fixFrameHeader(1, 10, i * 3 + 1);
         if (PTAD::Game::player.equippedItems[i] != 255)
-          PTAD::Ui::drawText(PTAD::items[i + 2][PTAD::Game::player.equippedItems[i]].name, 8, 2, i * 3 + 2);
+          PTAD::Ui::drawText(PTAD::Resources::items[i + 2][PTAD::Game::player.equippedItems[i]].name, 8, 2, i * 3 + 2);
         else
           PTAD::Ui::drawText(unequipped, 8, 2, i * 3 + 2);
       }
@@ -129,6 +129,9 @@ void PTAD::Menu::setup(State s)
       PTAD::Ui::drawText(spelText, 4, 22, 10);
       PTAD::Ui::drawText(statText, 4, 22, 15);
       drawEquipMenu();
+      break;
+    case State::EquipMenu_ChooseItem:
+      //Nothing to draw
       break;
     case State::BeastsMenu:
       PTAD::Ui::drawFrame(1, 1, 10, 20);
@@ -144,6 +147,12 @@ void PTAD::Menu::setup(State s)
       [[fallthrough]];
     case State::SaveMenu:
       drawSaveLoadMenu();
+      break;
+    case State::EraseSlot:
+      //Nothing to draw
+      break;
+    case State::SaveMenuEnd:
+      //Nothing to draw
       break;
   }
 }
@@ -182,11 +191,11 @@ void PTAD::Menu::drawItemNames(uint8_t x, uint8_t y, uint8_t itemType)
   for (int i = 0; i < 16; ++i)
   {
     if (itemType < 2)
-      PTAD::Ui::drawText(PTAD::items[itemType][i].name, 8, x, y + i);
+      PTAD::Ui::drawText(PTAD::Resources::items[itemType][i].name, 8, x, y + i);
     else if (PTAD::Game::player.equippedItems[itemType - 2] == i)
       PTAD::Ui::drawText(unequip, 8, x, y + i);
     else if (((PTAD::Game::player.equippableItems[itemType - 2] >> i) & 1) != 0)
-      PTAD::Ui::drawText(PTAD::items[itemType][i].name, 8, x, y + i);
+      PTAD::Ui::drawText(PTAD::Resources::items[itemType][i].name, 8, x, y + i);
     else
       PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 8, x, y + i);
   }
@@ -210,12 +219,12 @@ void PTAD::Menu::drawEquipmentStats(uint8_t type)
   {
     if (PTAD::Game::player.equippedItems[i] != 255)
     {
-      stats[0] += PTAD::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[0];
-      stats[1] += PTAD::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[1];
-      stats[2] += PTAD::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[2];
-      stats[3] += PTAD::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[3];
-      statusResistance[0] = PTAD::equipmentStats[i][PTAD::Game::player.equippedItems[i]].statusResistance[0];
-      statusResistance[1] = PTAD::equipmentStats[i][PTAD::Game::player.equippedItems[i]].statusResistance[1];
+      stats[0] += PTAD::Resources::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[0];
+      stats[1] += PTAD::Resources::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[1];
+      stats[2] += PTAD::Resources::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[2];
+      stats[3] += PTAD::Resources::equipmentStats[i][PTAD::Game::player.equippedItems[i]].stats[3];
+      statusResistance[0] = PTAD::Resources::equipmentStats[i][PTAD::Game::player.equippedItems[i]].statusResistance[0];
+      statusResistance[1] = PTAD::Resources::equipmentStats[i][PTAD::Game::player.equippedItems[i]].statusResistance[1];
     }
   }
   //Draw values to UI
@@ -270,18 +279,18 @@ void PTAD::Menu::drawEquipmentStatsDifference(uint8_t type, uint8_t selection)
     {
       //if player has equipment type 'j' equipped then add that equipment's resistance to spell 'i'
       if (PTAD::Game::player.equippedItems[j] != 255)
-        spellResistance[i] += (PTAD::equipmentStats[j][PTAD::Game::player.equippedItems[j]].spellResistance >> (i * 2)) & 3;
+        spellResistance[i] += (PTAD::Resources::equipmentStats[j][PTAD::Game::player.equippedItems[j]].spellResistance >> (i * 2)) & 3;
       else
         spellResistance[i] += 2;
     }
     //subtract oldEquipment's resistance to spell 'i'
     if (PTAD::Game::player.equippedItems[type] != 255)
-      spellResistance[i] -= (PTAD::equipmentStats[type][PTAD::Game::player.equippedItems[type]].spellResistance >> (i * 2)) & 3;
+      spellResistance[i] -= (PTAD::Resources::equipmentStats[type][PTAD::Game::player.equippedItems[type]].spellResistance >> (i * 2)) & 3;
     else
       spellResistance[i] -= 2;
     //add newEquipment's resistance to spell 'i'
     if (selection != PTAD::Game::player.equippedItems[type])
-      spellResistance[i] += (PTAD::equipmentStats[type][selection].spellResistance >> (i * 2)) & 3;
+      spellResistance[i] += (PTAD::Resources::equipmentStats[type][selection].spellResistance >> (i * 2)) & 3;
     else
       spellResistance[i] += 2;
     //Cap resistance between -2 and 1
@@ -293,22 +302,22 @@ void PTAD::Menu::drawEquipmentStatsDifference(uint8_t type, uint8_t selection)
   //Start statDiff with the stats of the newEquipment
   if (selection != PTAD::Game::player.equippedItems[type])
   {
-    statDiff[0] = PTAD::equipmentStats[type][selection].stats[0];
-    statDiff[1] = PTAD::equipmentStats[type][selection].stats[1];
-    statDiff[2] = PTAD::equipmentStats[type][selection].stats[2];
-    statDiff[3] = PTAD::equipmentStats[type][selection].stats[3];
-    statusDifference[0] = PTAD::equipmentStats[type][selection].statusResistance[0];
-    statusDifference[1] = PTAD::equipmentStats[type][selection].statusResistance[1];
+    statDiff[0] = PTAD::Resources::equipmentStats[type][selection].stats[0];
+    statDiff[1] = PTAD::Resources::equipmentStats[type][selection].stats[1];
+    statDiff[2] = PTAD::Resources::equipmentStats[type][selection].stats[2];
+    statDiff[3] = PTAD::Resources::equipmentStats[type][selection].stats[3];
+    statusDifference[0] = PTAD::Resources::equipmentStats[type][selection].statusResistance[0];
+    statusDifference[1] = PTAD::Resources::equipmentStats[type][selection].statusResistance[1];
   }
   //Determine the net loss/gain from the oldEquipment
   if (PTAD::Game::player.equippedItems[type] != 255)
   {
-    statDiff[0] -= PTAD::equipmentStats[type][PTAD::Game::player.equippedItems[type]].stats[0];
-    statDiff[1] -= PTAD::equipmentStats[type][PTAD::Game::player.equippedItems[type]].stats[1];
-    statDiff[2] -= PTAD::equipmentStats[type][PTAD::Game::player.equippedItems[type]].stats[2];
-    statDiff[3] -= PTAD::equipmentStats[type][PTAD::Game::player.equippedItems[type]].stats[3];
-    statusDifference[0] -= PTAD::equipmentStats[type][PTAD::Game::player.equippedItems[type]].statusResistance[0];
-    statusDifference[1] -= PTAD::equipmentStats[type][PTAD::Game::player.equippedItems[type]].statusResistance[1];
+    statDiff[0] -= PTAD::Resources::equipmentStats[type][PTAD::Game::player.equippedItems[type]].stats[0];
+    statDiff[1] -= PTAD::Resources::equipmentStats[type][PTAD::Game::player.equippedItems[type]].stats[1];
+    statDiff[2] -= PTAD::Resources::equipmentStats[type][PTAD::Game::player.equippedItems[type]].stats[2];
+    statDiff[3] -= PTAD::Resources::equipmentStats[type][PTAD::Game::player.equippedItems[type]].stats[3];
+    statusDifference[0] -= PTAD::Resources::equipmentStats[type][PTAD::Game::player.equippedItems[type]].statusResistance[0];
+    statusDifference[1] -= PTAD::Resources::equipmentStats[type][PTAD::Game::player.equippedItems[type]].statusResistance[1];
   }
   //Draw values to UI
   for (int i = 0; i < 4; ++i)
@@ -357,7 +366,7 @@ void PTAD::Menu::updateEquipMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
@@ -368,7 +377,7 @@ void PTAD::Menu::updateEquipMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter == 6)
@@ -379,7 +388,7 @@ void PTAD::Menu::updateEquipMenu()
   {
     if (PTAD::Game::player.equippableItems[PTAD::globalCounter] != 0)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       state = State::EquipMenu_ChooseItem;
       tempValue = PTAD::globalCounter;
       if (PTAD::Game::player.equippedItems[tempValue] == 255)
@@ -394,11 +403,11 @@ void PTAD::Menu::updateEquipMenu()
       return;
     }
     else
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     PTAD::Game::state = PTAD::Game::previousState;
     return;
   }
@@ -416,7 +425,7 @@ void PTAD::Menu::updateEquipMenu_ChooseItem()
   {
     if (PC::getTime() - lastPress >= 250)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
@@ -433,7 +442,7 @@ void PTAD::Menu::updateEquipMenu_ChooseItem()
   {
     if (PC::getTime() - lastPress >= 250)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter == 16)
@@ -448,7 +457,7 @@ void PTAD::Menu::updateEquipMenu_ChooseItem()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
     if (PTAD::Game::player.equippedItems[tempValue] == PTAD::globalCounter)
       PTAD::Game::player.equippedItems[tempValue] = 255;
     else
@@ -456,7 +465,7 @@ void PTAD::Menu::updateEquipMenu_ChooseItem()
     PTAD::globalCounter = tempValue;
     state = State::EquipMenu;
     if (PTAD::Game::player.equippedItems[tempValue] != 255)
-      PTAD::Ui::drawText(PTAD::items[tempValue + PTAD::Game::ITEM_TYPE_WEAPONS][PTAD::Game::player.equippedItems[tempValue]].name, 8, 2, tempValue * 3 + 2);
+      PTAD::Ui::drawText(PTAD::Resources::items[tempValue + PTAD::Game::ITEM_TYPE_WEAPONS][PTAD::Game::player.equippedItems[tempValue]].name, 8, 2, tempValue * 3 + 2);
     else
       PTAD::Ui::drawText(unequipped, 8, 2, tempValue * 3 + 2);
     drawEquipMenu();
@@ -464,7 +473,7 @@ void PTAD::Menu::updateEquipMenu_ChooseItem()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     PTAD::globalCounter = tempValue;
     state = State::EquipMenu;
     drawEquipMenu();
@@ -484,11 +493,11 @@ void PTAD::Menu::updateBeastsMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
-        PTAD::globalCounter += PTAD::Battle::numEnemies;
+        PTAD::globalCounter += PTAD::Resources::numEnemies;
       if (PTAD::globalCounter < tempValue)
         tempValue = PTAD::globalCounter;
       else if (PTAD::globalCounter > tempValue + 18)
@@ -500,11 +509,11 @@ void PTAD::Menu::updateBeastsMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
-      if (PTAD::globalCounter == PTAD::Battle::numEnemies)
-        PTAD::globalCounter -= PTAD::Battle::numEnemies;
+      if (PTAD::globalCounter == PTAD::Resources::numEnemies)
+        PTAD::globalCounter -= PTAD::Resources::numEnemies;
       if (PTAD::globalCounter < tempValue)
         tempValue = PTAD::globalCounter;
       else if (PTAD::globalCounter > tempValue + 18)
@@ -514,7 +523,7 @@ void PTAD::Menu::updateBeastsMenu()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     PTAD::Game::state = PTAD::Game::previousState;
     return;
   }
@@ -532,7 +541,7 @@ void PTAD::Menu::updateNameEntryMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       nameEntryClearCursor(PTAD::globalCounter);
       PTAD::globalCounter -= 12;
@@ -545,7 +554,7 @@ void PTAD::Menu::updateNameEntryMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       nameEntryClearCursor(PTAD::globalCounter);
       PTAD::globalCounter += 12;
@@ -558,7 +567,7 @@ void PTAD::Menu::updateNameEntryMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_LEFT))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       nameEntryClearCursor(PTAD::globalCounter);
       if (PTAD::globalCounter % 12 == 0)
@@ -572,7 +581,7 @@ void PTAD::Menu::updateNameEntryMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_RIGHT))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       nameEntryClearCursor(PTAD::globalCounter);
       if (PTAD::globalCounter % 12 == 11)
@@ -592,28 +601,28 @@ void PTAD::Menu::updateNameEntryMenu()
         PTAD::Ui::dialogCursor = 0;
         PTAD::Game::state = PTAD::Game::State::MapInit;
         PTAD::Map::eventID = 0;
-        PTAD::MapEvent::setup(DataPack::hash("newGameEvent.dat"));
+        PTAD::MapEvent::setup(DataPack::hash("/newGameEvent.dat"));
         PTAD::MapEvent::begin(0);
       }
       else
-        PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
     }
     else if (tempValue < 8)
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       PTAD::Game::player.name[tempValue] = nameEntryChars[PTAD::globalCounter];
       PTAD::Ui::drawCharacter(nameEntryChars[PTAD::globalCounter], tempValue + 2, 2);
       PTAD::Ui::dialogCursorX += 8;
       ++tempValue;
     }
     else
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
   }
   else if (PB::bBtn())
   {
     if (tempValue == 0 && PTAD::justPressed(PTAD::BTN_MASK_B))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
       PTAD::Game::state = PTAD::Game::State::TitleInit;
     }
     else if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_B))
@@ -621,7 +630,7 @@ void PTAD::Menu::updateNameEntryMenu()
       lastPress = PC::getTime();
       if (tempValue > 0)
       {
-        PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
         --tempValue;
         PTAD::Game::player.name[tempValue] = PTAD::FONT_SPACE;
         PTAD::Ui::drawCharacter(PTAD::FONT_SPACE, tempValue + 2, 2);
@@ -631,7 +640,7 @@ void PTAD::Menu::updateNameEntryMenu()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_C) && PTAD::globalCounter != 59)
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
     nameEntryClearCursor(PTAD::globalCounter);
     PTAD::globalCounter = 59;
     nameEntryDrawCursor(PTAD::globalCounter);
@@ -644,7 +653,7 @@ void PTAD::Menu::updateSaveLoadMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_UP))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       --PTAD::globalCounter;
       if (PTAD::globalCounter == -1)
@@ -655,7 +664,7 @@ void PTAD::Menu::updateSaveLoadMenu()
   {
     if (PC::getTime() - lastPress >= 250 || PTAD::justPressed(PTAD::BTN_MASK_DOWN))
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
       lastPress = PC::getTime();
       ++PTAD::globalCounter;
       if (PTAD::globalCounter == 3)
@@ -667,20 +676,19 @@ void PTAD::Menu::updateSaveLoadMenu()
     if (state == State::LoadMenu)
     {
       if (PTAD::Ui::getCharacter(2, 2 + PTAD::globalCounter * 7) == PTAD::FONT_SPACE)
-        PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
       else
       {
-        PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+        PTAD::Music::playSFX(PTAD::Resources::sfx_select);
         PTAD::Game::loadGame(PTAD::globalCounter);
         PTAD::Game::state = PTAD::Game::State::MapInit;
         PTAD::Map::eventID = 0;
-        PTAD::MapEvent::setup(DataPack::hash("newGameEvent.dat"));
+        PTAD::MapEvent::setup(DataPack::hash("/newGameEvent.dat"));
         PTAD::MapEvent::begin(0);
       }
     }
     else if (state == State::SaveMenu)
     {
-      int y = PTAD::globalCounter * 7;
       uint32_t s = PTAD::Game::player.playTime / 1000;
       uint32_t m = s / 60;
       uint32_t h = m / 60;
@@ -692,7 +700,7 @@ void PTAD::Menu::updateSaveLoadMenu()
         m = 99;
         s = 99;
       }
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       PTAD::Game::saveGame(PTAD::globalCounter);
       drawSaveLoadMenu();
     }
@@ -700,17 +708,17 @@ void PTAD::Menu::updateSaveLoadMenu()
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     PTAD::Game::state = PTAD::Game::previousState;
     PTAD::globalCounter = 0;
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_C))
   {
     if (PTAD::Ui::getCharacter(2, 2 + PTAD::globalCounter * 7) == PTAD::FONT_SPACE)
-      PTAD::Music::playSFX(PTAD::Music::SFX_INVALID);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_invalid);
     else
     {
-      PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+      PTAD::Music::playSFX(PTAD::Resources::sfx_select);
       tempValue = PTAD::globalCounter;
       lastPress = (uint32_t)state;
       PTAD::globalCounter = 0;
@@ -729,19 +737,19 @@ void PTAD::Menu::updateEraseSlot()
 {
   if (PTAD::justPressed(PTAD::BTN_MASK_LEFT) || PTAD::justPressed(PTAD::BTN_MASK_RIGHT))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CURSOR);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cursor);
     PTAD::globalCounter ^= 1;
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_SELECT);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_select);
     if (PTAD::globalCounter == 0)
       PTAD::Game::eraseGame(tempValue);
     state = (State)lastPress;
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_B))
   {
-    PTAD::Music::playSFX(PTAD::Music::SFX_CANCEL);
+    PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     state = (State)lastPress;
   }
   if (state == State::EraseSlot)
@@ -772,7 +780,7 @@ void PTAD::Menu::drawEquipMenu()
   if (PTAD::Game::player.equippableItems[PTAD::globalCounter] == 0)
     PTAD::Ui::drawText(noneAvailable[PTAD::globalCounter], 24, 2, 19);
   else if (PTAD::Game::player.equippedItems[PTAD::globalCounter] != 255)
-    PTAD::Ui::drawText(PTAD::items[PTAD::globalCounter + PTAD::Game::ITEM_TYPE_WEAPONS][PTAD::Game::player.equippedItems[PTAD::globalCounter]].description, 24, 2, 19);
+    PTAD::Ui::drawText(PTAD::Resources::items[PTAD::globalCounter + PTAD::Game::ITEM_TYPE_WEAPONS][PTAD::Game::player.equippedItems[PTAD::globalCounter]].description, 24, 2, 19);
   else
     PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
 }
@@ -783,7 +791,7 @@ void PTAD::Menu::drawEquipMenu_ChooseItem()
   if (PTAD::globalCounter == PTAD::Game::player.equippedItems[tempValue])
     PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 24, 2, 19);
   else
-    PTAD::Ui::drawText(PTAD::items[tempValue + PTAD::Game::ITEM_TYPE_WEAPONS][PTAD::globalCounter].description, 24, 2, 19);
+    PTAD::Ui::drawText(PTAD::Resources::items[tempValue + PTAD::Game::ITEM_TYPE_WEAPONS][PTAD::globalCounter].description, 24, 2, 19);
 }
 
 void PTAD::Menu::drawBeastsMenu()
@@ -792,10 +800,10 @@ void PTAD::Menu::drawBeastsMenu()
   {
     DataPack::PackedFile file;
     PTAD::Battle::EnemyData enemyData;
-    PTAD::dataFile->getPackedFile(DataPack::hash("battlers/battlers.gfx"), &file);
+    PTAD::dataFile->getPackedFile(DataPack::hash("/battlers.png"), &file);
     file.seek(PTAD::MEMORY_BATTLE_BATTLER_SIZE * PTAD::globalCounter);
     PTAD::dataFile->readBytes(&file, enemyImage, PTAD::MEMORY_BATTLE_BATTLER_SIZE);
-    PTAD::dataFile->getPackedFile(PTAD::Battle::enemies[PTAD::globalCounter], &file);
+    PTAD::dataFile->getPackedFile(PTAD::Resources::enemies[PTAD::globalCounter], &file);
     PTAD::dataFile->readBytes(&file, (void*)&enemyData, sizeof(PTAD::Battle::EnemyData));
     PTAD::Ui::drawNumber(enemyData.hp, 21, 4, 10000);
     PTAD::Ui::drawNumber(enemyData.mp, 23, 5, 100);
@@ -828,14 +836,14 @@ void PTAD::Menu::drawBeastsMenu()
   }
   if (tempValue > 0)
     PTAD::Ui::drawCharacter(PTAD::FONT_ARROW_UP, 9, 1);
-  if (tempValue + 18 < PTAD::Battle::numEnemies)
+  if (tempValue + 18 < PTAD::Resources::numEnemies)
     PTAD::Ui::drawCharacter(PTAD::FONT_ARROW_DOWN, 9, 20);
   for (uint8_t i = 0; i < 18; ++i)
   {
     uint8_t id = i + tempValue;
     if (((PTAD::Game::player.enemiesScanned[id / 32] >> (i % 32)) & 1) != 0)
-      PTAD::Ui::drawText(PTAD::Battle::enemyNames + id * 8, 8, 2, 2 + i);
-    else if (id < PTAD::Battle::numEnemies)
+      PTAD::Ui::drawText(PTAD::Resources::enemyNames + id * 8, 8, 2, 2 + i);
+    else if (id < PTAD::Resources::numEnemies)
       PTAD::Ui::fillCharacter(PTAD::FONT_MINUS, 8, 2, 2 + i);
     else
       PTAD::Ui::fillCharacter(PTAD::FONT_SPACE, 8, 2, 2 + i);
