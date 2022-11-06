@@ -64,7 +64,8 @@ namespace PTAD
 	#else
 	extern uint8_t tilemapBG[];
   extern uint8_t tilemapFG[];
-	#endif
+  #endif
+  extern const uint8_t volumeLevels[8];
 	/*extern const uint32_t tilesets[];
 	extern const uint8_t playerSprite[];
 	extern const uint8_t cursor[];

@@ -1,6 +1,6 @@
 #include "headers.h"
 
-#define DEBUG_MAPEVENTS
+//#define DEBUG_MAPEVENTS
 
 using PC=Pokitto::Core;
 using PD=Pokitto::Display;

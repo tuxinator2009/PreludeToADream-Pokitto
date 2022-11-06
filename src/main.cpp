@@ -18,7 +18,7 @@ void init()
   if (Pokitto::discrete_vol == 7)
   {
     Pokitto::discrete_vol = 6;
-    Audio::setVolume(Pokitto::discrete_vol_levels[Pokitto::discrete_vol]);
+    Audio::setVolume(PTAD::volumeLevels[Pokitto::discrete_vol]);
   }
 }
 

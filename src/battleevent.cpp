@@ -1,6 +1,6 @@
 #include "headers.h"
 
-#define DEBUG_BATTLEEVENTS
+//#define DEBUG_BATTLEEVENTS
 
 using PC=Pokitto::Core;
 using PD=Pokitto::Display;

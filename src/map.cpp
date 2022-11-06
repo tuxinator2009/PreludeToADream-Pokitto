@@ -1451,7 +1451,7 @@ void PTAD::Map::updateVolumeMenu()
         ++Pokitto::discrete_vol;
         PTAD::Ui::drawCharacter(PTAD::FONT_SOLID, 11, 15 - Pokitto::discrete_vol);
       }
-      Audio::setVolume(Pokitto::discrete_vol_levels[Pokitto::discrete_vol]);
+      Audio::setVolume(PTAD::volumeLevels[Pokitto::discrete_vol]);
     }
   }
   else if (PB::downBtn())
@@ -1465,7 +1465,7 @@ void PTAD::Map::updateVolumeMenu()
         --Pokitto::discrete_vol;
         PTAD::Ui::drawCharacter(PTAD::FONT_SPACE, 11, 14 - Pokitto::discrete_vol);
       }
-      Audio::setVolume(Pokitto::discrete_vol_levels[Pokitto::discrete_vol]);
+      Audio::setVolume(PTAD::volumeLevels[Pokitto::discrete_vol]);
     }
   }
   else if (PTAD::justPressed(PTAD::BTN_MASK_A))
@@ -1479,7 +1479,7 @@ void PTAD::Map::updateVolumeMenu()
     PTAD::Music::playSFX(PTAD::Resources::sfx_cancel);
     menuState = MenuState::MainMenu;
     Pokitto::discrete_vol = PTAD::Game::volume;
-    Audio::setVolume(Pokitto::discrete_vol_levels[Pokitto::discrete_vol]);
+    Audio::setVolume(PTAD::volumeLevels[Pokitto::discrete_vol]);
   }
   if (menuState == MenuState::VolumeMenu)
   {
