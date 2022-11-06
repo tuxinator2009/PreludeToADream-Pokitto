@@ -868,7 +868,7 @@ QTableWidget::indicator:checked
            <item>
             <widget class="QStackedWidget" name="stkLayerTools">
              <property name="currentIndex">
-              <number>0</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="pgTiles">
               <layout class="QVBoxLayout" name="verticalLayout_15">
@@ -1505,7 +1505,7 @@ QTableWidget::indicator:checked
                         <bool>false</bool>
                        </property>
                        <property name="rowCount">
-                        <number>52</number>
+                        <number>51</number>
                        </property>
                        <property name="columnCount">
                         <number>5</number>
@@ -1538,7 +1538,6 @@ QTableWidget::indicator:checked
                          <string>2</string>
                         </property>
                        </row>
-                       <row/>
                        <row/>
                        <row/>
                        <row/>

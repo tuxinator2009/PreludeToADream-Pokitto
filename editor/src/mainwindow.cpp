@@ -500,7 +500,7 @@ void MainWindow::on_tblEnemies_itemSelectionChanged()
 {
   if (ignoreEvents)
     return;
-  for (int row = 0; row < 52; ++row)
+  for (int row = 0; row < 51; ++row)
   {
     for (int col = 0; col < 5; ++col)
     {
@@ -673,21 +673,49 @@ void MainWindow::on_imgMapView_mousePressed(Qt::MouseButton button, QPoint pos)
     }
     updateMapView();
   }
-  else if (button == Qt::MiddleButton && tblLayers->currentRow() == Map::LAYER_EVENTS)
+  else if (button == Qt::MiddleButton)
   {
-    for (int i = 0; i < 29; ++i)
+    if (tblLayers->currentRow() == Map::LAYER_REGIONS)
     {
-      MapEvent *event = Globals::map->getMapEvent(i);
-      if (event == nullptr)
-        break;
-      int eventX = event->getX() * currentZoom / 16;
-      int eventY = event->getY() * currentZoom / 16 + (event->isFlagSet(MapEvent::FLAGS_OFFSET) ? 0:(currentZoom / 32) - (currentZoom / 32));
-      if (pos.x() >= eventX && pos.x() < eventX + 16 * currentZoom / 256 && pos.y() >= eventY && pos.y() < eventY + 24 * currentZoom / 256)
+      int regionID = pos.y() / (currentZoom / 2) * Globals::map->getWidth() * 2 + pos.x() / (currentZoom / 2);
+      int regionX = pos.x() % (currentZoom / 2);
+      int regionY = pos.y() % (currentZoom / 2);
+      int num = -1;
+      if (regionX >= 8 * currentZoom / 256 && regionX < 56 * currentZoom / 256)
       {
-        event->setSpriteID(tblSprites->currentRow() * 8 + tblSprites->currentColumn());
-        break;
+        if (regionY >= 8 * currentZoom / 256 && regionY < 56 * currentZoom / 256)
+          num = 0;
+        else if (regionY >= 72 * currentZoom / 256 && regionY < 120 * currentZoom / 256)
+          num = 2;
+      }
+      else if (regionX >= 72 * currentZoom / 256 && regionX < 120 * currentZoom / 256)
+      {
+        if (regionY >= 8 * currentZoom / 256 && regionY < 56 * currentZoom / 256)
+          num = 1;
+        else if (regionY >= 72 * currentZoom / 256 && regionY < 120 * currentZoom / 256)
+          num = 3;
+      }
+      if (num != -1)
+        Globals::map->setRegionMonster(regionID, num, 255);
+    }
+    else if (tblLayers->currentRow() == Map::LAYER_EVENTS)
+    {
+      for (int i = 0; i < 29; ++i)
+      {
+        MapEvent *event = Globals::map->getMapEvent(i);
+        if (event == nullptr)
+          break;
+        int eventX = event->getX() * currentZoom / 16;
+        int eventY = event->getY() * currentZoom / 16 + (event->isFlagSet(MapEvent::FLAGS_OFFSET) ? 0:(currentZoom / 32) - (currentZoom / 32));
+        if (pos.x() >= eventX && pos.x() < eventX + 16 * currentZoom / 256 && pos.y() >= eventY && pos.y() < eventY + 24 * currentZoom / 256)
+        {
+          event->setSpriteID(tblSprites->currentRow() * 8 + tblSprites->currentColumn());
+          updateMapView();
+          break;
+        }
       }
     }
+    updateMapView();
   }
   else if (button == Qt::RightButton && action == 1 && (tblLayers->currentRow() == Map::LAYER_FOREGROUND || tblLayers->currentRow() == Map::LAYER_BACKGROUND))
   {
@@ -778,6 +806,30 @@ void MainWindow::on_imgMapView_mouseMoved(Qt::MouseButtons buttons, QPoint pos, 
       else if (btnToolCircle->isChecked())
         rectEnd = QPoint(tileX, tileY);
     }
+    updateMapView();
+  }
+  else if ((buttons & Qt::MiddleButton) != 0 && tblLayers->currentRow() == Map::LAYER_REGIONS)
+  {
+    int regionID = pos.y() / (currentZoom / 2) * Globals::map->getWidth() * 2 + pos.x() / (currentZoom / 2);
+    int regionX = pos.x() % (currentZoom / 2);
+    int regionY = pos.y() % (currentZoom / 2);
+    int num = -1;
+    if (regionX >= 8 * currentZoom / 256 && regionX < 56 * currentZoom / 256)
+    {
+      if (regionY >= 8 * currentZoom / 256 && regionY < 56 * currentZoom / 256)
+        num = 0;
+      else if (regionY >= 72 * currentZoom / 256 && regionY < 120 * currentZoom / 256)
+        num = 2;
+    }
+    else if (regionX >= 72 * currentZoom / 256 && regionX < 120 * currentZoom / 256)
+    {
+      if (regionY >= 8 * currentZoom / 256 && regionY < 56 * currentZoom / 256)
+        num = 1;
+      else if (regionY >= 72 * currentZoom / 256 && regionY < 120 * currentZoom / 256)
+        num = 3;
+    }
+    if (num != -1)
+      Globals::map->setRegionMonster(regionID, num, 255);
     updateMapView();
   }
   else if (buttons & Qt::RightButton)
@@ -1035,7 +1087,7 @@ void MainWindow::redrawSprites()
 
 void MainWindow::redrawEnemies()
 {
-  for (int enemy = 0; enemy < 256; ++enemy)
+  for (int enemy = 0; enemy < 255; ++enemy)
   {
     QLabel *label = static_cast<QLabel*>(tblEnemies->cellWidget(enemy / 5, enemy % 5));
     label->setPixmap(QPixmap::fromImage(Globals::battlers->toQImage(QRect(enemy % 16 * 48, enemy / 16 * 48, 48, 48))));
