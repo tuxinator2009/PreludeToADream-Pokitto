@@ -38,6 +38,7 @@
 #include "mapeventeditor.h"
 #include "messageseditor.h"
 #include "monsterseditor.h"
+#include "newgamedataeditor.h"
 #include "newmap.h"
 #include "previewmap.h"
 #include "resizemap.h"
@@ -104,6 +105,11 @@ void MainWindow::setup()
     QMessageBox::critical(this, "XML Parser Error", QString("An error occurred when parsing settings.xml on line %1 column %2.\nError: %3").arg(results.nLine).arg(results.nColumn).arg(XMLNode::getError(results.error)));
   Globals::setupData();
   Globals::femtoIDE = settingsNode.getAttribute("femtoIDE");
+  Globals::defaultName = settingsNode.getAttribute("defaultName");
+  Globals::startMapID = QString(settingsNode.getAttribute("startMap")).toInt();
+  Globals::startLocation = QPoint(QString(settingsNode.getAttribute("startX")).toInt(), QString(settingsNode.getAttribute("startY")).toInt());
+  Globals::startFacing = QString(settingsNode.getAttribute("startFacing")).toInt();
+  Globals::newGameEvent = new MapEvent(nullptr, settingsNode.getChildNode("newGameEvent"));
   connect(Globals::battlers, SIGNAL(imageChanged()), this, SLOT(redrawEnemies()));
   connect(Globals::sprites, SIGNAL(imageChanged()), this, SLOT(redrawSprites()));
   treeMaps->invisibleRootItem()->setText(2, "/maps");
@@ -245,6 +251,13 @@ void MainWindow::on_btnEditSpells_clicked()
 void MainWindow::on_btnEditStats_clicked()
 {
   StatsEditor *editor = new StatsEditor(this);
+  editor->exec();
+  editor->deleteLater();
+}
+
+void MainWindow::on_btnEditNewGameData_clicked()
+{
+  NewGameDataEditor *editor = new NewGameDataEditor(this);
   editor->exec();
   editor->deleteLater();
 }
@@ -1198,8 +1211,16 @@ void MainWindow::deleteMap(QTreeWidgetItem *item)
 void MainWindow::closeEvent(QCloseEvent *event)
 {
   XMLNode settingsNode = XMLNode::createXMLTopNode("ptad-settings");
-  XMLNode childNode = settingsNode.addChild("maps");
+  XMLNode childNode = Globals::newGameEvent->toXMLNode(true);
   settingsNode.addAttribute("femtoIDE", Globals::femtoIDE.toLocal8Bit().data());
+  settingsNode.addAttribute("defaultName", Globals::defaultName.toLocal8Bit().data());
+  settingsNode.addAttribute("startMap", QString::number(Globals::startMapID).toLocal8Bit().data());
+  settingsNode.addAttribute("startX", QString::number(Globals::startLocation.x()).toLocal8Bit().data());
+  settingsNode.addAttribute("startY", QString::number(Globals::startLocation.y()).toLocal8Bit().data());
+  settingsNode.addAttribute("startFacing", QString::number(Globals::startFacing).toLocal8Bit().data());
+  childNode.updateName("newGameEvent");
+  settingsNode.addChild(childNode);
+  childNode = settingsNode.addChild("maps");
   saveMapTree(treeMaps->invisibleRootItem(), childNode);
   childNode = settingsNode.addChild("messages");
   for (auto message : Globals::messages.keys())

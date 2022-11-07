@@ -64,6 +64,7 @@ HEADERS += \
 	messageseditor.h \
 	monster.h \
 	monsterseditor.h \
+	newgamedataeditor.h \
 	newmap.h \
 	previewmap.h \
 	resizemap.h \
@@ -103,6 +104,7 @@ SOURCES += \
 	messageseditor.cpp \
 	monster.cpp \
 	monsterseditor.cpp \
+	newgamedataeditor.cpp \
 	previewmap.cpp \
 	resources.cpp \
 	shiftmap.cpp \
@@ -162,6 +164,7 @@ FORMS += \
 	mapspritepicker.ui \
 	messageseditor.ui \
 	monsterseditor.ui \
+	newgamedataeditor.ui \
 	newmap.ui \
 	previewmap.ui \
 	resizemap.ui \

@@ -172,6 +172,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="btnEditNewGameData">
+         <property name="text">
+          <string>Edit New Game Data</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="btnCompileData">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">

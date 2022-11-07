@@ -211,10 +211,6 @@ void ConfigureEvent_Teleport::updateMapView()
     for (int x = 0; x < map->getWidth() * 32; ++x)
     {
       uint8_t tileID = map->getBGTile(x, y);
-      if (tileID >= 128 && tileID <= 136)
-      {
-        //TODO: calculate auto-tile
-      }
       if (tileID < 128)
         mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(x * 8, y * 8), false);
     }
@@ -232,10 +228,6 @@ void ConfigureEvent_Teleport::updateMapView()
     for (int x = 0; x < map->getWidth() * 32; ++x)
     {
       uint8_t tileID = map->getFGTile(x, y);
-      if (tileID >= 128 && tileID <= 136)
-      {
-        //TODO: calculate auto-tile
-      }
       if (tileID < 128)
         mapImage->blitImage(*tilesetImage, QRect(tileID % 16 * 8, tileID / 16 * 8, 8, 8), QPoint(x * 8, y * 8), true);
     }

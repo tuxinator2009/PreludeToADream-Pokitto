@@ -1812,8 +1812,8 @@ QTreeWidgetItem *BattleEvent::WaitFrames::getItem()
 //BEGIN: InflictStatus (COMPLETE)
 BattleEvent::InflictStatus::InflictStatus(BattleEvent *pBase, Event *pEvent) : Event(pBase, pEvent, Type::InflictStatus)
 {
-  successMessage = "Success";
-  failMessage = "Failed";
+  successMessage = "";
+  failMessage = "";
   status = 0;
   level = 1;
   chance = 255;

@@ -36,6 +36,7 @@
 class Image;
 class Map;
 class MainWindow;
+class MapEvent;
 class Tileset;
 
 class Globals
@@ -117,6 +118,7 @@ class Globals
     static Image *font;
     static Image *player;
     static Image *sprites;
+    static MapEvent *newGameEvent;
     static Item items[8][16];
     static Item skills[16];
     static Item spells[16];
@@ -124,6 +126,10 @@ class Globals
     static StatGrowth statsGrowth[7];
     static QString datadir;
     static QString femtoIDE;
+    static QString defaultName;
+    static QPoint startLocation;
+    static int startMapID;
+    static int startFacing;
     static QMap<int, QString> mapNames;
     static QMap<QString, QString> messages;
     static QStringList backdrops;

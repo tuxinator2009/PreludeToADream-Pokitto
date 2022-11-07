@@ -36,14 +36,6 @@
 #include "monster.h"
 #include "tileset.h"
 
-const uint8_t CompileData::newGameEvent[] =
-{
-  0x00,0x01,0x02,
-  0x04,
-  0x01,0x01,0x02,
-  0x31
-};
-
 CompileData::CompileData(QTreeWidgetItem *root, QWidget *parent) : QDialog(parent)
 {
   setupUi(this);
@@ -77,6 +69,7 @@ void CompileData::on_btnBrowseFemtoIDE_clicked()
 
 void CompileData::on_btnCompileData_clicked()
 {
+  QByteArray bytes;
   QElapsedTimer timer;
   qint64 timeTaken;
   audioData.clear();
@@ -84,7 +77,8 @@ void CompileData::on_btnCompileData_clicked()
   blocks.clear();
   txtOutput->clear();
   timer.start();
-  dataFiles += DataFile("/newGameEvent.dat", QByteArray((const char*)newGameEvent, sizeof(newGameEvent)));
+  Globals::newGameEvent->compileEvent(nullptr, -1, &bytes);
+  dataFiles += DataFile("/newGameEvent.dat", bytes);
   if (!compileAnimations())
     return;
   if (!compileBackdrops())
@@ -497,6 +491,21 @@ bool CompileData::generateResourcesHeader()
   stream << "    {\n";
   stream << "      return growth.start + (uint32_t)(growth.base * pow(level, growth.exponent));\n";
   stream << "    }\n";
+  stream << "    constexpr uint8_t defaultName[8] = {";
+  QString text = Globals::defaultName;
+  text.resize(8, QChar('_'));
+  for (int i = 0; i < 8; ++i)
+  {
+    stream << "0x" << QString("%1").arg(Globals::charToCode(text[i].toLatin1()), 2, 16, QChar('0')).toUpper();
+    if (i != 7)
+      stream << ",";
+  }
+  stream << "};\n";
+  text = QString("/maps/map%1.xml").arg(Globals::startMapID, 4, 10, QChar('0'));
+  stream << "    constexpr uint32_t startMap = 0x" << QString("%1").arg(Globals::hash(text.toLocal8Bit().data(), text.length() + 1), 8, 16, QChar('0')).toUpper() << ";\n";
+  stream << "    constexpr int startX = " << Globals::startLocation.x() << ";\n";
+  stream << "    constexpr int startY = " << Globals::startLocation.y() << ";\n";
+  stream << "    constexpr int startFacing = " << Globals::startFacing << ";\n";
   stream << "    //Global resources\n";
   stream << "    struct Item\n";
   stream << "    {\n";

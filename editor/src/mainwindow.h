@@ -51,6 +51,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_btnEditSkills_clicked();
     void on_btnEditSpells_clicked();
     void on_btnEditStats_clicked();
+    void on_btnEditNewGameData_clicked();
     void on_btnCompileData_clicked();
     void on_treeMaps_itemClicked(QTreeWidgetItem *item);
     void on_aAddTopLevelMap_triggered();

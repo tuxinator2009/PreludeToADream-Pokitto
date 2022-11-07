@@ -74,6 +74,11 @@ namespace PTAD
     {
       return growth.start + (uint32_t)(growth.base * pow(level, growth.exponent));
     }
+    constexpr uint8_t defaultName[8] = {0x1A,0x37,0x45,0x3C,0x34,0x41,0x0A,0x0A};
+    constexpr uint32_t startMap = 0xB1D84CBB;
+    constexpr int startX = 12;
+    constexpr int startY = 8;
+    constexpr int startFacing = 2;
     //Global resources
     struct Item
     {

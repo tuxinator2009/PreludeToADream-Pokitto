@@ -54,9 +54,11 @@ const PTAD::Game::PlayerData PTAD::Game::newGame =
   0x0000,
   //name
   //{0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A},
-  {PTAD::FONT_A, PTAD::FONT_d, PTAD::FONT_r, PTAD::FONT_i, PTAD::FONT_a, PTAD::FONT_n, PTAD::FONT_SPACE, PTAD::FONT_SPACE},
+  //{PTAD::FONT_A, PTAD::FONT_d, PTAD::FONT_r, PTAD::FONT_i, PTAD::FONT_a, PTAD::FONT_n, PTAD::FONT_SPACE, PTAD::FONT_SPACE},
+  {PTAD::Resources::defaultName[0], PTAD::Resources::defaultName[1], PTAD::Resources::defaultName[2], PTAD::Resources::defaultName[3], PTAD::Resources::defaultName[4], PTAD::Resources::defaultName[5], PTAD::Resources::defaultName[6], PTAD::Resources::defaultName[7]},
   //x, y
-  192, 128,
+  //192, 128,
+  PTAD::Resources::startX * 16, PTAD::Resources::startY * 16,
   //hp, maxHP
   (uint16_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::hpGrowth), (uint16_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::hpGrowth),
   //mp, maxMP
@@ -75,11 +77,13 @@ const PTAD::Game::PlayerData PTAD::Game::newGame =
     (uint16_t)PTAD::Resources::getStatForLevel(START_LEVEL, PTAD::Resources::magicGrowth)
   },
   //mapID
-  DataPack::hash("/maps/map0003.xml"),
+  //DataPack::hash("/maps/map0003.xml"),
+  PTAD::Resources::startMap,
   //messageSpeed
   0x11,
   //dir
-  PTAD::DIR_DOWN,
+  //PTAD::DIR_DOWN,
+  PTAD::Resources::startFacing,
   //equpped items
   {255, 255, 255, 255, 255, 255},
   //equippableItems

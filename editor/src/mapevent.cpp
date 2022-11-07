@@ -2948,6 +2948,8 @@ void MapEvent::ChangeSprite::compileEvent(QByteArray *bytes)
 
 bool MapEvent::ChangeSprite::configureEvent(QWidget *parentWidget)
 {
+  if (pMapEvent->map == nullptr)
+    return false;
   ConfigureEvent_ChangeSprite *configure = new ConfigureEvent_ChangeSprite(pMapEvent->map, parentWidget);
   if (pMapEvent != pMapEvent->map->getOnLoadEvent())
     configure->addEvent("this");
@@ -3049,6 +3051,8 @@ void MapEvent::ChangeEventLocation::compileEvent(QByteArray *bytes)
 
 bool MapEvent::ChangeEventLocation::configureEvent(QWidget *parentWidget)
 {
+  if (pMapEvent->map == nullptr)
+    return false;
   ConfigureEvent_ChangeEventLocation *configure = new ConfigureEvent_ChangeEventLocation(pMapEvent->map, pMapEvent->map->getMapEventID(pMapEvent), parentWidget);
   if (pMapEvent != pMapEvent->map->getOnLoadEvent())
     configure->addEvent("this");
@@ -3145,6 +3149,8 @@ void MapEvent::ChangeEventFlags::compileEvent(QByteArray *bytes)
 
 bool MapEvent::ChangeEventFlags::configureEvent(QWidget *parentWidget)
 {
+  if (pMapEvent->map == nullptr)
+    return false;
   ConfigureEvent_ChangeEventFlags *configure = new ConfigureEvent_ChangeEventFlags(parentWidget);
   if (pMapEvent != pMapEvent->map->getOnLoadEvent())
     configure->addEvent("this");
@@ -3246,6 +3252,8 @@ void MapEvent::ChangePassability::compileEvent(QByteArray *bytes)
 
 bool MapEvent::ChangePassability::configureEvent(QWidget *parentWidget)
 {
+  if (pMapEvent->map == nullptr)
+    return false;
   ConfigureEvent_ChangePassability *configure = new ConfigureEvent_ChangePassability(pMapEvent->map, parentWidget);
   configure->setLocation(x, y);
   configure->setOperation(operation);

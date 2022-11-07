@@ -55,7 +55,6 @@ class CompileData : public QDialog, public Ui::CompileData
     void processReadyReadStandardOutput();
   private:
     static const size_t BLOCK_SIZE = 512;
-    static const uint8_t newGameEvent[];
     struct FileHeader
     {
       uint32_t hash;

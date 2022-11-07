@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ptad-settings femtoIDE="/programming/pokitto/FemtoIDE_PtaD/nw">
+<ptad-settings femtoIDE="/programming/pokitto/FemtoIDE_git/nw" defaultName="Adrian" startMap="3" startX="12" startY="8" startFacing="2">
+	<newGameEvent>
+		<hideScreen transition="1" speed="2"/>
+		<hideDialog/>
+		<showScreen transition="1" speed="2"/>
+	</newGameEvent>
 	<maps>
 		<map name="Overworld" file="map0000.xml"/>
 		<map name="Town 1" file="map0001.xml">
